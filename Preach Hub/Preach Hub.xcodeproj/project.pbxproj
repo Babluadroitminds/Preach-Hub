@@ -112,6 +112,9 @@
 		18951685228D672C005FA99A /* Preach Hub */ = {
 			isa = PBXGroup;
 			children = (
+				8203F0CB228D74E800F9D65D /* Assets */,
+				8203F0CA228D74C800F9D65D /* ViewControllers */,
+				8203F0C9228D74B600F9D65D /* Views */,
 				8203F0C2228D691700F9D65D /* Shared */,
 				18951686228D672C005FA99A /* AppDelegate.swift */,
 				18951688228D672C005FA99A /* ViewController.swift */,
@@ -158,6 +161,27 @@
 				8203F0C7228D69B700F9D65D /* NotificationsHelper.swift */,
 			);
 			path = Shared;
+			sourceTree = "<group>";
+		};
+		8203F0C9228D74B600F9D65D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		8203F0CA228D74C800F9D65D /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		8203F0CB228D74E800F9D65D /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Assets;
 			sourceTree = "<group>";
 		};
 		8A42EE9286C6DB4CA08D0E61 /* Frameworks */ = {
