@@ -1,7 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -13,7 +17,51 @@
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jxx-7v-MrX">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splash" translatesAutoresizingMaskIntoConstraints="NO" id="gF8-KF-bUL">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Follow Church Leaders Around the World" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NRK-Ed-GjA">
+                                        <rect key="frame" x="40" y="324.5" width="295" height="48"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tY6-I2-UZM">
+                                        <rect key="frame" x="20" y="387.5" width="335" height="153"/>
+                                        <string key="text">Preach Hub is a multi-medium platform which comprises different ministries from various denominations under the umbrella of Christianity. Inception for Christians to access sermons, religious news, and gospel music, this platform also contains an online store for purchasing bibles, books, and other specific church materials.</string>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="NRK-Ed-GjA" firstAttribute="centerX" secondItem="gF8-KF-bUL" secondAttribute="centerX" id="3Wt-Bi-BMc"/>
+                                    <constraint firstAttribute="trailing" secondItem="NRK-Ed-GjA" secondAttribute="trailing" constant="40" id="56H-JP-YTK"/>
+                                    <constraint firstItem="gF8-KF-bUL" firstAttribute="leading" secondItem="Jxx-7v-MrX" secondAttribute="leading" id="Amz-PE-HBE"/>
+                                    <constraint firstAttribute="trailing" secondItem="gF8-KF-bUL" secondAttribute="trailing" id="DyB-5h-Tcd"/>
+                                    <constraint firstItem="NRK-Ed-GjA" firstAttribute="centerY" secondItem="gF8-KF-bUL" secondAttribute="centerY" constant="15" id="J4n-nL-qQt"/>
+                                    <constraint firstItem="gF8-KF-bUL" firstAttribute="top" secondItem="Jxx-7v-MrX" secondAttribute="top" id="YUN-3j-gdI"/>
+                                    <constraint firstItem="NRK-Ed-GjA" firstAttribute="leading" secondItem="Jxx-7v-MrX" secondAttribute="leading" constant="40" id="ZBc-pr-3VQ"/>
+                                    <constraint firstAttribute="trailing" secondItem="tY6-I2-UZM" secondAttribute="trailing" constant="20" id="ch7-KA-B3q"/>
+                                    <constraint firstAttribute="bottom" secondItem="gF8-KF-bUL" secondAttribute="bottom" id="crD-XY-M7w"/>
+                                    <constraint firstItem="tY6-I2-UZM" firstAttribute="top" secondItem="NRK-Ed-GjA" secondAttribute="bottom" constant="15" id="eKb-mH-6ea"/>
+                                    <constraint firstItem="tY6-I2-UZM" firstAttribute="centerX" secondItem="gF8-KF-bUL" secondAttribute="centerX" id="lh2-M0-ECh"/>
+                                    <constraint firstItem="tY6-I2-UZM" firstAttribute="leading" secondItem="Jxx-7v-MrX" secondAttribute="leading" constant="20" id="pjm-VM-KI7"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Jxx-7v-MrX" secondAttribute="bottom" id="8ac-Yw-cZu"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Jxx-7v-MrX" secondAttribute="trailing" id="Idx-C1-c9s"/>
+                            <constraint firstItem="Jxx-7v-MrX" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="MYP-Jb-2uD"/>
+                            <constraint firstItem="Jxx-7v-MrX" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="a46-Sw-KYK"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
@@ -22,4 +70,7 @@
             <point key="canvasLocation" x="53" y="375"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="splash" width="180.72000122070312" height="320.8800048828125"/>
+    </resources>
 </document>
