@@ -19,6 +19,8 @@
 		8203F0C6228D695C00F9D65D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8203F0C5228D695C00F9D65D /* Constants.swift */; };
 		8203F0C8228D69B700F9D65D /* NotificationsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8203F0C7228D69B700F9D65D /* NotificationsHelper.swift */; };
 		DBA59325E32C25E49F32103E /* Pods_Preach_Hub.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD2B542195333FCD0E69A3FE /* Pods_Preach_Hub.framework */; };
+		E3ACFC45228D760F00F798D6 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3ACFC44228D760F00F798D6 /* LoginVC.swift */; };
+		E3ACFC47228D7B0300F798D6 /* RegistrationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3ACFC46228D7B0300F798D6 /* RegistrationVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +60,8 @@
 		8203F0C7228D69B700F9D65D /* NotificationsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsHelper.swift; sourceTree = "<group>"; };
 		9F6FE270D5CD1E3D340DA05E /* Pods-Preach Hub.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Preach Hub.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Preach Hub/Pods-Preach Hub.debug.xcconfig"; sourceTree = "<group>"; };
 		AD2B542195333FCD0E69A3FE /* Pods_Preach_Hub.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Preach_Hub.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E3ACFC44228D760F00F798D6 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
+		E3ACFC46228D7B0300F798D6 /* RegistrationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationVC.swift; sourceTree = "<group>"; };
 		F0511A6FE5DE21AC8336A3D9 /* Pods-Preach Hub.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Preach Hub.release.xcconfig"; path = "Pods/Target Support Files/Pods-Preach Hub/Pods-Preach Hub.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -118,6 +122,8 @@
 				8203F0C2228D691700F9D65D /* Shared */,
 				18951686228D672C005FA99A /* AppDelegate.swift */,
 				18951688228D672C005FA99A /* ViewController.swift */,
+				E3ACFC44228D760F00F798D6 /* LoginVC.swift */,
+				E3ACFC46228D7B0300F798D6 /* RegistrationVC.swift */,
 				1895168A228D672C005FA99A /* Main.storyboard */,
 				1895168D228D6732005FA99A /* Assets.xcassets */,
 				1895168F228D6732005FA99A /* LaunchScreen.storyboard */,
@@ -421,6 +427,8 @@
 			files = (
 				8203F0C6228D695C00F9D65D /* Constants.swift in Sources */,
 				8203F0C4228D695100F9D65D /* APIHelper.swift in Sources */,
+				E3ACFC45228D760F00F798D6 /* LoginVC.swift in Sources */,
+				E3ACFC47228D7B0300F798D6 /* RegistrationVC.swift in Sources */,
 				8203F0C8228D69B700F9D65D /* NotificationsHelper.swift in Sources */,
 				18951689228D672C005FA99A /* ViewController.swift in Sources */,
 				8203F0C1228D68BF00F9D65D /* Extensions.swift in Sources */,
