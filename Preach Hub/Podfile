@@ -1,0 +1,34 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'Preach Hub' do
+  # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for Preach Hub
+  
+  pod 'Alamofire', '~> 4.5'
+  pod 'SVProgressHUD', :git => 'https://github.com/SVProgressHUD/SVProgressHUD.git'
+  pod 'Toast-Swift', '~> 4.0.0'
+  pod 'IQKeyboardManagerSwift'
+  pod 'Fabric'
+  pod 'Crashlytics'
+  pod 'SwiftMoment'
+  pod 'PinCodeTextField'
+  pod ‘ReachabilitySwift’, ‘~> 3’
+  pod 'YPDrawSignatureView'
+  pod 'XLPagerTabStrip'
+  pod 'MXParallaxHeader'
+  pod 'SDWebImage'
+  pod 'eWAYPaymentsSDK'
+  pod 'Fabric'
+  pod 'Crashlytics'
+  pod 'Firebase/Core'
+  pod 'SideMenu'
+  pod 'FSPagerView'
+  pod 'SwiftyJSON'
+  pod 'SearchTextField'
+  pod 'Firebase/Core'
+  pod 'Firebase/Messaging'
+  pod 'BRYXBanner'
+end

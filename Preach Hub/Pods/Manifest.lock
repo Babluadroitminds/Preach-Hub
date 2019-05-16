@@ -1,0 +1,182 @@
+PODS:
+  - Alamofire (4.8.1)
+  - BRYXBanner (0.8.3)
+  - Crashlytics (3.12.0):
+    - Fabric (~> 1.9.0)
+  - eWAYPaymentsSDK (1.1.0)
+  - Fabric (1.9.0)
+  - Firebase/Core (5.16.0):
+    - Firebase/CoreOnly
+    - FirebaseAnalytics (= 5.5.0)
+  - Firebase/CoreOnly (5.16.0):
+    - FirebaseCore (= 5.2.0)
+  - Firebase/Messaging (5.16.0):
+    - Firebase/CoreOnly
+    - FirebaseMessaging (= 3.3.0)
+  - FirebaseAnalytics (5.5.0):
+    - FirebaseCore (~> 5.2)
+    - FirebaseInstanceID (~> 3.4)
+    - GoogleAppMeasurement (= 5.5.0)
+    - GoogleUtilities/AppDelegateSwizzler (~> 5.2)
+    - GoogleUtilities/MethodSwizzler (~> 5.2)
+    - GoogleUtilities/Network (~> 5.2)
+    - "GoogleUtilities/NSData+zlib (~> 5.2)"
+    - nanopb (~> 0.3)
+  - FirebaseAnalyticsInterop (1.1.0)
+  - FirebaseCore (5.2.0):
+    - GoogleUtilities/Logger (~> 5.2)
+  - FirebaseInstanceID (3.4.0):
+    - FirebaseCore (~> 5.2)
+    - GoogleUtilities/Environment (~> 5.3)
+    - GoogleUtilities/UserDefaults (~> 5.3)
+  - FirebaseMessaging (3.3.0):
+    - FirebaseAnalyticsInterop (~> 1.1)
+    - FirebaseCore (~> 5.2)
+    - FirebaseInstanceID (~> 3.4)
+    - GoogleUtilities/Environment (~> 5.2)
+    - GoogleUtilities/Reachability (~> 5.2)
+    - Protobuf (~> 3.1)
+  - FSPagerView (0.8.2)
+  - GoogleAppMeasurement (5.5.0):
+    - GoogleUtilities/AppDelegateSwizzler (~> 5.2)
+    - GoogleUtilities/MethodSwizzler (~> 5.2)
+    - GoogleUtilities/Network (~> 5.2)
+    - "GoogleUtilities/NSData+zlib (~> 5.2)"
+    - nanopb (~> 0.3)
+  - GoogleUtilities/AppDelegateSwizzler (5.3.7):
+    - GoogleUtilities/Environment
+    - GoogleUtilities/Logger
+    - GoogleUtilities/Network
+  - GoogleUtilities/Environment (5.3.7)
+  - GoogleUtilities/Logger (5.3.7):
+    - GoogleUtilities/Environment
+  - GoogleUtilities/MethodSwizzler (5.3.7):
+    - GoogleUtilities/Logger
+  - GoogleUtilities/Network (5.3.7):
+    - GoogleUtilities/Logger
+    - "GoogleUtilities/NSData+zlib"
+    - GoogleUtilities/Reachability
+  - "GoogleUtilities/NSData+zlib (5.3.7)"
+  - GoogleUtilities/Reachability (5.3.7):
+    - GoogleUtilities/Logger
+  - GoogleUtilities/UserDefaults (5.3.7):
+    - GoogleUtilities/Logger
+  - IQKeyboardManagerSwift (6.2.0)
+  - MXParallaxHeader (0.6.1)
+  - nanopb (0.3.901):
+    - nanopb/decode (= 0.3.901)
+    - nanopb/encode (= 0.3.901)
+  - nanopb/decode (0.3.901)
+  - nanopb/encode (0.3.901)
+  - PinCodeTextField (0.1.0)
+  - Protobuf (3.6.1)
+  - ReachabilitySwift (3)
+  - SDWebImage (4.4.3):
+    - SDWebImage/Core (= 4.4.3)
+  - SDWebImage/Core (4.4.3)
+  - SearchTextField (1.2.2)
+  - SideMenu (5.0.3)
+  - SVProgressHUD (2.2.5)
+  - SwiftMoment (0.7)
+  - SwiftyJSON (4.2.0)
+  - Toast-Swift (4.0.1)
+  - XLPagerTabStrip (8.1.1)
+  - YPDrawSignatureView (1.1.2)
+
+DEPENDENCIES:
+  - Alamofire (~> 4.5)
+  - BRYXBanner
+  - Crashlytics
+  - eWAYPaymentsSDK
+  - Fabric
+  - Firebase/Core
+  - Firebase/Messaging
+  - FSPagerView
+  - IQKeyboardManagerSwift
+  - MXParallaxHeader
+  - PinCodeTextField
+  - ReachabilitySwift (~> 3)
+  - SDWebImage
+  - SearchTextField
+  - SideMenu
+  - SVProgressHUD (from `https://github.com/SVProgressHUD/SVProgressHUD.git`)
+  - SwiftMoment
+  - SwiftyJSON
+  - Toast-Swift (~> 4.0.0)
+  - XLPagerTabStrip
+  - YPDrawSignatureView
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - BRYXBanner
+    - Crashlytics
+    - eWAYPaymentsSDK
+    - Fabric
+    - Firebase
+    - FirebaseAnalytics
+    - FirebaseAnalyticsInterop
+    - FirebaseCore
+    - FirebaseInstanceID
+    - FirebaseMessaging
+    - FSPagerView
+    - GoogleAppMeasurement
+    - GoogleUtilities
+    - IQKeyboardManagerSwift
+    - MXParallaxHeader
+    - nanopb
+    - PinCodeTextField
+    - Protobuf
+    - ReachabilitySwift
+    - SDWebImage
+    - SearchTextField
+    - SideMenu
+    - SwiftMoment
+    - SwiftyJSON
+    - Toast-Swift
+    - XLPagerTabStrip
+    - YPDrawSignatureView
+
+EXTERNAL SOURCES:
+  SVProgressHUD:
+    :git: https://github.com/SVProgressHUD/SVProgressHUD.git
+
+CHECKOUT OPTIONS:
+  SVProgressHUD:
+    :commit: e2a6aaa12321962cbe9fbecc370475f369c6566c
+    :git: https://github.com/SVProgressHUD/SVProgressHUD.git
+
+SPEC CHECKSUMS:
+  Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
+  BRYXBanner: 8cf1b119792e1cee8d7ba107297ef89f7409bc53
+  Crashlytics: 07fb167b1694128c1c9a5a5cc319b0e9c3ca0933
+  eWAYPaymentsSDK: d0cb78895acae95abd274ebafff9658c7e70cde0
+  Fabric: f988e33c97f08930a413e08123064d2e5f68d655
+  Firebase: 749a8ff4962f9d8c79dda1966de20f6f77583d67
+  FirebaseAnalytics: d35d47c03c50c73c14a7fd31463c5775843e78a9
+  FirebaseAnalyticsInterop: e5f21be9af6548372e2f0815834ff909bff395a2
+  FirebaseCore: ea2d1816723ef21492b8e9113303e1350db5e08c
+  FirebaseInstanceID: 97ea7a5dca9afd72c79bfcdddb7a44aa1cbb42a1
+  FirebaseMessaging: acbd51fe1a172bf29abaaa6e93a60f98bbf8e4f9
+  FSPagerView: 816a18842306973cc7cc6df8a5332272f7815c30
+  GoogleAppMeasurement: 621f3bc6211d5ba548debe01fafad30cf5ab6859
+  GoogleUtilities: 111a012f4c3a29c9e7c954c082fafd6ee3c999c0
+  IQKeyboardManagerSwift: b07ccf9d8cafe993dcd6cb794eb4ba34611a0c4e
+  MXParallaxHeader: 858c403532ed933b381556a81ce333d7065ad182
+  nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
+  PinCodeTextField: a3c39be58bde3ed1d6888d0fb1d88b0a4a2277cc
+  Protobuf: 1eb9700044745f00181c136ef21b8ff3ad5a0fd5
+  ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
+  SDWebImage: c5594f1a19c48d526d321e548902b56b479cd508
+  SearchTextField: a0992739d4b05dcbb40fb3a5cc6526bd991bdd23
+  SideMenu: 1dcaabce84538c53325c287f7fe62999379a641c
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
+  SwiftMoment: dc6dd27012e267819104cbb03f74ff9192dd0b42
+  SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
+  Toast-Swift: e42a638589a2f95036b4bb7626cfbdde7daf0393
+  XLPagerTabStrip: 63166e21c9844fa30f2d95d30f335e73be5caf22
+  YPDrawSignatureView: 0ca1cfcd329b9f4bf74172859f80a47a200a0e0d
+
+PODFILE CHECKSUM: de594ecac26b88e82e48a9c4868ee4fbe0974fb4
+
+COCOAPODS: 1.5.3

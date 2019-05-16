@@ -1,0 +1,6 @@
+framework module Pods_Preach_Hub {
+  umbrella header "Pods-Preach Hub-umbrella.h"
+
+  export *
+  module * { export * }
+}

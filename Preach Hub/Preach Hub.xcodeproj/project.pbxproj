@@ -14,6 +14,11 @@
 		18951691228D6732005FA99A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1895168F228D6732005FA99A /* LaunchScreen.storyboard */; };
 		1895169C228D6732005FA99A /* Preach_HubTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1895169B228D6732005FA99A /* Preach_HubTests.swift */; };
 		189516A7228D6732005FA99A /* Preach_HubUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189516A6228D6732005FA99A /* Preach_HubUITests.swift */; };
+		8203F0C1228D68BF00F9D65D /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8203F0C0228D68BF00F9D65D /* Extensions.swift */; };
+		8203F0C4228D695100F9D65D /* APIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8203F0C3228D695100F9D65D /* APIHelper.swift */; };
+		8203F0C6228D695C00F9D65D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8203F0C5228D695C00F9D65D /* Constants.swift */; };
+		8203F0C8228D69B700F9D65D /* NotificationsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8203F0C7228D69B700F9D65D /* NotificationsHelper.swift */; };
+		DBA59325E32C25E49F32103E /* Pods_Preach_Hub.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD2B542195333FCD0E69A3FE /* Pods_Preach_Hub.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +52,13 @@
 		189516A2228D6732005FA99A /* Preach HubUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Preach HubUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		189516A6228D6732005FA99A /* Preach_HubUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preach_HubUITests.swift; sourceTree = "<group>"; };
 		189516A8228D6732005FA99A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8203F0C0228D68BF00F9D65D /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		8203F0C3228D695100F9D65D /* APIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIHelper.swift; sourceTree = "<group>"; };
+		8203F0C5228D695C00F9D65D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		8203F0C7228D69B700F9D65D /* NotificationsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsHelper.swift; sourceTree = "<group>"; };
+		9F6FE270D5CD1E3D340DA05E /* Pods-Preach Hub.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Preach Hub.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Preach Hub/Pods-Preach Hub.debug.xcconfig"; sourceTree = "<group>"; };
+		AD2B542195333FCD0E69A3FE /* Pods_Preach_Hub.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Preach_Hub.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F0511A6FE5DE21AC8336A3D9 /* Pods-Preach Hub.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Preach Hub.release.xcconfig"; path = "Pods/Target Support Files/Pods-Preach Hub/Pods-Preach Hub.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +66,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DBA59325E32C25E49F32103E /* Pods_Preach_Hub.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,6 +94,8 @@
 				1895169A228D6732005FA99A /* Preach HubTests */,
 				189516A5228D6732005FA99A /* Preach HubUITests */,
 				18951684228D672C005FA99A /* Products */,
+				D5D41A41F7270DECD85FE250 /* Pods */,
+				8A42EE9286C6DB4CA08D0E61 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -97,6 +112,7 @@
 		18951685228D672C005FA99A /* Preach Hub */ = {
 			isa = PBXGroup;
 			children = (
+				8203F0C2228D691700F9D65D /* Shared */,
 				18951686228D672C005FA99A /* AppDelegate.swift */,
 				18951688228D672C005FA99A /* ViewController.swift */,
 				1895168A228D672C005FA99A /* Main.storyboard */,
@@ -125,6 +141,42 @@
 			path = "Preach HubUITests";
 			sourceTree = "<group>";
 		};
+		8203F0BF228D689400F9D65D /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				8203F0C0228D68BF00F9D65D /* Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		8203F0C2228D691700F9D65D /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				8203F0BF228D689400F9D65D /* Extensions */,
+				8203F0C3228D695100F9D65D /* APIHelper.swift */,
+				8203F0C5228D695C00F9D65D /* Constants.swift */,
+				8203F0C7228D69B700F9D65D /* NotificationsHelper.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		8A42EE9286C6DB4CA08D0E61 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AD2B542195333FCD0E69A3FE /* Pods_Preach_Hub.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D5D41A41F7270DECD85FE250 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9F6FE270D5CD1E3D340DA05E /* Pods-Preach Hub.debug.xcconfig */,
+				F0511A6FE5DE21AC8336A3D9 /* Pods-Preach Hub.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -132,9 +184,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 189516AB228D6732005FA99A /* Build configuration list for PBXNativeTarget "Preach Hub" */;
 			buildPhases = (
+				E9DC4A60699044DC431E6716 /* [CP] Check Pods Manifest.lock */,
 				1895167F228D672C005FA99A /* Sources */,
 				18951680228D672C005FA99A /* Frameworks */,
 				18951681228D672C005FA99A /* Resources */,
+				0B797B28756A7378CA4029FA /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -251,12 +305,101 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		0B797B28756A7378CA4029FA /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Preach Hub/Pods-Preach Hub-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/BRYXBanner/BRYXBanner.framework",
+				"${BUILT_PRODUCTS_DIR}/FSPagerView/FSPagerView.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/MXParallaxHeader/MXParallaxHeader.framework",
+				"${BUILT_PRODUCTS_DIR}/PinCodeTextField/PinCodeTextField.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/ReachabilitySwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/SearchTextField/SearchTextField.framework",
+				"${BUILT_PRODUCTS_DIR}/SideMenu/SideMenu.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftMoment/SwiftMoment.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
+				"${BUILT_PRODUCTS_DIR}/XLPagerTabStrip/XLPagerTabStrip.framework",
+				"${BUILT_PRODUCTS_DIR}/YPDrawSignatureView/YPDrawSignatureView.framework",
+				"${BUILT_PRODUCTS_DIR}/eWAYPaymentsSDK/eWAYPaymentsSDK.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BRYXBanner.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FSPagerView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MXParallaxHeader.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PinCodeTextField.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReachabilitySwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SearchTextField.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SideMenu.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftMoment.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XLPagerTabStrip.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YPDrawSignatureView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/eWAYPaymentsSDK.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Preach Hub/Pods-Preach Hub-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E9DC4A60699044DC431E6716 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Preach Hub-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		1895167F228D672C005FA99A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8203F0C6228D695C00F9D65D /* Constants.swift in Sources */,
+				8203F0C4228D695100F9D65D /* APIHelper.swift in Sources */,
+				8203F0C8228D69B700F9D65D /* NotificationsHelper.swift in Sources */,
 				18951689228D672C005FA99A /* ViewController.swift in Sources */,
+				8203F0C1228D68BF00F9D65D /* Extensions.swift in Sources */,
 				18951687228D672C005FA99A /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -430,11 +573,13 @@
 		};
 		189516AC228D6732005FA99A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9F6FE270D5CD1E3D340DA05E /* Pods-Preach Hub.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = RQE437DAN3;
 				INFOPLIST_FILE = "Preach Hub/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -448,11 +593,13 @@
 		};
 		189516AD228D6732005FA99A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F0511A6FE5DE21AC8336A3D9 /* Pods-Preach Hub.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = RQE437DAN3;
 				INFOPLIST_FILE = "Preach Hub/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
