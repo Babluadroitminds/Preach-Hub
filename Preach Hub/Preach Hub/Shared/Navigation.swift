@@ -38,10 +38,15 @@ extension UIViewController {
     func navigateToHomeScreenPage()
     {
         let storyBoard : UIStoryboard = UIStoryboard(name: "Home", bundle:nil)
-        let welcomeViewController = storyBoard.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
+        let welcomeViewController = storyBoard.instantiateViewController(withIdentifier: "HomeTabBarViewController") as! HomeTabBarViewController
+        self.navigationController?.pushViewController(welcomeViewController, animated: true)
+    }
+    func navigateToPastorScreenPage(){
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Home", bundle:nil)
+        let welcomeViewController = storyBoard.instantiateViewController(withIdentifier: "AllPastorsViewController") as! AllPastorsViewController
         self.navigationController?.pushViewController(welcomeViewController, animated: true)
     }
     
- 
+   
 }
 

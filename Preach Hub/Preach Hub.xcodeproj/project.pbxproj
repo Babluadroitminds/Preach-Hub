@@ -25,8 +25,13 @@
 		E366C11C228E87E5003CBE58 /* Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E366C11B228E87E5003CBE58 /* Navigation.swift */; };
 		E366C124228E8A71003CBE58 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E366C123228E8A71003CBE58 /* Home.storyboard */; };
 		E366C127228E8B53003CBE58 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E366C126228E8B53003CBE58 /* HomeViewController.swift */; };
+		E366C129229270CE003CBE58 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E366C128229270CE003CBE58 /* RootViewController.swift */; };
+		E366C12C22927B6A003CBE58 /* ic_nav_menu.png in Resources */ = {isa = PBXBuildFile; fileRef = E366C12B22927B69003CBE58 /* ic_nav_menu.png */; };
+		E3ACFC45228D760F00F798D6 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3ACFC44228D760F00F798D6 /* LoginVC.swift */; };
 		E3ACFC45228D760F00F798D6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3ACFC44228D760F00F798D6 /* LoginViewController.swift */; };
 		E3ACFC47228D7B0300F798D6 /* RegistrationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3ACFC46228D7B0300F798D6 /* RegistrationVC.swift */; };
+		E3FAA41B2292A84D00E369C6 /* HomeTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3FAA41A2292A84D00E369C6 /* HomeTabBarViewController.swift */; };
+		E3FAA41D2292A97800E369C6 /* AllPastorsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3FAA41C2292A97800E369C6 /* AllPastorsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,8 +77,14 @@
 		E366C11B228E87E5003CBE58 /* Navigation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Navigation.swift; sourceTree = "<group>"; };
 		E366C123228E8A71003CBE58 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		E366C126228E8B53003CBE58 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		E366C128229270CE003CBE58 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
+		E366C12A22927693003CBE58 /* Preach Hub.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Preach Hub.entitlements"; sourceTree = "<group>"; };
+		E366C12B22927B69003CBE58 /* ic_nav_menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_nav_menu.png; sourceTree = "<group>"; };
+		E3ACFC44228D760F00F798D6 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		E3ACFC44228D760F00F798D6 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		E3ACFC46228D7B0300F798D6 /* RegistrationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationVC.swift; sourceTree = "<group>"; };
+		E3FAA41A2292A84D00E369C6 /* HomeTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabBarViewController.swift; sourceTree = "<group>"; };
+		E3FAA41C2292A97800E369C6 /* AllPastorsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllPastorsViewController.swift; sourceTree = "<group>"; };
 		F0511A6FE5DE21AC8336A3D9 /* Pods-Preach Hub.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Preach Hub.release.xcconfig"; path = "Pods/Target Support Files/Pods-Preach Hub/Pods-Preach Hub.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -128,13 +139,12 @@
 		18951685228D672C005FA99A /* Preach Hub */ = {
 			isa = PBXGroup;
 			children = (
-				822C9B4E2292A610008D212D /* Fonts */,
+				E366C12A22927693003CBE58 /* Preach Hub.entitlements */,
 				8203F0C2228D691700F9D65D /* Shared */,
 				8203F0CB228D74E800F9D65D /* Assets */,
 				8203F0C9228D74B600F9D65D /* ViewController */,
 				E366C125228E8AFA003CBE58 /* Storyboard */,
 				18951686228D672C005FA99A /* AppDelegate.swift */,
-				1895168D228D6732005FA99A /* Assets.xcassets */,
 				18951692228D6732005FA99A /* Info.plist */,
 			);
 			path = "Preach Hub";
@@ -185,6 +195,9 @@
 				E3ACFC46228D7B0300F798D6 /* RegistrationVC.swift */,
 				82EF35B2228D90EC003BE3E2 /* InitialViewController.swift */,
 				E366C126228E8B53003CBE58 /* HomeViewController.swift */,
+				E366C128229270CE003CBE58 /* RootViewController.swift */,
+				E3FAA41A2292A84D00E369C6 /* HomeTabBarViewController.swift */,
+				E3FAA41C2292A97800E369C6 /* AllPastorsViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -192,6 +205,8 @@
 		8203F0CB228D74E800F9D65D /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				1895168D228D6732005FA99A /* Assets.xcassets */,
+				E366C12B22927B69003CBE58 /* ic_nav_menu.png */,
 			);
 			path = Assets;
 			sourceTree = "<group>";
@@ -303,6 +318,11 @@
 				TargetAttributes = {
 					18951682228D672C005FA99A = {
 						CreatedOnToolsVersion = 10.1;
+						SystemCapabilities = {
+							com.apple.ApplePay = {
+								enabled = 0;
+							};
+						};
 					};
 					18951696228D6732005FA99A = {
 						CreatedOnToolsVersion = 10.1;
@@ -339,8 +359,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				822C9B522292A713008D212D /* Gibson-Regular.ttf in Resources */,
-				822C9B512292A70E008D212D /* Gibson-Bold.ttf in Resources */,
+				E366C12C22927B6A003CBE58 /* ic_nav_menu.png in Resources */,
 				18951691228D6732005FA99A /* LaunchScreen.storyboard in Resources */,
 				E366C124228E8A71003CBE58 /* Home.storyboard in Resources */,
 				1895168E228D6732005FA99A /* Assets.xcassets in Resources */,
@@ -458,11 +477,14 @@
 				8203F0C6228D695C00F9D65D /* Constants.swift in Sources */,
 				82EF35B3228D90EC003BE3E2 /* InitialViewController.swift in Sources */,
 				8203F0C4228D695100F9D65D /* APIHelper.swift in Sources */,
+				E366C129229270CE003CBE58 /* RootViewController.swift in Sources */,
 				E366C11C228E87E5003CBE58 /* Navigation.swift in Sources */,
 				E3ACFC45228D760F00F798D6 /* LoginViewController.swift in Sources */,
 				E366C127228E8B53003CBE58 /* HomeViewController.swift in Sources */,
 				E3ACFC47228D7B0300F798D6 /* RegistrationVC.swift in Sources */,
 				8203F0C8228D69B700F9D65D /* NotificationsHelper.swift in Sources */,
+				E3FAA41B2292A84D00E369C6 /* HomeTabBarViewController.swift in Sources */,
+				E3FAA41D2292A97800E369C6 /* AllPastorsViewController.swift in Sources */,
 				8203F0C1228D68BF00F9D65D /* Extensions.swift in Sources */,
 				18951687228D672C005FA99A /* AppDelegate.swift in Sources */,
 			);
