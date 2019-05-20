@@ -32,7 +32,7 @@ extension UIViewController {
     func navigateToLoginPage()
     {        
         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-        let welcomeViewController = storyBoard.instantiateViewController(withIdentifier: "LoginVC") as! LoginVC
+        let welcomeViewController = storyBoard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
         self.navigationController?.pushViewController(welcomeViewController, animated: true)
     }
     func navigateToHomeScreenPage()
