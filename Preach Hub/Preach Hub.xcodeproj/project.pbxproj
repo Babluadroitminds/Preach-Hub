@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		18951687228D672C005FA99A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18951686228D672C005FA99A /* AppDelegate.swift */; };
-		18951689228D672C005FA99A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18951688228D672C005FA99A /* ViewController.swift */; };
 		1895168C228D672C005FA99A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1895168A228D672C005FA99A /* Main.storyboard */; };
 		1895168E228D6732005FA99A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1895168D228D6732005FA99A /* Assets.xcassets */; };
 		18951691228D6732005FA99A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1895168F228D6732005FA99A /* LaunchScreen.storyboard */; };
@@ -21,6 +20,9 @@
 		8203F0CF228D7A7A00F9D65D /* InitialStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8203F0CE228D7A7A00F9D65D /* InitialStoryboard.storyboard */; };
 		82EF35B3228D90EC003BE3E2 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EF35B2228D90EC003BE3E2 /* InitialViewController.swift */; };
 		DBA59325E32C25E49F32103E /* Pods_Preach_Hub.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD2B542195333FCD0E69A3FE /* Pods_Preach_Hub.framework */; };
+		E366C11C228E87E5003CBE58 /* Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E366C11B228E87E5003CBE58 /* Navigation.swift */; };
+		E366C124228E8A71003CBE58 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E366C123228E8A71003CBE58 /* Home.storyboard */; };
+		E366C127228E8B53003CBE58 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E366C126228E8B53003CBE58 /* HomeViewController.swift */; };
 		E3ACFC45228D760F00F798D6 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3ACFC44228D760F00F798D6 /* LoginVC.swift */; };
 		E3ACFC47228D7B0300F798D6 /* RegistrationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3ACFC46228D7B0300F798D6 /* RegistrationVC.swift */; };
 /* End PBXBuildFile section */
@@ -45,7 +47,6 @@
 /* Begin PBXFileReference section */
 		18951683228D672C005FA99A /* Preach Hub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Preach Hub.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		18951686228D672C005FA99A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		18951688228D672C005FA99A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		1895168B228D672C005FA99A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1895168D228D6732005FA99A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		18951690228D6732005FA99A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -64,6 +65,9 @@
 		82EF35B2228D90EC003BE3E2 /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
 		9F6FE270D5CD1E3D340DA05E /* Pods-Preach Hub.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Preach Hub.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Preach Hub/Pods-Preach Hub.debug.xcconfig"; sourceTree = "<group>"; };
 		AD2B542195333FCD0E69A3FE /* Pods_Preach_Hub.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Preach_Hub.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E366C11B228E87E5003CBE58 /* Navigation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Navigation.swift; sourceTree = "<group>"; };
+		E366C123228E8A71003CBE58 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
+		E366C126228E8B53003CBE58 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		E3ACFC44228D760F00F798D6 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		E3ACFC46228D7B0300F798D6 /* RegistrationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationVC.swift; sourceTree = "<group>"; };
 		F0511A6FE5DE21AC8336A3D9 /* Pods-Preach Hub.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Preach Hub.release.xcconfig"; path = "Pods/Target Support Files/Pods-Preach Hub/Pods-Preach Hub.release.xcconfig"; sourceTree = "<group>"; };
@@ -120,17 +124,12 @@
 		18951685228D672C005FA99A /* Preach Hub */ = {
 			isa = PBXGroup;
 			children = (
-				8203F0CB228D74E800F9D65D /* Assets */,
-				8203F0CA228D74C800F9D65D /* ViewControllers */,
-				8203F0C9228D74B600F9D65D /* Views */,
 				8203F0C2228D691700F9D65D /* Shared */,
+				8203F0CB228D74E800F9D65D /* Assets */,
+				8203F0C9228D74B600F9D65D /* ViewController */,
+				E366C125228E8AFA003CBE58 /* Storyboard */,
 				18951686228D672C005FA99A /* AppDelegate.swift */,
-				18951688228D672C005FA99A /* ViewController.swift */,
-				E3ACFC44228D760F00F798D6 /* LoginVC.swift */,
-				E3ACFC46228D7B0300F798D6 /* RegistrationVC.swift */,
-				1895168A228D672C005FA99A /* Main.storyboard */,
 				1895168D228D6732005FA99A /* Assets.xcassets */,
-				1895168F228D6732005FA99A /* LaunchScreen.storyboard */,
 				18951692228D6732005FA99A /* Info.plist */,
 			);
 			path = "Preach Hub";
@@ -165,6 +164,7 @@
 		8203F0C2228D691700F9D65D /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				E366C11B228E87E5003CBE58 /* Navigation.swift */,
 				8203F0BF228D689400F9D65D /* Extensions */,
 				8203F0C3228D695100F9D65D /* APIHelper.swift */,
 				8203F0C5228D695C00F9D65D /* Constants.swift */,
@@ -173,20 +173,15 @@
 			path = Shared;
 			sourceTree = "<group>";
 		};
-		8203F0C9228D74B600F9D65D /* Views */ = {
+		8203F0C9228D74B600F9D65D /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				8203F0CE228D7A7A00F9D65D /* InitialStoryboard.storyboard */,
+				E3ACFC44228D760F00F798D6 /* LoginVC.swift */,
+				E3ACFC46228D7B0300F798D6 /* RegistrationVC.swift */,
 				82EF35B2228D90EC003BE3E2 /* InitialViewController.swift */,
+				E366C126228E8B53003CBE58 /* HomeViewController.swift */,
 			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		8203F0CA228D74C800F9D65D /* ViewControllers */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewControllers;
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		8203F0CB228D74E800F9D65D /* Assets */ = {
@@ -211,6 +206,17 @@
 				F0511A6FE5DE21AC8336A3D9 /* Pods-Preach Hub.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		E366C125228E8AFA003CBE58 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				8203F0CE228D7A7A00F9D65D /* InitialStoryboard.storyboard */,
+				1895168A228D672C005FA99A /* Main.storyboard */,
+				1895168F228D6732005FA99A /* LaunchScreen.storyboard */,
+				E366C123228E8A71003CBE58 /* Home.storyboard */,
+			);
+			path = Storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -320,6 +326,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				18951691228D6732005FA99A /* LaunchScreen.storyboard in Resources */,
+				E366C124228E8A71003CBE58 /* Home.storyboard in Resources */,
 				1895168E228D6732005FA99A /* Assets.xcassets in Resources */,
 				8203F0CF228D7A7A00F9D65D /* InitialStoryboard.storyboard in Resources */,
 				1895168C228D672C005FA99A /* Main.storyboard in Resources */,
@@ -435,10 +442,11 @@
 				8203F0C6228D695C00F9D65D /* Constants.swift in Sources */,
 				82EF35B3228D90EC003BE3E2 /* InitialViewController.swift in Sources */,
 				8203F0C4228D695100F9D65D /* APIHelper.swift in Sources */,
+				E366C11C228E87E5003CBE58 /* Navigation.swift in Sources */,
 				E3ACFC45228D760F00F798D6 /* LoginVC.swift in Sources */,
+				E366C127228E8B53003CBE58 /* HomeViewController.swift in Sources */,
 				E3ACFC47228D7B0300F798D6 /* RegistrationVC.swift in Sources */,
 				8203F0C8228D69B700F9D65D /* NotificationsHelper.swift in Sources */,
-				18951689228D672C005FA99A /* ViewController.swift in Sources */,
 				8203F0C1228D68BF00F9D65D /* Extensions.swift in Sources */,
 				18951687228D672C005FA99A /* AppDelegate.swift in Sources */,
 			);

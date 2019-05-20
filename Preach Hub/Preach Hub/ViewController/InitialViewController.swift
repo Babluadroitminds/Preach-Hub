@@ -60,4 +60,7 @@ class InitialViewController: UIViewController,UICollectionViewDelegate,UICollect
         pagerControl.currentPage = Int(indexPath.row)
     }
   
+    @IBAction func btnNextAction(_ sender: Any) {
+        navigateToLoginPage()
+    }
 }

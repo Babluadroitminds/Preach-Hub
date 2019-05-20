@@ -14,4 +14,10 @@ class LoginVC: UIViewController
     {
         super.viewDidLoad()
     }
+    @IBAction func btnLoginAction(_ sender: Any) {
+        navigateToHomeScreenPage()
+    }
+    
+    @IBAction func btnRegisterAction(_ sender: Any) {
+    }
 }
