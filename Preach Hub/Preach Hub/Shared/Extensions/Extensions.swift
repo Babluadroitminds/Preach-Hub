@@ -26,10 +26,13 @@ extension UIViewController : UIGestureRecognizerDelegate, UITextFieldDelegate {
         view.layer.shadowOffset = CGSize.zero
         view.layer.shadowRadius = 10
     }
+    func applyRoundViewCorner(view : UIView){
+        view.layer.cornerRadius = 30.0
+    }
     func applyRoundButtonCorner(button : UIButton){
         button.backgroundColor = .clear
         button.layer.cornerRadius = 30.0
-        button.layer.borderWidth = 3.0
+        button.layer.borderWidth = 2.0
         button.layer.borderColor = UIColor.white.cgColor
     }
     func hideKeyboardWhenTappedAround() {

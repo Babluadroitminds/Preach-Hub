@@ -12,7 +12,8 @@ import UIKit
 struct GlobalConstants {
     struct APIUrls {
         static let baseUrl:String = ""
-        static let apiBaseUrl:String = ""
-       
+        static let apiBaseUrl:String = "https://preachapi.herokuapp.com/api/"
+        static let memberLogin:String = "members/login"
+        static let memberRegister:String = "members"
     }
 }

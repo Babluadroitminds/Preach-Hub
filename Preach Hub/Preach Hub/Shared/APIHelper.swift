@@ -33,6 +33,10 @@ class APIHelper: NSObject {
         sendRequest(apiUrl: apiUrl, method: .put, parameters: parameters, showBusyIndicator: false, callback: callback)
     }
     
+    func postUserRequest(apiUrl:String, parameters:[String:AnyObject], callback:@escaping (Int) -> Void){
+        sendUserRequest(apiUrl: apiUrl, method: .post, parameters: parameters, showBusyIndicator: true, callback: callback)
+    }
+    
     func sendRequest(apiUrl: String, method: HTTPMethod, parameters: [String:AnyObject], showBusyIndicator: Bool, callback: @escaping (JSON) -> Void){
         
         if(!NetworkReachabilityManager()!.isReachable){
@@ -59,7 +63,8 @@ class APIHelper: NSObject {
                 NotificationsHelper.showBusyIndicator(message: "Please Wait")
         }
         
-        Alamofire.request(fullUrl, method: method, parameters: parameters, headers: httpHeader).responseJSON { (response) in
+        Alamofire.request(fullUrl, method: method, parameters: parameters, encoding:
+            JSONEncoding.default,  headers: httpHeader).responseJSON { (response) in
             
           if(showBusyIndicator){
                     NotificationsHelper.hideBusyIndicator()
@@ -77,6 +82,33 @@ class APIHelper: NSObject {
                         self.alertOnError("An error occured while processing your request, Please try again.")
                     }
                 }
+        }
+    }
+    
+    
+    func sendUserRequest(apiUrl: String, method: HTTPMethod, parameters: [String:AnyObject], showBusyIndicator: Bool, callback: @escaping (Int) -> Void){
+        
+        if(!NetworkReachabilityManager()!.isReachable){
+            if(showBusyIndicator){
+                NotificationsHelper.hideBusyIndicator()
+            }
+            return
+        }
+        
+        let httpHeader: HTTPHeaders = HTTPHeaders()
+        
+        let fullUrl = GlobalConstants.APIUrls.apiBaseUrl + apiUrl
+        
+        if(showBusyIndicator){
+            NotificationsHelper.showBusyIndicator(message: "Please Wait")
+        }
+        
+        Alamofire.request(fullUrl, method: method, parameters: parameters, encoding:
+            JSONEncoding.default,  headers: httpHeader).responseJSON { (response) in
+                if(showBusyIndicator){
+                    NotificationsHelper.hideBusyIndicator()
+                }
+                callback((response.response?.statusCode)!)
         }
     }
     

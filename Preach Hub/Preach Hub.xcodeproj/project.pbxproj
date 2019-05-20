@@ -18,12 +18,14 @@
 		8203F0C6228D695C00F9D65D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8203F0C5228D695C00F9D65D /* Constants.swift */; };
 		8203F0C8228D69B700F9D65D /* NotificationsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8203F0C7228D69B700F9D65D /* NotificationsHelper.swift */; };
 		8203F0CF228D7A7A00F9D65D /* InitialStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8203F0CE228D7A7A00F9D65D /* InitialStoryboard.storyboard */; };
+		822C9B512292A70E008D212D /* Gibson-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 822C9B4F2292A625008D212D /* Gibson-Bold.ttf */; };
+		822C9B522292A713008D212D /* Gibson-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 822C9B502292A62E008D212D /* Gibson-Regular.ttf */; };
 		82EF35B3228D90EC003BE3E2 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EF35B2228D90EC003BE3E2 /* InitialViewController.swift */; };
 		DBA59325E32C25E49F32103E /* Pods_Preach_Hub.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD2B542195333FCD0E69A3FE /* Pods_Preach_Hub.framework */; };
 		E366C11C228E87E5003CBE58 /* Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E366C11B228E87E5003CBE58 /* Navigation.swift */; };
 		E366C124228E8A71003CBE58 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E366C123228E8A71003CBE58 /* Home.storyboard */; };
 		E366C127228E8B53003CBE58 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E366C126228E8B53003CBE58 /* HomeViewController.swift */; };
-		E3ACFC45228D760F00F798D6 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3ACFC44228D760F00F798D6 /* LoginVC.swift */; };
+		E3ACFC45228D760F00F798D6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3ACFC44228D760F00F798D6 /* LoginViewController.swift */; };
 		E3ACFC47228D7B0300F798D6 /* RegistrationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3ACFC46228D7B0300F798D6 /* RegistrationVC.swift */; };
 /* End PBXBuildFile section */
 
@@ -62,13 +64,15 @@
 		8203F0C5228D695C00F9D65D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		8203F0C7228D69B700F9D65D /* NotificationsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsHelper.swift; sourceTree = "<group>"; };
 		8203F0CE228D7A7A00F9D65D /* InitialStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = InitialStoryboard.storyboard; sourceTree = "<group>"; };
+		822C9B4F2292A625008D212D /* Gibson-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gibson-Bold.ttf"; sourceTree = "<group>"; };
+		822C9B502292A62E008D212D /* Gibson-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gibson-Regular.ttf"; sourceTree = "<group>"; };
 		82EF35B2228D90EC003BE3E2 /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
 		9F6FE270D5CD1E3D340DA05E /* Pods-Preach Hub.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Preach Hub.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Preach Hub/Pods-Preach Hub.debug.xcconfig"; sourceTree = "<group>"; };
 		AD2B542195333FCD0E69A3FE /* Pods_Preach_Hub.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Preach_Hub.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E366C11B228E87E5003CBE58 /* Navigation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Navigation.swift; sourceTree = "<group>"; };
 		E366C123228E8A71003CBE58 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		E366C126228E8B53003CBE58 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		E3ACFC44228D760F00F798D6 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
+		E3ACFC44228D760F00F798D6 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		E3ACFC46228D7B0300F798D6 /* RegistrationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationVC.swift; sourceTree = "<group>"; };
 		F0511A6FE5DE21AC8336A3D9 /* Pods-Preach Hub.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Preach Hub.release.xcconfig"; path = "Pods/Target Support Files/Pods-Preach Hub/Pods-Preach Hub.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -124,6 +128,7 @@
 		18951685228D672C005FA99A /* Preach Hub */ = {
 			isa = PBXGroup;
 			children = (
+				822C9B4E2292A610008D212D /* Fonts */,
 				8203F0C2228D691700F9D65D /* Shared */,
 				8203F0CB228D74E800F9D65D /* Assets */,
 				8203F0C9228D74B600F9D65D /* ViewController */,
@@ -176,7 +181,7 @@
 		8203F0C9228D74B600F9D65D /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				E3ACFC44228D760F00F798D6 /* LoginVC.swift */,
+				E3ACFC44228D760F00F798D6 /* LoginViewController.swift */,
 				E3ACFC46228D7B0300F798D6 /* RegistrationVC.swift */,
 				82EF35B2228D90EC003BE3E2 /* InitialViewController.swift */,
 				E366C126228E8B53003CBE58 /* HomeViewController.swift */,
@@ -189,6 +194,15 @@
 			children = (
 			);
 			path = Assets;
+			sourceTree = "<group>";
+		};
+		822C9B4E2292A610008D212D /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				822C9B502292A62E008D212D /* Gibson-Regular.ttf */,
+				822C9B4F2292A625008D212D /* Gibson-Bold.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		8A42EE9286C6DB4CA08D0E61 /* Frameworks */ = {
@@ -325,6 +339,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				822C9B522292A713008D212D /* Gibson-Regular.ttf in Resources */,
+				822C9B512292A70E008D212D /* Gibson-Bold.ttf in Resources */,
 				18951691228D6732005FA99A /* LaunchScreen.storyboard in Resources */,
 				E366C124228E8A71003CBE58 /* Home.storyboard in Resources */,
 				1895168E228D6732005FA99A /* Assets.xcassets in Resources */,
@@ -443,7 +459,7 @@
 				82EF35B3228D90EC003BE3E2 /* InitialViewController.swift in Sources */,
 				8203F0C4228D695100F9D65D /* APIHelper.swift in Sources */,
 				E366C11C228E87E5003CBE58 /* Navigation.swift in Sources */,
-				E3ACFC45228D760F00F798D6 /* LoginVC.swift in Sources */,
+				E3ACFC45228D760F00F798D6 /* LoginViewController.swift in Sources */,
 				E366C127228E8B53003CBE58 /* HomeViewController.swift in Sources */,
 				E3ACFC47228D7B0300F798D6 /* RegistrationVC.swift in Sources */,
 				8203F0C8228D69B700F9D65D /* NotificationsHelper.swift in Sources */,
