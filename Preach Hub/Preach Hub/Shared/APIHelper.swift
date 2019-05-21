@@ -57,14 +57,14 @@ class APIHelper: NSObject {
             httpHeader["Authorization"] = "bearer" + " " + accessToken!
         }
       
-        let fullUrl = GlobalConstants.APIUrls.apiBaseUrl + apiUrl
-      
+        var fullUrl = GlobalConstants.APIUrls.apiBaseUrl + apiUrl
+        fullUrl = fullUrl.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
         if(showBusyIndicator){
                 NotificationsHelper.showBusyIndicator(message: "Please Wait")
         }
         
         Alamofire.request(fullUrl, method: method, parameters: parameters, encoding:
-            JSONEncoding.default,  headers: httpHeader).responseJSON { (response) in
+            URLEncoding.default,  headers: httpHeader).responseJSON { (response) in
             
           if(showBusyIndicator){
                     NotificationsHelper.hideBusyIndicator()

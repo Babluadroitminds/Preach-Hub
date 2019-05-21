@@ -76,6 +76,7 @@ PODS:
   - SDWebImage/Core (4.4.3)
   - SearchTextField (1.2.2)
   - SideMenu (5.0.3)
+  - Stripe (14.0.0)
   - SVProgressHUD (2.2.5)
   - SwiftMoment (0.7)
   - SwiftyJSON (4.2.0)
@@ -99,6 +100,7 @@ DEPENDENCIES:
   - SDWebImage
   - SearchTextField
   - SideMenu
+  - Stripe
   - SVProgressHUD (from `https://github.com/SVProgressHUD/SVProgressHUD.git`)
   - SwiftMoment
   - SwiftyJSON
@@ -131,6 +133,7 @@ SPEC REPOS:
     - SDWebImage
     - SearchTextField
     - SideMenu
+    - Stripe
     - SwiftMoment
     - SwiftyJSON
     - Toast-Swift
@@ -170,6 +173,7 @@ SPEC CHECKSUMS:
   SDWebImage: c5594f1a19c48d526d321e548902b56b479cd508
   SearchTextField: a0992739d4b05dcbb40fb3a5cc6526bd991bdd23
   SideMenu: 1dcaabce84538c53325c287f7fe62999379a641c
+  Stripe: db29ad197c74aca6fb981e4e8355cf7ebd0fca5a
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwiftMoment: dc6dd27012e267819104cbb03f74ff9192dd0b42
   SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
@@ -177,6 +181,6 @@ SPEC CHECKSUMS:
   XLPagerTabStrip: 63166e21c9844fa30f2d95d30f335e73be5caf22
   YPDrawSignatureView: 0ca1cfcd329b9f4bf74172859f80a47a200a0e0d
 
-PODFILE CHECKSUM: de594ecac26b88e82e48a9c4868ee4fbe0974fb4
+PODFILE CHECKSUM: c84f9a272ac08a6cacc4ecf66c89105d4c6c0749
 
 COCOAPODS: 1.5.3

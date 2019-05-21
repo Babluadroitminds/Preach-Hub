@@ -31,4 +31,5 @@ target 'Preach Hub' do
   pod 'Firebase/Core'
   pod 'Firebase/Messaging'
   pod 'BRYXBanner'
+  pod 'Stripe'
 end
