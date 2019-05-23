@@ -18,6 +18,9 @@
 		8203F0C6228D695C00F9D65D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8203F0C5228D695C00F9D65D /* Constants.swift */; };
 		8203F0C8228D69B700F9D65D /* NotificationsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8203F0C7228D69B700F9D65D /* NotificationsHelper.swift */; };
 		8203F0CF228D7A7A00F9D65D /* InitialStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8203F0CE228D7A7A00F9D65D /* InitialStoryboard.storyboard */; };
+		820877BC2295223900513037 /* Gibson-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 820877BB2295223900513037 /* Gibson-Bold.ttf */; };
+		820877BE2295224C00513037 /* Gibson-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 820877BD2295224C00513037 /* Gibson-Regular.ttf */; };
+		820877C02295294400513037 /* profile-pic.png in Resources */ = {isa = PBXBuildFile; fileRef = 820877BF2295294300513037 /* profile-pic.png */; };
 		8235EB472293C3760090230B /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8235EB462293C3760090230B /* ForgotPasswordViewController.swift */; };
 		8235EB49229418C60090230B /* Payment.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8235EB48229418C60090230B /* Payment.storyboard */; };
 		82CADDCB22941DD300EBBDFD /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82CADDCA22941DD300EBBDFD /* PaymentViewController.swift */; };
@@ -69,6 +72,9 @@
 		8203F0C5228D695C00F9D65D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		8203F0C7228D69B700F9D65D /* NotificationsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsHelper.swift; sourceTree = "<group>"; };
 		8203F0CE228D7A7A00F9D65D /* InitialStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = InitialStoryboard.storyboard; sourceTree = "<group>"; };
+		820877BB2295223900513037 /* Gibson-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gibson-Bold.ttf"; sourceTree = "<group>"; };
+		820877BD2295224C00513037 /* Gibson-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gibson-Regular.ttf"; sourceTree = "<group>"; };
+		820877BF2295294300513037 /* profile-pic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "profile-pic.png"; sourceTree = "<group>"; };
 		8235EB462293C3760090230B /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		8235EB48229418C60090230B /* Payment.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Payment.storyboard; sourceTree = "<group>"; };
 		82CADDCA22941DD300EBBDFD /* PaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentViewController.swift; sourceTree = "<group>"; };
@@ -139,6 +145,7 @@
 		18951685228D672C005FA99A /* Preach Hub */ = {
 			isa = PBXGroup;
 			children = (
+				820877BA2295220500513037 /* Fonts */,
 				E366C12A22927693003CBE58 /* Preach Hub.entitlements */,
 				8203F0C2228D691700F9D65D /* Shared */,
 				8203F0CB228D74E800F9D65D /* Assets */,
@@ -208,9 +215,20 @@
 			isa = PBXGroup;
 			children = (
 				1895168D228D6732005FA99A /* Assets.xcassets */,
+				820877BF2295294300513037 /* profile-pic.png */,
 				E366C12B22927B69003CBE58 /* ic_nav_menu.png */,
 			);
 			path = Assets;
+			sourceTree = "<group>";
+		};
+		820877BA2295220500513037 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				820877BD2295224C00513037 /* Gibson-Regular.ttf */,
+				820877BB2295223900513037 /* Gibson-Bold.ttf */,
+			);
+			name = Fonts;
+			path = "New Group";
 			sourceTree = "<group>";
 		};
 		8A42EE9286C6DB4CA08D0E61 /* Frameworks */ = {
@@ -353,9 +371,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				820877BE2295224C00513037 /* Gibson-Regular.ttf in Resources */,
 				E366C12C22927B6A003CBE58 /* ic_nav_menu.png in Resources */,
 				8235EB49229418C60090230B /* Payment.storyboard in Resources */,
 				18951691228D6732005FA99A /* LaunchScreen.storyboard in Resources */,
+				820877C02295294400513037 /* profile-pic.png in Resources */,
+				820877BC2295223900513037 /* Gibson-Bold.ttf in Resources */,
 				E366C124228E8A71003CBE58 /* Home.storyboard in Resources */,
 				1895168E228D6732005FA99A /* Assets.xcassets in Resources */,
 				8203F0CF228D7A7A00F9D65D /* InitialStoryboard.storyboard in Resources */,

@@ -73,31 +73,31 @@ class RegistrationVC: UIViewController{
             return
         }
         
-        let isVerifiedEmail = self.verifyEmail(completion: { (keys) in
-            if keys ==  false {
-                return;
-            }
-            else {
+//        let isVerifiedEmail = self.verifyEmail(completion: { (keys) in
+//            if keys ==  false {
+//                return;
+//            }
+//            else {
                 let UUID = UIDevice.current.identifierForVendor!.uuidString
-                let parameters: [String: String] = ["firstname": self.txtFirstName.text!, "lastname": self.txtLastName.text!, "mobileno": self.txtContactNumber.text!, "occupation": self.txtOccupation.text!, "email": self.txtEmail.text!, "password": self.txtPassword.text!, "username": self.txtEmail.text!, "deviceid": "\(UUID)"]
-                APIHelper().postUserRequest(apiUrl: GlobalConstants.APIUrls.memberRegister, parameters: parameters as [String : AnyObject]) { (response) in
+                let memberDetails: [String: Any] = ["firstname": self.txtFirstName.text!, "lastname": self.txtLastName.text!, "contact": self.txtContactNumber.text!, "occupation": self.txtOccupation.text!, "email": self.txtEmail.text!, "password": self.txtPassword.text!, "username": self.txtEmail.text!, "deviceid": "\(UUID)", "emailVerified": false, "address": "", "pictureURL": "","churchID": "", "datecreated": "", "realm": "" ]
+                
+                let parameters: [String: Any] = ["member": memberDetails]
+                APIHelper().post(apiUrl: GlobalConstants.APIUrls.memberRegister, parameters: parameters as [String : AnyObject]) { (response) in
                     
-                    if response == 200 {
-                        self.view.makeToast("Successfully Registered with PreachHub!", duration: 3.0, position: .bottom, style: self.style)
+                    if response["data"]["member"]["status"].string == "SUCCESS" {
+                        let stripeCustomerTokenId = response["data"]["member"]["stripecustomertokenid"].string
+                        
                         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3), execute: {
-                            self.navigateToPaymentPage()
+                            let storyBoard : UIStoryboard = UIStoryboard(name: "Payment", bundle:nil)
+                            let paymentViewController = storyBoard.instantiateViewController(withIdentifier: "PaymentViewController") as! PaymentViewController
+                            paymentViewController.stripeCustomerTokenId = stripeCustomerTokenId
+                            self.navigationController?.pushViewController(paymentViewController, animated: true)
                         })
                     }
-                    else if response == 422 {
-                        self.view.makeToast("User already exists", duration: 3.0, position: .bottom, style: self.style)
-                    }
-                    else if response == 500 {
-                        self.view.makeToast("Oops! Something went wrong!", duration: 3.0, position: .bottom, style: self.style)
-                    }
-                    
+
                 }
-            }
-        })
+           // }
+       // })
     }
     
     

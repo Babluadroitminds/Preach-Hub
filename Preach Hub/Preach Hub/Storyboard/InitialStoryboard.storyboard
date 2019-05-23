@@ -21,7 +21,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uRy-aO-djG">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="banner_menu3" translatesAutoresizingMaskIntoConstraints="NO" id="lhK-tS-OCB">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_background" translatesAutoresizingMaskIntoConstraints="NO" id="lhK-tS-OCB">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                                     </imageView>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="wLr-3N-m4F">
@@ -53,8 +53,8 @@
                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r3O-1b-8fU">
-                                                            <rect key="frame" x="18" y="396" width="339" height="21"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r3O-1b-8fU">
+                                                            <rect key="frame" x="18" y="396" width="339" height="20.333333333333314"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
@@ -98,16 +98,25 @@
                                             <action selector="btnNextAction:" destination="cfY-Bx-lxc" eventType="touchUpInside" id="VRM-RH-obW"/>
                                         </connections>
                                     </button>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic-logo" translatesAutoresizingMaskIntoConstraints="NO" id="gfc-0S-haB">
+                                        <rect key="frame" x="220" y="45" width="150" height="80"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="150" id="aIw-KX-BIe"/>
+                                            <constraint firstAttribute="height" constant="80" id="dkX-Se-fHv"/>
+                                        </constraints>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="lhK-tS-OCB" secondAttribute="trailing" id="7wh-jv-4Lz"/>
                                     <constraint firstItem="J5W-xP-P5E" firstAttribute="top" secondItem="wLr-3N-m4F" secondAttribute="bottom" constant="5" id="84y-kz-V6a"/>
                                     <constraint firstItem="lhK-tS-OCB" firstAttribute="top" secondItem="uRy-aO-djG" secondAttribute="top" id="EB7-W1-fhI"/>
+                                    <constraint firstItem="gfc-0S-haB" firstAttribute="top" secondItem="uRy-aO-djG" secondAttribute="top" constant="45" id="Ex4-cK-htE"/>
                                     <constraint firstItem="wLr-3N-m4F" firstAttribute="leading" secondItem="uRy-aO-djG" secondAttribute="leading" id="FoA-e4-ucv"/>
                                     <constraint firstItem="lhK-tS-OCB" firstAttribute="leading" secondItem="uRy-aO-djG" secondAttribute="leading" id="Nh5-eY-mv6"/>
                                     <constraint firstAttribute="trailing" secondItem="wLr-3N-m4F" secondAttribute="trailing" id="VZN-Pm-3xi"/>
                                     <constraint firstItem="wLr-3N-m4F" firstAttribute="top" secondItem="uRy-aO-djG" secondAttribute="top" constant="100" id="btD-4u-Nef"/>
+                                    <constraint firstAttribute="trailing" secondItem="gfc-0S-haB" secondAttribute="trailing" constant="5" id="e6U-vn-VfN"/>
                                     <constraint firstAttribute="bottom" secondItem="lhK-tS-OCB" secondAttribute="bottom" id="haf-YY-jq0"/>
                                     <constraint firstAttribute="bottom" secondItem="wLr-3N-m4F" secondAttribute="bottom" constant="50" id="s0e-hY-zUz"/>
                                     <constraint firstItem="J5W-xP-P5E" firstAttribute="centerX" secondItem="wLr-3N-m4F" secondAttribute="centerX" id="x5B-GZ-fXq"/>
@@ -133,7 +142,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="czi-xg-qZF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1004" y="-137.18140929535232"/>
+            <point key="canvasLocation" x="1004" y="-137.4384236453202"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="zmt-UP-vr9">
@@ -154,6 +163,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="banner_menu3" width="1800" height="1080"/>
+        <image name="ic-logo" width="279" height="127"/>
+        <image name="ic_background" width="375" height="814"/>
     </resources>
 </document>

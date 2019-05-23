@@ -21,36 +21,37 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jxx-7v-MrX">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splash" translatesAutoresizingMaskIntoConstraints="NO" id="gF8-KF-bUL">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic-logo-transparent" translatesAutoresizingMaskIntoConstraints="NO" id="HAS-Mc-6Ty">
+                                        <rect key="frame" x="10" y="200" width="394" height="120"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="120" id="FI2-HX-t8f"/>
+                                        </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Follow Church Leaders Around the World" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NRK-Ed-GjA">
-                                        <rect key="frame" x="40" y="439" width="334" height="48"/>
+                                        <rect key="frame" x="40" y="345" width="334" height="48"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tY6-I2-UZM">
-                                        <rect key="frame" x="20" y="502.00000000000006" width="374" height="133.66666666666669"/>
+                                        <rect key="frame" x="20" y="413" width="374" height="133.66666666666663"/>
                                         <string key="text">Preach Hub is a multi-medium platform which comprises different ministries from various denominations under the umbrella of Christianity. Inception for Christians to access sermons, religious news, and gospel music, this platform also contains an online store for purchasing bibles, books, and other specific church materials.</string>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="NRK-Ed-GjA" firstAttribute="centerX" secondItem="gF8-KF-bUL" secondAttribute="centerX" id="3Wt-Bi-BMc"/>
+                                    <constraint firstAttribute="trailing" secondItem="HAS-Mc-6Ty" secondAttribute="trailing" constant="10" id="4Fs-1I-kf1"/>
                                     <constraint firstAttribute="trailing" secondItem="NRK-Ed-GjA" secondAttribute="trailing" constant="40" id="56H-JP-YTK"/>
-                                    <constraint firstItem="gF8-KF-bUL" firstAttribute="leading" secondItem="Jxx-7v-MrX" secondAttribute="leading" id="Amz-PE-HBE"/>
-                                    <constraint firstAttribute="trailing" secondItem="gF8-KF-bUL" secondAttribute="trailing" id="DyB-5h-Tcd"/>
-                                    <constraint firstItem="NRK-Ed-GjA" firstAttribute="centerY" secondItem="gF8-KF-bUL" secondAttribute="centerY" constant="15" id="J4n-nL-qQt"/>
-                                    <constraint firstItem="gF8-KF-bUL" firstAttribute="top" secondItem="Jxx-7v-MrX" secondAttribute="top" id="YUN-3j-gdI"/>
+                                    <constraint firstItem="HAS-Mc-6Ty" firstAttribute="leading" secondItem="Jxx-7v-MrX" secondAttribute="leading" constant="10" id="6IL-3r-8Tf"/>
+                                    <constraint firstItem="NRK-Ed-GjA" firstAttribute="top" secondItem="HAS-Mc-6Ty" secondAttribute="bottom" constant="25" id="Ay4-7L-Tqa"/>
                                     <constraint firstItem="NRK-Ed-GjA" firstAttribute="leading" secondItem="Jxx-7v-MrX" secondAttribute="leading" constant="40" id="ZBc-pr-3VQ"/>
+                                    <constraint firstItem="HAS-Mc-6Ty" firstAttribute="top" secondItem="Jxx-7v-MrX" secondAttribute="top" constant="200" id="bHG-ft-LMH"/>
                                     <constraint firstAttribute="trailing" secondItem="tY6-I2-UZM" secondAttribute="trailing" constant="20" id="ch7-KA-B3q"/>
-                                    <constraint firstAttribute="bottom" secondItem="gF8-KF-bUL" secondAttribute="bottom" id="crD-XY-M7w"/>
-                                    <constraint firstItem="tY6-I2-UZM" firstAttribute="top" secondItem="NRK-Ed-GjA" secondAttribute="bottom" constant="15" id="eKb-mH-6ea"/>
-                                    <constraint firstItem="tY6-I2-UZM" firstAttribute="centerX" secondItem="gF8-KF-bUL" secondAttribute="centerX" id="lh2-M0-ECh"/>
+                                    <constraint firstItem="tY6-I2-UZM" firstAttribute="top" secondItem="NRK-Ed-GjA" secondAttribute="bottom" constant="20" id="eKb-mH-6ea"/>
+                                    <constraint firstItem="HAS-Mc-6Ty" firstAttribute="centerX" secondItem="Jxx-7v-MrX" secondAttribute="centerX" id="eiS-Gv-GUB"/>
                                     <constraint firstItem="tY6-I2-UZM" firstAttribute="leading" secondItem="Jxx-7v-MrX" secondAttribute="leading" constant="20" id="pjm-VM-KI7"/>
                                 </constraints>
                             </view>
@@ -71,6 +72,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="splash" width="180.72000122070312" height="320.8800048828125"/>
+        <image name="ic-logo-transparent" width="453.54330444335938" height="125.66928863525391"/>
     </resources>
 </document>

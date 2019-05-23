@@ -48,8 +48,8 @@ extension UIViewController {
     }
     func navigateToPaymentPage(){
         let storyBoard : UIStoryboard = UIStoryboard(name: "Payment", bundle:nil)
-        let welcomeViewController = storyBoard.instantiateViewController(withIdentifier: "PaymentViewController") as! PaymentViewController
-        self.navigationController?.pushViewController(welcomeViewController, animated: true)
+        let paymentViewController = storyBoard.instantiateViewController(withIdentifier: "PaymentViewController") as! PaymentViewController
+        self.navigationController?.pushViewController(paymentViewController, animated: true)
     }
    
 }

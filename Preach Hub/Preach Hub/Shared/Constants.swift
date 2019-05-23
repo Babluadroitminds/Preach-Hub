@@ -14,9 +14,10 @@ struct GlobalConstants {
         static let baseUrl:String = ""
         static let apiBaseUrl:String = "https://preachapi.herokuapp.com/api/"
         static let memberLogin:String = "members/login"
-        static let memberRegister:String = "members"
+        static let memberRegister:String = "members/savemember"
         static let memberReset:String = "members/reset"
         static let verifyEmail:String = "members/findOne?filter=%@"
         static let getPlanDetails:String = "plans"
+        static let attachSubscriptionSource:String = "members/attachSubscriptionSource"
     }
 }

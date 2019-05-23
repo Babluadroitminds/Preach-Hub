@@ -9,8 +9,16 @@
 import UIKit
 import SwiftyJSON
 import Stripe
+import Toast_Swift
 
 class PaymentViewController: UIViewController {
+    
+    @IBOutlet weak var txtState: UITextField!
+    @IBOutlet weak var txtCountry: UITextField!
+    @IBOutlet weak var txtPostal: UITextField!
+    @IBOutlet weak var txtCity: UITextField!
+    @IBOutlet weak var txtStreet2: UITextField!
+    @IBOutlet weak var txtStreet: UITextField!
     @IBOutlet weak var lblAmount: UILabel!
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var txtCardName: UITextField!
@@ -19,6 +27,9 @@ class PaymentViewController: UIViewController {
     @IBOutlet weak var txtCardNumber: UITextField!
     private var previousTextFieldContent: String?
     private var previousSelection: UITextRange?
+    var stripeCustomerTokenId: String?
+    var stripeCardToken: String?
+    var style = ToastStyle()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +38,8 @@ class PaymentViewController: UIViewController {
     }
     
     func setLayout(){
+        style.backgroundColor = .white
+        style.messageColor = .black
         txtCardNumber.delegate = self
         txtCardNumber.keyboardType = .numberPad
         txtExpires.keyboardType = .numberPad
@@ -182,7 +195,7 @@ class PaymentViewController: UIViewController {
     }
     
     @IBAction func payNowClicked(_ sender: Any) {
-        if txtCardNumber.text?.count == 0 || txtCVC.text?.count == 0 || txtCardName.text?.count == 0 || txtExpires.text?.count == 0 {
+        if txtCardNumber.text?.count == 0 || txtCVC.text?.count == 0 || txtCardName.text?.count == 0 || txtExpires.text?.count == 0 || txtCardName.text?.count == 0 || txtStreet.text?.count == 0 || txtStreet2.text?.count == 0 || txtState.text?.count == 0 || txtCountry.text?.count == 0 || txtCity.text?.count == 0 || txtPostal.text?.count == 0 {
             self.view.makeToast("Please enter all card details.", duration: 3.0, position: .bottom)
             return
         }
@@ -193,16 +206,31 @@ class PaymentViewController: UIViewController {
         cardParams.expMonth = UInt(self.txtExpires.text!.prefix(2))!
         cardParams.expYear = UInt(self.txtExpires.text!.suffix(4))!
         cardParams.cvc = txtCVC.text
-        
+        cardParams.name = txtCardName.text
+        cardParams.address.line1 = txtStreet.text
+        cardParams.address.line2 = txtStreet2.text
+        cardParams.address.state = txtState.text
+        cardParams.address.country = txtCountry.text
+        cardParams.address.city = txtCity.text
+        cardParams.address.postalCode = txtPostal.text
         
         STPAPIClient.shared().createToken(withCard: cardParams) { (token: STPToken?, error: Error?) in
             guard let token = token, error == nil
                 else {
+                    self.view.makeToast("Oops! Something went wrong!", duration: 3.0, position: .bottom, style: self.style)
                     print(error.debugDescription)
                     return
             }
+            print(token.stripeID)
+            self.stripeCardToken = token.stripeID
+            self.sendPaymentDetails()
+        }
+    }
+    
+    func sendPaymentDetails(){
+        let parameters: [String: Any] = ["stripecustomertokenid": stripeCustomerTokenId!, "stripecardtoken": stripeCardToken!]
+        APIHelper().post(apiUrl: GlobalConstants.APIUrls.attachSubscriptionSource, parameters: parameters as [String : AnyObject]) { (response) in
             
-        print(token)
             
         }
     }
