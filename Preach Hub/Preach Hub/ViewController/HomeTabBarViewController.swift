@@ -13,6 +13,11 @@ class HomeTabBarViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.tabBarController?.tabBarItem.setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: "System", size: 15)!, NSAttributedString.Key.foregroundColor: UIColor.black], for: .normal)
+        self.tabBarController?.tabBarItem.setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: "System", size: 15)!, NSAttributedString.Key.foregroundColor: UIColor.black], for: .selected)
+        
+//        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: "System", size: 15)!, NSAttributedString.Key.foregroundColor: UIColor.black], for: .normal)
+//        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: "System", size: 15)!, NSAttributedString.Key.foregroundColor: UIColor.black], for: .selected)
         // Do any additional setup after loading the view.
     }
     

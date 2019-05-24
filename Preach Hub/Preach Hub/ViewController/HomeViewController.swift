@@ -32,7 +32,7 @@ class tableViewCell : UITableViewCell , UICollectionViewDelegate , UICollectionV
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.size.width / 2.5, height: collectionView.frame.size.height - 50)
+        return CGSize(width: collectionView.frame.size.width / 3.2, height: 110)
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print(indexPath.row)
@@ -132,25 +132,33 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
 //        selctedView.backgroundColor = UIColor.clear
 //        cell.selectedBackgroundView? = selctedView
          if indexPath.row == 1 {
-            cell.lblHeader.text = "CONTINUE WATCHING"
+            cell.lblHeader.text = "Continue Watching"
         }
         else   if indexPath.row == 2 {
-            cell.lblHeader.text = "CHURCHES"
+            cell.lblHeader.text = "Churches"
         }
         else   if indexPath.row == 3 {
-            cell.lblHeader.text = "CHURCH MINISTRY CHANNEL"
+            cell.lblHeader.text = "Church Ministry Channel"
         }
         else   if indexPath.row == 4 {
-            cell.lblHeader.text = "STORE"
+            cell.lblHeader.text = "Store"
         }
         else {
-            cell.lblHeader.text = "GOSPEL MUSIC"
+            cell.lblHeader.text = "Gospel Music"
         }
         cell.backgroundColor = UIColor.clear
         return cell
     }
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 200
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
+    {
+        if indexPath.row == 0
+        {
+            return 220
+        }
+        else
+        {
+           return 170
+        }
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(indexPath.row)
