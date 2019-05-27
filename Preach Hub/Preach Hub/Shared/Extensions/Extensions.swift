@@ -11,6 +11,7 @@ import UIKit
 import Toast_Swift
 import SDWebImage
 import SideMenu
+import QuartzCore
 
 extension UIViewController : UIGestureRecognizerDelegate, UITextFieldDelegate {
     
@@ -184,6 +185,32 @@ extension UIView {
         set {
             layer.borderColor = newValue?.cgColor
         }
+    }
+    func addDashedBorder() {
+//        let color = UIColor.black.cgColor
+        
+//        let shapeLayer:CAShapeLayer = CAShapeLayer()
+//        let frameSize = self.frame.size
+//        let shapeRect = CGRect(x: 0, y: 0, width: frameSize.width, height: frameSize.height)
+//
+//        shapeLayer.bounds = shapeRect
+//        shapeLayer.position = CGPoint(x: frameSize.width/2 , y: frameSize.height/2)
+//        shapeLayer.fillColor = UIColor.clear.cgColor
+//        shapeLayer.strokeColor = color
+//        shapeLayer.lineWidth = 2
+//        shapeLayer.lineJoin = CAShapeLayerLineJoin.round
+//        shapeLayer.lineDashPattern = [4,2]
+//        shapeLayer.path = UIBezierPath(roundedRect: shapeRect, cornerRadius: 9).cgPath
+//
+//        self.layer.addSublayer(shapeLayer)
+        
+        var yourViewBorder = CAShapeLayer()
+        yourViewBorder.strokeColor = UIColor.black.cgColor
+        yourViewBorder.lineDashPattern = [2, 2]
+        yourViewBorder.frame = self.bounds
+        yourViewBorder.fillColor = nil
+        yourViewBorder.path = UIBezierPath(rect: self.bounds).cgPath
+        self.layer.addSublayer(yourViewBorder)
     }
 }
 

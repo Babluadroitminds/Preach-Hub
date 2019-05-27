@@ -80,4 +80,19 @@ class ProductDetailsViewController: UIViewController, UICollectionViewDelegate, 
     {
         self.sizeTxt.becomeFirstResponder()
     }
+    @IBAction func quantityIncreaseTapped(_ sender: Any)
+    {
+        let val = qtyLbl.text?.replacingOccurrences(of: "Qty ", with: "")
+        let valInt = Int(val!)! + 1
+        qtyLbl.text = "Qty " + valInt.description
+    }
+    @IBAction func quantityDecreaseTapped(_ sender: Any)
+    {
+        if qtyLbl.text != "Qty 1"
+        {
+            let val = qtyLbl.text?.replacingOccurrences(of: "Qty ", with: "")
+            let valInt = Int(val!)! - 1
+            qtyLbl.text = "Qty " + valInt.description
+        }
+    }
 }
