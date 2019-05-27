@@ -29,12 +29,15 @@ extension UIViewController {
 //        let welcomeViewController = storyBoard.instantiateViewController(withIdentifier: "WelcomePageViewController") as! WelcomePageViewController
 //        self.navigationController?.pushViewController(welcomeViewController, animated: true)
 //    }
-    func navigateToLoginPage()
-    {        
+    func navigateToLogin(){
+        let appdelegate = UIApplication.shared.delegate as! AppDelegate
         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-        let welcomeViewController = storyBoard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
-        self.navigationController?.pushViewController(welcomeViewController, animated: true)
+        let loginViewController = storyBoard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+        let navigationController = UINavigationController(rootViewController: loginViewController)
+        navigationController.isNavigationBarHidden = true
+        appdelegate.window?.rootViewController = navigationController
     }
+    
     func navigateToHomeScreenPage()
     {
         let storyBoard : UIStoryboard = UIStoryboard(name: "Home", bundle:nil)

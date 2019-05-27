@@ -33,6 +33,16 @@ class LoginViewController: UIViewController{
         style.messageColor = .black
     }
     
+    @IBAction func btnPasswordVisibilityClicked(_ sender: UIButton) {
+        sender.isSelected = !sender.isSelected
+        if sender.isSelected == true{
+            txtPassword.isSecureTextEntry = false
+        }
+        else{
+            txtPassword.isSecureTextEntry = true
+        }
+    }
+    
     @IBAction func loginClicked(_ sender: Any) {
         if txtUsername.text?.count == 0 || txtPassword.text?.count == 0{
             self.view.makeToast("Please enter all fields.", duration: 3.0, position: .bottom, style: style)

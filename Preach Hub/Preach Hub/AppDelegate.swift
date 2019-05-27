@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         IQKeyboardManager.shared.enable = true
         STPPaymentConfiguration.shared().publishableKey = "pk_test_odTtoLCVDmMzGQHTttRXjRQk00Md7Dppq5"
-        
+        Thread.sleep(forTimeInterval: 2.0)
         if UserDefaults.standard.bool(forKey: "Is_Logged_In") == true { // User has logged in already
             let storyboard:UIStoryboard = UIStoryboard(name: "Home", bundle: nil)
             let initialViewController = storyboard.instantiateViewController(withIdentifier: "HomeTabBarViewController") as! HomeTabBarViewController

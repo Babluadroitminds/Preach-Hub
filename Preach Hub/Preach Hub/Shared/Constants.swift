@@ -17,7 +17,8 @@ struct GlobalConstants {
         static let memberRegister:String = "members/savemember"
         static let memberReset:String = "members/reset"
         static let verifyEmail:String = "members/findOne?filter=%@"
-        static let getPlanDetails:String = "plans"
+        static let getPlanDetails:String = "https://api.stripe.com/v1/plans"
         static let attachSubscriptionSource:String = "members/attachSubscriptionSource"
+        static let chargeMember: String = "members/chargeMember"
     }
 }

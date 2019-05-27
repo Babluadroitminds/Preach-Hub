@@ -121,7 +121,7 @@ extension UIViewController : UIGestureRecognizerDelegate, UITextFieldDelegate {
         let passwordValidation = NSPredicate.init(format: "SELF MATCHES %@", regularExpression)
         return passwordValidation.evaluate(with: testStr)
     }
-    
+
 }
 extension UITabBar{
     func inActiveTintColor() {
@@ -221,4 +221,20 @@ extension String {
         self.init(attributedString.string)
     }
     
+}
+
+extension UICollectionView {
+    func scrollToNextItem() {
+        let contentOffset = CGFloat(floor(self.contentOffset.x + self.bounds.size.width))
+        self.moveToFrame(contentOffset: contentOffset)
+    }
+    
+    func scrollToPreviousItem() {
+        let contentOffset = CGFloat(floor(self.contentOffset.x - self.bounds.size.width))
+        self.moveToFrame(contentOffset: contentOffset)
+    }
+    
+    func moveToFrame(contentOffset : CGFloat) {
+        self.setContentOffset(CGPoint(x: contentOffset, y: self.contentOffset.y), animated: true)
+    }
 }

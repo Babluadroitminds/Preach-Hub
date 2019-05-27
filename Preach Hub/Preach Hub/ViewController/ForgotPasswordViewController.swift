@@ -45,7 +45,7 @@ class ForgotPasswordViewController: UIViewController {
             if response == 200 {
                 self.view.makeToast("Email has been sent to reset password!", duration: 3.0, position: .bottom, style: self.style)
                 DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3), execute: {
-                    
+                    self.navigateToLogin()
                 })
             }
             else if response == 404 {

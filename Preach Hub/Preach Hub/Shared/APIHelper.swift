@@ -56,9 +56,16 @@ class APIHelper: NSObject {
             
             httpHeader["Authorization"] = "bearer" + " " + accessToken!
         }
-      
-        var fullUrl = GlobalConstants.APIUrls.apiBaseUrl + apiUrl
-        fullUrl = fullUrl.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
+        var fullUrl = ""
+        if apiUrl.contains("api.stripe.com"){
+            fullUrl = apiUrl
+            httpHeader["Authorization"] = "Bearer sk_test_vzXTFAJH3fOKhon5we02Dozo00vpLeAt20"
+        }
+        else {
+            fullUrl = GlobalConstants.APIUrls.apiBaseUrl + apiUrl
+            fullUrl = fullUrl.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
+        }
+        
         if(showBusyIndicator){
                 NotificationsHelper.showBusyIndicator(message: "Please Wait")
         }

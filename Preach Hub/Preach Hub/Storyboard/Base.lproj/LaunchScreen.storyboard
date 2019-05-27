@@ -22,19 +22,19 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic-logo-transparent" translatesAutoresizingMaskIntoConstraints="NO" id="HAS-Mc-6Ty">
-                                        <rect key="frame" x="10" y="200" width="394" height="120"/>
+                                        <rect key="frame" x="10" y="150" width="394" height="120"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="120" id="FI2-HX-t8f"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Follow Church Leaders Around the World" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NRK-Ed-GjA">
-                                        <rect key="frame" x="40" y="345" width="334" height="48"/>
+                                        <rect key="frame" x="40" y="295" width="334" height="48"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tY6-I2-UZM">
-                                        <rect key="frame" x="20" y="413" width="374" height="133.66666666666663"/>
+                                        <rect key="frame" x="20" y="363" width="374" height="133.66666666666663"/>
                                         <string key="text">Preach Hub is a multi-medium platform which comprises different ministries from various denominations under the umbrella of Christianity. Inception for Christians to access sermons, religious news, and gospel music, this platform also contains an online store for purchasing bibles, books, and other specific church materials.</string>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -48,7 +48,7 @@
                                     <constraint firstItem="HAS-Mc-6Ty" firstAttribute="leading" secondItem="Jxx-7v-MrX" secondAttribute="leading" constant="10" id="6IL-3r-8Tf"/>
                                     <constraint firstItem="NRK-Ed-GjA" firstAttribute="top" secondItem="HAS-Mc-6Ty" secondAttribute="bottom" constant="25" id="Ay4-7L-Tqa"/>
                                     <constraint firstItem="NRK-Ed-GjA" firstAttribute="leading" secondItem="Jxx-7v-MrX" secondAttribute="leading" constant="40" id="ZBc-pr-3VQ"/>
-                                    <constraint firstItem="HAS-Mc-6Ty" firstAttribute="top" secondItem="Jxx-7v-MrX" secondAttribute="top" constant="200" id="bHG-ft-LMH"/>
+                                    <constraint firstItem="HAS-Mc-6Ty" firstAttribute="top" secondItem="Jxx-7v-MrX" secondAttribute="top" constant="150" id="bHG-ft-LMH"/>
                                     <constraint firstAttribute="trailing" secondItem="tY6-I2-UZM" secondAttribute="trailing" constant="20" id="ch7-KA-B3q"/>
                                     <constraint firstItem="tY6-I2-UZM" firstAttribute="top" secondItem="NRK-Ed-GjA" secondAttribute="bottom" constant="20" id="eKb-mH-6ea"/>
                                     <constraint firstItem="HAS-Mc-6Ty" firstAttribute="centerX" secondItem="Jxx-7v-MrX" secondAttribute="centerX" id="eiS-Gv-GUB"/>

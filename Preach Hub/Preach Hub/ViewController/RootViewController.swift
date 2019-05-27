@@ -70,6 +70,7 @@ class RootViewController: UIViewController, UITabBarDelegate , UITableViewDataSo
             popUpInProgress()
             break
         case "Logout":
+            logoutClicked()
             break
         default:
             break
@@ -81,16 +82,8 @@ class RootViewController: UIViewController, UITabBarDelegate , UITableViewDataSo
         alert.addAction(UIAlertAction(title: "YES", style: UIAlertAction.Style.default, handler: {(action:UIAlertAction!) in
             
             UserDefaults.standard.set(false, forKey: "Is_Logged_In")
-            self.view.makeToast("Logged out successfully.", duration: 2.0, position: .bottom)
             DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
-         
-                let appdelegate = UIApplication.shared.delegate as! AppDelegate
-                let storyboard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                let initialViewController = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
-                let navigationController = UINavigationController(rootViewController: initialViewController)
-                navigationController.isNavigationBarHidden = true
-                appdelegate.window?.rootViewController = navigationController
-                
+                self.navigateToLogin()
             })
             
         }))
