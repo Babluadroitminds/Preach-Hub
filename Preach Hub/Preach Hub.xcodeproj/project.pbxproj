@@ -26,6 +26,9 @@
 		82CADDCB22941DD300EBBDFD /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82CADDCA22941DD300EBBDFD /* PaymentViewController.swift */; };
 		82EF35B3228D90EC003BE3E2 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EF35B2228D90EC003BE3E2 /* InitialViewController.swift */; };
 		DBA59325E32C25E49F32103E /* Pods_Preach_Hub.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD2B542195333FCD0E69A3FE /* Pods_Preach_Hub.framework */; };
+		E323E0042297E904006B6EBA /* Cart.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E323E0032297E904006B6EBA /* Cart.storyboard */; };
+		E323E0062297F246006B6EBA /* ProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E323E0052297F246006B6EBA /* ProductViewController.swift */; };
+		E323E00822981C25006B6EBA /* ProductDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E323E00722981C24006B6EBA /* ProductDetailsViewController.swift */; };
 		E366C11C228E87E5003CBE58 /* Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E366C11B228E87E5003CBE58 /* Navigation.swift */; };
 		E366C124228E8A71003CBE58 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E366C123228E8A71003CBE58 /* Home.storyboard */; };
 		E366C127228E8B53003CBE58 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E366C126228E8B53003CBE58 /* HomeViewController.swift */; };
@@ -33,6 +36,7 @@
 		E366C12C22927B6A003CBE58 /* ic_nav_menu.png in Resources */ = {isa = PBXBuildFile; fileRef = E366C12B22927B69003CBE58 /* ic_nav_menu.png */; };
 		E3ACFC45228D760F00F798D6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3ACFC44228D760F00F798D6 /* LoginViewController.swift */; };
 		E3ACFC47228D7B0300F798D6 /* RegistrationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3ACFC46228D7B0300F798D6 /* RegistrationVC.swift */; };
+		E3B730CA229BC48C008D3E7C /* ViewCartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B730C9229BC48C008D3E7C /* ViewCartViewController.swift */; };
 		E3FAA41B2292A84D00E369C6 /* HomeTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3FAA41A2292A84D00E369C6 /* HomeTabBarViewController.swift */; };
 		E3FAA41D2292A97800E369C6 /* AllPastorsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3FAA41C2292A97800E369C6 /* AllPastorsViewController.swift */; };
 /* End PBXBuildFile section */
@@ -81,6 +85,9 @@
 		82EF35B2228D90EC003BE3E2 /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
 		9F6FE270D5CD1E3D340DA05E /* Pods-Preach Hub.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Preach Hub.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Preach Hub/Pods-Preach Hub.debug.xcconfig"; sourceTree = "<group>"; };
 		AD2B542195333FCD0E69A3FE /* Pods_Preach_Hub.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Preach_Hub.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E323E0032297E904006B6EBA /* Cart.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Cart.storyboard; sourceTree = "<group>"; };
+		E323E0052297F246006B6EBA /* ProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductViewController.swift; sourceTree = "<group>"; };
+		E323E00722981C24006B6EBA /* ProductDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailsViewController.swift; sourceTree = "<group>"; };
 		E366C11B228E87E5003CBE58 /* Navigation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Navigation.swift; sourceTree = "<group>"; };
 		E366C123228E8A71003CBE58 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		E366C126228E8B53003CBE58 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -89,6 +96,7 @@
 		E366C12B22927B69003CBE58 /* ic_nav_menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_nav_menu.png; sourceTree = "<group>"; };
 		E3ACFC44228D760F00F798D6 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		E3ACFC46228D7B0300F798D6 /* RegistrationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationVC.swift; sourceTree = "<group>"; };
+		E3B730C9229BC48C008D3E7C /* ViewCartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCartViewController.swift; sourceTree = "<group>"; };
 		E3FAA41A2292A84D00E369C6 /* HomeTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabBarViewController.swift; sourceTree = "<group>"; };
 		E3FAA41C2292A97800E369C6 /* AllPastorsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllPastorsViewController.swift; sourceTree = "<group>"; };
 		F0511A6FE5DE21AC8336A3D9 /* Pods-Preach Hub.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Preach Hub.release.xcconfig"; path = "Pods/Target Support Files/Pods-Preach Hub/Pods-Preach Hub.release.xcconfig"; sourceTree = "<group>"; };
@@ -204,7 +212,10 @@
 				E366C126228E8B53003CBE58 /* HomeViewController.swift */,
 				E366C128229270CE003CBE58 /* RootViewController.swift */,
 				E3FAA41A2292A84D00E369C6 /* HomeTabBarViewController.swift */,
+				E323E0052297F246006B6EBA /* ProductViewController.swift */,
+				E323E00722981C24006B6EBA /* ProductDetailsViewController.swift */,
 				E3FAA41C2292A97800E369C6 /* AllPastorsViewController.swift */,
+				E3B730C9229BC48C008D3E7C /* ViewCartViewController.swift */,
 				8235EB462293C3760090230B /* ForgotPasswordViewController.swift */,
 				82CADDCA22941DD300EBBDFD /* PaymentViewController.swift */,
 			);
@@ -254,6 +265,7 @@
 				8203F0CE228D7A7A00F9D65D /* InitialStoryboard.storyboard */,
 				1895168A228D672C005FA99A /* Main.storyboard */,
 				1895168F228D6732005FA99A /* LaunchScreen.storyboard */,
+				E323E0032297E904006B6EBA /* Cart.storyboard */,
 				E366C123228E8A71003CBE58 /* Home.storyboard */,
 				8235EB48229418C60090230B /* Payment.storyboard */,
 			);
@@ -374,6 +386,7 @@
 				820877BE2295224C00513037 /* Gibson-Regular.ttf in Resources */,
 				E366C12C22927B6A003CBE58 /* ic_nav_menu.png in Resources */,
 				8235EB49229418C60090230B /* Payment.storyboard in Resources */,
+				E323E0042297E904006B6EBA /* Cart.storyboard in Resources */,
 				18951691228D6732005FA99A /* LaunchScreen.storyboard in Resources */,
 				820877C02295294400513037 /* profile-pic.png in Resources */,
 				820877BC2295223900513037 /* Gibson-Bold.ttf in Resources */,
@@ -493,8 +506,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				8203F0C6228D695C00F9D65D /* Constants.swift in Sources */,
+				E323E0022297D381006B6EBA /* SideMenuController.swift in Sources */,
 				82EF35B3228D90EC003BE3E2 /* InitialViewController.swift in Sources */,
 				8203F0C4228D695100F9D65D /* APIHelper.swift in Sources */,
+				E323E0062297F246006B6EBA /* ProductViewController.swift in Sources */,
 				E366C129229270CE003CBE58 /* RootViewController.swift in Sources */,
 				E366C11C228E87E5003CBE58 /* Navigation.swift in Sources */,
 				E3ACFC45228D760F00F798D6 /* LoginViewController.swift in Sources */,
@@ -503,8 +518,10 @@
 				E3ACFC47228D7B0300F798D6 /* RegistrationVC.swift in Sources */,
 				8235EB472293C3760090230B /* ForgotPasswordViewController.swift in Sources */,
 				8203F0C8228D69B700F9D65D /* NotificationsHelper.swift in Sources */,
+				E3B730CA229BC48C008D3E7C /* ViewCartViewController.swift in Sources */,
 				E3FAA41B2292A84D00E369C6 /* HomeTabBarViewController.swift in Sources */,
 				E3FAA41D2292A97800E369C6 /* AllPastorsViewController.swift in Sources */,
+				E323E00822981C25006B6EBA /* ProductDetailsViewController.swift in Sources */,
 				8203F0C1228D68BF00F9D65D /* Extensions.swift in Sources */,
 				18951687228D672C005FA99A /* AppDelegate.swift in Sources */,
 			);
