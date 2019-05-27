@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -1051,7 +1051,7 @@
 		068A36BF8E355D43A62ACE578520CF40 /* NSError+FIRMessaging.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSError+FIRMessaging.m"; path = "Firebase/Messaging/NSError+FIRMessaging.m"; sourceTree = "<group>"; };
 		070BBF297812001119E07B955A1E0A24 /* GoogleUtilities-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "GoogleUtilities-prefix.pch"; sourceTree = "<group>"; };
 		0754C59A9458E26CE8308D9A8E121E80 /* RapidAPI+ApplePay.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "RapidAPI+ApplePay.h"; path = "Pod/Classes/RapidAPI+ApplePay.h"; sourceTree = "<group>"; };
-		078A96D2A5D606BCA4743B91CD22029B /* XLPagerTabStrip.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = XLPagerTabStrip.framework; path = XLPagerTabStrip.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		078A96D2A5D606BCA4743B91CD22029B /* XLPagerTabStrip.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = XLPagerTabStrip.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		07963CC223AD28CC43DD72358C75ACF0 /* stp_card_cvc@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "stp_card_cvc@3x.png"; path = "Stripe/Resources/Images/stp_card_cvc@3x.png"; sourceTree = "<group>"; };
 		07BDA2E8DE6D35454D2F89738563F1D6 /* SDImageCacheConfig.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDImageCacheConfig.h; path = SDWebImage/SDImageCacheConfig.h; sourceTree = "<group>"; };
 		08274D89402FCD8517B66AEE3028F775 /* GPBDescriptor.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = GPBDescriptor.m; path = objectivec/GPBDescriptor.m; sourceTree = "<group>"; };
@@ -1117,7 +1117,7 @@
 		170FB8C16C3AC3252E1C9D919344BDD0 /* FirebaseCore-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FirebaseCore-umbrella.h"; sourceTree = "<group>"; };
 		173944CBA83CF6A68583360BAFBC05A2 /* SDWebImageTransition.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDWebImageTransition.h; path = SDWebImage/SDWebImageTransition.h; sourceTree = "<group>"; };
 		17C981FD6FD03FCC03D6C54C508122BB /* SwiftyJSON.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SwiftyJSON.xcconfig; sourceTree = "<group>"; };
-		17CD237B721DB3B18137465D1A47B290 /* Localizations */ = {isa = PBXFileReference; includeInIndex = 1; name = Localizations; path = Stripe/Resources/Localizations; sourceTree = "<group>"; };
+		17CD237B721DB3B18137465D1A47B290 /* Localizations */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder; name = Localizations; path = Stripe/Resources/Localizations; sourceTree = "<group>"; };
 		1850932DE8F2739B2616909D4F3E29AD /* STPSourceParams.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = STPSourceParams.m; path = Stripe/STPSourceParams.m; sourceTree = "<group>"; };
 		18FBD7B47788552D93F636FFC30B8987 /* STPPaymentIntentSourceAction.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = STPPaymentIntentSourceAction.m; path = Stripe/STPPaymentIntentSourceAction.m; sourceTree = "<group>"; };
 		199C674E6FCE13F7C8B4EA6556AD0BF6 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -1153,10 +1153,10 @@
 		2387D5A52ED274680EA005B0607A0435 /* stp_card_unknown@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "stp_card_unknown@3x.png"; path = "Stripe/Resources/Images/stp_card_unknown@3x.png"; sourceTree = "<group>"; };
 		238B26C18AED2A4AAD5823CE28BF1528 /* PinCodeTextField.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = PinCodeTextField.xcconfig; sourceTree = "<group>"; };
 		23930A6BE1587797C7D0918A82A48B0E /* STPColorUtils.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = STPColorUtils.h; path = Stripe/STPColorUtils.h; sourceTree = "<group>"; };
-		23A2D051E049F1B5EECBCBEFF28ED2FB /* SideMenu.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SideMenu.framework; path = SideMenu.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		23A2D051E049F1B5EECBCBEFF28ED2FB /* SideMenu.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SideMenu.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		23C6448D0469AC95624AB1BE9922B20C /* MXScrollViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MXScrollViewController.m; path = MXParallaxHeader/MXScrollViewController.m; sourceTree = "<group>"; };
 		23CD2C263C45C5DFA665796A0DE801E8 /* Request.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Request.swift; path = Source/Request.swift; sourceTree = "<group>"; };
-		24390EFD555DD124430DFF9724065945 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		24390EFD555DD124430DFF9724065945 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		249E46453F204F39B049EAF8DAD4A47A /* UIToolbar+Stripe_InputAccessory.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIToolbar+Stripe_InputAccessory.m"; path = "Stripe/UIToolbar+Stripe_InputAccessory.m"; sourceTree = "<group>"; };
 		24B666653935362ED4B6B84A25810C28 /* stp_shipping_form@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "stp_shipping_form@2x.png"; path = "Stripe/Resources/Images/stp_shipping_form@2x.png"; sourceTree = "<group>"; };
 		250205C068CC4371D299E56B983757C3 /* STPCard.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = STPCard.m; path = Stripe/STPCard.m; sourceTree = "<group>"; };
@@ -1240,7 +1240,7 @@
 		38E5DF61315D3630E009518D6F6898F0 /* FIRMessagingUtilities.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FIRMessagingUtilities.m; path = Firebase/Messaging/FIRMessagingUtilities.m; sourceTree = "<group>"; };
 		391842A35A8FD2E46B24B077116B0C6D /* NSData+ImageContentType.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSData+ImageContentType.h"; path = "SDWebImage/NSData+ImageContentType.h"; sourceTree = "<group>"; };
 		391F40A809B9F26B8435DD97AFD5C4D2 /* GPBCodedOutputStream.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GPBCodedOutputStream.h; path = objectivec/GPBCodedOutputStream.h; sourceTree = "<group>"; };
-		3934254FB7E44FC7090656294BD8EE56 /* pb_encode.c */ = {isa = PBXFileReference; includeInIndex = 1; path = pb_encode.c; sourceTree = "<group>"; };
+		3934254FB7E44FC7090656294BD8EE56 /* pb_encode.c */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.c; path = pb_encode.c; sourceTree = "<group>"; };
 		39440E8A1FB456381B533389B22C7BDA /* GULLoggerLevel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GULLoggerLevel.h; path = GoogleUtilities/Logger/Public/GULLoggerLevel.h; sourceTree = "<group>"; };
 		3976BB5D1B6BAF87E17E9B1F1AA9CEBB /* MXParallaxHeader.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = MXParallaxHeader.xcconfig; sourceTree = "<group>"; };
 		3A245590E1D2830C04D2D8FD90B67606 /* stp_card_form_back@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "stp_card_form_back@3x.png"; path = "Stripe/Resources/Images/stp_card_form_back@3x.png"; sourceTree = "<group>"; };
@@ -1253,12 +1253,12 @@
 		3B8539937BBD05EAE9333C8C937DE9D1 /* stp_card_unknown@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "stp_card_unknown@2x.png"; path = "Stripe/Resources/Images/stp_card_unknown@2x.png"; sourceTree = "<group>"; };
 		3B88758A8BFD9D74EA92D697C70BC122 /* FIRMessaging.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FIRMessaging.h; path = Firebase/Messaging/Public/FIRMessaging.h; sourceTree = "<group>"; };
 		3BA87D89E622AE28D6F1925EF51884D5 /* FIRLoggerLevel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FIRLoggerLevel.h; path = Firebase/Core/Public/FIRLoggerLevel.h; sourceTree = "<group>"; };
-		3BB0F71B36B5C33FE76ACC5E4DF609A0 /* GoogleUtilities.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = GoogleUtilities.framework; path = GoogleUtilities.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3BB0F71B36B5C33FE76ACC5E4DF609A0 /* GoogleUtilities.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GoogleUtilities.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BCCA8FAECA2C124CA0C99A0A71F6214 /* SVProgressHUD.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = SVProgressHUD.bundle; path = SVProgressHUD/SVProgressHUD.bundle; sourceTree = "<group>"; };
 		3C444451E8AAFFA8101D7D60738FA17B /* StripeError.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = StripeError.m; path = Stripe/StripeError.m; sourceTree = "<group>"; };
 		3C64695142E2DCB509601D599AC97AE5 /* STPAPIClient+ApplePay.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "STPAPIClient+ApplePay.m"; path = "Stripe/STPAPIClient+ApplePay.m"; sourceTree = "<group>"; };
 		3C73E8C44805F53CFF0DCF38E24F3CC4 /* stp_card_diners_template@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "stp_card_diners_template@3x.png"; path = "Stripe/Resources/Images/stp_card_diners_template@3x.png"; sourceTree = "<group>"; };
-		3CB3927C591C8625490B3F19A2C15EC0 /* YPDrawSignatureView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = YPDrawSignatureView.framework; path = YPDrawSignatureView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3CB3927C591C8625490B3F19A2C15EC0 /* YPDrawSignatureView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = YPDrawSignatureView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CC2A634F443793AC576896593E06C45 /* GPBCodedOutputStream_PackagePrivate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GPBCodedOutputStream_PackagePrivate.h; path = objectivec/GPBCodedOutputStream_PackagePrivate.h; sourceTree = "<group>"; };
 		3CF21D9EA59000804BB5F69AE5E68669 /* Toast-Swift.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Toast-Swift.xcconfig"; sourceTree = "<group>"; };
 		3D33DF8F68B2C5EC8913C25E2B0F43F1 /* FIRMessagingDefines.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FIRMessagingDefines.h; path = Firebase/Messaging/FIRMessagingDefines.h; sourceTree = "<group>"; };
@@ -1279,7 +1279,7 @@
 		41978B4B6B98715EE63E96F508E3CE7E /* STPPaymentCardTextFieldViewModel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = STPPaymentCardTextFieldViewModel.h; path = Stripe/STPPaymentCardTextFieldViewModel.h; sourceTree = "<group>"; };
 		41D9BCA26A86868F557C39252A5E2096 /* Banner.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Banner.swift; path = Pod/Classes/Banner.swift; sourceTree = "<group>"; };
 		420B976C98545CF3E724A518518B27D3 /* FSPagerView-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FSPagerView-prefix.pch"; sourceTree = "<group>"; };
-		425063EFEC61A21C34A41A81EABD09A0 /* ReachabilitySwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = ReachabilitySwift.framework; path = ReachabilitySwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		425063EFEC61A21C34A41A81EABD09A0 /* ReachabilitySwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ReachabilitySwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		425CABA54D8CE8AA6B541EBE3AFC0548 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		42BE2676CCDC8E4849AB185AB6FFAD62 /* IQUIScrollView+Additions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "IQUIScrollView+Additions.swift"; path = "IQKeyboardManagerSwift/Categories/IQUIScrollView+Additions.swift"; sourceTree = "<group>"; };
 		42D53C1265DD44F2319C12D07850653F /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -1292,7 +1292,7 @@
 		452C378EC512BB347989F23AC3093C74 /* STPPaymentMethodsViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = STPPaymentMethodsViewController.h; path = Stripe/PublicHeaders/STPPaymentMethodsViewController.h; sourceTree = "<group>"; };
 		45613C537A97FB49FBD022D1FCDDB417 /* stp_card_error_amex@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "stp_card_error_amex@2x.png"; path = "Stripe/Resources/Images/stp_card_error_amex@2x.png"; sourceTree = "<group>"; };
 		45A56CEF3E6F609D222456FA3E9220C1 /* UIView+WebCacheOperation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIView+WebCacheOperation.h"; path = "SDWebImage/UIView+WebCacheOperation.h"; sourceTree = "<group>"; };
-		45C7E6DF238459DF3FB12AD1E381EFD8 /* stp_test_upload_image.jpeg */ = {isa = PBXFileReference; includeInIndex = 1; name = stp_test_upload_image.jpeg; path = Stripe/Resources/Images/stp_test_upload_image.jpeg; sourceTree = "<group>"; };
+		45C7E6DF238459DF3FB12AD1E381EFD8 /* stp_test_upload_image.jpeg */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.jpeg; name = stp_test_upload_image.jpeg; path = Stripe/Resources/Images/stp_test_upload_image.jpeg; sourceTree = "<group>"; };
 		46859550BB07DEC379923FC9CCDF0368 /* STPSourceParams+Private.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "STPSourceParams+Private.h"; path = "Stripe/STPSourceParams+Private.h"; sourceTree = "<group>"; };
 		46C7177F7B736B20E086D7BB0DEB1F0B /* STPPhoneNumberValidator.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = STPPhoneNumberValidator.m; path = Stripe/STPPhoneNumberValidator.m; sourceTree = "<group>"; };
 		47341E51F0088254BF060124D488B3D9 /* NSDecimalNumber+Stripe_Currency.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSDecimalNumber+Stripe_Currency.m"; path = "Stripe/NSDecimalNumber+Stripe_Currency.m"; sourceTree = "<group>"; };
@@ -1303,7 +1303,7 @@
 		48DB194ACD4F49AA491BF3590C8BFF13 /* MXScrollViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MXScrollViewController.h; path = MXParallaxHeader/MXScrollViewController.h; sourceTree = "<group>"; };
 		490612BF52790405C61E8F4D267F1661 /* stp_card_unionpay_template_zh.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = stp_card_unionpay_template_zh.png; path = Stripe/Resources/Images/stp_card_unionpay_template_zh.png; sourceTree = "<group>"; };
 		491479517C066CAD8924F497E5E981E3 /* GULNSData+zlib.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "GULNSData+zlib.m"; path = "GoogleUtilities/NSData+zlib/GULNSData+zlib.m"; sourceTree = "<group>"; };
-		4959FDF032287F3D02D9BB8E758CF202 /* SDWebImage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SDWebImage.framework; path = SDWebImage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4959FDF032287F3D02D9BB8E758CF202 /* SDWebImage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SDWebImage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A1F98F5BC2F41C1A56D197813F8C89C /* stp_card_jcb_template.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = stp_card_jcb_template.png; path = Stripe/Resources/Images/stp_card_jcb_template.png; sourceTree = "<group>"; };
 		4A6559712ADE3A69F3201045E8E5B75C /* FIRComponentType.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FIRComponentType.h; path = Firebase/Core/Private/FIRComponentType.h; sourceTree = "<group>"; };
 		4AB62BE929C8084B486E2E107FBA6A04 /* STPFormTextField.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = STPFormTextField.m; path = Stripe/STPFormTextField.m; sourceTree = "<group>"; };
@@ -1316,7 +1316,7 @@
 		4C526C4EED8BC81C770ACC66BFFB5C7B /* STPCustomerContext.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = STPCustomerContext.m; path = Stripe/STPCustomerContext.m; sourceTree = "<group>"; };
 		4C90E35B08F0ADDA24B24ED482C3E7E3 /* STPFormTextField.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = STPFormTextField.h; path = Stripe/STPFormTextField.h; sourceTree = "<group>"; };
 		4CAF7B333AA48A828385E6570F8924DC /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
-		4CD3729EAE643FA225CDA278CCF8E14C /* XLPagerTabStrip.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = XLPagerTabStrip.bundle; path = "XLPagerTabStrip-XLPagerTabStrip.bundle"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4CD3729EAE643FA225CDA278CCF8E14C /* XLPagerTabStrip.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = XLPagerTabStrip.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D1BE7E31D1ABBCC5FF9117B22C8A181 /* STPPaymentContextAmountModel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = STPPaymentContextAmountModel.m; path = Stripe/STPPaymentContextAmountModel.m; sourceTree = "<group>"; };
 		4D3887B548407359B184724126E75A7C /* STPMultipartFormDataPart.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = STPMultipartFormDataPart.m; path = Stripe/STPMultipartFormDataPart.m; sourceTree = "<group>"; };
 		4D783D49FD561A017D3F4D572ABE8A40 /* STPPhoneNumberValidator.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = STPPhoneNumberValidator.h; path = Stripe/STPPhoneNumberValidator.h; sourceTree = "<group>"; };
@@ -1383,7 +1383,7 @@
 		5EDFEBAEA8B46CD5759E9A9440D64647 /* FIRMessagingContextManagerService.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FIRMessagingContextManagerService.h; path = Firebase/Messaging/FIRMessagingContextManagerService.h; sourceTree = "<group>"; };
 		5F5505860FFFAABDC74E034D0EFF438A /* stp_card_mastercard_template.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = stp_card_mastercard_template.png; path = Stripe/Resources/Images/stp_card_mastercard_template.png; sourceTree = "<group>"; };
 		5F8D21ADBD46DAEE622B46779E45B81B /* nanopb-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "nanopb-prefix.pch"; sourceTree = "<group>"; };
-		5F96EA010BB3A50266A8EFBCD54DC7D1 /* Protobuf.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Protobuf.framework; path = Protobuf.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5F96EA010BB3A50266A8EFBCD54DC7D1 /* Protobuf.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Protobuf.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FA8769A3B5F2E32E0EE625E8B336D28 /* STPFormEncoder.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = STPFormEncoder.m; path = Stripe/STPFormEncoder.m; sourceTree = "<group>"; };
 		5FF7ECFBF36009F45A1AC1D127108375 /* XLPagerTabStrip-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "XLPagerTabStrip-umbrella.h"; sourceTree = "<group>"; };
 		60A5C61D6422EECC21F950B1A8CAB985 /* STPConnectAccountParams.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = STPConnectAccountParams.m; path = Stripe/STPConnectAccountParams.m; sourceTree = "<group>"; };
@@ -1402,7 +1402,7 @@
 		636583650F4C9FB19DF8B3D97D5F5F28 /* FIROptionsInternal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FIROptionsInternal.h; path = Firebase/Core/Private/FIROptionsInternal.h; sourceTree = "<group>"; };
 		638D38168C1C0AEFF1AAFF4EB584C558 /* FIRMessagingRemoteNotificationsProxy.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FIRMessagingRemoteNotificationsProxy.h; path = Firebase/Messaging/FIRMessagingRemoteNotificationsProxy.h; sourceTree = "<group>"; };
 		641226C50A00D9358A0956A0FCDA7CEF /* FIRMessagingVersionUtilities.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FIRMessagingVersionUtilities.h; path = Firebase/Messaging/FIRMessagingVersionUtilities.h; sourceTree = "<group>"; };
-		6418FD67B5E7882DCD20E5002F1FC9D2 /* PinCodeTextField.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = PinCodeTextField.framework; path = PinCodeTextField.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6418FD67B5E7882DCD20E5002F1FC9D2 /* PinCodeTextField.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PinCodeTextField.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		649ADB3898FF3A693B561DAAC9E089C4 /* nanopb.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = nanopb.modulemap; sourceTree = "<group>"; };
 		64F6C9A2CD15AF86543EE6A657237940 /* FSPagerViewLayoutAttributes.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FSPagerViewLayoutAttributes.swift; path = Sources/FSPagerViewLayoutAttributes.swift; sourceTree = "<group>"; };
 		652CBA0B75D6E07839192911F614D3CC /* FirebaseMessaging-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "FirebaseMessaging-dummy.m"; sourceTree = "<group>"; };
@@ -1422,7 +1422,7 @@
 		6879ADFBC5D2BB463838165BD2CAA1AE /* FIRMessagingConnection.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FIRMessagingConnection.m; path = Firebase/Messaging/FIRMessagingConnection.m; sourceTree = "<group>"; };
 		68B266F2CD8B98BA1F6E4173A140CB02 /* STPLocalizationUtils.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = STPLocalizationUtils.m; path = Stripe/STPLocalizationUtils.m; sourceTree = "<group>"; };
 		68CABB338E5AB82B3D34B280D40F15E7 /* STPPaymentIntentSourceAction.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = STPPaymentIntentSourceAction.h; path = Stripe/PublicHeaders/STPPaymentIntentSourceAction.h; sourceTree = "<group>"; };
-		68CBAF4A41F00C210D62FFB2DD8F241E /* SwiftyJSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SwiftyJSON.framework; path = SwiftyJSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		68CBAF4A41F00C210D62FFB2DD8F241E /* SwiftyJSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftyJSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		68F8DE025B921C86806E1DEE596B0DD1 /* StringExtension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = StringExtension.swift; path = Pod/Extensions/StringExtension.swift; sourceTree = "<group>"; };
 		69202B8062CB2430D76F37A1D9EA0CFE /* SwiftyJSON-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwiftyJSON-umbrella.h"; sourceTree = "<group>"; };
 		69312EF59A8C971821AC343440AB5C30 /* GPBCodedInputStream.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GPBCodedInputStream.h; path = objectivec/GPBCodedInputStream.h; sourceTree = "<group>"; };
@@ -1435,7 +1435,7 @@
 		6B4AD497342C3E0FAA6D5B3932B02CEB /* eWAYSDK.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = eWAYSDK.h; path = Pod/Classes/eWAYSDK.h; sourceTree = "<group>"; };
 		6C43FCAF23B7B45874EEEB211A279480 /* stp_shipping_form@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "stp_shipping_form@3x.png"; path = "Stripe/Resources/Images/stp_shipping_form@3x.png"; sourceTree = "<group>"; };
 		6C62DBABB1E2FDCD7F8B478FF5426083 /* stp_card_form_front@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "stp_card_form_front@2x.png"; path = "Stripe/Resources/Images/stp_card_form_front@2x.png"; sourceTree = "<group>"; };
-		6D129355EC3CC4BBAAA6F221551F40B9 /* nanopb.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = nanopb.framework; path = nanopb.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6D129355EC3CC4BBAAA6F221551F40B9 /* nanopb.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = nanopb.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D331D151BAB0801ED2FB22322048E82 /* SwiftyJSON.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = SwiftyJSON.modulemap; sourceTree = "<group>"; };
 		6D37020051229C2D104B464A9AFDEBDC /* STPPaymentCardTextFieldCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = STPPaymentCardTextFieldCell.m; path = Stripe/STPPaymentCardTextFieldCell.m; sourceTree = "<group>"; };
 		6D41F1793417B10989178F3896948C37 /* stp_card_discover_template@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "stp_card_discover_template@2x.png"; path = "Stripe/Resources/Images/stp_card_discover_template@2x.png"; sourceTree = "<group>"; };
@@ -1462,7 +1462,7 @@
 		73373340C2E1052F7E7FB240A29613C7 /* stp_card_discover_template.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = stp_card_discover_template.png; path = Stripe/Resources/Images/stp_card_discover_template.png; sourceTree = "<group>"; };
 		73F923C9B278FE0DC9A832AD89650C8F /* STPSource+Private.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "STPSource+Private.h"; path = "Stripe/STPSource+Private.h"; sourceTree = "<group>"; };
 		74355779A32D18FCDFF14BB922882FF9 /* STPPaymentIntentSourceActionAuthorizeWithURL.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = STPPaymentIntentSourceActionAuthorizeWithURL.m; path = Stripe/STPPaymentIntentSourceActionAuthorizeWithURL.m; sourceTree = "<group>"; };
-		74355970A1368067B849B115EA5E6EDB /* Stripe.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = Stripe.bundle; path = "Stripe-Stripe.bundle"; sourceTree = BUILT_PRODUCTS_DIR; };
+		74355970A1368067B849B115EA5E6EDB /* Stripe.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Stripe.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		7459A82FAC56BAEF706A032572ABB73F /* GULReachabilityChecker.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = GULReachabilityChecker.m; path = GoogleUtilities/Reachability/GULReachabilityChecker.m; sourceTree = "<group>"; };
 		748996D6FEE165871B8ED55279FD63DF /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		74F8AB3DC2A4C2D3A2ED92AF1BB289BB /* STPSourceCardDetails+Private.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "STPSourceCardDetails+Private.h"; path = "Stripe/STPSourceCardDetails+Private.h"; sourceTree = "<group>"; };
@@ -1474,7 +1474,7 @@
 		7716055914B4CE76E8745C5CA5B131BA /* stp_card_jcb_template@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "stp_card_jcb_template@3x.png"; path = "Stripe/Resources/Images/stp_card_jcb_template@3x.png"; sourceTree = "<group>"; };
 		776B6D671211422DE2EC42FC0EFD16AB /* FIRMessagingContextManagerService.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FIRMessagingContextManagerService.m; path = Firebase/Messaging/FIRMessagingContextManagerService.m; sourceTree = "<group>"; };
 		7797FED3A367C97D819B6AD4BE0F8B07 /* STPTelemetryClient.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = STPTelemetryClient.h; path = Stripe/STPTelemetryClient.h; sourceTree = "<group>"; };
-		7860E7005D649F341694E561E568D98D /* FirebaseCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = FirebaseCore.framework; path = FirebaseCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7860E7005D649F341694E561E568D98D /* FirebaseCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FirebaseCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		78B16A2E8C18955059834EE9E12EAC45 /* Crashlytics.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Crashlytics.h; path = iOS/Crashlytics.framework/Headers/Crashlytics.h; sourceTree = "<group>"; };
 		78B746EDB1B56D195FBC57DF6F599709 /* FieldMask.pbobjc.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FieldMask.pbobjc.m; path = objectivec/google/protobuf/FieldMask.pbobjc.m; sourceTree = "<group>"; };
 		78BBC2B670D2690F108E9209EAC8040C /* Type.pbobjc.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Type.pbobjc.h; path = objectivec/google/protobuf/Type.pbobjc.h; sourceTree = "<group>"; };
@@ -1491,7 +1491,7 @@
 		7BBCE626D3F8E61F65B6BB8C29183511 /* STPCoreViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = STPCoreViewController.m; path = Stripe/STPCoreViewController.m; sourceTree = "<group>"; };
 		7BD2F0A7B91E3731213BA1CEF15BB594 /* STPApplePayPaymentMethod.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = STPApplePayPaymentMethod.h; path = Stripe/PublicHeaders/STPApplePayPaymentMethod.h; sourceTree = "<group>"; };
 		7BFA7B902C58CD168A5F4D42E58C9D56 /* UIImageView+WebCache.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIImageView+WebCache.m"; path = "SDWebImage/UIImageView+WebCache.m"; sourceTree = "<group>"; };
-		7C15E104F943BDA431E82E74FBAF4069 /* Toast_Swift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Toast_Swift.framework; path = "Toast-Swift.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7C15E104F943BDA431E82E74FBAF4069 /* Toast_Swift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Toast_Swift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C6EEB1F1E8C0790DF6D1B77C576DC37 /* Any.pbobjc.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = Any.pbobjc.m; path = objectivec/google/protobuf/Any.pbobjc.m; sourceTree = "<group>"; };
 		7C8D817A20399AEA8F8AB1ABBC5082F9 /* SwiftyJSON.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwiftyJSON.swift; path = Source/SwiftyJSON.swift; sourceTree = "<group>"; };
 		7C9AA4830A3E84D1B201F03764E98968 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.0.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
@@ -1508,7 +1508,7 @@
 		7E53FD195E1FDDEF8E07E13957DC84B2 /* NSMutableURLRequest+Stripe.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSMutableURLRequest+Stripe.m"; path = "Stripe/NSMutableURLRequest+Stripe.m"; sourceTree = "<group>"; };
 		7E9C250CED4EDE10C42EE94543B7EEE8 /* IQKeyboardManagerSwift.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = IQKeyboardManagerSwift.xcconfig; sourceTree = "<group>"; };
 		7EE0DC5C7E5FAE7B3F47F47C1A0BC0B4 /* SDWebImageCoderHelper.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDWebImageCoderHelper.m; path = SDWebImage/SDWebImageCoderHelper.m; sourceTree = "<group>"; };
-		7F790C31005A2017677DF1D0F6536DC8 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Alamofire.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7F790C31005A2017677DF1D0F6536DC8 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F81BC3E94B283EE8855620282C0C562 /* PKPaymentAuthorizationViewController+Stripe_Blocks.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "PKPaymentAuthorizationViewController+Stripe_Blocks.h"; path = "Stripe/PKPaymentAuthorizationViewController+Stripe_Blocks.h"; sourceTree = "<group>"; };
 		7FB63FDB8D62A553168F3D7953645669 /* STPSourceCardDetails.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = STPSourceCardDetails.h; path = Stripe/PublicHeaders/STPSourceCardDetails.h; sourceTree = "<group>"; };
 		7FE4C8B41302C5DD6825D737F06A4EA5 /* SwiftMoment-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SwiftMoment-dummy.m"; sourceTree = "<group>"; };
@@ -1619,8 +1619,8 @@
 		9E4D4D34287ECAD7E937308962093C43 /* FirebaseCore-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "FirebaseCore-dummy.m"; sourceTree = "<group>"; };
 		9E5157E0BB9C34E6354F79A8F4B0F055 /* STPCustomer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = STPCustomer.h; path = Stripe/PublicHeaders/STPCustomer.h; sourceTree = "<group>"; };
 		9E57EDE7C1277B7FAF2A62C65325D218 /* ButtonBarView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ButtonBarView.swift; path = Sources/ButtonBarView.swift; sourceTree = "<group>"; };
-		9EAB75B3C47BD1C2AEF039B76EB3819F /* Stripe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Stripe.framework; path = Stripe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		9F1D016920D427996DA89B97B5084C32 /* Images */ = {isa = PBXFileReference; includeInIndex = 1; name = Images; path = Stripe/Resources/Images; sourceTree = "<group>"; };
+		9EAB75B3C47BD1C2AEF039B76EB3819F /* Stripe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Stripe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9F1D016920D427996DA89B97B5084C32 /* Images */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder; name = Images; path = Stripe/Resources/Images; sourceTree = "<group>"; };
 		9F398E04B5102FADC6EE7AEFC9506DB0 /* stp_card_unionpay_template_zh@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "stp_card_unionpay_template_zh@3x.png"; path = "Stripe/Resources/Images/stp_card_unionpay_template_zh@3x.png"; sourceTree = "<group>"; };
 		9FBD0FA84AB92495BBE49A328D9B0628 /* Protobuf.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Protobuf.modulemap; sourceTree = "<group>"; };
 		9FFC1DBDFB1D07AA53425E12E9A1DA32 /* stp_card_visa@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "stp_card_visa@3x.png"; path = "Stripe/Resources/Images/stp_card_visa@3x.png"; sourceTree = "<group>"; };
@@ -1638,7 +1638,7 @@
 		A3DD9D66231B7642732C191FEFB416E6 /* GPBDescriptor_PackagePrivate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GPBDescriptor_PackagePrivate.h; path = objectivec/GPBDescriptor_PackagePrivate.h; sourceTree = "<group>"; };
 		A42ECF1935A94E3CF7C90AE5807E3FEE /* Customer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = Customer.m; path = Pod/Classes/Customer.m; sourceTree = "<group>"; };
 		A48A5345DD2B50D5719BBDFFAA75E897 /* stp_card_form_back@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "stp_card_form_back@2x.png"; path = "Stripe/Resources/Images/stp_card_form_back@2x.png"; sourceTree = "<group>"; };
-		A4A9549DC28D69D488C4757467B1AE6B /* pb_decode.c */ = {isa = PBXFileReference; includeInIndex = 1; path = pb_decode.c; sourceTree = "<group>"; };
+		A4A9549DC28D69D488C4757467B1AE6B /* pb_decode.c */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.c; path = pb_decode.c; sourceTree = "<group>"; };
 		A4D9A97813D244DE6A68B19CC06B7684 /* FIRConfiguration.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FIRConfiguration.m; path = Firebase/Core/FIRConfiguration.m; sourceTree = "<group>"; };
 		A4EA1A8250AEDBAFB59D8C6B8B010442 /* STPBankAccount.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = STPBankAccount.h; path = Stripe/PublicHeaders/STPBankAccount.h; sourceTree = "<group>"; };
 		A537B1C04B4CB7D9E40624B81EEF42A6 /* FIRMessagingRmqManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FIRMessagingRmqManager.h; path = Firebase/Messaging/FIRMessagingRmqManager.h; sourceTree = "<group>"; };
@@ -1685,12 +1685,12 @@
 		B23FE443189B42D276ACD22F41DED365 /* stp_card_cvc@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "stp_card_cvc@2x.png"; path = "Stripe/Resources/Images/stp_card_cvc@2x.png"; sourceTree = "<group>"; };
 		B26AF5BE3772D0B1991B6CFAEF2462A1 /* STPCardIOProxy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = STPCardIOProxy.m; path = Stripe/STPCardIOProxy.m; sourceTree = "<group>"; };
 		B2BAE840534F813BCCDEBD5106D69B26 /* IQKeyboardManagerConstantsInternal.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = IQKeyboardManagerConstantsInternal.swift; path = IQKeyboardManagerSwift/Constants/IQKeyboardManagerConstantsInternal.swift; sourceTree = "<group>"; };
-		B2DA16D714A136AA5AD96AD19821B5FD /* FirebaseMessaging.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = FirebaseMessaging.framework; path = FirebaseMessaging.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B2DA16D714A136AA5AD96AD19821B5FD /* FirebaseMessaging.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FirebaseMessaging.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B320B75E44BA3A862496BD673E2CB54D /* FIRMessagingTopicOperation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FIRMessagingTopicOperation.h; path = Firebase/Messaging/FIRMessagingTopicOperation.h; sourceTree = "<group>"; };
 		B34C65A8723C27D63F8FE135F90C2B13 /* UIImage+GIF.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImage+GIF.h"; path = "SDWebImage/UIImage+GIF.h"; sourceTree = "<group>"; };
 		B38428DB3721B36FB25E907356330B1F /* Toast.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Toast.swift; path = Toast/Toast.swift; sourceTree = "<group>"; };
 		B4192B91435EFAC98FBB56C665BAD84D /* SDWebImageCoder.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDWebImageCoder.m; path = SDWebImage/SDWebImageCoder.m; sourceTree = "<group>"; };
-		B4CE17791F67A7A5AC577B04FC988649 /* MXParallaxHeader.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = MXParallaxHeader.framework; path = MXParallaxHeader.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B4CE17791F67A7A5AC577B04FC988649 /* MXParallaxHeader.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MXParallaxHeader.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B54A7125CCCA947EA63833ABF075C60A /* UIImage+Stripe.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImage+Stripe.h"; path = "Stripe/UIImage+Stripe.h"; sourceTree = "<group>"; };
 		B5D2B0296AE46BBF67F2F987B40BCCD8 /* stp_card_mastercard@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "stp_card_mastercard@3x.png"; path = "Stripe/Resources/Images/stp_card_mastercard@3x.png"; sourceTree = "<group>"; };
 		B60464585352C456440B2077C6E068F7 /* GULAppDelegateSwizzler.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GULAppDelegateSwizzler.h; path = GoogleUtilities/AppDelegateSwizzler/Private/GULAppDelegateSwizzler.h; sourceTree = "<group>"; };
@@ -1702,14 +1702,14 @@
 		B6D3C67CCAD7FBB2A25F7F8FBED7AD16 /* FIRMessagingReceiver.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FIRMessagingReceiver.m; path = Firebase/Messaging/FIRMessagingReceiver.m; sourceTree = "<group>"; };
 		B72CA2C57423D1539478E82EC92F7943 /* FIRLogger.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FIRLogger.m; path = Firebase/Core/FIRLogger.m; sourceTree = "<group>"; };
 		B744A2D2AC1023B4A06A6342F4F83FAC /* SearchTextField.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SearchTextField.xcconfig; sourceTree = "<group>"; };
-		B749A6E690990FBFD984A8E80A4FFE2F /* eWAYPaymentsSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = eWAYPaymentsSDK.framework; path = eWAYPaymentsSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B749A6E690990FBFD984A8E80A4FFE2F /* eWAYPaymentsSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = eWAYPaymentsSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B74B92F01921E684A603894598A63797 /* nanopb.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = nanopb.xcconfig; sourceTree = "<group>"; };
 		B761E16F6C553C48334A237E92CE7F77 /* SideMenuTransition.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SideMenuTransition.swift; path = Pod/Classes/SideMenuTransition.swift; sourceTree = "<group>"; };
 		B774C02CA0C2090871926C2EA3A4FB86 /* SDWebImageFrame.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDWebImageFrame.h; path = SDWebImage/SDWebImageFrame.h; sourceTree = "<group>"; };
 		B820DB3070071D949465344EBEB87620 /* NSBundle+Stripe_AppName.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSBundle+Stripe_AppName.m"; path = "Stripe/NSBundle+Stripe_AppName.m"; sourceTree = "<group>"; };
 		B8E8086C974781F1B79D59FA3E779653 /* SideMenu-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SideMenu-dummy.m"; sourceTree = "<group>"; };
 		B8F80977DDD3532A5B614E8A2505F893 /* STPLegalEntityParams.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = STPLegalEntityParams.m; path = Stripe/STPLegalEntityParams.m; sourceTree = "<group>"; };
-		BA172AD84DC9022D8C9894829A2148D8 /* SVProgressHUD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SVProgressHUD.framework; path = SVProgressHUD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BA172AD84DC9022D8C9894829A2148D8 /* SVProgressHUD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SVProgressHUD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAA11C833857FE0F03FEFE8F0C8143FB /* stp_card_visa_template.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = stp_card_visa_template.png; path = Stripe/Resources/Images/stp_card_visa_template.png; sourceTree = "<group>"; };
 		BAD1C9C2CC251C31034E3385CDF8ABA1 /* UIView+Stripe_SafeAreaBounds.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIView+Stripe_SafeAreaBounds.m"; path = "Stripe/UIView+Stripe_SafeAreaBounds.m"; sourceTree = "<group>"; };
 		BB8916A3A6753BFF0D9FFDADC8289CF4 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = iOS/Crashlytics.framework; sourceTree = "<group>"; };
@@ -1727,9 +1727,9 @@
 		BF6842EFF681A7AA2FD490AE980D38BD /* stp_card_unknown.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = stp_card_unknown.png; path = Stripe/Resources/Images/stp_card_unknown.png; sourceTree = "<group>"; };
 		BF791F0D2525B5FD83B937B13F2CD854 /* FIRConfiguration.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FIRConfiguration.h; path = Firebase/Core/Public/FIRConfiguration.h; sourceTree = "<group>"; };
 		BF7F2FBF82EE826F33F02A9623E151D8 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C06346A3E59E3CB7952ECA2C664F1EAA /* SwiftMoment.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SwiftMoment.framework; path = SwiftMoment.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C06346A3E59E3CB7952ECA2C664F1EAA /* SwiftMoment.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftMoment.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C065A2DC24AF9EFBEF13D5C5FEB80EDB /* FIRDependency.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FIRDependency.h; path = Firebase/Core/Private/FIRDependency.h; sourceTree = "<group>"; };
-		C1877FAA1C71031E4F70A4839FE5390B /* BRYXBanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = BRYXBanner.framework; path = BRYXBanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C1877FAA1C71031E4F70A4839FE5390B /* BRYXBanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BRYXBanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1CDFF79E97E0998FD8FE02AA8AEFC7E /* STPRedirectContext+Private.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "STPRedirectContext+Private.h"; path = "Stripe/STPRedirectContext+Private.h"; sourceTree = "<group>"; };
 		C1EB291ACA1E61C0203799226C260154 /* GPBWireFormat.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GPBWireFormat.h; path = objectivec/GPBWireFormat.h; sourceTree = "<group>"; };
 		C2767C5525EE3F3191F60C3358CE3BE4 /* FieldMask.pbobjc.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FieldMask.pbobjc.h; path = objectivec/google/protobuf/FieldMask.pbobjc.h; sourceTree = "<group>"; };
@@ -1748,7 +1748,7 @@
 		C4D3118840BF10EF5F68455F06ADAE45 /* AFError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AFError.swift; path = Source/AFError.swift; sourceTree = "<group>"; };
 		C4DA26E49E77E8F4EF4AEA06D520B700 /* STPPaymentContext+Private.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "STPPaymentContext+Private.h"; path = "Stripe/STPPaymentContext+Private.h"; sourceTree = "<group>"; };
 		C4F25DB30890370D68DD3621EA915F95 /* FIRApp.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FIRApp.m; path = Firebase/Core/FIRApp.m; sourceTree = "<group>"; };
-		C56EC80F2CDEFC6E516E48AA740E30C5 /* SearchTextField.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SearchTextField.framework; path = SearchTextField.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C56EC80F2CDEFC6E516E48AA740E30C5 /* SearchTextField.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SearchTextField.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C570CF4C34EC03F772129D42109A9800 /* Type.pbobjc.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = Type.pbobjc.m; path = objectivec/google/protobuf/Type.pbobjc.m; sourceTree = "<group>"; };
 		C573C91824BCBC7BF3A69E19F4F85D57 /* PKPayment+Stripe.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "PKPayment+Stripe.h"; path = "Stripe/PKPayment+Stripe.h"; sourceTree = "<group>"; };
 		C575E8CA87BD388910D36AE5E2B946A8 /* FIRMessagingConstants.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FIRMessagingConstants.h; path = Firebase/Messaging/FIRMessagingConstants.h; sourceTree = "<group>"; };
@@ -1795,7 +1795,7 @@
 		CFE1216F04B09A511B21411E2134A467 /* STPPaymentMethodTableViewCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = STPPaymentMethodTableViewCell.h; path = Stripe/STPPaymentMethodTableViewCell.h; sourceTree = "<group>"; };
 		D009662B6750B54AC584567D1F3451D9 /* XLPagerTabStrip-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "XLPagerTabStrip-dummy.m"; sourceTree = "<group>"; };
 		D00FBE8BA32EA684E8086633ADD34D41 /* FIRMessagingLogger.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FIRMessagingLogger.m; path = Firebase/Messaging/FIRMessagingLogger.m; sourceTree = "<group>"; };
-		D06E55D8D03B483C1F6AACF7EF4FCDFB /* IQKeyboardManagerSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = IQKeyboardManagerSwift.framework; path = IQKeyboardManagerSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D06E55D8D03B483C1F6AACF7EF4FCDFB /* IQKeyboardManagerSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = IQKeyboardManagerSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D09676E53375786446EE587E5A356583 /* UIViewController+Stripe_Promises.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+Stripe_Promises.m"; path = "Stripe/UIViewController+Stripe_Promises.m"; sourceTree = "<group>"; };
 		D0C1DE4A4C38767D0A321D38C40B0179 /* SVProgressHUD.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = SVProgressHUD.modulemap; sourceTree = "<group>"; };
 		D0EA7C76EA60563DC264A59C309B061E /* IQBarButtonItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = IQBarButtonItem.swift; path = IQKeyboardManagerSwift/IQToolbar/IQBarButtonItem.swift; sourceTree = "<group>"; };
@@ -1868,7 +1868,7 @@
 		E4D50E54DD72D15E9DC3CE6CB477A85C /* STPCard+Private.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "STPCard+Private.h"; path = "Stripe/STPCard+Private.h"; sourceTree = "<group>"; };
 		E5810088391D9725437BCB8751BC92F1 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.0.sdk/System/Library/Frameworks/WebKit.framework; sourceTree = DEVELOPER_DIR; };
 		E671D01397FB92E7DF0A181D26286B3E /* FIRMessagingCheckinService.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FIRMessagingCheckinService.m; path = Firebase/Messaging/FIRMessagingCheckinService.m; sourceTree = "<group>"; };
-		E676909A6713A18E221C3AD72087CB7D /* pb_common.c */ = {isa = PBXFileReference; includeInIndex = 1; path = pb_common.c; sourceTree = "<group>"; };
+		E676909A6713A18E221C3AD72087CB7D /* pb_common.c */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.c; path = pb_common.c; sourceTree = "<group>"; };
 		E6900820927C3FC555F5811D7FA612C4 /* stp_card_jcb_template@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "stp_card_jcb_template@2x.png"; path = "Stripe/Resources/Images/stp_card_jcb_template@2x.png"; sourceTree = "<group>"; };
 		E6B4B4C3E5F778183C37B67C278DCDFD /* SVProgressHUD.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SVProgressHUD.h; path = SVProgressHUD/SVProgressHUD.h; sourceTree = "<group>"; };
 		E6DE7898B99ED7D6821B418008FAC04D /* stp_card_mastercard@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "stp_card_mastercard@2x.png"; path = "Stripe/Resources/Images/stp_card_mastercard@2x.png"; sourceTree = "<group>"; };
@@ -1920,7 +1920,7 @@
 		F4A125D180818E8C560E556A33BD4D61 /* pb.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = pb.h; sourceTree = "<group>"; };
 		F4B52156B8CD500B20D0FF0072E36533 /* STPWeakStrongMacros.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = STPWeakStrongMacros.h; path = Stripe/STPWeakStrongMacros.h; sourceTree = "<group>"; };
 		F52B1D649F71AB18A8ED0C90F77E55E2 /* GPBUtilities.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GPBUtilities.h; path = objectivec/GPBUtilities.h; sourceTree = "<group>"; };
-		F550D286CE5E727AEE7A4BB02CB11DCD /* FSPagerView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = FSPagerView.framework; path = FSPagerView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F550D286CE5E727AEE7A4BB02CB11DCD /* FSPagerView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FSPagerView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F559C32F3BCB518A109A9D0A11DEDF52 /* Empty.pbobjc.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = Empty.pbobjc.m; path = objectivec/google/protobuf/Empty.pbobjc.m; sourceTree = "<group>"; };
 		F5B7274E30724CB83B66B4D0E7E244E8 /* stp_card_error@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "stp_card_error@2x.png"; path = "Stripe/Resources/Images/stp_card_error@2x.png"; sourceTree = "<group>"; };
 		F5ED2DE6CDF5778DC40E8B14221C05AD /* FirebaseInstanceID.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseInstanceID.framework; path = Frameworks/FirebaseInstanceID.framework; sourceTree = "<group>"; };
@@ -1940,8 +1940,8 @@
 		F79119482C0511281426039F638C598D /* STPValidatedTextField.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = STPValidatedTextField.h; path = Stripe/STPValidatedTextField.h; sourceTree = "<group>"; };
 		F7F808085847D4AE25BD60D92C32467F /* UINavigationController+Stripe_Completion.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UINavigationController+Stripe_Completion.h"; path = "Stripe/UINavigationController+Stripe_Completion.h"; sourceTree = "<group>"; };
 		F847AB686D0D60559A99253F3BFE8056 /* STPSourceReceiver.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = STPSourceReceiver.m; path = Stripe/STPSourceReceiver.m; sourceTree = "<group>"; };
-		F84AF9AA5EC21F95548E2F01CA94C211 /* Pods_Preach_Hub.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Preach_Hub.framework; path = "Pods-Preach Hub.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		F85D5D07283C963CCB86CDB22FCA6A2E /* eWAYPaymentsSDK.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = eWAYPaymentsSDK.bundle; path = "eWAYPaymentsSDK-eWAYPaymentsSDK.bundle"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F84AF9AA5EC21F95548E2F01CA94C211 /* Pods_Preach_Hub.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Preach_Hub.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F85D5D07283C963CCB86CDB22FCA6A2E /* eWAYPaymentsSDK.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = eWAYPaymentsSDK.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		F881B921100D417040B53B7C4FC678A2 /* SDWebImageFrame.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDWebImageFrame.m; path = SDWebImage/SDWebImageFrame.m; sourceTree = "<group>"; };
 		F8821FD8E90C99E978BBD7F0644670E7 /* STPAddress.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = STPAddress.h; path = Stripe/PublicHeaders/STPAddress.h; sourceTree = "<group>"; };
 		F8853F21C51EA3A48B0D166E2488B837 /* STPBundleLocator.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = STPBundleLocator.m; path = Stripe/STPBundleLocator.m; sourceTree = "<group>"; };
@@ -2218,7 +2218,6 @@
 				6F6640DF0F451EEB710DC9AEE40183DF /* FSPageViewTransformer.swift */,
 				47DA25077F7DD0E4D372327C27EFB4A7 /* Support Files */,
 			);
-			name = FSPagerView;
 			path = FSPagerView;
 			sourceTree = "<group>";
 		};
@@ -2250,7 +2249,6 @@
 				8FED75C42EE517BB7C42404F51CCF13B /* encode */,
 				4D23585DF559A445E9EF4C2E8E183C8A /* Support Files */,
 			);
-			name = nanopb;
 			path = nanopb;
 			sourceTree = "<group>";
 		};
@@ -2333,7 +2331,6 @@
 			children = (
 				5A25D3E7E913391A59E3D1AF436470F6 /* Frameworks */,
 			);
-			name = FirebaseAnalytics;
 			path = FirebaseAnalytics;
 			sourceTree = "<group>";
 		};
@@ -2343,7 +2340,6 @@
 				1DBB207A6938F276001A963B22DD99B1 /* YPDrawSignatureView.swift */,
 				78771AC1C6203E9EC020FE6D8477B811 /* Support Files */,
 			);
-			name = YPDrawSignatureView;
 			path = YPDrawSignatureView;
 			sourceTree = "<group>";
 		};
@@ -2456,7 +2452,6 @@
 				6660EEF19CA4EC5D1524499B0A598E44 /* Wrappers.pbobjc.m */,
 				9869ABF130D7B37E02C2C62B0C35C8E1 /* Support Files */,
 			);
-			name = Protobuf;
 			path = Protobuf;
 			sourceTree = "<group>";
 		};
@@ -2528,7 +2523,6 @@
 			children = (
 				E7E692BE7B8883028853751F2B9C557E /* CoreOnly */,
 			);
-			name = Firebase;
 			path = Firebase;
 			sourceTree = "<group>";
 		};
@@ -2568,7 +2562,6 @@
 				5D7BB79F8FA13D239A4D887D22D8B47B /* Validation.swift */,
 				2A72108B702AAB086FC3E83153E44D62 /* Support Files */,
 			);
-			name = Alamofire;
 			path = Alamofire;
 			sourceTree = "<group>";
 		};
@@ -2625,7 +2618,6 @@
 				23C6448D0469AC95624AB1BE9922B20C /* MXScrollViewController.m */,
 				04473F39D310FA1EF7982275B41BE903 /* Support Files */,
 			);
-			name = MXParallaxHeader;
 			path = MXParallaxHeader;
 			sourceTree = "<group>";
 		};
@@ -2657,7 +2649,6 @@
 				346BA5D748094B6EEB333D9F714AA4DA /* Reachability.swift */,
 				CFE51A2F7ADAD8029983D831AF71A8E7 /* Support Files */,
 			);
-			name = ReachabilitySwift;
 			path = ReachabilitySwift;
 			sourceTree = "<group>";
 		};
@@ -2693,7 +2684,6 @@
 				41D9BCA26A86868F557C39252A5E2096 /* Banner.swift */,
 				84C71812E277C26A10CF3FB9C72D7136 /* Support Files */,
 			);
-			name = BRYXBanner;
 			path = BRYXBanner;
 			sourceTree = "<group>";
 		};
@@ -2744,7 +2734,6 @@
 				62AA740D8DDEF537CF1F6D94A5A21AE1 /* SearchTextField.swift */,
 				B9EA11FDDD1215FDE173D18F74E55525 /* Support Files */,
 			);
-			name = SearchTextField;
 			path = SearchTextField;
 			sourceTree = "<group>";
 		};
@@ -2778,7 +2767,6 @@
 				5056D74018765BAA67E6997C2CB22006 /* Fabric.h */,
 				8BFE416C2B5C341F7E9D8120FDF5BC41 /* Frameworks */,
 			);
-			name = Fabric;
 			path = Fabric;
 			sourceTree = "<group>";
 		};
@@ -2821,7 +2809,6 @@
 				FF2059C95D1BBB043BFA7565367C167E /* FIRVersion.m */,
 				2D56D6E7A00F8CD49CC8F55E11FD95CB /* Support Files */,
 			);
-			name = FirebaseCore;
 			path = FirebaseCore;
 			sourceTree = "<group>";
 		};
@@ -3084,7 +3071,6 @@
 				C92B6A55E234A88379F44AA0E7F29AA5 /* Resources */,
 				61E686D1C7BFAFEAA649EE761B814128 /* Support Files */,
 			);
-			name = Stripe;
 			path = Stripe;
 			sourceTree = "<group>";
 		};
@@ -3115,7 +3101,6 @@
 			children = (
 				C0536B55CDB8056D83505A1AB78DEB1E /* Frameworks */,
 			);
-			name = GoogleAppMeasurement;
 			path = GoogleAppMeasurement;
 			sourceTree = "<group>";
 		};
@@ -3138,7 +3123,6 @@
 			children = (
 				0FCD912762C313D1BE8005AD17AA99ED /* Frameworks */,
 			);
-			name = FirebaseInstanceID;
 			path = FirebaseInstanceID;
 			sourceTree = "<group>";
 		};
@@ -3214,7 +3198,6 @@
 				068A36BF8E355D43A62ACE578520CF40 /* NSError+FIRMessaging.m */,
 				4E18D2B0968B154EF36D94E2C44D0AEB /* Support Files */,
 			);
-			name = FirebaseMessaging;
 			path = FirebaseMessaging;
 			sourceTree = "<group>";
 		};
@@ -3240,7 +3223,6 @@
 				EC0047C05EB59B57C98E6CE4FC900DDE /* Resources */,
 				3AD87396183DCED58DFEAE9409A48860 /* Support Files */,
 			);
-			name = IQKeyboardManagerSwift;
 			path = IQKeyboardManagerSwift;
 			sourceTree = "<group>";
 		};
@@ -3258,7 +3240,6 @@
 				0C8DFA4CAA8FA5FF420FFFE177668582 /* Resources */,
 				F250E0CB52D98F78D4646AC4CA968C2C /* Support Files */,
 			);
-			name = SwiftMoment;
 			path = SwiftMoment;
 			sourceTree = "<group>";
 		};
@@ -3340,7 +3321,6 @@
 				254447358754B673105A6DDEAA6F9655 /* TextHelper.swift */,
 				1B1757307FCD5ABD2D80AF5638C55A00 /* Support Files */,
 			);
-			name = PinCodeTextField;
 			path = PinCodeTextField;
 			sourceTree = "<group>";
 		};
@@ -3353,7 +3333,6 @@
 				6F3AA4FEE31DA41D6138DF7B85959619 /* UITableViewVibrantCell.swift */,
 				30EB96F6E9CEEEBD4ADCD4CA39A00342 /* Support Files */,
 			);
-			name = SideMenu;
 			path = SideMenu;
 			sourceTree = "<group>";
 		};
@@ -3378,7 +3357,6 @@
 				5D71BE228123730C431A8803D8DE4747 /* Resources */,
 				57F14A09F08BBC61ACE57B209322871A /* Support Files */,
 			);
-			name = XLPagerTabStrip;
 			path = XLPagerTabStrip;
 			sourceTree = "<group>";
 		};
@@ -3499,7 +3477,6 @@
 				5D33FFBF03395CD1EBF5E389C2B8900F /* FIRInteropEventNames.h */,
 				7942DE16E1B8CADF9487B564DF3796E3 /* FIRInteropParameterNames.h */,
 			);
-			name = FirebaseAnalyticsInterop;
 			path = FirebaseAnalyticsInterop;
 			sourceTree = "<group>";
 		};
@@ -3509,7 +3486,6 @@
 				B5D6017B12F87969A827D801C3082CEF /* Core */,
 				3D277C38662686CFA30D7E246AE9333F /* Support Files */,
 			);
-			name = SDWebImage;
 			path = SDWebImage;
 			sourceTree = "<group>";
 		};
@@ -3665,7 +3641,6 @@
 				610645FB70B10475A22FFE032652A496 /* UserMessageResponse.m */,
 				10DA610CB142A718167637E28DC26985 /* Support Files */,
 			);
-			name = eWAYPaymentsSDK;
 			path = eWAYPaymentsSDK;
 			sourceTree = "<group>";
 		};
@@ -3683,7 +3658,6 @@
 				57962C046CAB6665354B4EFB2450B2AF /* Resources */,
 				962235EE140AAD9EF5ADE579542BBB75 /* Support Files */,
 			);
-			name = SVProgressHUD;
 			path = SVProgressHUD;
 			sourceTree = "<group>";
 		};
@@ -3693,7 +3667,6 @@
 				7C8D817A20399AEA8F8AB1ABBC5082F9 /* SwiftyJSON.swift */,
 				3D1A9B54EC3253E78EA23E813E1F0541 /* Support Files */,
 			);
-			name = SwiftyJSON;
 			path = SwiftyJSON;
 			sourceTree = "<group>";
 		};
@@ -3703,7 +3676,6 @@
 				B38428DB3721B36FB25E907356330B1F /* Toast.swift */,
 				711051DA8399B9A3B4B07EEC750D3822 /* Support Files */,
 			);
-			name = "Toast-Swift";
 			path = "Toast-Swift";
 			sourceTree = "<group>";
 		};
@@ -3781,7 +3753,6 @@
 				F537E58D71C6932793F63016A9D0F3B7 /* Support Files */,
 				1C22C28B8ED505EA8105D7A3EB4288DC /* UserDefaults */,
 			);
-			name = GoogleUtilities;
 			path = GoogleUtilities;
 			sourceTree = "<group>";
 		};
@@ -3815,7 +3786,6 @@
 				78B16A2E8C18955059834EE9E12EAC45 /* Crashlytics.h */,
 				55E2891BA2FAC9BFA63761F2C160624D /* Frameworks */,
 			);
-			name = Crashlytics;
 			path = Crashlytics;
 			sourceTree = "<group>";
 		};
@@ -4880,7 +4850,17 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
+				de,
+				es,
+				fi,
+				fr,
+				it,
+				ja,
+				nb,
+				nl,
+				"zh-Hans",
 			);
 			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
 			productRefGroup = 0913E1B03E0E8F7C82093242E082B9C4 /* Products */;
@@ -5950,11 +5930,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/FirebaseCore/FirebaseCore.modulemap";
 				PRODUCT_MODULE_NAME = FirebaseCore;
@@ -5987,11 +5963,7 @@
 				INFOPLIST_FILE = "Target Support Files/IQKeyboardManagerSwift/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/IQKeyboardManagerSwift/IQKeyboardManagerSwift.modulemap";
 				PRODUCT_MODULE_NAME = IQKeyboardManagerSwift;
 				PRODUCT_NAME = IQKeyboardManagerSwift;
@@ -6039,11 +6011,7 @@
 				INFOPLIST_FILE = "Target Support Files/SearchTextField/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/SearchTextField/SearchTextField.modulemap";
 				PRODUCT_MODULE_NAME = SearchTextField;
 				PRODUCT_NAME = SearchTextField;
@@ -6075,11 +6043,7 @@
 				INFOPLIST_FILE = "Target Support Files/MXParallaxHeader/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/MXParallaxHeader/MXParallaxHeader.modulemap";
 				PRODUCT_MODULE_NAME = MXParallaxHeader;
 				PRODUCT_NAME = MXParallaxHeader;
@@ -6111,11 +6075,7 @@
 				INFOPLIST_FILE = "Target Support Files/GoogleUtilities/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/GoogleUtilities/GoogleUtilities.modulemap";
 				PRODUCT_MODULE_NAME = GoogleUtilities;
 				PRODUCT_NAME = GoogleUtilities;
@@ -6146,11 +6106,7 @@
 				INFOPLIST_FILE = "Target Support Files/eWAYPaymentsSDK/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/eWAYPaymentsSDK/eWAYPaymentsSDK.modulemap";
 				PRODUCT_MODULE_NAME = eWAYPaymentsSDK;
 				PRODUCT_NAME = eWAYPaymentsSDK;
@@ -6181,11 +6137,7 @@
 				INFOPLIST_FILE = "Target Support Files/SwiftyJSON/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/SwiftyJSON/SwiftyJSON.modulemap";
 				PRODUCT_MODULE_NAME = SwiftyJSON;
 				PRODUCT_NAME = SwiftyJSON;
@@ -6233,11 +6185,7 @@
 				INFOPLIST_FILE = "Target Support Files/BRYXBanner/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/BRYXBanner/BRYXBanner.modulemap";
 				PRODUCT_MODULE_NAME = BRYXBanner;
 				PRODUCT_NAME = BRYXBanner;
@@ -6270,11 +6218,7 @@
 				INFOPLIST_FILE = "Target Support Files/Pods-Preach Hub/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-Preach Hub/Pods-Preach Hub.modulemap";
 				OTHER_LDFLAGS = "";
@@ -6307,11 +6251,7 @@
 				INFOPLIST_FILE = "Target Support Files/SVProgressHUD/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/SVProgressHUD/SVProgressHUD.modulemap";
 				PRODUCT_MODULE_NAME = SVProgressHUD;
 				PRODUCT_NAME = SVProgressHUD;
@@ -6343,11 +6283,7 @@
 				INFOPLIST_FILE = "Target Support Files/nanopb/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/nanopb/nanopb.modulemap";
 				PRODUCT_MODULE_NAME = nanopb;
 				PRODUCT_NAME = nanopb;
@@ -6378,11 +6314,7 @@
 				INFOPLIST_FILE = "Target Support Files/XLPagerTabStrip/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/XLPagerTabStrip/XLPagerTabStrip.modulemap";
 				PRODUCT_MODULE_NAME = XLPagerTabStrip;
 				PRODUCT_NAME = XLPagerTabStrip;
@@ -6413,11 +6345,7 @@
 				INFOPLIST_FILE = "Target Support Files/GoogleUtilities/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/GoogleUtilities/GoogleUtilities.modulemap";
 				PRODUCT_MODULE_NAME = GoogleUtilities;
 				PRODUCT_NAME = GoogleUtilities;
@@ -6449,11 +6377,7 @@
 				INFOPLIST_FILE = "Target Support Files/Stripe/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/Stripe/Stripe.modulemap";
 				PRODUCT_MODULE_NAME = Stripe;
 				PRODUCT_NAME = Stripe;
@@ -6484,11 +6408,7 @@
 				INFOPLIST_FILE = "Target Support Files/YPDrawSignatureView/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/YPDrawSignatureView/YPDrawSignatureView.modulemap";
 				PRODUCT_MODULE_NAME = YPDrawSignatureView;
 				PRODUCT_NAME = YPDrawSignatureView;
@@ -6520,11 +6440,7 @@
 				INFOPLIST_FILE = "Target Support Files/SDWebImage/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/SDWebImage/SDWebImage.modulemap";
 				PRODUCT_MODULE_NAME = SDWebImage;
 				PRODUCT_NAME = SDWebImage;
@@ -6556,11 +6472,7 @@
 				INFOPLIST_FILE = "Target Support Files/IQKeyboardManagerSwift/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/IQKeyboardManagerSwift/IQKeyboardManagerSwift.modulemap";
 				PRODUCT_MODULE_NAME = IQKeyboardManagerSwift;
 				PRODUCT_NAME = IQKeyboardManagerSwift;
@@ -6591,11 +6503,7 @@
 				INFOPLIST_FILE = "Target Support Files/XLPagerTabStrip/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/XLPagerTabStrip/XLPagerTabStrip.modulemap";
 				PRODUCT_MODULE_NAME = XLPagerTabStrip;
 				PRODUCT_NAME = XLPagerTabStrip;
@@ -6627,11 +6535,7 @@
 				INFOPLIST_FILE = "Target Support Files/BRYXBanner/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/BRYXBanner/BRYXBanner.modulemap";
 				PRODUCT_MODULE_NAME = BRYXBanner;
 				PRODUCT_NAME = BRYXBanner;
@@ -6662,11 +6566,7 @@
 				INFOPLIST_FILE = "Target Support Files/Alamofire/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/Alamofire/Alamofire.modulemap";
 				PRODUCT_MODULE_NAME = Alamofire;
 				PRODUCT_NAME = Alamofire;
@@ -6698,11 +6598,7 @@
 				INFOPLIST_FILE = "Target Support Files/FSPagerView/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/FSPagerView/FSPagerView.modulemap";
 				PRODUCT_MODULE_NAME = FSPagerView;
 				PRODUCT_NAME = FSPagerView;
@@ -6734,11 +6630,7 @@
 				INFOPLIST_FILE = "Target Support Files/SearchTextField/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/SearchTextField/SearchTextField.modulemap";
 				PRODUCT_MODULE_NAME = SearchTextField;
 				PRODUCT_NAME = SearchTextField;
@@ -6767,11 +6659,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/FirebaseCore/FirebaseCore.modulemap";
 				PRODUCT_MODULE_NAME = FirebaseCore;
@@ -6803,11 +6691,7 @@
 				INFOPLIST_FILE = "Target Support Files/SwiftyJSON/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/SwiftyJSON/SwiftyJSON.modulemap";
 				PRODUCT_MODULE_NAME = SwiftyJSON;
 				PRODUCT_NAME = SwiftyJSON;
@@ -6838,11 +6722,7 @@
 				INFOPLIST_FILE = "Target Support Files/Alamofire/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/Alamofire/Alamofire.modulemap";
 				PRODUCT_MODULE_NAME = Alamofire;
 				PRODUCT_NAME = Alamofire;
@@ -6873,11 +6753,7 @@
 				INFOPLIST_FILE = "Target Support Files/Toast-Swift/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/Toast-Swift/Toast-Swift.modulemap";
 				PRODUCT_MODULE_NAME = Toast_Swift;
 				PRODUCT_NAME = Toast_Swift;
@@ -6907,11 +6783,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/FirebaseMessaging/FirebaseMessaging.modulemap";
 				PRODUCT_MODULE_NAME = FirebaseMessaging;
@@ -6945,11 +6817,7 @@
 				INFOPLIST_FILE = "Target Support Files/SideMenu/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/SideMenu/SideMenu.modulemap";
 				PRODUCT_MODULE_NAME = SideMenu;
 				PRODUCT_NAME = SideMenu;
@@ -6997,11 +6865,7 @@
 				INFOPLIST_FILE = "Target Support Files/MXParallaxHeader/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/MXParallaxHeader/MXParallaxHeader.modulemap";
 				PRODUCT_MODULE_NAME = MXParallaxHeader;
 				PRODUCT_NAME = MXParallaxHeader;
@@ -7048,11 +6912,7 @@
 				INFOPLIST_FILE = "Target Support Files/FSPagerView/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/FSPagerView/FSPagerView.modulemap";
 				PRODUCT_MODULE_NAME = FSPagerView;
 				PRODUCT_NAME = FSPagerView;
@@ -7083,11 +6943,7 @@
 				INFOPLIST_FILE = "Target Support Files/Protobuf/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/Protobuf/Protobuf.modulemap";
 				PRODUCT_MODULE_NAME = Protobuf;
 				PRODUCT_NAME = Protobuf;
@@ -7185,11 +7041,7 @@
 				INFOPLIST_FILE = "Target Support Files/Protobuf/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/Protobuf/Protobuf.modulemap";
 				PRODUCT_MODULE_NAME = Protobuf;
 				PRODUCT_NAME = Protobuf;
@@ -7220,11 +7072,7 @@
 				INFOPLIST_FILE = "Target Support Files/PinCodeTextField/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/PinCodeTextField/PinCodeTextField.modulemap";
 				PRODUCT_MODULE_NAME = PinCodeTextField;
 				PRODUCT_NAME = PinCodeTextField;
@@ -7257,11 +7105,7 @@
 				INFOPLIST_FILE = "Target Support Files/Pods-Preach Hub/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-Preach Hub/Pods-Preach Hub.modulemap";
 				OTHER_LDFLAGS = "";
@@ -7328,11 +7172,7 @@
 				INFOPLIST_FILE = "Target Support Files/SideMenu/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/SideMenu/SideMenu.modulemap";
 				PRODUCT_MODULE_NAME = SideMenu;
 				PRODUCT_NAME = SideMenu;
@@ -7401,8 +7241,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 4.2;
 				SYMROOT = "${SRCROOT}/../build";
 			};
@@ -7423,11 +7262,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/FirebaseMessaging/FirebaseMessaging.modulemap";
 				PRODUCT_MODULE_NAME = FirebaseMessaging;
@@ -7459,11 +7294,7 @@
 				INFOPLIST_FILE = "Target Support Files/ReachabilitySwift/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/ReachabilitySwift/ReachabilitySwift.modulemap";
 				PRODUCT_MODULE_NAME = ReachabilitySwift;
 				PRODUCT_NAME = ReachabilitySwift;
@@ -7495,11 +7326,7 @@
 				INFOPLIST_FILE = "Target Support Files/SwiftMoment/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/SwiftMoment/SwiftMoment.modulemap";
 				PRODUCT_MODULE_NAME = SwiftMoment;
 				PRODUCT_NAME = SwiftMoment;
@@ -7530,11 +7357,7 @@
 				INFOPLIST_FILE = "Target Support Files/eWAYPaymentsSDK/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/eWAYPaymentsSDK/eWAYPaymentsSDK.modulemap";
 				PRODUCT_MODULE_NAME = eWAYPaymentsSDK;
 				PRODUCT_NAME = eWAYPaymentsSDK;
@@ -7566,11 +7389,7 @@
 				INFOPLIST_FILE = "Target Support Files/Toast-Swift/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/Toast-Swift/Toast-Swift.modulemap";
 				PRODUCT_MODULE_NAME = Toast_Swift;
 				PRODUCT_NAME = Toast_Swift;
@@ -7601,11 +7420,7 @@
 				INFOPLIST_FILE = "Target Support Files/YPDrawSignatureView/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/YPDrawSignatureView/YPDrawSignatureView.modulemap";
 				PRODUCT_MODULE_NAME = YPDrawSignatureView;
 				PRODUCT_NAME = YPDrawSignatureView;
@@ -7636,11 +7451,7 @@
 				INFOPLIST_FILE = "Target Support Files/SwiftMoment/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/SwiftMoment/SwiftMoment.modulemap";
 				PRODUCT_MODULE_NAME = SwiftMoment;
 				PRODUCT_NAME = SwiftMoment;
@@ -7672,11 +7483,7 @@
 				INFOPLIST_FILE = "Target Support Files/nanopb/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/nanopb/nanopb.modulemap";
 				PRODUCT_MODULE_NAME = nanopb;
 				PRODUCT_NAME = nanopb;
@@ -7708,11 +7515,7 @@
 				INFOPLIST_FILE = "Target Support Files/Stripe/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/Stripe/Stripe.modulemap";
 				PRODUCT_MODULE_NAME = Stripe;
 				PRODUCT_NAME = Stripe;
@@ -7744,11 +7547,7 @@
 				INFOPLIST_FILE = "Target Support Files/SDWebImage/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/SDWebImage/SDWebImage.modulemap";
 				PRODUCT_MODULE_NAME = SDWebImage;
 				PRODUCT_NAME = SDWebImage;
@@ -7779,11 +7578,7 @@
 				INFOPLIST_FILE = "Target Support Files/ReachabilitySwift/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/ReachabilitySwift/ReachabilitySwift.modulemap";
 				PRODUCT_MODULE_NAME = ReachabilitySwift;
 				PRODUCT_NAME = ReachabilitySwift;
@@ -7814,11 +7609,7 @@
 				INFOPLIST_FILE = "Target Support Files/SVProgressHUD/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/SVProgressHUD/SVProgressHUD.modulemap";
 				PRODUCT_MODULE_NAME = SVProgressHUD;
 				PRODUCT_NAME = SVProgressHUD;
@@ -7849,11 +7640,7 @@
 				INFOPLIST_FILE = "Target Support Files/PinCodeTextField/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/PinCodeTextField/PinCodeTextField.modulemap";
 				PRODUCT_MODULE_NAME = PinCodeTextField;
 				PRODUCT_NAME = PinCodeTextField;
