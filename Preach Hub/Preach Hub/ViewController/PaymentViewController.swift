@@ -11,7 +11,7 @@ import SwiftyJSON
 import Stripe
 import Toast_Swift
 
-class PaymentViewController: UIViewController {
+class PaymentViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
     
     @IBOutlet weak var txtState: UITextField!
     @IBOutlet weak var txtCountry: UITextField!
@@ -30,11 +30,18 @@ class PaymentViewController: UIViewController {
     var stripeCustomerTokenId: String?
     var stripeCardToken: String?
     var style = ToastStyle()
+    var amount: Int?
+    var countryArray: [String] = []
+    var stateArray: [String] = []
+    let countryPickerView =  UIPickerView()
+    let statePickerView =  UIPickerView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setLayout()
         getPlanDetails()
+        hideKeyboardWhenTappedAround()
+        setPickerLayout()
     }
     
     func setLayout(){
@@ -47,6 +54,58 @@ class PaymentViewController: UIViewController {
         txtCardNumber.addTarget(self, action: #selector(reformatAsCardNumber), for: .editingChanged)
         txtCVC.keyboardType = .numberPad
         txtCVC.delegate = self
+        
+        countryArray = ["South Africa", "India"]
+        stateArray = ["Free State", "Gauteng", "Western Cape", "North West"]
+    }
+    
+    func setPickerLayout(){
+        txtCountry.inputView = countryPickerView
+        let toolbar = UIToolbar();
+        toolbar.sizeToFit()
+        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(donePickerClicked))
+        toolbar.setItems([doneButton], animated: false)
+        txtCountry.inputAccessoryView = toolbar
+        countryPickerView.delegate = self
+        
+        txtState.inputView = statePickerView
+        txtState.inputAccessoryView = toolbar
+        statePickerView.delegate = self
+        
+    }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        if pickerView == statePickerView {
+            return stateArray.count
+        }
+        else{
+            return countryArray.count
+        }
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        if pickerView == statePickerView {
+            return stateArray[row]
+        }
+        else{
+            return countryArray[row]
+        }
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        if pickerView == statePickerView {
+            txtState.text = stateArray[row]
+        }
+        else {
+            txtCountry.text = countryArray[row]
+        }
+    }
+
+    @objc func donePickerClicked(){
+        self.view.endEditing(true)
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
@@ -186,15 +245,18 @@ class PaymentViewController: UIViewController {
     func getPlanDetails(){
         let parameters: [String: String] = [:]
         APIHelper().get(apiUrl: GlobalConstants.APIUrls.getPlanDetails, parameters: parameters as [String : AnyObject]) { (response) in
-            if response["status"].string == "Success" {
-                self.lblTitle.text = response["data"][0]["title"] != JSON.null ? response["data"][0]["title"].stringValue : ""
-                let amount = response["data"][0]["price"] != JSON.null ? response["data"][0]["price"].intValue : 0
-                self.lblAmount.text = "Amount \(amount)"
+            if response["data"].array != nil  {
+                //let planId = response["data"][0]["id"] != JSON.null ? response["data"][0]["id"].stringValue : ""
+                self.lblTitle.text = response["data"][0]["nickname"] != JSON.null ? response["data"][0]["nickname"].stringValue : ""
+                self.amount = response["data"][0]["amount"] != JSON.null ? response["data"][0]["amount"].intValue : 0
+                self.lblAmount.text = "Amount $\(String(describing: self.amount!))"
             }
         }
     }
     
     @IBAction func payNowClicked(_ sender: Any) {
+        self.view.endEditing(true)
+        NotificationsHelper.showBusyIndicator(message: "")
         if txtCardNumber.text?.count == 0 || txtCVC.text?.count == 0 || txtCardName.text?.count == 0 || txtExpires.text?.count == 0 || txtCardName.text?.count == 0 || txtStreet.text?.count == 0 || txtStreet2.text?.count == 0 || txtState.text?.count == 0 || txtCountry.text?.count == 0 || txtCity.text?.count == 0 || txtPostal.text?.count == 0 {
             self.view.makeToast("Please enter all card details.", duration: 3.0, position: .bottom)
             return
@@ -217,21 +279,42 @@ class PaymentViewController: UIViewController {
         STPAPIClient.shared().createToken(withCard: cardParams) { (token: STPToken?, error: Error?) in
             guard let token = token, error == nil
                 else {
-                    self.view.makeToast("Oops! Something went wrong!", duration: 3.0, position: .bottom, style: self.style)
-                    print(error.debugDescription)
+                    self.view.makeToast(error?.localizedDescription, duration: 3.0, position: .bottom, style: self.style)
+                    print(error?.localizedDescription)
+                    NotificationsHelper.hideBusyIndicator()
                     return
             }
             print(token.stripeID)
             self.stripeCardToken = token.stripeID
-            self.sendPaymentDetails()
+            self.attachSubscriptionSource()
         }
     }
     
-    func sendPaymentDetails(){
+    func attachSubscriptionSource(){
         let parameters: [String: Any] = ["stripecustomertokenid": stripeCustomerTokenId!, "stripecardtoken": stripeCardToken!]
         APIHelper().post(apiUrl: GlobalConstants.APIUrls.attachSubscriptionSource, parameters: parameters as [String : AnyObject]) { (response) in
-            
-            
+            if response["status"].stringValue == "Success"{
+                //response["data"]["carddetails"] != nil
+                    self.chargeMember()
+                //}
+            }
         }
+    }
+    
+    func chargeMember(){
+        let amt = (amount! * 100)
+        let parameters: [String: Any] = ["amount": amt, "customerstripetoken": stripeCustomerTokenId!]
+        APIHelper().post(apiUrl: GlobalConstants.APIUrls.chargeMember, parameters: parameters as [String : AnyObject]) { (response) in
+            if response["status"].stringValue == "Success"{
+                self.view.makeToast("Payment successful!", duration: 3.0, position: .bottom, style: self.style)
+                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3), execute: {
+                    self.navigateToLogin()
+                })
+            }
+        }
+    }
+    
+    @IBAction func backClicked(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
     }
 }
