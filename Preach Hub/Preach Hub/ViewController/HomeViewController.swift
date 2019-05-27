@@ -22,8 +22,8 @@ class tableViewCell : UITableViewCell , UICollectionViewDelegate , UICollectionV
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionCell", for: indexPath) as! collectionViewCell
         if indexPath.row == 0 {
-        cell.lblName.text = "davdgasvdha"
-         cell.imgView?.image = UIImage(named: topImageArray[indexPath.row])
+            cell.lblName.text = "davdgasvdha"
+            cell.imgView?.image = UIImage(named: topImageArray[indexPath.row])
         }
         else {
             cell.lblName.text = "Churches"
@@ -40,12 +40,12 @@ class tableViewCell : UITableViewCell , UICollectionViewDelegate , UICollectionV
         let selctedView = UIView()
         selctedView.backgroundColor = UIColor.clear
         currentCell.selectedBackgroundView? = selctedView
-       
+        
     }
     @IBAction func btnMoreAction(_ sender: Any) {
-//        self.navigateToPastorScreenPage()
+        //        self.navigateToPastorScreenPage()
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "MoreClickEventNotification"), object: nil)
-
+        
     }
     
 }
@@ -55,9 +55,9 @@ class tableHeaderCell: UITableViewCell, UICollectionViewDelegate , UICollectionV
     @IBOutlet weak var pagerControl: UIPageControl!
     @IBOutlet weak var collectionView: UICollectionView!
     override func awakeFromNib() {
-       pagerControl.currentPage = 0
+        pagerControl.currentPage = 0
         pagerControl.numberOfPages = 5
-      collectionView.isPagingEnabled = true
+        collectionView.isPagingEnabled = true
     }
     let topImageArray = ["minister_mukhubatwo.png","minister_muligwe.png","minister_paul.png","minister_masekona.png","minister_mauna.png"]
     
@@ -69,7 +69,7 @@ class tableHeaderCell: UITableViewCell, UICollectionViewDelegate , UICollectionV
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HeaderCell", for: indexPath) as! collectionHeaderCell
-          cell.imgView?.image = UIImage(named: topImageArray[indexPath.row])
+        cell.imgView?.image = UIImage(named: topImageArray[indexPath.row])
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -108,30 +108,30 @@ class collectionHeaderCell: UICollectionViewCell {
 
 class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
     @IBOutlet weak var tblView: UITableView!
-  
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(HomeViewController.MoreToCall), name: NSNotification.Name(rawValue: "MoreClickEventNotification"), object: nil)
-      
-
+        
+        //SideMenuManager.MenuPresentMode = .viewSlideOut
     }
     @objc func MoreToCall() {
         self.navigateToPastorScreenPage()
     }
- 
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 5    }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-   
+        
         if indexPath.row == 0 {
-             let cell = tblView.dequeueReusableCell(withIdentifier: "HeaderTableCell", for: indexPath) as! tableHeaderCell
+            let cell = tblView.dequeueReusableCell(withIdentifier: "HeaderTableCell", for: indexPath) as! tableHeaderCell
             return cell
         }
         let cell = tblView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! tableViewCell
-//        let selctedView = UIView()
-//        selctedView.backgroundColor = UIColor.clear
-//        cell.selectedBackgroundView? = selctedView
-         if indexPath.row == 1 {
+        //        let selctedView = UIView()
+        //        selctedView.backgroundColor = UIColor.clear
+        //        cell.selectedBackgroundView? = selctedView
+        if indexPath.row == 1 {
             cell.lblHeader.text = "Continue Watching"
         }
         else   if indexPath.row == 2 {
@@ -157,7 +157,7 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         }
         else
         {
-           return 170
+            return 170
         }
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -167,5 +167,6 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         selctedView.backgroundColor = UIColor.clear
         currentCell.selectedBackgroundView? = selctedView
     }
-   
+    
 }
+
