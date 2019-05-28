@@ -48,6 +48,8 @@
 		E3B730CA229BC48C008D3E7C /* ViewCartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B730C9229BC48C008D3E7C /* ViewCartViewController.swift */; };
 		E3BFD8B8229D009E00770BDB /* CartPaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3BFD8B7229D009E00770BDB /* CartPaymentViewController.swift */; };
 		E3BFD8BA229D00D600770BDB /* CartPayment.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3BFD8B9229D00D600770BDB /* CartPayment.storyboard */; };
+		E3B730CC229BF652008D3E7C /* ShippingAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B730CB229BF652008D3E7C /* ShippingAddressViewController.swift */; };
+		E3B730CE229BF677008D3E7C /* AddShippingAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B730CD229BF677008D3E7C /* AddShippingAddressViewController.swift */; };
 		E3FAA41B2292A84D00E369C6 /* HomeTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3FAA41A2292A84D00E369C6 /* HomeTabBarViewController.swift */; };
 		E3FAA41D2292A97800E369C6 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3FAA41C2292A97800E369C6 /* ListViewController.swift */; };
 /* End PBXBuildFile section */
@@ -117,8 +119,8 @@
 		E3ACFC44228D760F00F798D6 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		E3ACFC46228D7B0300F798D6 /* RegistrationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationVC.swift; sourceTree = "<group>"; };
 		E3B730C9229BC48C008D3E7C /* ViewCartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCartViewController.swift; sourceTree = "<group>"; };
-		E3BFD8B7229D009E00770BDB /* CartPaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartPaymentViewController.swift; sourceTree = "<group>"; };
-		E3BFD8B9229D00D600770BDB /* CartPayment.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CartPayment.storyboard; sourceTree = "<group>"; };
+		E3B730CB229BF652008D3E7C /* ShippingAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShippingAddressViewController.swift; sourceTree = "<group>"; };
+		E3B730CD229BF677008D3E7C /* AddShippingAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddShippingAddressViewController.swift; sourceTree = "<group>"; };
 		E3FAA41A2292A84D00E369C6 /* HomeTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabBarViewController.swift; sourceTree = "<group>"; };
 		E3FAA41C2292A97800E369C6 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		F0511A6FE5DE21AC8336A3D9 /* Pods-Preach Hub.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Preach Hub.release.xcconfig"; path = "Pods/Target Support Files/Pods-Preach Hub/Pods-Preach Hub.release.xcconfig"; sourceTree = "<group>"; };
@@ -237,6 +239,9 @@
 				E3FAA41A2292A84D00E369C6 /* HomeTabBarViewController.swift */,
 				E323E0052297F246006B6EBA /* ProductViewController.swift */,
 				E323E00722981C24006B6EBA /* ProductDetailsViewController.swift */,
+				E3B730CB229BF652008D3E7C /* ShippingAddressViewController.swift */,
+				E3B730CD229BF677008D3E7C /* AddShippingAddressViewController.swift */,
+				E3FAA41C2292A97800E369C6 /* AllPastorsViewController.swift */,
 				E3FAA41C2292A97800E369C6 /* ListViewController.swift */,
 				E3B730C9229BC48C008D3E7C /* ViewCartViewController.swift */,
 				8235EB462293C3760090230B /* ForgotPasswordViewController.swift */,
@@ -553,8 +558,10 @@
 				E366C11C228E87E5003CBE58 /* Navigation.swift in Sources */,
 				820877DE2298040100513037 /* TermsNConditionViewController.swift in Sources */,
 				E3BFD8B8229D009E00770BDB /* CartPaymentViewController.swift in Sources */,
+				E3B730CC229BF652008D3E7C /* ShippingAddressViewController.swift in Sources */,
 				E3ACFC45228D760F00F798D6 /* LoginViewController.swift in Sources */,
 				E366C127228E8B53003CBE58 /* HomeViewController.swift in Sources */,
+				E3B730CE229BF677008D3E7C /* AddShippingAddressViewController.swift in Sources */,
 				82CADDCB22941DD300EBBDFD /* PaymentViewController.swift in Sources */,
 				E3ACFC47228D7B0300F798D6 /* RegistrationVC.swift in Sources */,
 				8235EB472293C3760090230B /* ForgotPasswordViewController.swift in Sources */,
