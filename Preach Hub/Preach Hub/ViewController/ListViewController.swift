@@ -21,20 +21,25 @@ class PastorListCollectionViewCell: UICollectionViewCell {
 
 class ListViewController: UIViewController,UICollectionViewDataSource , UICollectionViewDelegate , UICollectionViewDelegateFlowLayout {
 
+    @IBOutlet weak var lblHeader: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
     var dataList: [DataKey] = []
     var listPastorArray = [listPastor]()
+    var header: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        lblHeader.text = header
     }
+    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return dataList.count
     }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PastorCell", for: indexPath) as! PastorListCollectionViewCell
         let currentItem = dataList[indexPath.row]
@@ -46,6 +51,7 @@ class ListViewController: UIViewController,UICollectionViewDataSource , UICollec
         cell.imgView.sd_setImage(with: URL.init(string: urlString!) , placeholderImage: UIImage.init(named:""))
         return cell
     }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         let noOfCellsInRow = 2
@@ -55,6 +61,18 @@ class ListViewController: UIViewController,UICollectionViewDataSource , UICollec
             + (flowLayout.minimumInteritemSpacing * CGFloat(noOfCellsInRow - 1))
         let size = Int((collectionView.bounds.width - totalSpace) / CGFloat(noOfCellsInRow))
         return CGSize(width: size, height: size)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if(header == "Store"){
+            navigateToProductPage(index: indexPath.row)
+        }
+    }
+    
+    func navigateToProductPage(index: Int){
+        let ProductVC = ProductViewController.storyboardInstance()
+        ProductVC!.categoryId = dataList[index].id
+        self.navigationController?.pushViewController(ProductVC!, animated: true)
     }
     
     @IBAction func backButtonAction(_ sender: Any) {

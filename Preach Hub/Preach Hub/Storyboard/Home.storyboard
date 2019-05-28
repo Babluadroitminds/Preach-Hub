@@ -462,14 +462,14 @@
                                             <constraint firstItem="Ae8-PX-0Nk" firstAttribute="width" secondItem="svv-Fx-8Ep" secondAttribute="width" id="pr3-mO-I7X"/>
                                         </constraints>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="All Pastors" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I7X-jp-KZN">
-                                        <rect key="frame" x="166.66666666666666" y="19.666666666666664" width="80.666666666666657" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I7X-jp-KZN">
+                                        <rect key="frame" x="207" y="30" width="0.0" height="0.0"/>
+                                        <fontDescription key="fontDescription" name="Gibson-Bold" family="Gibson" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="svv-Fx-8Ep" secondAttribute="bottom" id="5hg-2d-Ahm"/>
                                     <constraint firstAttribute="height" constant="60" id="H6p-NB-25S"/>
@@ -481,7 +481,7 @@
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="BHx-gN-bLE">
                                 <rect key="frame" x="0.0" y="90" width="414" height="646"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="lGe-Rx-ewI">
                                     <size key="itemSize" width="196" height="175"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -534,7 +534,7 @@
                                 </connections>
                             </collectionView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Gye-qI-dvd" firstAttribute="trailing" secondItem="hrf-vI-E42" secondAttribute="trailing" id="B61-Fv-2i9"/>
                             <constraint firstItem="hrf-vI-E42" firstAttribute="leading" secondItem="Gye-qI-dvd" secondAttribute="leading" id="NIX-9g-Jt7"/>
@@ -548,6 +548,7 @@
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="BHx-gN-bLE" id="VVI-mO-zE9"/>
+                        <outlet property="lblHeader" destination="I7X-jp-KZN" id="YLj-YB-9GA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O3E-SB-xYQ" userLabel="First Responder" sceneMemberID="firstResponder"/>

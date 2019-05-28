@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="mZD-gE-ieb">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="mZD-gE-ieb">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -24,13 +24,16 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8hd-vY-m52">
                                         <rect key="frame" x="0.0" y="0.0" width="60" height="50"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic-menu" translatesAutoresizingMaskIntoConstraints="NO" id="ViF-c1-OwJ">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic-back" translatesAutoresizingMaskIntoConstraints="NO" id="ViF-c1-OwJ">
                                                 <rect key="frame" x="15" y="15" width="30" height="20"/>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </imageView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9jr-uR-0LR">
                                                 <rect key="frame" x="0.0" y="0.0" width="60" height="50"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <connections>
+                                                    <action selector="backClicked:" destination="mZD-gE-ieb" eventType="touchUpInside" id="wQD-Eu-WVM"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -305,7 +308,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$21" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wfi-Zm-HhA">
-                                                            <rect key="frame" x="51" y="180.66666666666666" width="25" height="17"/>
+                                                            <rect key="frame" x="51" y="181" width="25" height="17"/>
                                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -363,6 +366,10 @@
                                                     <constraint firstItem="wfi-Zm-HhA" firstAttribute="centerY" secondItem="3vC-9Y-rRe" secondAttribute="centerY" id="xfK-f8-MLf"/>
                                                 </constraints>
                                                 <connections>
+                                                    <outlet property="btnAddToCart" destination="oIB-yF-KEU" id="0PD-vC-c5W"/>
+                                                    <outlet property="imgVwProduct" destination="XmG-WL-vKt" id="6aN-dX-pKh"/>
+                                                    <outlet property="lblProductName" destination="Jub-75-cQI" id="lAr-t7-W5m"/>
+                                                    <outlet property="lblProductPrice" destination="wfi-Zm-HhA" id="cGM-8T-WVJ"/>
                                                     <outlet property="sideSepLine" destination="NBb-zs-h9k" id="ysH-bu-vQy"/>
                                                 </connections>
                                             </collectionViewCell>
@@ -1590,14 +1597,13 @@ EENob29zZSBzaXplA
         </scene>
     </scenes>
     <resources>
-        <image name="arrow_top" width="50" height="50"/>
+        <image name="arrow_top" width="37.5" height="37.5"/>
         <image name="box" width="512" height="512"/>
         <image name="done_green" width="144" height="108"/>
-        <image name="downArrow_black" width="50" height="50"/>
-        <image name="expand_arrow" width="50" height="50"/>
+        <image name="downArrow_black" width="37.5" height="37.5"/>
+        <image name="expand_arrow" width="37.5" height="37.5"/>
         <image name="ic-back" width="38" height="38"/>
-        <image name="ic-logo-header" width="76" height="22"/>
-        <image name="ic-menu" width="24" height="24"/>
-        <image name="icons8-shopping-cart-100" width="100" height="100"/>
+        <image name="ic-logo-header" width="228" height="66"/>
+        <image name="icons8-shopping-cart-100" width="153.19148254394531" height="153.19148254394531"/>
     </resources>
 </document>

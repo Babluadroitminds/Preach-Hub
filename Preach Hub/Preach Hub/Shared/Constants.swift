@@ -23,5 +23,6 @@ struct GlobalConstants {
         static let getChurches: String = "churches"
         static let getPastors: String = "pastors"
         static let getStores: String = "categories"
+        static let getProduct: String = "products"
     }
 }

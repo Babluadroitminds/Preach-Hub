@@ -271,13 +271,13 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
             dataList = []
             break
         case 2:
-            navigateToListViewPage(dataList: churchLists)
+            navigateToListViewPage(dataList: churchLists, tag: sender.tag)
             break
         case 3:
             dataList = []
             break
         case 4:
-            navigateToListViewPage(dataList: storeLists)
+            navigateToListViewPage(dataList: storeLists, tag: sender.tag)
             break
         case 5:
             dataList = []
@@ -288,9 +288,10 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         
     }
     
-    func navigateToListViewPage(dataList: [DataKey]){
+    func navigateToListViewPage(dataList: [DataKey], tag: Int){
       let listVC = ListViewController.storyboardInstance()
       listVC!.dataList = dataList
+      listVC!.header = headingArray[tag]
       self.navigationController?.pushViewController(listVC!, animated: true)
     }
     
