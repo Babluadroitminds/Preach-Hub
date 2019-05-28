@@ -20,7 +20,6 @@
 		8203F0CF228D7A7A00F9D65D /* InitialStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8203F0CE228D7A7A00F9D65D /* InitialStoryboard.storyboard */; };
 		820877BC2295223900513037 /* Gibson-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 820877BB2295223900513037 /* Gibson-Bold.ttf */; };
 		820877BE2295224C00513037 /* Gibson-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 820877BD2295224C00513037 /* Gibson-Regular.ttf */; };
-		820877C02295294400513037 /* profile-pic.png in Resources */ = {isa = PBXBuildFile; fileRef = 820877BF2295294300513037 /* profile-pic.png */; };
 		820877C22297B17500513037 /* ic-eye.png in Resources */ = {isa = PBXBuildFile; fileRef = 820877C12297B17500513037 /* ic-eye.png */; };
 		820877C82297B43E00513037 /* ic-hide-eye.png in Resources */ = {isa = PBXBuildFile; fileRef = 820877C72297B43E00513037 /* ic-hide-eye.png */; };
 		820877CA2297B68400513037 /* ic-eye-gray.png in Resources */ = {isa = PBXBuildFile; fileRef = 820877C92297B68400513037 /* ic-eye-gray.png */; };
@@ -47,6 +46,8 @@
 		E3ACFC45228D760F00F798D6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3ACFC44228D760F00F798D6 /* LoginViewController.swift */; };
 		E3ACFC47228D7B0300F798D6 /* RegistrationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3ACFC46228D7B0300F798D6 /* RegistrationVC.swift */; };
 		E3B730CA229BC48C008D3E7C /* ViewCartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B730C9229BC48C008D3E7C /* ViewCartViewController.swift */; };
+		E3B730CC229BF652008D3E7C /* ShippingAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B730CB229BF652008D3E7C /* ShippingAddressViewController.swift */; };
+		E3B730CE229BF677008D3E7C /* AddShippingAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B730CD229BF677008D3E7C /* AddShippingAddressViewController.swift */; };
 		E3FAA41B2292A84D00E369C6 /* HomeTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3FAA41A2292A84D00E369C6 /* HomeTabBarViewController.swift */; };
 		E3FAA41D2292A97800E369C6 /* AllPastorsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3FAA41C2292A97800E369C6 /* AllPastorsViewController.swift */; };
 /* End PBXBuildFile section */
@@ -116,6 +117,8 @@
 		E3ACFC44228D760F00F798D6 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		E3ACFC46228D7B0300F798D6 /* RegistrationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationVC.swift; sourceTree = "<group>"; };
 		E3B730C9229BC48C008D3E7C /* ViewCartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCartViewController.swift; sourceTree = "<group>"; };
+		E3B730CB229BF652008D3E7C /* ShippingAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShippingAddressViewController.swift; sourceTree = "<group>"; };
+		E3B730CD229BF677008D3E7C /* AddShippingAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddShippingAddressViewController.swift; sourceTree = "<group>"; };
 		E3FAA41A2292A84D00E369C6 /* HomeTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabBarViewController.swift; sourceTree = "<group>"; };
 		E3FAA41C2292A97800E369C6 /* AllPastorsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllPastorsViewController.swift; sourceTree = "<group>"; };
 		F0511A6FE5DE21AC8336A3D9 /* Pods-Preach Hub.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Preach Hub.release.xcconfig"; path = "Pods/Target Support Files/Pods-Preach Hub/Pods-Preach Hub.release.xcconfig"; sourceTree = "<group>"; };
@@ -234,6 +237,8 @@
 				E3FAA41A2292A84D00E369C6 /* HomeTabBarViewController.swift */,
 				E323E0052297F246006B6EBA /* ProductViewController.swift */,
 				E323E00722981C24006B6EBA /* ProductDetailsViewController.swift */,
+				E3B730CB229BF652008D3E7C /* ShippingAddressViewController.swift */,
+				E3B730CD229BF677008D3E7C /* AddShippingAddressViewController.swift */,
 				E3FAA41C2292A97800E369C6 /* AllPastorsViewController.swift */,
 				E3B730C9229BC48C008D3E7C /* ViewCartViewController.swift */,
 				8235EB462293C3760090230B /* ForgotPasswordViewController.swift */,
@@ -540,15 +545,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				8203F0C6228D695C00F9D65D /* Constants.swift in Sources */,
-				E323E0022297D381006B6EBA /* SideMenuController.swift in Sources */,
 				82EF35B3228D90EC003BE3E2 /* InitialViewController.swift in Sources */,
 				8203F0C4228D695100F9D65D /* APIHelper.swift in Sources */,
 				E323E0062297F246006B6EBA /* ProductViewController.swift in Sources */,
 				E366C129229270CE003CBE58 /* RootViewController.swift in Sources */,
 				E366C11C228E87E5003CBE58 /* Navigation.swift in Sources */,
 				820877DE2298040100513037 /* TermsNConditionViewController.swift in Sources */,
+				E3B730CC229BF652008D3E7C /* ShippingAddressViewController.swift in Sources */,
 				E3ACFC45228D760F00F798D6 /* LoginViewController.swift in Sources */,
 				E366C127228E8B53003CBE58 /* HomeViewController.swift in Sources */,
+				E3B730CE229BF677008D3E7C /* AddShippingAddressViewController.swift in Sources */,
 				82CADDCB22941DD300EBBDFD /* PaymentViewController.swift in Sources */,
 				E3ACFC47228D7B0300F798D6 /* RegistrationVC.swift in Sources */,
 				8235EB472293C3760090230B /* ForgotPasswordViewController.swift in Sources */,
