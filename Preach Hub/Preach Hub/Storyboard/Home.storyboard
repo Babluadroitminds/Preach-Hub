@@ -237,9 +237,6 @@
                                                                     </fragment>
                                                                 </attributedString>
                                                             </state>
-                                                            <connections>
-                                                                <action selector="btnMoreAction:" destination="7qZ-v3-4jb" eventType="touchUpInside" id="WZH-hT-cry"/>
-                                                            </connections>
                                                         </button>
                                                         <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="xdJ-Ih-Rka">
                                                             <rect key="frame" x="10" y="49" width="394" height="185"/>
@@ -309,6 +306,7 @@
                                                     </constraints>
                                                 </tableViewCellContentView>
                                                 <connections>
+                                                    <outlet property="btnMore" destination="cHo-ke-0bz" id="Ix6-gC-Ykj"/>
                                                     <outlet property="collectionView" destination="xdJ-Ih-Rka" id="nL1-Qw-h2t"/>
                                                     <outlet property="lblHeader" destination="GVJ-ah-Yku" id="Sn0-Fi-9b8"/>
                                                 </connections>
@@ -421,10 +419,10 @@
             </objects>
             <point key="canvasLocation" x="1928.985507246377" y="-211.14130434782609"/>
         </scene>
-        <!--All Pastors View Controller-->
+        <!--ListViewController-->
         <scene sceneID="OfE-0G-cw7">
             <objects>
-                <viewController storyboardIdentifier="AllPastorsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="G57-fm-odx" customClass="AllPastorsViewController" customModule="Preach_Hub" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ListViewController" title="ListViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="G57-fm-odx" customClass="ListViewController" customModule="Preach_Hub" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="K1J-y2-Rkt">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -749,6 +747,6 @@
         <image name="slide_howto" width="960.47998046875" height="807.84002685546875"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="voe-BU-t7h"/>
+        <segue reference="8pA-4M-SbX"/>
     </inferredMetricsTieBreakers>
 </document>

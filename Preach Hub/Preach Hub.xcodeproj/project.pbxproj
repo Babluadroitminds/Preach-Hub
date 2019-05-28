@@ -49,7 +49,7 @@
 		E3B730CC229BF652008D3E7C /* ShippingAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B730CB229BF652008D3E7C /* ShippingAddressViewController.swift */; };
 		E3B730CE229BF677008D3E7C /* AddShippingAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B730CD229BF677008D3E7C /* AddShippingAddressViewController.swift */; };
 		E3FAA41B2292A84D00E369C6 /* HomeTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3FAA41A2292A84D00E369C6 /* HomeTabBarViewController.swift */; };
-		E3FAA41D2292A97800E369C6 /* AllPastorsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3FAA41C2292A97800E369C6 /* AllPastorsViewController.swift */; };
+		E3FAA41D2292A97800E369C6 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3FAA41C2292A97800E369C6 /* ListViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -120,7 +120,7 @@
 		E3B730CB229BF652008D3E7C /* ShippingAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShippingAddressViewController.swift; sourceTree = "<group>"; };
 		E3B730CD229BF677008D3E7C /* AddShippingAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddShippingAddressViewController.swift; sourceTree = "<group>"; };
 		E3FAA41A2292A84D00E369C6 /* HomeTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabBarViewController.swift; sourceTree = "<group>"; };
-		E3FAA41C2292A97800E369C6 /* AllPastorsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllPastorsViewController.swift; sourceTree = "<group>"; };
+		E3FAA41C2292A97800E369C6 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		F0511A6FE5DE21AC8336A3D9 /* Pods-Preach Hub.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Preach Hub.release.xcconfig"; path = "Pods/Target Support Files/Pods-Preach Hub/Pods-Preach Hub.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -240,6 +240,7 @@
 				E3B730CB229BF652008D3E7C /* ShippingAddressViewController.swift */,
 				E3B730CD229BF677008D3E7C /* AddShippingAddressViewController.swift */,
 				E3FAA41C2292A97800E369C6 /* AllPastorsViewController.swift */,
+				E3FAA41C2292A97800E369C6 /* ListViewController.swift */,
 				E3B730C9229BC48C008D3E7C /* ViewCartViewController.swift */,
 				8235EB462293C3760090230B /* ForgotPasswordViewController.swift */,
 				82CADDCA22941DD300EBBDFD /* PaymentViewController.swift */,
@@ -561,7 +562,7 @@
 				8203F0C8228D69B700F9D65D /* NotificationsHelper.swift in Sources */,
 				E3B730CA229BC48C008D3E7C /* ViewCartViewController.swift in Sources */,
 				E3FAA41B2292A84D00E369C6 /* HomeTabBarViewController.swift in Sources */,
-				E3FAA41D2292A97800E369C6 /* AllPastorsViewController.swift in Sources */,
+				E3FAA41D2292A97800E369C6 /* ListViewController.swift in Sources */,
 				E323E00822981C25006B6EBA /* ProductDetailsViewController.swift in Sources */,
 				820877D02297E8C800513037 /* CartViewController.swift in Sources */,
 				820877CE2297D8FC00513037 /* SideMenuNavigationController.swift in Sources */,

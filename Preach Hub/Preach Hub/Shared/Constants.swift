@@ -20,5 +20,8 @@ struct GlobalConstants {
         static let getPlanDetails:String = "https://api.stripe.com/v1/plans"
         static let attachSubscriptionSource:String = "members/attachSubscriptionSource"
         static let chargeMember: String = "members/chargeMember"
+        static let getChurches: String = "churches"
+        static let getPastors: String = "pastors"
+        static let getStores: String = "categories"
     }
 }

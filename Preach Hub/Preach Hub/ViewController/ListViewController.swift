@@ -19,39 +19,31 @@ class PastorListCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var imgView: UIImageView!
 }
 
-class AllPastorsViewController: UIViewController,UICollectionViewDataSource , UICollectionViewDelegate , UICollectionViewDelegateFlowLayout {
+class ListViewController: UIViewController,UICollectionViewDataSource , UICollectionViewDelegate , UICollectionViewDelegateFlowLayout {
 
     @IBOutlet weak var collectionView: UICollectionView!
-    
+    var dataList: [DataKey] = []
     var listPastorArray = [listPastor]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        let p1 = listPastor(name: "Radadsa", imageName: "minister_mukhubatwo.png")
-        let p2 = listPastor(name: "Tsfs", imageName: "minister_muligwe.png")
-        let p3 = listPastor(name: "Tinkszd", imageName: "minister_paul.png")
-        let p4 = listPastor(name: "Sdsfds", imageName: "minister_masekona.png")
-        let p5 = listPastor(name: "Qwdmded", imageName: "minister_mauna.png")
-        let p6 = listPastor(name: "Pfnjsds", imageName: "minister_muligwe.png")
-        let p7 = listPastor(name: "Joinsad", imageName: "minister_paul.png")
-        listPastorArray.append(p1)
-        listPastorArray.append(p2)
-        listPastorArray.append(p3)
-        listPastorArray.append(p4)
-        listPastorArray.append(p5)
-        listPastorArray.append(p6)
-        listPastorArray.append(p7)
-        // Do any additional setup after loading the view.
+
     }
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return listPastorArray.count
+        return dataList.count
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PastorCell", for: indexPath) as! PastorListCollectionViewCell
-        cell.imgView.image = UIImage(named: listPastorArray[indexPath.row].imageName)
-        cell.lblName.text = listPastorArray[indexPath.row].name
+        let currentItem = dataList[indexPath.row]
+        cell.lblName.text = currentItem.title
+        let imageUrl = currentItem.thumb
+        let urlString = imageUrl.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
+        cell.imgView.sd_setShowActivityIndicatorView(true)
+        cell.imgView.sd_setIndicatorStyle(.gray)
+        cell.imgView.sd_setImage(with: URL.init(string: urlString!) , placeholderImage: UIImage.init(named:""))
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -67,5 +59,10 @@ class AllPastorsViewController: UIViewController,UICollectionViewDataSource , UI
     
     @IBAction func backButtonAction(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    static func storyboardInstance() -> ListViewController? {
+        let storyboard = UIStoryboard(name: "Home", bundle: nil)
+        return storyboard.instantiateViewController(withIdentifier: "ListViewController") as? ListViewController
     }
 }

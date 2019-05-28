@@ -46,7 +46,7 @@ extension UIViewController {
     }
     func navigateToPastorScreenPage(){
         let storyBoard : UIStoryboard = UIStoryboard(name: "Home", bundle:nil)
-        let welcomeViewController = storyBoard.instantiateViewController(withIdentifier: "AllPastorsViewController") as! AllPastorsViewController
+        let welcomeViewController = storyBoard.instantiateViewController(withIdentifier: "ListViewController") as! ListViewController
         self.navigationController?.pushViewController(welcomeViewController, animated: true)
     }
     func navigateToPaymentPage(){
