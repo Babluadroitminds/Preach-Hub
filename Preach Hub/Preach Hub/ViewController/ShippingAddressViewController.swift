@@ -15,7 +15,8 @@ class ShippingAddressTVCell : UITableViewCell
 }
 class ShippingAddressViewController: UIViewController, UITableViewDelegate, UITableViewDataSource
 {
-    @IBOutlet weak var addShippingAddressBtn: UIButton!
+    @IBOutlet weak var viewDot: UIView!
+
     @IBOutlet weak var addressTableView: UITableView!
 
     var selectedRow = -1
@@ -24,17 +25,12 @@ class ShippingAddressViewController: UIViewController, UITableViewDelegate, UITa
     {
         super.viewDidLoad()
         
+        viewDot.layer.borderColor = UIColor.clear.cgColor
+        viewDot.layer.borderWidth = 2.0
+        viewDot.layer.cornerRadius = 9.0
+        viewDot.addViewDashedBorder(view: viewDot)
+        
         self.addressTableView.tableFooterView = nil
-        
-//        var yourViewBorder = CAShapeLayer()
-//        yourViewBorder.strokeColor = UIColor.black.cgColor
-//        yourViewBorder.lineDashPattern = [2, 2]
-//        yourViewBorder.frame = addShippingAddressBtn.bounds
-//        yourViewBorder.fillColor = nil
-//        yourViewBorder.path = UIBezierPath(rect: addShippingAddressBtn.bounds).cgPath
-//        addShippingAddressBtn.layer.addSublayer(yourViewBorder)
-        
-        addShippingAddressBtn.addViewDashedBorder(view: addShippingAddressBtn)
     }
     @IBAction func backTapped(_ sender: Any)
     {

@@ -20,7 +20,7 @@ class CartPaymentViewController: UIViewController
         super.viewDidLoad()
         viewDot.layer.borderColor = UIColor.clear.cgColor
         viewDot.layer.borderWidth = 2.0
-        viewDot.layer.cornerRadius = 10.0
+        viewDot.layer.cornerRadius = 9.0
          viewDot.addViewDashedBorder(view: viewDot)
 
         self.datePicker.datePickerMode = NTMonthYearPickerModeMonthAndYear
@@ -65,15 +65,15 @@ extension UIView {
     func addViewDashedBorder(view : UIView) {
         let color = UIColor.gray.cgColor
         let shapeLayer:CAShapeLayer = CAShapeLayer()
-        let shapeRect = CGRect(x: 0, y: 0, width: view.layer.frame.width - 40 , height: view.layer.frame.height)
+        let shapeRect = CGRect(x: 0, y: 0, width: view.layer.frame.width + 50, height: view.layer.frame.height)
         shapeLayer.bounds = shapeRect
-        shapeLayer.position = CGPoint(x: view.layer.frame.width/2 - 20, y: view.layer.frame.height/2)
+        shapeLayer.position = CGPoint(x: view.layer.frame.width/2 + 25, y: view.layer.frame.height/2)
         shapeLayer.fillColor = UIColor.clear.cgColor
         shapeLayer.strokeColor = color
         shapeLayer.lineWidth = 2
         shapeLayer.lineJoin = CAShapeLayerLineJoin.round
         shapeLayer.lineDashPattern = [6,3]
-        shapeLayer.path = UIBezierPath(roundedRect: shapeRect, cornerRadius: 5).cgPath
+        shapeLayer.path = UIBezierPath(roundedRect: shapeRect, cornerRadius: 9).cgPath
         shapeLayer.layoutIfNeeded()
         self.layer.addSublayer(shapeLayer)
     }
