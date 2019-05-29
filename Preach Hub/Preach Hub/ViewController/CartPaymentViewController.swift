@@ -7,9 +7,14 @@
 //
 
 import UIKit
+import NTMonthYearPicker
 
-class CartPaymentViewController: UIViewController {
+class CartPaymentViewController: UIViewController
+{
     @IBOutlet weak var viewDot: UIView!
+    @IBOutlet weak var expDateTxt: UITextField!
+
+    var datePicker = NTMonthYearPicker()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,7 +23,30 @@ class CartPaymentViewController: UIViewController {
         viewDot.layer.cornerRadius = 10.0
          viewDot.addViewDashedBorder(view: viewDot)
 
-        // Do any additional setup after loading the view.
+        self.datePicker.datePickerMode = NTMonthYearPickerModeMonthAndYear
+        self.datePicker.minimumDate = Date()
+        
+        //    [picker addTarget:self action:@selector(onDatePicked:) forControlEvents:UIControlEventValueChanged];
+        
+        self.datePicker.addTarget(self, action: #selector(onDatePicked), for: .valueChanged)
+        self.expDateTxt.inputView = self.datePicker
+    }
+    @objc func onDatePicked()
+    {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM/yy"
+        
+        let dateStr = dateFormatter.string(from: self.datePicker.date)
+        
+        self.expDateTxt.text = dateStr
+    }
+    @IBAction func backTapped(_ sender: Any)
+    {
+        self.navigationController?.popViewController(animated: true)
+    }
+    @IBAction func addBillingTapped(_ sender: Any)
+    {
+       self.navigateToAddBillingPage()
     }
     
 

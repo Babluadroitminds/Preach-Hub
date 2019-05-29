@@ -38,6 +38,8 @@
 		E323E0042297E904006B6EBA /* Cart.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E323E0032297E904006B6EBA /* Cart.storyboard */; };
 		E323E0062297F246006B6EBA /* ProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E323E0052297F246006B6EBA /* ProductViewController.swift */; };
 		E323E00822981C25006B6EBA /* ProductDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E323E00722981C24006B6EBA /* ProductDetailsViewController.swift */; };
+		E3578604229D39D6009E8BBE /* PaymentExistingCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3578603229D39D6009E8BBE /* PaymentExistingCardViewController.swift */; };
+		E3578606229D3AA9009E8BBE /* AddBillingAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3578605229D3AA9009E8BBE /* AddBillingAddressViewController.swift */; };
 		E366C11C228E87E5003CBE58 /* Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E366C11B228E87E5003CBE58 /* Navigation.swift */; };
 		E366C124228E8A71003CBE58 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E366C123228E8A71003CBE58 /* Home.storyboard */; };
 		E366C127228E8B53003CBE58 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E366C126228E8B53003CBE58 /* HomeViewController.swift */; };
@@ -48,8 +50,8 @@
 		E3B730CA229BC48C008D3E7C /* ViewCartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B730C9229BC48C008D3E7C /* ViewCartViewController.swift */; };
 		E3B730CC229BF652008D3E7C /* ShippingAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B730CB229BF652008D3E7C /* ShippingAddressViewController.swift */; };
 		E3B730CE229BF677008D3E7C /* AddShippingAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B730CD229BF677008D3E7C /* AddShippingAddressViewController.swift */; };
-		E3BFD8B8229D009E00770BDB /* (null) in Sources */ = {isa = PBXBuildFile; };
-		E3BFD8BA229D00D600770BDB /* (null) in Resources */ = {isa = PBXBuildFile; };
+		E3BFD8B8229D009E00770BDB /* BuildFile in Sources */ = {isa = PBXBuildFile; };
+		E3BFD8BA229D00D600770BDB /* BuildFile in Resources */ = {isa = PBXBuildFile; };
 		E3BFD8BC229D089400770BDB /* CartPayment.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3BFD8BB229D089300770BDB /* CartPayment.storyboard */; };
 		E3BFD8BE229D100000770BDB /* CartPaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3BFD8BD229D100000770BDB /* CartPaymentViewController.swift */; };
 		E3FAA41B2292A84D00E369C6 /* HomeTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3FAA41A2292A84D00E369C6 /* HomeTabBarViewController.swift */; };
@@ -112,6 +114,8 @@
 		E323E0032297E904006B6EBA /* Cart.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Cart.storyboard; sourceTree = "<group>"; };
 		E323E0052297F246006B6EBA /* ProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductViewController.swift; sourceTree = "<group>"; };
 		E323E00722981C24006B6EBA /* ProductDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailsViewController.swift; sourceTree = "<group>"; };
+		E3578603229D39D6009E8BBE /* PaymentExistingCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentExistingCardViewController.swift; sourceTree = "<group>"; };
+		E3578605229D3AA9009E8BBE /* AddBillingAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBillingAddressViewController.swift; sourceTree = "<group>"; };
 		E366C11B228E87E5003CBE58 /* Navigation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Navigation.swift; sourceTree = "<group>"; };
 		E366C123228E8A71003CBE58 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		E366C126228E8B53003CBE58 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -246,11 +250,13 @@
 				E323E00722981C24006B6EBA /* ProductDetailsViewController.swift */,
 				E3B730CB229BF652008D3E7C /* ShippingAddressViewController.swift */,
 				E3B730CD229BF677008D3E7C /* AddShippingAddressViewController.swift */,
+				E3578605229D3AA9009E8BBE /* AddBillingAddressViewController.swift */,
 				E3FAA41C2292A97800E369C6 /* ListViewController.swift */,
 				E3B730C9229BC48C008D3E7C /* ViewCartViewController.swift */,
 				8235EB462293C3760090230B /* ForgotPasswordViewController.swift */,
 				82CADDCA22941DD300EBBDFD /* PaymentViewController.swift */,
 				820877CF2297E8C800513037 /* CartViewController.swift */,
+				E3578603229D39D6009E8BBE /* PaymentExistingCardViewController.swift */,
 				820877DD2298040100513037 /* TermsNConditionViewController.swift */,
 			);
 			path = ViewController;
@@ -438,7 +444,7 @@
 				820877DC229803D500513037 /* terms.html in Resources */,
 				1895168E228D6732005FA99A /* Assets.xcassets in Resources */,
 				8203F0CF228D7A7A00F9D65D /* InitialStoryboard.storyboard in Resources */,
-				E3BFD8BA229D00D600770BDB /* (null) in Resources */,
+				E3BFD8BA229D00D600770BDB /* BuildFile in Resources */,
 				820877DA2297F3A600513037 /* ic-user.png in Resources */,
 				820877CA2297B68400513037 /* ic-eye-gray.png in Resources */,
 				820877CC2297B68A00513037 /* ic-hide-gray.png in Resources */,
@@ -468,8 +474,6 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Preach Hub/Pods-Preach Hub-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
@@ -478,6 +482,7 @@
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/MXParallaxHeader/MXParallaxHeader.framework",
+				"${BUILT_PRODUCTS_DIR}/NTMonthYearPicker/NTMonthYearPicker.framework",
 				"${BUILT_PRODUCTS_DIR}/PinCodeTextField/PinCodeTextField.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/ReachabilitySwift.framework",
@@ -495,8 +500,6 @@
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BRYXBanner.framework",
@@ -504,6 +507,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MXParallaxHeader.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NTMonthYearPicker.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PinCodeTextField.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReachabilitySwift.framework",
@@ -530,15 +534,11 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
 				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-Preach Hub-checkManifestLockResult.txt",
 			);
@@ -561,12 +561,14 @@
 				E366C129229270CE003CBE58 /* RootViewController.swift in Sources */,
 				E366C11C228E87E5003CBE58 /* Navigation.swift in Sources */,
 				820877DE2298040100513037 /* TermsNConditionViewController.swift in Sources */,
-				E3BFD8B8229D009E00770BDB /* (null) in Sources */,
+				E3BFD8B8229D009E00770BDB /* BuildFile in Sources */,
+				E3578604229D39D6009E8BBE /* PaymentExistingCardViewController.swift in Sources */,
 				E3B730CC229BF652008D3E7C /* ShippingAddressViewController.swift in Sources */,
 				E3ACFC45228D760F00F798D6 /* LoginViewController.swift in Sources */,
 				E366C127228E8B53003CBE58 /* HomeViewController.swift in Sources */,
 				E3B730CE229BF677008D3E7C /* AddShippingAddressViewController.swift in Sources */,
 				82CADDCB22941DD300EBBDFD /* PaymentViewController.swift in Sources */,
+				E3578606229D3AA9009E8BBE /* AddBillingAddressViewController.swift in Sources */,
 				E3ACFC47228D7B0300F798D6 /* RegistrationVC.swift in Sources */,
 				8235EB472293C3760090230B /* ForgotPasswordViewController.swift in Sources */,
 				8203F0C8228D69B700F9D65D /* NotificationsHelper.swift in Sources */,

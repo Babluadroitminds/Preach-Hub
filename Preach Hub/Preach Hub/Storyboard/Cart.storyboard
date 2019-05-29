@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="mZD-gE-ieb">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="mZD-gE-ieb">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -76,7 +76,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ck4-le-ybS" userLabel="CartView">
                                 <rect key="frame" x="339" y="89" width="60" height="50"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icons8-shopping-cart-100" translatesAutoresizingMaskIntoConstraints="NO" id="HYL-dU-y9u">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shopping-cart" translatesAutoresizingMaskIntoConstraints="NO" id="HYL-dU-y9u">
                                         <rect key="frame" x="17.666666666666686" y="12.333333333333329" width="25" height="25"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -194,7 +194,7 @@
                                                 <real key="value" value="9"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                <color key="value" red="0.23529411759999999" green="0.58431372550000005" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="value" red="0.043137254901960784" green="0.58431372549019611" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                 <real key="value" value="1"/>
@@ -265,7 +265,7 @@
                                                 <real key="value" value="9"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                <color key="value" red="0.23529411759999999" green="0.58431372550000005" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="value" red="0.043137254901960784" green="0.58431372549019611" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                 <real key="value" value="1"/>
@@ -315,7 +315,7 @@
                                                         </label>
                                                         <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oIB-yF-KEU">
                                                             <rect key="frame" x="15" y="211.66666666666666" width="110" height="35"/>
-                                                            <color key="backgroundColor" red="0.23529411759999999" green="0.58431372550000005" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="backgroundColor" red="0.043137254899999998" green="0.58431372550000005" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="110" id="7Iz-ke-AWh"/>
                                                                 <constraint firstAttribute="height" constant="35" id="Hz9-Ze-6g1"/>
@@ -489,7 +489,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yjV-20-i92" userLabel="CartView">
                                 <rect key="frame" x="245" y="89" width="60" height="50"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icons8-shopping-cart-100" translatesAutoresizingMaskIntoConstraints="NO" id="JRX-Xb-yn2">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shopping-cart" translatesAutoresizingMaskIntoConstraints="NO" id="JRX-Xb-yn2">
                                         <rect key="frame" x="17.666666666666686" y="12.333333333333329" width="25" height="25"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -728,7 +728,7 @@
                                                         <real key="value" value="9"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                        <color key="value" red="0.23529411759999999" green="0.58431372550000005" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="value" red="0.043137254901960784" green="0.58431372549019611" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                         <real key="value" value="1"/>
@@ -796,7 +796,7 @@
                                                         <real key="value" value="9"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                        <color key="value" red="0.23529411759999999" green="0.58431372550000005" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="value" red="0.043137254901960784" green="0.58431372549019611" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                         <real key="value" value="1"/>
@@ -875,7 +875,7 @@ EENob29zZSBzaXplA
                                             </view>
                                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JhQ-uE-Lsp">
                                                 <rect key="frame" x="15" y="457" width="290" height="45"/>
-                                                <color key="backgroundColor" red="0.23529411759999999" green="0.58431372550000005" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" red="0.043137254901960784" green="0.58431372549019611" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="45" id="Ljy-QT-fi4"/>
                                                 </constraints>
@@ -1083,7 +1083,7 @@ EENob29zZSBzaXplA
                                     </label>
                                     <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GVC-vY-JpN">
                                         <rect key="frame" x="15" y="526.33333333333337" width="384" height="45"/>
-                                        <color key="backgroundColor" red="0.23529411759999999" green="0.58431372550000005" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="0.043137254899999998" green="0.58431372550000005" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="xfI-du-WoI"/>
                                         </constraints>
@@ -1141,7 +1141,7 @@ EENob29zZSBzaXplA
                                                             </userDefinedRuntimeAttributes>
                                                         </view>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name of the Product" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IwX-Kg-yPm">
-                                                            <rect key="frame" x="130" y="35.333333333333336" width="221" height="17"/>
+                                                            <rect key="frame" x="130" y="35.333333333333336" width="226" height="17"/>
                                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -1243,28 +1243,28 @@ EENob29zZSBzaXplA
                                                             </userDefinedRuntimeAttributes>
                                                         </view>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G0H-AX-Q1t">
-                                                            <rect key="frame" x="359" y="29" width="30" height="30"/>
+                                                            <rect key="frame" x="364" y="31.333333333333329" width="25" height="25"/>
                                                             <subviews>
-                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="done_green" translatesAutoresizingMaskIntoConstraints="NO" id="CY6-tu-LS4">
-                                                                    <rect key="frame" x="3" y="3" width="24" height="24"/>
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="garbage" translatesAutoresizingMaskIntoConstraints="NO" id="CY6-tu-LS4">
+                                                                    <rect key="frame" x="5" y="5.0000000000000036" width="15" height="15"/>
                                                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="width" constant="24" id="VJR-sb-eyb"/>
-                                                                        <constraint firstAttribute="height" constant="24" id="YUE-pr-1yL"/>
+                                                                        <constraint firstAttribute="width" constant="15" id="VJR-sb-eyb"/>
+                                                                        <constraint firstAttribute="height" constant="15" id="YUE-pr-1yL"/>
                                                                     </constraints>
                                                                 </imageView>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c1k-O0-1Q4">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 </button>
                                                             </subviews>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
                                                                 <constraint firstItem="CY6-tu-LS4" firstAttribute="centerY" secondItem="G0H-AX-Q1t" secondAttribute="centerY" id="3Va-p6-jux"/>
-                                                                <constraint firstAttribute="width" constant="30" id="4nS-Un-W05"/>
+                                                                <constraint firstAttribute="width" constant="25" id="4nS-Un-W05"/>
                                                                 <constraint firstItem="c1k-O0-1Q4" firstAttribute="width" secondItem="G0H-AX-Q1t" secondAttribute="width" id="FkE-JZ-ssI"/>
                                                                 <constraint firstItem="CY6-tu-LS4" firstAttribute="centerX" secondItem="G0H-AX-Q1t" secondAttribute="centerX" id="KTN-xh-V54"/>
-                                                                <constraint firstAttribute="height" constant="30" id="aJq-LH-dqh"/>
+                                                                <constraint firstAttribute="height" constant="25" id="aJq-LH-dqh"/>
                                                                 <constraint firstItem="c1k-O0-1Q4" firstAttribute="height" secondItem="G0H-AX-Q1t" secondAttribute="height" id="d2Z-uR-6sC"/>
                                                                 <constraint firstItem="c1k-O0-1Q4" firstAttribute="centerY" secondItem="G0H-AX-Q1t" secondAttribute="centerY" id="gY8-Rt-mgb"/>
                                                                 <constraint firstItem="c1k-O0-1Q4" firstAttribute="centerX" secondItem="G0H-AX-Q1t" secondAttribute="centerX" id="nrl-es-Kcb"/>
@@ -1428,7 +1428,7 @@ EENob29zZSBzaXplA
                                 <subviews>
                                     <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y1d-ct-9Qh">
                                         <rect key="frame" x="15" y="466.33333333333337" width="384" height="45"/>
-                                        <color key="backgroundColor" red="0.23529411759999999" green="0.58431372550000005" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="0.043137254899999998" green="0.58431372550000005" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="F6P-dJ-gZE"/>
                                         </constraints>
@@ -1441,6 +1441,9 @@ EENob29zZSBzaXplA
                                                 <real key="value" value="9"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="continuTapped:" destination="3FL-mH-rse" eventType="touchUpInside" id="xkN-Fu-R01"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3eZ-Sd-Lp2">
                                         <rect key="frame" x="15" y="526.33333333333337" width="384" height="45"/>
@@ -1452,6 +1455,14 @@ EENob29zZSBzaXplA
                                         <state key="normal" title="Add Shipping Address">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="9"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="addShippingAddressTapped:" destination="3FL-mH-rse" eventType="touchUpInside" id="YMx-yp-QSV"/>
+                                        </connections>
                                     </button>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Rfm-7U-pNX">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="458.33333333333331"/>
@@ -1488,7 +1499,7 @@ EENob29zZSBzaXplA
                                                             <subviews>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GH6-OU-K0d">
                                                                     <rect key="frame" x="4" y="4" width="12" height="12"/>
-                                                                    <color key="backgroundColor" red="0.23529411759999999" green="0.58431372550000005" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    <color key="backgroundColor" red="0.043137254899999998" green="0.58431372550000005" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="12" id="gCp-69-Ww0"/>
                                                                         <constraint firstAttribute="width" constant="12" id="gGO-uj-fYb"/>
@@ -1597,13 +1608,13 @@ EENob29zZSBzaXplA
         </scene>
     </scenes>
     <resources>
-        <image name="arrow_top" width="37.5" height="37.5"/>
+        <image name="arrow_top" width="50" height="50"/>
         <image name="box" width="512" height="512"/>
-        <image name="done_green" width="144" height="108"/>
-        <image name="downArrow_black" width="37.5" height="37.5"/>
-        <image name="expand_arrow" width="37.5" height="37.5"/>
+        <image name="downArrow_black" width="50" height="50"/>
+        <image name="expand_arrow" width="50" height="50"/>
+        <image name="garbage" width="12.333333015441895" height="15"/>
         <image name="ic-back" width="38" height="38"/>
-        <image name="ic-logo-header" width="228" height="66"/>
-        <image name="icons8-shopping-cart-100" width="153.19148254394531" height="153.19148254394531"/>
+        <image name="ic-logo-header" width="76" height="22"/>
+        <image name="shopping-cart" width="20" height="17.666666030883789"/>
     </resources>
 </document>

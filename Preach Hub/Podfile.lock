@@ -68,6 +68,7 @@ PODS:
     - nanopb/encode (= 0.3.901)
   - nanopb/decode (0.3.901)
   - nanopb/encode (0.3.901)
+  - NTMonthYearPicker (1.0.0)
   - PinCodeTextField (0.1.0)
   - Protobuf (3.6.1)
   - ReachabilitySwift (3)
@@ -95,6 +96,7 @@ DEPENDENCIES:
   - FSPagerView
   - IQKeyboardManagerSwift
   - MXParallaxHeader
+  - NTMonthYearPicker
   - PinCodeTextField
   - ReachabilitySwift (~> 3)
   - SDWebImage
@@ -127,6 +129,7 @@ SPEC REPOS:
     - IQKeyboardManagerSwift
     - MXParallaxHeader
     - nanopb
+    - NTMonthYearPicker
     - PinCodeTextField
     - Protobuf
     - ReachabilitySwift
@@ -167,6 +170,7 @@ SPEC CHECKSUMS:
   IQKeyboardManagerSwift: b07ccf9d8cafe993dcd6cb794eb4ba34611a0c4e
   MXParallaxHeader: 858c403532ed933b381556a81ce333d7065ad182
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
+  NTMonthYearPicker: 27e1739d6e29428628c8275a7c1a9e4835c352f4
   PinCodeTextField: a3c39be58bde3ed1d6888d0fb1d88b0a4a2277cc
   Protobuf: 1eb9700044745f00181c136ef21b8ff3ad5a0fd5
   ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
@@ -181,6 +185,6 @@ SPEC CHECKSUMS:
   XLPagerTabStrip: 63166e21c9844fa30f2d95d30f335e73be5caf22
   YPDrawSignatureView: 0ca1cfcd329b9f4bf74172859f80a47a200a0e0d
 
-PODFILE CHECKSUM: c84f9a272ac08a6cacc4ecf66c89105d4c6c0749
+PODFILE CHECKSUM: 7ded7c10c1ab1d596914b01fd5d640647517d8f1
 
 COCOAPODS: 1.5.3

@@ -54,14 +54,28 @@ extension UIViewController {
         let paymentViewController = storyBoard.instantiateViewController(withIdentifier: "PaymentViewController") as! PaymentViewController
         self.navigationController?.pushViewController(paymentViewController, animated: true)
     }
-    func navigateToAddShippingAddressPage(){
+    func navigateToAddShippingAddressPage()
+    {
         let storyBoard : UIStoryboard = UIStoryboard(name: "CartPayment", bundle:nil)
         let paymentViewController = storyBoard.instantiateViewController(withIdentifier: "AddShippingAddressViewController") as! AddShippingAddressViewController
         self.navigationController?.pushViewController(paymentViewController, animated: true)
     }
-    func navigateToCartPaymentPage(){
+    func navigateToCartPaymentPage()
+    {
         let storyBoard : UIStoryboard = UIStoryboard(name: "CartPayment", bundle:nil)
         let paymentViewController = storyBoard.instantiateViewController(withIdentifier: "CartPaymentViewController") as! CartPaymentViewController
+        self.navigationController?.pushViewController(paymentViewController, animated: true)
+    }
+    func navigateToAddBillingPage()
+    {
+        let storyBoard : UIStoryboard = UIStoryboard(name: "CartPayment", bundle:nil)
+        let paymentViewController = storyBoard.instantiateViewController(withIdentifier: "AddBillingAddressViewController") as! AddBillingAddressViewController
+        self.navigationController?.pushViewController(paymentViewController, animated: true)
+    }
+    func navigateToExistingCardPage()
+    {
+        let storyBoard : UIStoryboard = UIStoryboard(name: "CartPayment", bundle:nil)
+        let paymentViewController = storyBoard.instantiateViewController(withIdentifier: "PaymentExistingCardViewController") as! PaymentExistingCardViewController
         self.navigationController?.pushViewController(paymentViewController, animated: true)
     }
 }

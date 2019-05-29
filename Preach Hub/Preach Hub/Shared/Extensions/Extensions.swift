@@ -207,9 +207,9 @@ extension UIView {
         var yourViewBorder = CAShapeLayer()
         yourViewBorder.strokeColor = UIColor.black.cgColor
         yourViewBorder.lineDashPattern = [2, 2]
-        yourViewBorder.frame = self.bounds
+        yourViewBorder.frame = CGRect(x: self.bounds.origin.x, y: self.bounds.origin.y, width: self.bounds.size.width - 40, height: self.bounds.size.height)
         yourViewBorder.fillColor = nil
-        yourViewBorder.path = UIBezierPath(rect: self.bounds).cgPath
+        yourViewBorder.path = UIBezierPath(rect: CGRect(x: self.bounds.origin.x, y: self.bounds.origin.y, width: self.bounds.size.width - 20, height: self.bounds.size.height)).cgPath
         self.layer.addSublayer(yourViewBorder)
     }
 }

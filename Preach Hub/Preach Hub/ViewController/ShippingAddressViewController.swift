@@ -34,7 +34,7 @@ class ShippingAddressViewController: UIViewController, UITableViewDelegate, UITa
 //        yourViewBorder.path = UIBezierPath(rect: addShippingAddressBtn.bounds).cgPath
 //        addShippingAddressBtn.layer.addSublayer(yourViewBorder)
         
-        addShippingAddressBtn.addDashedBorder()
+        addShippingAddressBtn.addViewDashedBorder(view: addShippingAddressBtn)
     }
     @IBAction func backTapped(_ sender: Any)
     {
@@ -76,5 +76,13 @@ class ShippingAddressViewController: UIViewController, UITableViewDelegate, UITa
         self.selectedRow = sender.tag
         
         self.addressTableView.reloadData()
+    }
+    @IBAction func addShippingAddressTapped(_ sender: Any)
+    {
+        self.navigateToAddShippingAddressPage()
+    }
+    @IBAction func continuTapped(_ sender: Any)
+    {
+        self.navigateToExistingCardPage()
     }
 }
