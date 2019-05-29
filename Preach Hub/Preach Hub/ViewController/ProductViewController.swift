@@ -124,6 +124,8 @@ class ProductViewController: UIViewController, UICollectionViewDelegate, UIColle
         let currentItem = productList[indexPath.row]
         cell.lblProductName.text = currentItem.name
         cell.lblProductPrice.text = currentItem.price
+        cell.btnAddToCart.addTarget(self, action: #selector(btnAddToCartClicked), for: .touchUpInside)
+        cell.btnAddToCart.tag = indexPath.row
         let imageUrl = currentItem.thumb
         let urlString = imageUrl.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
         cell.imgVwProduct.sd_setShowActivityIndicatorView(true)
@@ -137,7 +139,7 @@ class ProductViewController: UIViewController, UICollectionViewDelegate, UIColle
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath){
-        self.performSegue(withIdentifier: "ToProductDetailsVC", sender: self)
+      //  self.performSegue(withIdentifier: "ToProductDetailsVC", sender: self)
     }
     
     @IBAction func categoryTapped(_ sender: Any){
@@ -146,6 +148,10 @@ class ProductViewController: UIViewController, UICollectionViewDelegate, UIColle
     
     @IBAction func priceTapped(_ sender: Any){
         self.priceText.becomeFirstResponder()
+    }
+    
+    @objc func btnAddToCartClicked(sender : UIButton){
+        navigateToProductDetailsPage(index: sender.tag)
     }
     
     func getCategory(){
@@ -177,6 +183,12 @@ class ProductViewController: UIViewController, UICollectionViewDelegate, UIColle
                 }
             }
         }
+    }
+    
+    func navigateToProductDetailsPage(index: Int){
+        let ProductDetailsVC = ProductDetailsViewController.storyboardInstance()
+        ProductDetailsVC!.productList = [productList[index]]
+        self.navigationController?.pushViewController(ProductDetailsVC!, animated: true)
     }
     
     @IBAction func backClicked(_ sender: Any) {

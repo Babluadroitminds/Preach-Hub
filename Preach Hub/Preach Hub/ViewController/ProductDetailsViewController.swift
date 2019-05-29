@@ -7,37 +7,146 @@
 //
 
 import UIKit
+import SwiftyJSON
+
+struct productSub {
+    var id : String!
+    var name : String!
+}
 
 class productImagesCollectionViewCell: UICollectionViewCell{
     @IBOutlet weak var notSelectedView: UIView!
     @IBOutlet weak var fullView: UIView!
 }
 
-class ProductDetailsViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
+class ProductDetailsViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIPickerViewDelegate, UIPickerViewDataSource{
     @IBOutlet weak var qtyLbl: UILabel!
     @IBOutlet weak var sizeTxt: UITextField!
     @IBOutlet weak var colorTxt: UITextField!
-    
+    @IBOutlet weak var imgVwProduct: UIImageView!
+    @IBOutlet weak var lblProductDescription: UILabel!
+    @IBOutlet weak var lblProductPrice: UILabel!
+    @IBOutlet weak var lblProductName: UILabel!
     @IBOutlet weak var productImagesCollectionView: UICollectionView!
 
     var selectedRow = 0
     
     var sizePicker = UIPickerView()
     var colorPicker = UIPickerView()
+    var productList: [ProductKey] = []
+    var productSize: [productSub] = []
+    var productColor: [productSub] = []
+    var cart: [[String: Any]] = []
+    var productDict: [String: JSON] = [:]
+    var valInt: Int = 1
+    var selectedColor: String?
+    var selectedSize: String?
+    let appdelegate = UIApplication.shared.delegate as! AppDelegate
     
     override func viewDidLoad(){
         super.viewDidLoad()
         
         self.sizeTxt.inputView = sizePicker
         self.colorTxt.inputView = colorPicker
+        setPickerLayout()
+        getProductById()
     }
+    
+    func setPickerLayout(){
+        self.sizeTxt.inputView = sizePicker
+        self.colorTxt.inputView = colorPicker
+        
+        let toolbar = UIToolbar();
+        toolbar.sizeToFit()
+        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(donePickerClicked))
+        toolbar.setItems([doneButton], animated: false)
+        
+        sizeTxt.inputAccessoryView = toolbar
+        sizePicker.delegate = self
+        sizePicker.dataSource = self
+        colorTxt.inputAccessoryView = toolbar
+        colorPicker.delegate = self
+        colorPicker.dataSource = self
+    }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        if pickerView == sizePicker {
+            return productSize.count
+        }
+        else{
+            return productColor.count
+        }
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        if pickerView == sizePicker {
+            return productSize[row].name
+        }
+        else{
+            return productColor[row].name
+        }
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        if pickerView == sizePicker {
+            sizeTxt.text = productSize[row].name
+            selectedSize = productSize[row].name
+        }
+        else {
+            colorTxt.text = productColor[row].name
+            selectedColor = productColor[row].name
+        }
+    }
+    
+    @objc func donePickerClicked(){
+        self.view.endEditing(true)
+    }
+    
+    
+    func getProductById() {
+        let productId = productList[0].id
+        let parameters: [String: String] = [:]
+        let dict = ["include": ["productsizes","productcolour","category","pastorproducts"]]
+        
+        if let json = try? JSONSerialization.data(withJSONObject: dict, options: []) {
+            if let content = String(data: json, encoding: String.Encoding.utf8) {
+                APIHelper().get(apiUrl: String.init(format: GlobalConstants.APIUrls.getProductById,productId,content), parameters: parameters as [String : AnyObject]) { (response) in
+                    if response["data"].dictionary != nil  {
+                        self.productDict = response["data"].dictionary!
+                        self.lblProductName.text = self.productDict["name"]?.string
+                        self.lblProductPrice.text = self.productDict["price"]!.string
+                        self.lblProductDescription.text = self.productDict["description"]!.string
+                        
+                        let imageUrl = response["data"]["img_thumb"].string
+                        let urlString = imageUrl!.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
+                        self.imgVwProduct.sd_setShowActivityIndicatorView(true)
+                        self.imgVwProduct.sd_setIndicatorStyle(.gray)
+                        self.imgVwProduct.sd_setImage(with: URL.init(string: urlString!) , placeholderImage: UIImage.init(named:""))
+                        
+                        self.productSize.append(productSub(id: self.productDict["productcolour"]!["id"] != JSON.null ? self.productDict["productcolour"]!["id"].string : "", name: self.productDict["productcolour"]!["name"] != JSON.null ? self.productDict["productcolour"]!["name"].string : ""))
+                        
+                        self.productColor.append(productSub(id: self.productDict["productsizes"]!["id"] != JSON.null ? self.productDict["productsizes"]!["id"].string : "", name: self.productDict["productsizes"]!["name"] != JSON.null ? self.productDict["productsizes"]!["name"].string : ""))
+                        
+                        self.sizePicker.reloadAllComponents()
+                        self.colorPicker.reloadAllComponents()
+                    }
+                }
+            }
+        }
+        
+    }
+
     
     func numberOfSections(in collectionView: UICollectionView) -> Int{
         return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
-        return 5
+        return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
@@ -79,7 +188,7 @@ class ProductDetailsViewController: UIViewController, UICollectionViewDelegate, 
     
     @IBAction func quantityIncreaseTapped(_ sender: Any){
         let val = qtyLbl.text?.replacingOccurrences(of: "Qty ", with: "")
-        let valInt = Int(val!)! + 1
+        valInt = Int(val!)! + 1
         qtyLbl.text = "Qty " + valInt.description
     }
 
@@ -87,9 +196,25 @@ class ProductDetailsViewController: UIViewController, UICollectionViewDelegate, 
         if qtyLbl.text != "Qty 1"
         {
             let val = qtyLbl.text?.replacingOccurrences(of: "Qty ", with: "")
-            let valInt = Int(val!)! - 1
+            valInt = Int(val!)! - 1
             qtyLbl.text = "Qty " + valInt.description
         }
+    }
+    
+    @IBAction func addToCartClicked(_ sender: Any) {
+        if selectedColor == nil || selectedSize == nil {
+          self.view.makeToast("Please select size & color.", duration: 3.0, position: .bottom)
+          return
+        }
+        
+        self.appdelegate.cartList.append(["productData": productDict, "quantity": valInt, "color": selectedColor!, "size": selectedSize!])
+        let viewCartVC = ViewCartViewController.storyboardInstance()
+        self.navigationController?.pushViewController(viewCartVC!, animated: true)
+    }
+    
+    static func storyboardInstance() -> ProductDetailsViewController? {
+        let storyboard = UIStoryboard(name: "Cart", bundle: nil)
+        return storyboard.instantiateViewController(withIdentifier: "ProductDetailsViewController") as? ProductDetailsViewController
     }
     
 }
