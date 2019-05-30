@@ -61,6 +61,9 @@ class APIHelper: NSObject {
             fullUrl = apiUrl
             httpHeader["Authorization"] = "Bearer sk_test_vzXTFAJH3fOKhon5we02Dozo00vpLeAt20"
         }
+        else if apiUrl.contains("https://www.jmtbiz"){
+             fullUrl = apiUrl
+        }
         else {
             fullUrl = GlobalConstants.APIUrls.apiBaseUrl + apiUrl
             fullUrl = fullUrl.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!

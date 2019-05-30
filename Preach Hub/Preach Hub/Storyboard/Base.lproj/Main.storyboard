@@ -96,8 +96,8 @@
                                                                     <constraint firstAttribute="width" constant="40" id="W3A-91-6HU"/>
                                                                 </constraints>
                                                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                <state key="normal" image="ic-eye-gray.png"/>
-                                                                <state key="selected" image="ic-hide-gray.png"/>
+                                                                <state key="normal" image="ic-hide-gray.png"/>
+                                                                <state key="selected" image="ic-eye-gray.png"/>
                                                                 <connections>
                                                                     <action selector="btnPasswordVisibilityClicked:" destination="H6G-XD-ADu" eventType="touchUpInside" id="j5P-0Y-jVx"/>
                                                                 </connections>

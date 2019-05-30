@@ -25,5 +25,6 @@ struct GlobalConstants {
         static let getStores: String = "categories"
         static let getProduct: String = "products?filter=%@"
         static let getProductById: String = "products/%@?filter=%@"
+        static let getPreachStatistics: String = "https://www.jmtbiz.co.za/preach/statistics.json"
     }
 }

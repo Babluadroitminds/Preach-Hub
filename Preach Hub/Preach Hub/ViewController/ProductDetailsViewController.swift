@@ -173,9 +173,13 @@ class ProductDetailsViewController: UIViewController, UICollectionViewDelegate, 
                         self.imgVwProduct.sd_setIndicatorStyle(.gray)
                         self.imgVwProduct.sd_setImage(with: URL.init(string: urlString!) , placeholderImage: UIImage.init(named:""))
                         
-                        self.productSize.append(productSub(id: self.productDict["productsizes"]!["id"] != JSON.null ? self.productDict["productsizes"]!["id"].string : "", name: self.productDict["productsizes"]!["name"] != JSON.null ? self.productDict["productsizes"]!["name"].string : ""))
-                        
-                        self.productColor.append(productSub(id: self.productDict["productcolour"]!["id"] != JSON.null ? self.productDict["productcolour"]!["id"].string : "", name: self.productDict["productcolour"]!["name"] != JSON.null ? self.productDict["productcolour"]!["name"].string : ""))
+                        if self.productDict["productsizes"] != nil{
+                            self.productSize.append(productSub(id: self.productDict["productsizes"]!["id"] != JSON.null ? self.productDict["productsizes"]!["id"].string : "", name: self.productDict["productsizes"]!["name"] != JSON.null ? self.productDict["productsizes"]!["name"].string : ""))
+                        }
+
+                        if self.productDict["productcolour"] != nil{
+                            self.productColor.append(productSub(id: self.productDict["productcolour"]!["id"] != JSON.null ? self.productDict["productcolour"]!["id"].string : "", name: self.productDict["productcolour"]!["name"] != JSON.null ? self.productDict["productcolour"]!["name"].string : ""))
+                        }
                         
                         self.sizePicker.reloadAllComponents()
                         self.colorPicker.reloadAllComponents()
