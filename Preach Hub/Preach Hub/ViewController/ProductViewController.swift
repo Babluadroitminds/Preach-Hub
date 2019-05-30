@@ -135,9 +135,6 @@ class ProductViewController: UIViewController, UICollectionViewDelegate, UIColle
     }
     
     @objc func didTapCancel() {
-        self.categoryText.text = nil
-        categoryText.text = nil
-        categoryId =  nil
         self.categoryText.resignFirstResponder()
     }
     
@@ -146,11 +143,16 @@ class ProductViewController: UIViewController, UICollectionViewDelegate, UIColle
         self.pricePicker.selectRow(row, inComponent: 0, animated: false)
         self.priceText.text = self.priceArray[row]
         self.priceText.resignFirstResponder()
+        if row == 0 {
+            productList.sort { Float($0.price)! < Float($1.price)! }
+        }
+        else if row == 1 {
+            productList.sort { Float($0.price)! > Float($1.price)! }
+        }
+        productCollectionView.reloadData()
     }
     
     @objc func didTapPriceRangeCancel() {
-        self.priceText.text = nil
-        priceText.text = nil
         self.priceText.resignFirstResponder()
     }
     
@@ -242,6 +244,11 @@ class ProductViewController: UIViewController, UICollectionViewDelegate, UIColle
                 }
             }
         }
+    }
+    
+    @IBAction func cartClicked(_ sender: Any) {
+        let viewCartVC = ViewCartViewController.storyboardInstance()
+        self.navigationController?.pushViewController(viewCartVC!, animated: true)
     }
     
     func navigateToProductDetailsPage(index: Int){

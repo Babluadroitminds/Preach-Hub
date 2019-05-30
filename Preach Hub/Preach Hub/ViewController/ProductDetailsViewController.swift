@@ -129,10 +129,9 @@ class ProductDetailsViewController: UIViewController, UICollectionViewDelegate, 
     }
     
     @objc func colorDidTapCancel() {
-        self.colorTxt.text = nil
-        colorTxt.text = nil
-        selectedColor =  nil
-        self.colorTxt.resignFirstResponder()
+        if productColor.count != 0{
+             self.colorTxt.resignFirstResponder()
+        }
     }
     
     @objc func sizeDoneClicked(){
@@ -144,12 +143,15 @@ class ProductDetailsViewController: UIViewController, UICollectionViewDelegate, 
     }
     
     @objc func sizeDidTapCancel() {
-        self.sizeTxt.text = nil
-        sizeTxt.text = nil
-        selectedSize =  nil
-        self.sizeTxt.resignFirstResponder()
+        if productSize.count != 0 {
+             self.sizeTxt.resignFirstResponder()
+        }
     }
     
+    @IBAction func cartClicked(_ sender: Any) {
+        let viewCartVC = ViewCartViewController.storyboardInstance()
+        self.navigationController?.pushViewController(viewCartVC!, animated: true)
+    }
     
     func getProductById() {
         let productId = productList[0].id
@@ -183,10 +185,16 @@ class ProductDetailsViewController: UIViewController, UICollectionViewDelegate, 
                             self.colorTxt.text = self.productColor[0].name
                             self.selectedColor = self.productColor[0].name
                         }
+                        else{
+                            self.colorTxt.isUserInteractionEnabled = false
+                        }
                         
                         if self.productSize.count != 0 {
                             self.sizeTxt.text = self.productSize[0].name
                             self.selectedSize = self.productSize[0].name
+                        }
+                        else{
+                            self.sizeTxt.isUserInteractionEnabled = false
                         }
                        
                     }

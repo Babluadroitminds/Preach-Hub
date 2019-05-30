@@ -51,7 +51,7 @@ class ShippingAddressViewController: UIViewController, UITableViewDelegate, UITa
         viewDot.layer.cornerRadius = 9.0
         viewDot.addViewDashedBorder(view: viewDot)
         
-        self.addressTableView.tableFooterView = nil
+        self.addressTableView.tableFooterView = UIView()
     }
     override func viewWillAppear(_ animated: Bool)
     {

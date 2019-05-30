@@ -25,8 +25,12 @@
                                         <rect key="frame" x="0.0" y="0.0" width="60" height="50"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic-back" translatesAutoresizingMaskIntoConstraints="NO" id="ViF-c1-OwJ">
-                                                <rect key="frame" x="15" y="15" width="30" height="20"/>
+                                                <rect key="frame" x="18" y="13" width="24" height="24"/>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="24" id="1Mv-97-lUP"/>
+                                                    <constraint firstAttribute="height" constant="24" id="AjP-gg-Ppn"/>
+                                                </constraints>
                                             </imageView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9jr-uR-0LR">
                                                 <rect key="frame" x="0.0" y="0.0" width="60" height="50"/>
@@ -38,15 +42,13 @@
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstItem="ViF-c1-OwJ" firstAttribute="leading" secondItem="8hd-vY-m52" secondAttribute="leading" constant="15" id="Ggu-fg-ZDP"/>
                                             <constraint firstItem="9jr-uR-0LR" firstAttribute="width" secondItem="8hd-vY-m52" secondAttribute="width" id="JNM-S6-Z8b"/>
-                                            <constraint firstAttribute="bottom" secondItem="ViF-c1-OwJ" secondAttribute="bottom" constant="15" id="Wdj-EB-8AT"/>
                                             <constraint firstAttribute="width" constant="60" id="Wzb-gJ-w33"/>
-                                            <constraint firstItem="ViF-c1-OwJ" firstAttribute="top" secondItem="8hd-vY-m52" secondAttribute="top" constant="15" id="g93-h4-fuL"/>
+                                            <constraint firstItem="ViF-c1-OwJ" firstAttribute="centerX" secondItem="8hd-vY-m52" secondAttribute="centerX" id="fhh-6R-f2Z"/>
                                             <constraint firstItem="9jr-uR-0LR" firstAttribute="centerX" secondItem="8hd-vY-m52" secondAttribute="centerX" id="hIH-8l-ky9"/>
                                             <constraint firstItem="9jr-uR-0LR" firstAttribute="centerY" secondItem="8hd-vY-m52" secondAttribute="centerY" id="jzR-Ie-skZ"/>
                                             <constraint firstItem="9jr-uR-0LR" firstAttribute="height" secondItem="8hd-vY-m52" secondAttribute="height" id="lCE-cm-eej"/>
-                                            <constraint firstAttribute="trailing" secondItem="ViF-c1-OwJ" secondAttribute="trailing" constant="15" id="uc6-84-LeE"/>
+                                            <constraint firstItem="ViF-c1-OwJ" firstAttribute="centerY" secondItem="8hd-vY-m52" secondAttribute="centerY" id="ym2-7w-VP0"/>
                                         </constraints>
                                     </view>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic-logo-header" translatesAutoresizingMaskIntoConstraints="NO" id="ALJ-qF-JuA">
@@ -87,6 +89,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8iD-Xy-jBF">
                                         <rect key="frame" x="0.0" y="0.0" width="60" height="50"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <action selector="cartClicked:" destination="mZD-gE-ieb" eventType="touchUpInside" id="PIE-v6-nvK"/>
+                                        </connections>
                                     </button>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N0g-3D-Yvn">
                                         <rect key="frame" x="31.5" y="9.5" width="18" height="18"/>
@@ -381,7 +386,7 @@
                                     </collectionView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="No Products Found" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UdN-k0-edv">
                                         <rect key="frame" x="20" y="199" width="280" height="24"/>
-                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
                                         <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -509,6 +514,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9DY-OK-PWq">
                                         <rect key="frame" x="0.0" y="0.0" width="60" height="50"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <action selector="cartClicked:" destination="j0L-dd-t8p" eventType="touchUpInside" id="GYX-aV-cnR"/>
+                                        </connections>
                                     </button>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uKt-nW-V2O">
                                         <rect key="frame" x="31.5" y="9.5" width="18" height="18"/>
@@ -903,7 +911,7 @@ EENob29zZSBzaXplA
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="No Products Found" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OU3-9t-Fkz">
                                                 <rect key="frame" x="20" y="211" width="280" height="24"/>
-                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
                                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -1265,7 +1273,7 @@ EENob29zZSBzaXplA
                                     </tableView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Items to cart" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t6M-fX-JuB">
                                         <rect key="frame" x="20" y="200" width="280" height="24"/>
-                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
