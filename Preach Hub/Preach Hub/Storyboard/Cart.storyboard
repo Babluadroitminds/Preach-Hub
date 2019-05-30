@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="mZD-gE-ieb">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="mZD-gE-ieb">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -1534,25 +1534,25 @@ EENob29zZSBzaXplA
                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="96.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="John Henry, South Africa-1216" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UfQ-67-eZ9">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="John Henry, South Africa-1216" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UfQ-67-eZ9">
                                                             <rect key="frame" x="20" y="15" width="242" height="18"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <color key="textColor" red="0.396078431372549" green="0.396078431372549" blue="0.396078431372549" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="House no: 938" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lxu-NO-7Ax">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="House no: 938" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lxu-NO-7Ax">
                                                             <rect key="frame" x="20" y="36" width="242" height="18"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <color key="textColor" red="0.396078431372549" green="0.396078431372549" blue="0.396078431372549" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Road no: 9" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="27P-gD-0gW">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Road no: 9" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="27P-gD-0gW">
                                                             <rect key="frame" x="20" y="57" width="242" height="18"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <color key="textColor" red="0.396078431372549" green="0.396078431372549" blue="0.396078431372549" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZSw-pR-C6E">
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZSw-pR-C6E">
                                                             <rect key="frame" x="270" y="35" width="20" height="20"/>
                                                             <subviews>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GH6-OU-K0d">
@@ -1606,15 +1606,18 @@ EENob29zZSBzaXplA
                                                         <constraint firstItem="Lxu-NO-7Ax" firstAttribute="trailing" secondItem="UfQ-67-eZ9" secondAttribute="trailing" id="Ee2-Xz-d7I"/>
                                                         <constraint firstItem="ZSw-pR-C6E" firstAttribute="centerY" secondItem="Lxu-NO-7Ax" secondAttribute="centerY" id="FQ1-SJ-rBF"/>
                                                         <constraint firstItem="ZSw-pR-C6E" firstAttribute="leading" secondItem="UfQ-67-eZ9" secondAttribute="trailing" constant="8" id="H6N-uL-qkx"/>
+                                                        <constraint firstAttribute="bottom" secondItem="27P-gD-0gW" secondAttribute="bottom" constant="21.5" id="KBD-xC-wan"/>
                                                         <constraint firstItem="UfQ-67-eZ9" firstAttribute="top" secondItem="yji-Jb-5Pi" secondAttribute="top" constant="15" id="Vey-JF-671"/>
                                                         <constraint firstItem="Lxu-NO-7Ax" firstAttribute="leading" secondItem="UfQ-67-eZ9" secondAttribute="leading" id="WWv-Wj-DcE"/>
                                                         <constraint firstItem="UfQ-67-eZ9" firstAttribute="leading" secondItem="yji-Jb-5Pi" secondAttribute="leading" constant="20" id="gY8-Dd-zKP"/>
                                                         <constraint firstItem="27P-gD-0gW" firstAttribute="trailing" secondItem="Lxu-NO-7Ax" secondAttribute="trailing" id="mBj-oU-kUC"/>
                                                         <constraint firstItem="27P-gD-0gW" firstAttribute="top" secondItem="Lxu-NO-7Ax" secondAttribute="bottom" constant="3" id="pge-Zi-7qJ"/>
-                                                        <constraint firstAttribute="bottom" secondItem="27P-gD-0gW" secondAttribute="bottom" constant="21.666666666666671" id="w1T-h6-yx3"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
                                                 <connections>
+                                                    <outlet property="addressLine1" destination="UfQ-67-eZ9" id="wXk-b9-GRw"/>
+                                                    <outlet property="addressLine2" destination="Lxu-NO-7Ax" id="17B-Kk-RFp"/>
+                                                    <outlet property="addressLine3" destination="27P-gD-0gW" id="3LK-Zc-MHZ"/>
                                                     <outlet property="selectedBtn" destination="iKl-7M-4vv" id="cPu-VR-73o"/>
                                                     <outlet property="selectedView" destination="GH6-OU-K0d" id="lHn-vV-MCG"/>
                                                 </connections>
@@ -1666,9 +1669,9 @@ EENob29zZSBzaXplA
         </scene>
     </scenes>
     <resources>
-        <image name="arrow_top" width="37.5" height="37.5"/>
-        <image name="downArrow_black" width="37.5" height="37.5"/>
-        <image name="expand_arrow" width="37.5" height="37.5"/>
+        <image name="arrow_top" width="50" height="50"/>
+        <image name="downArrow_black" width="50" height="50"/>
+        <image name="expand_arrow" width="50" height="50"/>
         <image name="garbage" width="12.5" height="15"/>
         <image name="ic-back" width="38" height="38"/>
         <image name="ic-logo-header" width="76" height="22"/>

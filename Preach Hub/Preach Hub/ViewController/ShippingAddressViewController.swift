@@ -75,6 +75,9 @@ class ShippingAddressViewController: UIViewController, UITableViewDelegate, UITa
                 self.shippingAddressArr.append(shippingAddress(nameShipping: data.value(forKey: "nameShipping") as! String, streetShipping: data.value(forKey: "streetShipping") as! String, streetLine2Shipping: data.value(forKey: "streetLineShipping") as! String, cityShipping: data.value(forKey: "cityShipping") as! String, postalCodeShipping: data.value(forKey: "postalCodeShipping") as! String, stateShipping: data.value(forKey: "stateShipping") as! String, countryShipping: data.value(forKey: "countryShipping") as! String, phoneNumberShipping: data.value(forKey: "phoneNoShipping") as! String))
             }
             
+            print("self.shippingAddressArr : ", self.shippingAddressArr)
+
+            
             self.addressTableView.reloadData()
         }
         catch
