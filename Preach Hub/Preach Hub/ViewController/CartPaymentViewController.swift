@@ -10,6 +10,8 @@ import UIKit
 import NTMonthYearPicker
 import CoreData
 import Toast_Swift
+import SwiftyJSON
+import Stripe
 
 class CartPaymentViewController: UIViewController
 {
@@ -24,6 +26,11 @@ class CartPaymentViewController: UIViewController
 
     private var previousTextFieldContent: String?
     private var previousSelection: UITextRange?
+    
+    var stripeCustomerTokenId: String?
+    var stripeCardToken: String?
+    
+    var style = ToastStyle()
     
     override func viewDidLoad()
     {
@@ -81,16 +88,12 @@ class CartPaymentViewController: UIViewController
     {
         if self.cardNumber.text! == "" || self.expDateTxt.text! == "" || self.cvvTxt.text! == ""
         {
-            let style = ToastStyle()
-            
-            self.view.makeToast("Please enter all card details", duration: 3.0, position: .bottom, style: style)
+            self.view.makeToast("Please enter all card details", duration: 3.0, position: .bottom, style: self.style)
             return
         }
         if self.singleTon.nameBilling == "" && self.tickImage.isHidden == true
         {
-            let style = ToastStyle()
-            
-            self.view.makeToast("Please Add Billing Address", duration: 3.0, position: .bottom, style: style)
+            self.view.makeToast("Please Add Billing Address", duration: 3.0, position: .bottom, style: self.style)
             return
         }
         
@@ -105,8 +108,44 @@ class CartPaymentViewController: UIViewController
             self.singleTon.countryBilling = self.singleTon.countryShipping
             self.singleTon.phoneNumberBilling = self.singleTon.phoneNumberShipping
         }
-        self.saveToCoreData()
+        
+        NotificationsHelper.showBusyIndicator(message: "")
+        
+        let cardNumber = self.cardNumber.text!.replacingOccurrences(of: " ", with: "")
+        let cardParams = STPCardParams()
+        cardParams.number = cardNumber
+        cardParams.expMonth = UInt(self.expDateTxt.text!.prefix(2))!
+        cardParams.expYear = UInt(self.expDateTxt.text!.suffix(4))!
+        cardParams.cvc = cvvTxt.text
+        cardParams.name = self.singleTon.nameBilling
+        cardParams.address.line1 = self.singleTon.streetBilling
+        cardParams.address.line2 = self.singleTon.streetLine2Billing
+        cardParams.address.state = self.singleTon.stateBilling
+        cardParams.address.country = self.singleTon.countryBilling
+        cardParams.address.city = self.singleTon.cityBilling
+        cardParams.address.postalCode = self.singleTon.postalCodeBilling
+        cardParams.address.phone = self.singleTon.phoneNumberBilling
+        
+        STPAPIClient.shared().createToken(withCard: cardParams) { (token: STPToken?, error: Error?) in
+            guard let token = token, error == nil
+                else {
+                    
+                    self.view.makeToast(error?.localizedDescription, duration: 3.0, position: .bottom, style: self.style)
+                    NotificationsHelper.hideBusyIndicator()
+                    return
+            }
+            print(token.stripeID)
+            self.stripeCardToken = token.stripeID
+            
+            self.saveToCoreData()
+            
+            self.view.makeToast("Payment successfull!", duration: 3.0, position: .bottom, title: nil, image: nil, style: self.style , completion: { (true) in
+                
+                self.navigateToHomeScreenPage()
+            })
+        }
     }
+
     func saveToCoreData()
     {
         let appDelegate = UIApplication.shared.delegate as? AppDelegate

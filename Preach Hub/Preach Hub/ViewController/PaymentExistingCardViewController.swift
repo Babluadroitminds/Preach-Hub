@@ -9,6 +9,9 @@
 import UIKit
 import NTMonthYearPicker
 import CoreData
+import Stripe
+import Toast_Swift
+import SwiftyJSON
 
 struct cardDetailsVal
 {
@@ -51,6 +54,11 @@ class PaymentExistingCardViewController: UIViewController, UICollectionViewDataS
     var currentIndex = 0
     
     var cvvArr = [String]()
+    
+    var stripeCustomerTokenId: String?
+    var stripeCardToken: String?
+    
+    var style = ToastStyle()
     
     override func viewDidLoad()
     {
@@ -258,6 +266,48 @@ class PaymentExistingCardViewController: UIViewController, UICollectionViewDataS
         {
             return false
         }        
+    }
+    @IBAction func payNowTapped(_ sender: Any)
+    {
+        if self.cvvArr[self.currentIndex] == ""
+        {
+            self.view.makeToast("Please enter all card details", duration: 3.0, position: .bottom, style: self.style)
+            return
+        }
+        NotificationsHelper.showBusyIndicator(message: "")
+        
+        let cardNumber = self.cardDetailsArr[self.currentIndex].cardNumber.replacingOccurrences(of: " ", with: "")
+        let cardParams = STPCardParams()
+        cardParams.number = cardNumber
+        cardParams.expMonth = UInt(self.cardDetailsArr[self.currentIndex].expDate.prefix(2))!
+        cardParams.expYear = UInt(self.cardDetailsArr[self.currentIndex].expDate.suffix(4))!
+        cardParams.cvc = self.cvvArr[self.currentIndex]
+        cardParams.name = self.cardDetailsArr[self.currentIndex].nameBilling
+        cardParams.address.line1 = self.cardDetailsArr[self.currentIndex].streetBilling
+        cardParams.address.line2 = self.cardDetailsArr[self.currentIndex].streetLine2Billing
+        cardParams.address.state = self.cardDetailsArr[self.currentIndex].stateBilling
+        cardParams.address.country = self.cardDetailsArr[self.currentIndex].countryBilling
+        cardParams.address.city = self.cardDetailsArr[self.currentIndex].cityBilling
+        cardParams.address.postalCode = self.cardDetailsArr[self.currentIndex].postalCodeBilling
+        cardParams.address.phone = self.cardDetailsArr[self.currentIndex].phoneNumberBilling
+        
+        STPAPIClient.shared().createToken(withCard: cardParams) { (token: STPToken?, error: Error?) in
+            guard let token = token, error == nil
+                else {
+                    
+                    self.view.makeToast(error?.localizedDescription, duration: 3.0, position: .bottom, style: self.style)
+                    NotificationsHelper.hideBusyIndicator()
+                    return
+            }
+            print(token.stripeID)
+            
+            self.stripeCardToken = token.stripeID
+            
+            self.view.makeToast("Payment successfull!", duration: 3.0, position: .bottom, title: nil, image: nil, style: self.style , completion: { (true) in
+                
+                self.navigateToHomeScreenPage()
+            })
+        }
     }
 }
 
