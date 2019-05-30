@@ -35,19 +35,24 @@ class ProductViewController: UIViewController, UICollectionViewDelegate, UIColle
     @IBOutlet weak var categoryText: UITextField!
     @IBOutlet weak var productCollectionView: UICollectionView!
     
+    @IBOutlet weak var lblMessage: UILabel!
     @IBOutlet weak var lblCartBadgeCount: UILabel!
     var categoryPicker = UIPickerView()
     var pricePicker = UIPickerView()
     var categoryList: [DataKey] = []
-    var priceArray: [String] = []
+    var priceArray: [String] = ["Sort Low", "Sort High"]
     var categoryId: String?
     var productList: [ProductKey] = []
+    var categoryTitle: String?
+    
     
     override func viewDidLoad(){
         super.viewDidLoad()
         getCategory()
         getProduct()
         setPickerLayout()
+        categoryText.text = categoryTitle
+        lblMessage.isHidden = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -64,13 +69,22 @@ class ProductViewController: UIViewController, UICollectionViewDelegate, UIColle
         
         let toolbar = UIToolbar();
         toolbar.sizeToFit()
-        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(donePickerClicked))
-        toolbar.setItems([doneButton], animated: false)
+        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(doneClicked))
+        let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
+        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(self.didTapCancel))
+        toolbar.setItems([cancelButton,spaceButton,doneButton], animated: false)
+        
+        let toolbar2 = UIToolbar();
+        toolbar2.sizeToFit()
+        let doneButton2 = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(priceRangedoneClicked))
+        let spaceButton2 = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
+        let cancelButton2 = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(self.didTapPriceRangeCancel))
+        toolbar2.setItems([cancelButton2,spaceButton2,doneButton2], animated: false)
         
         categoryText.inputAccessoryView = toolbar
         categoryPicker.delegate = self
         categoryPicker.dataSource = self
-        priceText.inputAccessoryView = toolbar
+        priceText.inputAccessoryView = toolbar2
         pricePicker.delegate = self
         pricePicker.dataSource = self
     }
@@ -98,20 +112,47 @@ class ProductViewController: UIViewController, UICollectionViewDelegate, UIColle
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        if pickerView == categoryPicker {
-            categoryText.text = categoryList[row].title
-            categoryId =  categoryList[row].id
+//        if pickerView == categoryPicker {
+//            categoryText.text = categoryList[row].title
+//            categoryId =  categoryList[row].id
+//
+//        }
+//        else {
+//            priceText.text = priceArray[row]
+//        }
+    }
+    
+    @objc func doneClicked(){
+        let row = self.categoryPicker.selectedRow(inComponent: 0)
+        self.categoryPicker.selectRow(row, inComponent: 0, animated: false)
+        self.categoryText.text = self.categoryList[row].title
+        categoryText.text = categoryList[row].title
+        categoryId =  categoryList[row].id
+        self.categoryText.resignFirstResponder()
+        if categoryId != nil {
             getProduct()
         }
-        else {
-            priceText.text = priceArray[row]
-        }
     }
     
-    @objc func donePickerClicked(){
-        self.view.endEditing(true)
+    @objc func didTapCancel() {
+        self.categoryText.text = nil
+        categoryText.text = nil
+        categoryId =  nil
+        self.categoryText.resignFirstResponder()
     }
     
+    @objc func priceRangedoneClicked(){
+        let row = self.pricePicker.selectedRow(inComponent: 0)
+        self.pricePicker.selectRow(row, inComponent: 0, animated: false)
+        self.priceText.text = self.priceArray[row]
+        self.priceText.resignFirstResponder()
+    }
+    
+    @objc func didTapPriceRangeCancel() {
+        self.priceText.text = nil
+        priceText.text = nil
+        self.priceText.resignFirstResponder()
+    }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int{
         return 1
@@ -188,6 +229,15 @@ class ProductViewController: UIViewController, UICollectionViewDelegate, UIColle
                             self.productList.append(ProductKey(id: item["id"] != JSON.null ? item["id"].string! : "",name:  item["name"] != JSON.null ? item["name"].string! : "",price: item["price"] != JSON.null ? item["price"].string! : "",categoryid: item["categoryid"] != JSON.null ?item["categoryid"].string! : "",thumb: item["img_thumb"] != JSON.null ? item["img_thumb"].string! : "",productcode: item["productcode"] != JSON.null ? item["productcode"].string! : "", productsize: item["productsize"] != JSON.null ? item["productsize"].string! : "", quantity: item["quantity"] != JSON.null ? item["quantity"].string! : "", colourid: item["colourid"] != JSON.null ? item["colourid"].string! : "",isActive: item["is_active"] != JSON.null ? item["is_active"].bool! : true))
                         }
                         self.productCollectionView.reloadData()
+                        if response["data"].count == 0 {
+                            self.lblMessage.isHidden = false
+                        }
+                        else{
+                            self.lblMessage.isHidden = true
+                        }
+                    }
+                    else{
+                        self.lblMessage.isHidden = false
                     }
                 }
             }

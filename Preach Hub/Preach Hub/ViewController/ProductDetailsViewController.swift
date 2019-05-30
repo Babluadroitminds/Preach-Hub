@@ -29,6 +29,7 @@ class ProductDetailsViewController: UIViewController, UICollectionViewDelegate, 
     @IBOutlet weak var lblProductName: UILabel!
     @IBOutlet weak var productImagesCollectionView: UICollectionView!
     @IBOutlet weak var lblCartBadgeCount: UILabel!
+    @IBOutlet weak var lblMessage: UILabel!
     var selectedRow = 0
     
     var sizePicker = UIPickerView()
@@ -45,11 +46,9 @@ class ProductDetailsViewController: UIViewController, UICollectionViewDelegate, 
     
     override func viewDidLoad(){
         super.viewDidLoad()
-        
-        self.sizeTxt.inputView = sizePicker
-        self.colorTxt.inputView = colorPicker
         setPickerLayout()
         getProductById()
+        lblMessage.isHidden = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -64,18 +63,29 @@ class ProductDetailsViewController: UIViewController, UICollectionViewDelegate, 
         self.sizeTxt.inputView = sizePicker
         self.colorTxt.inputView = colorPicker
         
-        let toolbar = UIToolbar();
-        toolbar.sizeToFit()
-        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(donePickerClicked))
-        toolbar.setItems([doneButton], animated: false)
+        let toolbar1 = UIToolbar();
+        toolbar1.sizeToFit()
+        let doneButton1 = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(sizeDoneClicked))
+        let spaceButton1 = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
+        let cancelButton1 = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(self.sizeDidTapCancel))
+        toolbar1.setItems([cancelButton1,spaceButton1,doneButton1], animated: false)
         
-        sizeTxt.inputAccessoryView = toolbar
+        let toolbar2 = UIToolbar();
+        toolbar2.sizeToFit()
+        let doneButton2 = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(colorDoneClicked))
+        let spaceButton2 = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
+        let cancelButton2 = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(self.colorDidTapCancel))
+        toolbar2.setItems([cancelButton2,spaceButton2,doneButton2], animated: false)
+        
+        sizeTxt.inputAccessoryView = toolbar1
         sizePicker.delegate = self
         sizePicker.dataSource = self
-        colorTxt.inputAccessoryView = toolbar
+        
+        colorTxt.inputAccessoryView = toolbar2
         colorPicker.delegate = self
         colorPicker.dataSource = self
     }
+
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -100,18 +110,44 @@ class ProductDetailsViewController: UIViewController, UICollectionViewDelegate, 
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        if pickerView == sizePicker {
-            sizeTxt.text = productSize[row].name
-            selectedSize = productSize[row].name
-        }
-        else {
-            colorTxt.text = productColor[row].name
-            selectedColor = productColor[row].name
-        }
+//        if pickerView == sizePicker {
+//            sizeTxt.text = productSize[row].name
+//            selectedSize = productSize[row].name
+//        }
+//        else {
+//            colorTxt.text = productColor[row].name
+//            selectedColor = productColor[row].name
+//        }
     }
     
-    @objc func donePickerClicked(){
-        self.view.endEditing(true)
+    @objc func colorDoneClicked(){
+        let row = self.colorPicker.selectedRow(inComponent: 0)
+        self.colorPicker.selectRow(row, inComponent: 0, animated: false)
+        self.colorTxt.text = self.productColor[row].name
+        selectedColor = productColor[row].name
+        self.colorTxt.resignFirstResponder()
+    }
+    
+    @objc func colorDidTapCancel() {
+        self.colorTxt.text = nil
+        colorTxt.text = nil
+        selectedColor =  nil
+        self.colorTxt.resignFirstResponder()
+    }
+    
+    @objc func sizeDoneClicked(){
+        let row = self.sizePicker.selectedRow(inComponent: 0)
+        self.sizePicker.selectRow(row, inComponent: 0, animated: false)
+        self.sizeTxt.text = self.productSize[row].name
+        selectedSize = productSize[row].name
+        self.sizeTxt.resignFirstResponder()
+    }
+    
+    @objc func sizeDidTapCancel() {
+        self.sizeTxt.text = nil
+        sizeTxt.text = nil
+        selectedSize =  nil
+        self.sizeTxt.resignFirstResponder()
     }
     
     
@@ -141,6 +177,21 @@ class ProductDetailsViewController: UIViewController, UICollectionViewDelegate, 
                         
                         self.sizePicker.reloadAllComponents()
                         self.colorPicker.reloadAllComponents()
+                        self.lblMessage.isHidden = true
+                        
+                        if self.productColor.count != 0 {
+                            self.colorTxt.text = self.productColor[0].name
+                            self.selectedColor = self.productColor[0].name
+                        }
+                        
+                        if self.productSize.count != 0 {
+                            self.sizeTxt.text = self.productSize[0].name
+                            self.selectedSize = self.productSize[0].name
+                        }
+                       
+                    }
+                    else{
+                        self.lblMessage.isHidden = false
                     }
                 }
             }
@@ -210,10 +261,6 @@ class ProductDetailsViewController: UIViewController, UICollectionViewDelegate, 
     }
     
     @IBAction func addToCartClicked(_ sender: Any) {
-        if selectedColor == nil || selectedSize == nil {
-          self.view.makeToast("Please select size & color.", duration: 3.0, position: .bottom)
-          return
-        }
         var isAlreadyAdded: Bool = false
         
         let cartInfo = UserDefaults.standard.object(forKey: "CartDetails") as? NSData
@@ -230,7 +277,7 @@ class ProductDetailsViewController: UIViewController, UICollectionViewDelegate, 
         }
         
         if isAlreadyAdded == false{
-            cartList.append(["id": productDict["id"] != JSON.null ? (productDict["id"]?.string)! : "","name": productDict["name"] != JSON.null ? (productDict["name"]?.string)! : "","img_thumb": productDict["img_thumb"] != JSON.null ? (productDict["img_thumb"]?.string!)! : "", "price": (productDict["price"]?.string)!, "quantity": valInt.description, "color": selectedColor!, "size": selectedSize!])
+            cartList.append(["id": productDict["id"] != JSON.null ? (productDict["id"]?.string)! : "","name": productDict["name"] != JSON.null ? (productDict["name"]?.string)! : "","img_thumb": productDict["img_thumb"] != JSON.null ? (productDict["img_thumb"]?.string!)! : "", "price": (productDict["price"]?.string)!, "quantity": valInt.description, "color": selectedColor != nil ? selectedColor!: "", "size": selectedSize != nil ? selectedSize! : ""])
         }
         
         let productData = NSKeyedArchiver.archivedData(withRootObject: cartList)
