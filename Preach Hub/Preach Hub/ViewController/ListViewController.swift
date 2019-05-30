@@ -72,6 +72,7 @@ class ListViewController: UIViewController,UICollectionViewDataSource , UICollec
     func navigateToProductPage(index: Int){
         let ProductVC = ProductViewController.storyboardInstance()
         ProductVC!.categoryId = dataList[index].id
+        ProductVC!.categoryTitle = dataList[index].title
         self.navigationController?.pushViewController(ProductVC!, animated: true)
     }
     

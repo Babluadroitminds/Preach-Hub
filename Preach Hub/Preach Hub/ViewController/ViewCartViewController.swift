@@ -110,11 +110,10 @@ class ViewCartViewController: UIViewController, UITableViewDelegate, UITableView
         BillingDetailsHeightConstraint.constant = 200
         lblMessage.isHidden = true
         var cartList = self.cartList
-        let shippingAmount: Int = 0
-        var sum: Int = 0
+        let shippingAmount: Float = 0
+        var sum: Float = 0
         for item in cartList {
-           // let productData =  item["productData"] as! [String: JSON]
-            sum = (sum + (Int((item["quantity"]!))! * Int((item["price"])!)!))
+            sum = (sum + (Float((item["quantity"]!))! * Float((item["price"])!)!))
         }
 
         lblSubtotal.text = "$" + sum.description
