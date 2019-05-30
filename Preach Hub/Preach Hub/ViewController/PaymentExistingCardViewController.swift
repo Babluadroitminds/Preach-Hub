@@ -49,7 +49,8 @@ class PaymentExistingCardViewController: UIViewController, UICollectionViewDataS
     var cardDetailsArr = [cardDetailsVal]()
     
     var currentIndex = 0
-    var scrollFlag = -1
+    
+    var cvvArr = [String]()
     
     override func viewDidLoad()
     {
@@ -59,6 +60,23 @@ class PaymentExistingCardViewController: UIViewController, UICollectionViewDataS
         viewDot.layer.borderWidth = 2.0
         viewDot.layer.cornerRadius = 10.0
         viewDot.addViewDashedBorder(view: viewDot)
+        
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(didSwipeRight(gestureRecognizer:)))
+        swipeRight.delegate = self
+        swipeRight.numberOfTouchesRequired = 1
+        swipeRight.direction = .right
+        
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(didSwipeLeft(gestureRecognizer:)))
+        swipeLeft.delegate = self
+        swipeLeft.numberOfTouchesRequired = 1
+        swipeLeft.direction = .left
+        
+        self.collectionView.addGestureRecognizer(swipeRight)
+        self.collectionView.addGestureRecognizer(swipeLeft)
+    }
+    func textFieldDidEndEditing(_ textField: UITextField)
+    {
+        self.cvvArr[self.currentIndex] = textField.text!
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
@@ -72,13 +90,13 @@ class PaymentExistingCardViewController: UIViewController, UICollectionViewDataS
     {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "existingCardCell", for: indexPath) as? PaymentExistingCardCollectionViewCell
         
+        cell?.cvvTxt.delegate = self
+        
         cell?.leftView.isHidden = false
         cell?.rightView.isHidden = false
+ 
+        cell?.cvvTxt.text = self.cvvArr[self.currentIndex]
         
-        if indexPath.row != self.currentIndex && self.scrollFlag == 2
-        {
-            self.currentIndex = indexPath.row
-        }
         if self.cardDetailsArr.count == 0
         {
             cell?.leftView.isHidden = true
@@ -126,9 +144,38 @@ class PaymentExistingCardViewController: UIViewController, UICollectionViewDataS
     {
         self.fetchCoreData()
     }
+    @objc func didSwipeRight(gestureRecognizer : UISwipeGestureRecognizer)
+    {
+        print("self.currentIndexweewweweee :", self.currentIndex)
+
+        if self.currentIndex != 0
+        {
+            self.currentIndex = self.currentIndex  - 1
+            
+            let indexPath = IndexPath(row: self.currentIndex, section: 0)
+            self.collectionView.scrollToItem(at: indexPath, at: .bottom, animated: true)
+            
+            self.collectionView.reloadData()
+        }
+    }
+    @objc func didSwipeLeft(gestureRecognizer : UISwipeGestureRecognizer)
+    {
+        print("self.currentIndex :", self.currentIndex)
+        
+        if self.currentIndex + 1 != self.cardDetailsArr.count
+        {
+            self.currentIndex = self.currentIndex + 1
+            
+            let indexPath = IndexPath(row: self.currentIndex, section: 0)
+            self.collectionView.scrollToItem(at: indexPath, at: .bottom, animated: true)
+            
+            self.collectionView.reloadData()
+        }
+    }
     func fetchCoreData()
     {
         self.cardDetailsArr.removeAll()
+        self.cvvArr.removeAll()
         
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
         let managedContext = appDelegate?.persistentContainer.viewContext
@@ -141,6 +188,8 @@ class PaymentExistingCardViewController: UIViewController, UICollectionViewDataS
             for data in result as! [NSManagedObject]
             {
                 self.cardDetailsArr.append(cardDetailsVal(cardNumber: data.value(forKey: "cardNumber") as! String, expDate: data.value(forKey: "expDate") as! String, nameShipping: data.value(forKey: "nameShipping") as! String, streetShipping: data.value(forKey: "streetShipping") as! String, streetLine2Shipping: data.value(forKey: "streetLineShipping") as! String, cityShipping: data.value(forKey: "cityShipping") as! String, postalCodeShipping: data.value(forKey: "postalCodeShipping") as! String, stateShipping: data.value(forKey: "stateShipping") as! String, countryShipping: data.value(forKey: "countryShipping") as! String, phoneNumberShipping: data.value(forKey: "phoneNoShipping") as! String, nameBilling: data.value(forKey: "nameBilling") as! String, streetBilling: data.value(forKey: "streetBilling") as! String, streetLine2Billing: data.value(forKey: "streetLineBilling") as! String, cityBilling: data.value(forKey: "cityBilling") as! String, postalCodeBilling: data.value(forKey: "postalCodeBilling") as! String, stateBilling: data.value(forKey: "stateBilling") as! String, countryBilling: data.value(forKey: "countryBilling") as! String, phoneNumberBilling: data.value(forKey: "phoneNoBilling") as! String))
+                
+                self.cvvArr.append("")
             }
             
             print("self.cardDetailsArr : ", self.cardDetailsArr)
@@ -165,47 +214,31 @@ class PaymentExistingCardViewController: UIViewController, UICollectionViewDataS
     }
     @IBAction func leftTapped(_ sender: Any)
     {
-        self.scrollFlag = -1
-        
         if self.currentIndex != 0
         {
             self.currentIndex = self.currentIndex  - 1
             
             let indexPath = IndexPath(row: self.currentIndex, section: 0)
-            self.collectionView.scrollToItem(at: indexPath, at: .top, animated: true)
+            self.collectionView.scrollToItem(at: indexPath, at: .left, animated: true)
             
             self.collectionView.reloadData()
         }
     }
     @IBAction func rightTapped(_ sender: Any)
     {
-        print("self.currentInde222222x : ", self.currentIndex)
-        
-        self.scrollFlag = -1
-        
         if self.currentIndex != self.cardDetailsArr.count
         {
             self.currentIndex = self.currentIndex + 1
             
             let indexPath = IndexPath(row: self.currentIndex, section: 0)
-            self.collectionView.scrollToItem(at: indexPath, at: .top, animated: true)
+            self.collectionView.scrollToItem(at: indexPath, at: .right, animated: true)
             
             self.collectionView.reloadData()
         }
     }
-    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool)
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool
     {
-//        let visibleRect = CGRect(origin: collectionView.contentOffset, size: collectionView.bounds.size)
-//        let visiblePoint = CGPoint(x: visibleRect.midX, y: visibleRect.midY)
-//        let visibleIndexPath = collectionView.indexPathForItem(at: visiblePoint)
-//
-//        self.currentIndex = visibleIndexPath!.row
-//
-//        print("self.currentIndex : ", self.currentIndex)
-//        print("visibleIndexPath : ", visibleIndexPath)
-        
-        self.scrollFlag = 2
-        
-        self.collectionView.reloadData()
+        return true
     }
 }
+
