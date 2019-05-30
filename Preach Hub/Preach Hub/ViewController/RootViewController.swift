@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 struct MenuOption {
     var Name: String;
@@ -81,6 +82,8 @@ class RootViewController: UIViewController, UITabBarDelegate , UITableViewDataSo
         let alert = UIAlertController(title: "Logout", message: "Are you sure you want to logout?", preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "YES", style: UIAlertAction.Style.default, handler: {(action:UIAlertAction!) in
             
+            self.deleteCoreData()
+            
             UserDefaults.standard.set(false, forKey: "Is_Logged_In")
             DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
                 self.navigateToLogin()
@@ -89,5 +92,45 @@ class RootViewController: UIViewController, UITabBarDelegate , UITableViewDataSo
         }))
         alert.addAction(UIAlertAction(title: "NO", style: UIAlertAction.Style.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
+    }
+    func deleteCoreData()
+    {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "CardDetails")
+        fetchRequest.returnsObjectsAsFaults = false
+        
+        do
+        {
+            let results = try managedContext.fetch(fetchRequest)
+            for managedObject in results
+            {
+                let managedObjectData:NSManagedObject = managedObject as! NSManagedObject
+                managedContext.delete(managedObjectData)
+            }
+        } catch let error as NSError {
+            print("Detele all data error : \(error) \(error.userInfo)")
+        }
+        
+        self.deleteShippingAddress()
+    }
+    func deleteShippingAddress()
+    {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "ShippingAddress")
+        fetchRequest.returnsObjectsAsFaults = false
+        
+        do
+        {
+            let results = try managedContext.fetch(fetchRequest)
+            for managedObject in results
+            {
+                let managedObjectData:NSManagedObject = managedObject as! NSManagedObject
+                managedContext.delete(managedObjectData)
+            }
+        } catch let error as NSError {
+            print("Detele all data error : \(error) \(error.userInfo)")
+        }
     }
 }

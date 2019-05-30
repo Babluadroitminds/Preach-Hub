@@ -20,7 +20,18 @@
         <attribute name="streetLineShipping" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="streetShipping" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
+    <entity name="ShippingAddress" representedClassName="ShippingAddress" syncable="YES" codeGenerationType="class">
+        <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="country" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="phoneNumber" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="postalCode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="state" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="street" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="streetLine" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <elements>
         <element name="CardDetails" positionX="-54" positionY="-9" width="128" height="315"/>
+        <element name="ShippingAddress" positionX="-54" positionY="126" width="128" height="165"/>
     </elements>
 </model>

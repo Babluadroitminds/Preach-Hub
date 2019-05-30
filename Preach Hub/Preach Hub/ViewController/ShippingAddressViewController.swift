@@ -64,7 +64,7 @@ class ShippingAddressViewController: UIViewController, UITableViewDelegate, UITa
         
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
         let managedContext = appDelegate?.persistentContainer.viewContext
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "CardDetails")
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "ShippingAddress")
         
         do
         {
@@ -72,7 +72,7 @@ class ShippingAddressViewController: UIViewController, UITableViewDelegate, UITa
             
             for data in result as! [NSManagedObject]
             {
-                self.shippingAddressArr.append(shippingAddress(nameShipping: data.value(forKey: "nameShipping") as! String, streetShipping: data.value(forKey: "streetShipping") as! String, streetLine2Shipping: data.value(forKey: "streetLineShipping") as! String, cityShipping: data.value(forKey: "cityShipping") as! String, postalCodeShipping: data.value(forKey: "postalCodeShipping") as! String, stateShipping: data.value(forKey: "stateShipping") as! String, countryShipping: data.value(forKey: "countryShipping") as! String, phoneNumberShipping: data.value(forKey: "phoneNoShipping") as! String))
+                self.shippingAddressArr.append(shippingAddress(nameShipping: data.value(forKey: "name") as! String, streetShipping: data.value(forKey: "street") as! String, streetLine2Shipping: data.value(forKey: "streetLine") as! String, cityShipping: data.value(forKey: "city") as! String, postalCodeShipping: data.value(forKey: "postalCode") as! String, stateShipping: data.value(forKey: "state") as! String, countryShipping: data.value(forKey: "country") as! String, phoneNumberShipping: data.value(forKey: "phoneNumber") as! String))
             }
             
             print("self.shippingAddressArr : ", self.shippingAddressArr)

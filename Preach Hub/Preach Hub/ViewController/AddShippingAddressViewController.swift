@@ -8,6 +8,7 @@
 
 import UIKit
 import Toast_Swift
+import CoreData
 
 class AddShippingAddressViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate
 {
@@ -27,6 +28,8 @@ class AddShippingAddressViewController: UIViewController, UIPickerViewDataSource
     
     let countryPickerView =  UIPickerView()
     let statePickerView =  UIPickerView()
+    
+    var alreadyAdded = -1
     
     override func viewDidLoad()
     {
@@ -49,17 +52,13 @@ class AddShippingAddressViewController: UIViewController, UIPickerViewDataSource
         stateTxt.inputView = statePickerView
         stateTxt.inputAccessoryView = toolbar
         statePickerView.delegate = self
-        
-        if self.singleTon.nameShipping != ""
+    }
+    
+    override func viewWillAppear(_ animated: Bool)
+    {
+        if self.txtFldName.text != ""
         {
-            self.txtFldName.text = self.singleTon.nameShipping
-            self.txtFldStreet.text = self.singleTon.streetShipping
-            self.streetLine2Txt.text = self.singleTon.streetLine2Shipping
-            self.txtFldCity.text = self.singleTon.cityShipping
-            self.txtFldPostalCode.text = self.singleTon.postalCodeShipping
-            self.stateTxt.text = self.singleTon.stateShipping
-            self.countryTxt.text = self.singleTon.countryShipping
-            self.txtFldPhoneNumber.text = self.singleTon.phoneNumberShipping
+            self.alreadyAdded = 2
         }
     }
     func textFieldDidBeginEditing(_ textField: UITextField)
@@ -124,6 +123,15 @@ class AddShippingAddressViewController: UIViewController, UIPickerViewDataSource
     
     @IBAction func backTapped(_ sender: Any)
     {
+        self.singleTon.nameShipping = ""
+        self.singleTon.streetShipping = ""
+        self.singleTon.streetLine2Shipping = ""
+        self.singleTon.cityShipping = ""
+        self.singleTon.postalCodeShipping = ""
+        self.singleTon.stateShipping = ""
+        self.singleTon.countryShipping = ""
+        self.singleTon.phoneNumberShipping = ""
+        
         self.navigationController?.popViewController(animated: true)
     }
     
@@ -141,6 +149,7 @@ class AddShippingAddressViewController: UIViewController, UIPickerViewDataSource
             self.view.makeToast("Please enter valid phone number.", duration: 3.0, position: .bottom, style: style)
             return
         }
+        
         self.singleTon.nameShipping = self.txtFldName.text!
         self.singleTon.streetShipping = self.txtFldStreet.text!
         self.singleTon.streetLine2Shipping = self.streetLine2Txt.text!
@@ -150,7 +159,37 @@ class AddShippingAddressViewController: UIViewController, UIPickerViewDataSource
         self.singleTon.countryShipping = self.countryTxt.text!
         self.singleTon.phoneNumberShipping = self.txtFldPhoneNumber.text!
         
+        if self.alreadyAdded == -1
+        {
+            self.saveShippingAddress()
+        }
         navigateToExistingCardPage()
-    }    
+    }
+    func saveShippingAddress()
+    {
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        let managedContext = appDelegate?.persistentContainer.viewContext
+        let entity = NSEntityDescription.entity(forEntityName: "ShippingAddress", in: managedContext!)!
+        
+        let user = NSManagedObject(entity: entity, insertInto: managedContext!)
+        
+        user.setValue(self.txtFldName.text!, forKey: "name")
+        user.setValue(self.txtFldStreet.text!, forKey: "street")
+        user.setValue(self.streetLine2Txt.text!, forKey: "streetLine")
+        user.setValue(self.txtFldCity.text!, forKey: "city")
+        user.setValue(self.txtFldPostalCode.text!, forKey: "postalCode")
+        user.setValue(self.stateTxt.text!, forKey: "state")
+        user.setValue(self.countryTxt.text!, forKey: "country")
+        user.setValue(self.txtFldPhoneNumber.text!, forKey: "phoneNumber")
+        
+        do
+        {
+            try managedContext?.save()
+        }
+        catch let error as NSError
+        {
+            print("errorCoreData : ", error.userInfo)
+        }
+    }
 }
 

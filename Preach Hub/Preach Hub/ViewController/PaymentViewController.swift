@@ -365,8 +365,36 @@ class PaymentViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         {
             print("errorCoreData : ", error.userInfo)
         }
+        
+        self.saveShippingAddress()
     }
-   
+    func saveShippingAddress()
+    {
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        let managedContext = appDelegate?.persistentContainer.viewContext
+        let entity = NSEntityDescription.entity(forEntityName: "ShippingAddress", in: managedContext!)!
+        
+        let user = NSManagedObject(entity: entity, insertInto: managedContext!)
+ 
+        user.setValue(self.txtCardName.text!, forKey: "name")
+        user.setValue(self.txtStreet.text!, forKey: "street")
+        user.setValue(self.txtStreet2.text!, forKey: "streetLine")
+        user.setValue(self.txtCity.text!, forKey: "city")
+        user.setValue(self.txtPostal.text!, forKey: "postalCode")
+        user.setValue(self.txtState.text!, forKey: "state")
+        user.setValue(self.txtCountry.text!, forKey: "country")
+        user.setValue(self.phoneNumberTxt.text!, forKey: "phoneNumber")
+        
+        do
+        {
+            try managedContext?.save()
+        }
+        catch let error as NSError
+        {
+            print("errorCoreData : ", error.userInfo)
+        }
+    }
+    
     @IBAction func backClicked(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }

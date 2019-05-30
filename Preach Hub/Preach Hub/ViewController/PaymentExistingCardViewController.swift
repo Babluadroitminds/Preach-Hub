@@ -76,21 +76,29 @@ class PaymentExistingCardViewController: UIViewController
             {
                 self.cardDetailsArr.append(cardDetailsVal(cardNumber: data.value(forKey: "cardNumber") as! String, expDate: data.value(forKey: "expDate") as! String, nameShipping: data.value(forKey: "nameShipping") as! String, streetShipping: data.value(forKey: "streetShipping") as! String, streetLine2Shipping: data.value(forKey: "streetLineShipping") as! String, cityShipping: data.value(forKey: "cityShipping") as! String, postalCodeShipping: data.value(forKey: "postalCodeShipping") as! String, stateShipping: data.value(forKey: "stateShipping") as! String, countryShipping: data.value(forKey: "countryShipping") as! String, phoneNumberShipping: data.value(forKey: "phoneNoShipping") as! String, nameBilling: data.value(forKey: "nameBilling") as! String, streetBilling: data.value(forKey: "streetBilling") as! String, streetLine2Billing: data.value(forKey: "streetLineBilling") as! String, cityBilling: data.value(forKey: "cityBilling") as! String, postalCodeBilling: data.value(forKey: "postalCodeBilling") as! String, stateBilling: data.value(forKey: "stateBilling") as! String, countryBilling: data.value(forKey: "countryBilling") as! String, phoneNumberBilling: data.value(forKey: "phoneNoBilling") as! String))
             }
-            self.cardNumber.text = self.cardDetailsArr[self.currentIndex].cardNumber
-            self.expDateTxt.text = self.cardDetailsArr[self.currentIndex].expDate
             
-            if self.cardDetailsArr.count == 1
+            if self.cardDetailsArr.count != 0
             {
-                self.leftView.isHidden = true
-                self.rightView.isHidden = true
+                self.cardNumber.text = self.cardDetailsArr[self.currentIndex].cardNumber
+                self.expDateTxt.text = self.cardDetailsArr[self.currentIndex].expDate
+                
+                if self.cardDetailsArr.count == 1
+                {
+                    self.leftView.isHidden = true
+                    self.rightView.isHidden = true
+                }
+                else
+                {
+                    self.leftView.isHidden = true
+                    self.rightView.isHidden = false
+                }
             }
             else
             {
                 self.leftView.isHidden = true
-                self.rightView.isHidden = false
+                self.rightView.isHidden = true
             }
             print("count : ", self.cardDetailsArr.count)
-
         }
         catch
         {
