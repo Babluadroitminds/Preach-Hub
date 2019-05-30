@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14490.99" systemVersion="18F132" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="CardDetails" representedClassName=".CardDetails" syncable="YES" codeGenerationType="class">
+        <attribute name="cardNumber" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cityBilling" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cityShipping" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="countryBilling" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="countryShipping" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="expDate" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="nameBilling" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="nameShipping" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="phoneNoBilling" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="phoneNoShipping" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="postalCodeBilling" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="postalCodeShipping" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="stateBilling" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="stateShipping" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="streetBilling" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="streetLineBilling" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="streetLineShipping" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="streetShipping" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="CardDetails" positionX="-54" positionY="-9" width="128" height="315"/>
+    </elements>
+</model>

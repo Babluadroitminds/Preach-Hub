@@ -10,9 +10,11 @@ import UIKit
 import SwiftyJSON
 import Stripe
 import Toast_Swift
+import CoreData
 
-class PaymentViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
-    
+class PaymentViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate
+{
+    @IBOutlet weak var phoneNumberTxt: UITextField!
     @IBOutlet weak var txtState: UITextField!
     @IBOutlet weak var txtCountry: UITextField!
     @IBOutlet weak var txtPostal: UITextField!
@@ -25,14 +27,19 @@ class PaymentViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     @IBOutlet weak var txtExpires: UITextField!
     @IBOutlet weak var txtCVC: UITextField!
     @IBOutlet weak var txtCardNumber: UITextField!
+    
     private var previousTextFieldContent: String?
     private var previousSelection: UITextRange?
+    
     var stripeCustomerTokenId: String?
     var stripeCardToken: String?
+    
     var style = ToastStyle()
     var amount: Int?
+    
     var countryArray: [String] = []
     var stateArray: [String] = []
+    
     let countryPickerView =  UIPickerView()
     let statePickerView =  UIPickerView()
     
@@ -257,11 +264,15 @@ class PaymentViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     @IBAction func payNowClicked(_ sender: Any) {
         self.view.endEditing(true)
         NotificationsHelper.showBusyIndicator(message: "")
-        if txtCardNumber.text?.count == 0 || txtCVC.text?.count == 0 || txtCardName.text?.count == 0 || txtExpires.text?.count == 0 || txtCardName.text?.count == 0 || txtStreet.text?.count == 0 || txtStreet2.text?.count == 0 || txtState.text?.count == 0 || txtCountry.text?.count == 0 || txtCity.text?.count == 0 || txtPostal.text?.count == 0 {
+        if txtCardNumber.text?.count == 0 || txtCVC.text?.count == 0 || txtCardName.text?.count == 0 || txtExpires.text?.count == 0 || txtCardName.text?.count == 0 || txtStreet.text?.count == 0 || txtStreet2.text?.count == 0 || txtState.text?.count == 0 || txtCountry.text?.count == 0 || txtCity.text?.count == 0 || txtPostal.text?.count == 0 || phoneNumberTxt.text?.count == 0 {
             self.view.makeToast("Please enter all card details.", duration: 3.0, position: .bottom)
             return
         }
-
+        if(!isValidPhone(testStr: phoneNumberTxt.text!)){
+            self.view.makeToast("Please enter valid phone number.", duration: 3.0, position: .bottom, style: style)
+            return
+        }
+        
         let cardNumber = txtCardNumber.text!.replacingOccurrences(of: " ", with: "")
         let cardParams = STPCardParams()
         cardParams.number = cardNumber
@@ -275,10 +286,12 @@ class PaymentViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         cardParams.address.country = txtCountry.text
         cardParams.address.city = txtCity.text
         cardParams.address.postalCode = txtPostal.text
+        cardParams.address.phone = phoneNumberTxt.text
         
         STPAPIClient.shared().createToken(withCard: cardParams) { (token: STPToken?, error: Error?) in
             guard let token = token, error == nil
                 else {
+            
                     self.view.makeToast(error?.localizedDescription, duration: 3.0, position: .bottom, style: self.style)
                     print(error?.localizedDescription)
                     NotificationsHelper.hideBusyIndicator()
@@ -307,13 +320,53 @@ class PaymentViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         APIHelper().post(apiUrl: GlobalConstants.APIUrls.chargeMember, parameters: parameters as [String : AnyObject]) { (response) in
             if response["status"].stringValue == "Success"{
                 self.view.makeToast("Payment successful!", duration: 3.0, position: .bottom, style: self.style)
+                
+                self.saveToCoreData()
+                
                 DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3), execute: {
                     self.navigateToLogin()
                 })
             }
         }
     }
-    
+    func saveToCoreData()
+    {
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        let managedContext = appDelegate?.persistentContainer.viewContext
+        let entity = NSEntityDescription.entity(forEntityName: "CardDetails", in: managedContext!)!
+        
+        let user = NSManagedObject(entity: entity, insertInto: managedContext!)
+
+        user.setValue(self.txtCardNumber.text!, forKey: "cardNumber")
+        user.setValue(self.txtExpires.text!, forKey: "expDate")
+        user.setValue(self.txtCardName.text!, forKey: "nameShipping")
+        user.setValue(self.txtStreet.text!, forKey: "streetShipping")
+        user.setValue(self.txtStreet2.text!, forKey: "streetLineShipping")
+        user.setValue(self.txtCity.text!, forKey: "cityShipping")
+        user.setValue(self.txtPostal.text!, forKey: "postalCodeShipping")
+        user.setValue(self.txtState.text!, forKey: "stateShipping")
+        user.setValue(self.txtCountry.text!, forKey: "countryShipping")
+        user.setValue(self.phoneNumberTxt.text!, forKey: "phoneNoShipping")
+        
+        user.setValue(self.txtCardName.text!, forKey: "nameBilling")
+        user.setValue(self.txtStreet.text!, forKey: "streetBilling")
+        user.setValue(self.txtStreet2.text!, forKey: "streetLineBilling")
+        user.setValue(self.txtCity.text!, forKey: "cityBilling")
+        user.setValue(self.txtPostal.text!, forKey: "postalCodeBilling")
+        user.setValue(self.txtState.text!, forKey: "stateBilling")
+        user.setValue(self.txtCountry.text!, forKey: "countryBilling")
+        user.setValue(self.phoneNumberTxt.text!, forKey: "phoneNoBilling")
+        
+        do
+        {
+            try managedContext?.save()
+        }
+        catch let error as NSError
+        {
+            print("errorCoreData : ", error.userInfo)
+        }
+    }
+   
     @IBAction func backClicked(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }

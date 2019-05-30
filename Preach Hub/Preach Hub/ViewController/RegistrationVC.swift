@@ -124,11 +124,12 @@ class RegistrationVC: UIViewController{
         let isValid: Bool = (testStr == output)
         return isValid
     }
-    
+}
+extension UIViewController
+{
     func isValidPhone(testStr:String) -> Bool {
         let phoneRegex = "^[0-9+]{0,1}+[0-9]{5,16}$"
         let phoneTest = NSPredicate(format: "SELF MATCHES %@", phoneRegex)
         return phoneTest.evaluate(with: testStr)
     }
-    
 }

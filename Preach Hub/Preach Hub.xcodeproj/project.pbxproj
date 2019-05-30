@@ -13,6 +13,8 @@
 		18951691228D6732005FA99A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1895168F228D6732005FA99A /* LaunchScreen.storyboard */; };
 		1895169C228D6732005FA99A /* Preach_HubTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1895169B228D6732005FA99A /* Preach_HubTests.swift */; };
 		189516A7228D6732005FA99A /* Preach_HubUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189516A6228D6732005FA99A /* Preach_HubUITests.swift */; };
+		5273C57F229E900200328BEC /* PreachHub.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5273C57D229E900200328BEC /* PreachHub.xcdatamodeld */; };
+		5273C581229E9D3D00328BEC /* SingleTon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5273C580229E9D3D00328BEC /* SingleTon.swift */; };
 		8203F0C1228D68BF00F9D65D /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8203F0C0228D68BF00F9D65D /* Extensions.swift */; };
 		8203F0C4228D695100F9D65D /* APIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8203F0C3228D695100F9D65D /* APIHelper.swift */; };
 		8203F0C6228D695C00F9D65D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8203F0C5228D695C00F9D65D /* Constants.swift */; };
@@ -50,8 +52,8 @@
 		E3B730CA229BC48C008D3E7C /* ViewCartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B730C9229BC48C008D3E7C /* ViewCartViewController.swift */; };
 		E3B730CC229BF652008D3E7C /* ShippingAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B730CB229BF652008D3E7C /* ShippingAddressViewController.swift */; };
 		E3B730CE229BF677008D3E7C /* AddShippingAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B730CD229BF677008D3E7C /* AddShippingAddressViewController.swift */; };
-		E3BFD8B8229D009E00770BDB /* BuildFile in Sources */ = {isa = PBXBuildFile; };
-		E3BFD8BA229D00D600770BDB /* BuildFile in Resources */ = {isa = PBXBuildFile; };
+		E3BFD8B8229D009E00770BDB /* (null) in Sources */ = {isa = PBXBuildFile; };
+		E3BFD8BA229D00D600770BDB /* (null) in Resources */ = {isa = PBXBuildFile; };
 		E3BFD8BC229D089400770BDB /* CartPayment.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3BFD8BB229D089300770BDB /* CartPayment.storyboard */; };
 		E3BFD8BE229D100000770BDB /* CartPaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3BFD8BD229D100000770BDB /* CartPaymentViewController.swift */; };
 		E3FAA41B2292A84D00E369C6 /* HomeTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3FAA41A2292A84D00E369C6 /* HomeTabBarViewController.swift */; };
@@ -88,6 +90,8 @@
 		189516A2228D6732005FA99A /* Preach HubUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Preach HubUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		189516A6228D6732005FA99A /* Preach_HubUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preach_HubUITests.swift; sourceTree = "<group>"; };
 		189516A8228D6732005FA99A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5273C57E229E900200328BEC /* PreachHub.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PreachHub.xcdatamodel; sourceTree = "<group>"; };
+		5273C580229E9D3D00328BEC /* SingleTon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleTon.swift; sourceTree = "<group>"; };
 		8203F0C0228D68BF00F9D65D /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		8203F0C3228D695100F9D65D /* APIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIHelper.swift; sourceTree = "<group>"; };
 		8203F0C5228D695C00F9D65D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -230,6 +234,7 @@
 				8203F0BF228D689400F9D65D /* Extensions */,
 				8203F0C3228D695100F9D65D /* APIHelper.swift */,
 				8203F0C5228D695C00F9D65D /* Constants.swift */,
+				5273C580229E9D3D00328BEC /* SingleTon.swift */,
 				8203F0C7228D69B700F9D65D /* NotificationsHelper.swift */,
 			);
 			path = Shared;
@@ -239,7 +244,6 @@
 			isa = PBXGroup;
 			children = (
 				E3ACFC44228D760F00F798D6 /* LoginViewController.swift */,
-				E3BFD8BD229D100000770BDB /* CartPaymentViewController.swift */,
 				E3ACFC46228D7B0300F798D6 /* RegistrationVC.swift */,
 				82EF35B2228D90EC003BE3E2 /* InitialViewController.swift */,
 				E366C126228E8B53003CBE58 /* HomeViewController.swift */,
@@ -256,8 +260,10 @@
 				8235EB462293C3760090230B /* ForgotPasswordViewController.swift */,
 				82CADDCA22941DD300EBBDFD /* PaymentViewController.swift */,
 				820877CF2297E8C800513037 /* CartViewController.swift */,
+				E3BFD8BD229D100000770BDB /* CartPaymentViewController.swift */,
 				E3578603229D39D6009E8BBE /* PaymentExistingCardViewController.swift */,
 				820877DD2298040100513037 /* TermsNConditionViewController.swift */,
+				5273C57D229E900200328BEC /* PreachHub.xcdatamodeld */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -444,7 +450,7 @@
 				820877DC229803D500513037 /* terms.html in Resources */,
 				1895168E228D6732005FA99A /* Assets.xcassets in Resources */,
 				8203F0CF228D7A7A00F9D65D /* InitialStoryboard.storyboard in Resources */,
-				E3BFD8BA229D00D600770BDB /* BuildFile in Resources */,
+				E3BFD8BA229D00D600770BDB /* (null) in Resources */,
 				820877DA2297F3A600513037 /* ic-user.png in Resources */,
 				820877CA2297B68400513037 /* ic-eye-gray.png in Resources */,
 				820877CC2297B68A00513037 /* ic-hide-gray.png in Resources */,
@@ -561,7 +567,8 @@
 				E366C129229270CE003CBE58 /* RootViewController.swift in Sources */,
 				E366C11C228E87E5003CBE58 /* Navigation.swift in Sources */,
 				820877DE2298040100513037 /* TermsNConditionViewController.swift in Sources */,
-				E3BFD8B8229D009E00770BDB /* BuildFile in Sources */,
+				E3BFD8B8229D009E00770BDB /* (null) in Sources */,
+				5273C57F229E900200328BEC /* PreachHub.xcdatamodeld in Sources */,
 				E3578604229D39D6009E8BBE /* PaymentExistingCardViewController.swift in Sources */,
 				E3B730CC229BF652008D3E7C /* ShippingAddressViewController.swift in Sources */,
 				E3ACFC45228D760F00F798D6 /* LoginViewController.swift in Sources */,
@@ -580,6 +587,7 @@
 				820877CE2297D8FC00513037 /* SideMenuNavigationController.swift in Sources */,
 				8203F0C1228D68BF00F9D65D /* Extensions.swift in Sources */,
 				18951687228D672C005FA99A /* AppDelegate.swift in Sources */,
+				5273C581229E9D3D00328BEC /* SingleTon.swift in Sources */,
 				E3BFD8BE229D100000770BDB /* CartPaymentViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -913,6 +921,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		5273C57D229E900200328BEC /* PreachHub.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				5273C57E229E900200328BEC /* PreachHub.xcdatamodel */,
+			);
+			currentVersion = 5273C57E229E900200328BEC /* PreachHub.xcdatamodel */;
+			path = PreachHub.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 1895167B228D672C005FA99A /* Project object */;
 }

@@ -7,9 +7,27 @@
 //
 
 import UIKit
+import CoreData
+import Toast_Swift
+
+struct shippingAddress
+{
+    var nameShipping : String
+    var streetShipping : String
+    var streetLine2Shipping : String
+    var cityShipping : String
+    var postalCodeShipping : String
+    var stateShipping : String
+    var countryShipping : String
+    var phoneNumberShipping = ""
+}
 
 class ShippingAddressTVCell : UITableViewCell
 {
+    @IBOutlet weak var addressLine3: UILabel!
+    @IBOutlet weak var addressLine2: UILabel!
+    @IBOutlet weak var addressLine1: UILabel!
+    
     @IBOutlet weak var selectedBtn: UIButton!
     @IBOutlet weak var selectedView: UIView!
 }
@@ -21,6 +39,9 @@ class ShippingAddressViewController: UIViewController, UITableViewDelegate, UITa
 
     var selectedRow = -1
     
+    var shippingAddressArr = [shippingAddress]()
+    var singleTon = SingleTon.shared
+
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -32,17 +53,50 @@ class ShippingAddressViewController: UIViewController, UITableViewDelegate, UITa
         
         self.addressTableView.tableFooterView = nil
     }
+    override func viewWillAppear(_ animated: Bool)
+    {
+        self.fetchCoreData()
+    }
+    
+    func fetchCoreData()
+    {
+        self.shippingAddressArr.removeAll()
+        
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        let managedContext = appDelegate?.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "CardDetails")
+        
+        do
+        {
+            let result = try managedContext?.fetch(fetchRequest)
+            
+            for data in result as! [NSManagedObject]
+            {
+                self.shippingAddressArr.append(shippingAddress(nameShipping: data.value(forKey: "nameShipping") as! String, streetShipping: data.value(forKey: "streetShipping") as! String, streetLine2Shipping: data.value(forKey: "streetLineShipping") as! String, cityShipping: data.value(forKey: "cityShipping") as! String, postalCodeShipping: data.value(forKey: "postalCodeShipping") as! String, stateShipping: data.value(forKey: "stateShipping") as! String, countryShipping: data.value(forKey: "countryShipping") as! String, phoneNumberShipping: data.value(forKey: "phoneNoShipping") as! String))
+            }
+            
+            self.addressTableView.reloadData()
+        }
+        catch
+        {
+            print("coreDataFetchFail")
+        }
+    }
     @IBAction func backTapped(_ sender: Any)
     {
         self.navigationController?.popViewController(animated: true)
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        return 2
+        return self.shippingAddressArr.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         let cell = tableView.dequeueReusableCell(withIdentifier: "shippingCell", for: indexPath) as! ShippingAddressTVCell
+        
+        cell.addressLine1.text = self.shippingAddressArr[indexPath.row].nameShipping + ", " + self.shippingAddressArr[indexPath.row].streetShipping
+        cell.addressLine2.text = self.shippingAddressArr[indexPath.row].streetLine2Shipping + ", " + self.shippingAddressArr[indexPath.row].cityShipping
+        cell.addressLine3.text = self.shippingAddressArr[indexPath.row].stateShipping + ", " + self.shippingAddressArr[indexPath.row].countryShipping + ", " + self.shippingAddressArr[indexPath.row].postalCodeShipping
         
         cell.selectedBtn.tag = indexPath.row
         
@@ -79,6 +133,25 @@ class ShippingAddressViewController: UIViewController, UITableViewDelegate, UITa
     }
     @IBAction func continuTapped(_ sender: Any)
     {
-        self.navigateToExistingCardPage()
+        if self.selectedRow == -1
+        {
+            let style = ToastStyle()
+            
+            self.view.makeToast("Select a Shipping Address", duration: 3.0, position: .bottom, style: style)
+            return
+        }
+        else
+        {
+            self.singleTon.nameShipping = self.shippingAddressArr[self.selectedRow].nameShipping
+            self.singleTon.streetShipping = self.shippingAddressArr[self.selectedRow].streetShipping
+            self.singleTon.streetLine2Shipping = self.shippingAddressArr[self.selectedRow].streetLine2Shipping
+            self.singleTon.cityShipping = self.shippingAddressArr[self.selectedRow].cityShipping
+            self.singleTon.postalCodeShipping = self.shippingAddressArr[self.selectedRow].postalCodeShipping
+            self.singleTon.stateShipping = self.shippingAddressArr[self.selectedRow].stateShipping
+            self.singleTon.countryShipping = self.shippingAddressArr[self.selectedRow].countryShipping
+            self.singleTon.phoneNumberShipping = self.shippingAddressArr[self.selectedRow].phoneNumberShipping
+            
+            self.navigateToExistingCardPage()
+        }
     }
 }
