@@ -156,6 +156,7 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     var churchLists: [DataKey] = []
     var pastorLists: [DataKey] = []
     var storeLists: [DataKey] = []
+    var musicLists: [DataKey] = []
     var headingArray = ["", "Continue Watching", "Churches", "Church Ministry Channel", "Store", "Gospel Music"]
     
     override func viewDidLoad() {
@@ -165,6 +166,7 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         getChurches()
         getPastors()
         getStores()
+        getMusic()
     }
     
     @objc func MoreToCall() {
@@ -207,6 +209,16 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         }
     }
     
+    func getMusic(){
+        let parameters: [String: String] = [:]
+        APIHelper().get(apiUrl: GlobalConstants.APIUrls.getPreachStatistics, parameters: parameters as [String : AnyObject]) { (response) in
+            for item in response["data"]["musiclists"].arrayValue {
+                let is_Active = item["is_active"] != JSON.null ? item["is_active"].int : 0
+                self.musicLists.append(DataKey(id: item["id"] != JSON.null ? String(item["id"].int!) : "", title: item["name"] != JSON.null ? item["name"].string! : "", thumb: item["img_thumb"] != JSON.null ? item["img_thumb"].string! : "", description: item["description"] != JSON.null ? item["description"].string! : "", isActive:is_Active == 1 ? true : false))
+            }
+            self.tblView.reloadData()
+        }
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 6
@@ -224,7 +236,7 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         cell.lblHeader.text = headingArray[indexPath.row]
         
         if indexPath.row == 1 {
-            cell.setCollectioViewCell(with: [])
+            cell.setCollectioViewCell(with: pastorLists)
             cell.btnMore.tag = 1
         }
         else if indexPath.row == 2 {
@@ -232,7 +244,7 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
             cell.btnMore.tag = 2
         }
         else if indexPath.row == 3 {
-            cell.setCollectioViewCell(with: [])
+            cell.setCollectioViewCell(with: churchLists)
             cell.btnMore.tag = 3
         }
         else if indexPath.row == 4 {
@@ -240,7 +252,7 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
             cell.btnMore.tag = 4
         }
         else {
-            cell.setCollectioViewCell(with: [])
+            cell.setCollectioViewCell(with: musicLists)
             cell.btnMore.tag = 5
         }
         cell.backgroundColor = UIColor.clear
@@ -268,22 +280,21 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     }
     
     @objc func btnMoreClicked(sender : UIButton){
-        var dataList: [DataKey] = []
         switch sender.tag {
         case 1:
-            dataList = []
+            navigateToListViewPage(dataList: pastorLists, tag: sender.tag)
             break
         case 2:
             navigateToListViewPage(dataList: churchLists, tag: sender.tag)
             break
         case 3:
-            dataList = []
+            navigateToListViewPage(dataList: churchLists, tag: sender.tag)
             break
         case 4:
             navigateToListViewPage(dataList: storeLists, tag: sender.tag)
             break
         case 5:
-            dataList = []
+            navigateToListViewPage(dataList: musicLists, tag: sender.tag)
             break
         default:
             break
