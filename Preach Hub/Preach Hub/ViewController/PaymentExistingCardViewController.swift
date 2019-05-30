@@ -33,19 +33,23 @@ struct cardDetailsVal
     var countryBilling : String
     var phoneNumberBilling : String
 }
-
-class PaymentExistingCardViewController: UIViewController
+class PaymentExistingCardCollectionViewCell: UICollectionViewCell
 {
     @IBOutlet weak var leftView: UIView!
     @IBOutlet weak var rightView: UIView!
-    @IBOutlet weak var viewDot: UIView!
     @IBOutlet weak var expDateTxt: UITextField!
     @IBOutlet weak var cardNumber: UITextField!
     @IBOutlet weak var cvvTxt: UITextField!
+}
+class PaymentExistingCardViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UIScrollViewDelegate
+{
+    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var viewDot: UIView!
 
     var cardDetailsArr = [cardDetailsVal]()
     
     var currentIndex = 0
+    var scrollFlag = -1
     
     override func viewDidLoad()
     {
@@ -55,6 +59,68 @@ class PaymentExistingCardViewController: UIViewController
         viewDot.layer.borderWidth = 2.0
         viewDot.layer.cornerRadius = 10.0
         viewDot.addViewDashedBorder(view: viewDot)
+    }
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
+    {
+        if self.cardDetailsArr.count == 0
+        {
+            return 1
+        }
+        return self.cardDetailsArr.count
+    }
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
+    {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "existingCardCell", for: indexPath) as? PaymentExistingCardCollectionViewCell
+        
+        cell?.leftView.isHidden = false
+        cell?.rightView.isHidden = false
+        
+        if indexPath.row != self.currentIndex && self.scrollFlag == 2
+        {
+            self.currentIndex = indexPath.row
+        }
+        if self.cardDetailsArr.count == 0
+        {
+            cell?.leftView.isHidden = true
+            cell?.rightView.isHidden = true
+        }
+        else
+        {
+            cell?.cardNumber.text = self.cardDetailsArr[self.currentIndex].cardNumber
+            cell?.expDateTxt.text = self.cardDetailsArr[self.currentIndex].expDate
+            
+            if self.cardDetailsArr.count == 1
+            {
+                cell?.leftView.isHidden = true
+                cell?.rightView.isHidden = true
+            }
+            else
+            {
+                if currentIndex == 0
+                {
+                    cell?.leftView.isHidden = true
+                    cell?.rightView.isHidden = false
+                }
+//                else if currentIndex - 1 == 0
+//                {
+//                    cell?.leftView.isHidden = true
+//                    cell?.rightView.isHidden = false
+//                }
+                else if self.currentIndex + 1 == self.cardDetailsArr.count
+                {
+                    cell?.rightView.isHidden = true
+                    cell?.leftView.isHidden = false
+                }
+            }
+        }
+        
+        return cell!
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
+    {
+        let screenSize = UIScreen.main.bounds
+        
+        return CGSize(width: screenSize.width, height: 185)
     }
     override func viewWillAppear(_ animated: Bool)
     {
@@ -77,27 +143,10 @@ class PaymentExistingCardViewController: UIViewController
                 self.cardDetailsArr.append(cardDetailsVal(cardNumber: data.value(forKey: "cardNumber") as! String, expDate: data.value(forKey: "expDate") as! String, nameShipping: data.value(forKey: "nameShipping") as! String, streetShipping: data.value(forKey: "streetShipping") as! String, streetLine2Shipping: data.value(forKey: "streetLineShipping") as! String, cityShipping: data.value(forKey: "cityShipping") as! String, postalCodeShipping: data.value(forKey: "postalCodeShipping") as! String, stateShipping: data.value(forKey: "stateShipping") as! String, countryShipping: data.value(forKey: "countryShipping") as! String, phoneNumberShipping: data.value(forKey: "phoneNoShipping") as! String, nameBilling: data.value(forKey: "nameBilling") as! String, streetBilling: data.value(forKey: "streetBilling") as! String, streetLine2Billing: data.value(forKey: "streetLineBilling") as! String, cityBilling: data.value(forKey: "cityBilling") as! String, postalCodeBilling: data.value(forKey: "postalCodeBilling") as! String, stateBilling: data.value(forKey: "stateBilling") as! String, countryBilling: data.value(forKey: "countryBilling") as! String, phoneNumberBilling: data.value(forKey: "phoneNoBilling") as! String))
             }
             
-            if self.cardDetailsArr.count != 0
-            {
-                self.cardNumber.text = self.cardDetailsArr[self.currentIndex].cardNumber
-                self.expDateTxt.text = self.cardDetailsArr[self.currentIndex].expDate
-                
-                if self.cardDetailsArr.count == 1
-                {
-                    self.leftView.isHidden = true
-                    self.rightView.isHidden = true
-                }
-                else
-                {
-                    self.leftView.isHidden = true
-                    self.rightView.isHidden = false
-                }
-            }
-            else
-            {
-                self.leftView.isHidden = true
-                self.rightView.isHidden = true
-            }
+            print("self.cardDetailsArr : ", self.cardDetailsArr)
+            
+            self.collectionView.reloadData()
+            
             print("count : ", self.cardDetailsArr.count)
         }
         catch
@@ -116,36 +165,47 @@ class PaymentExistingCardViewController: UIViewController
     }
     @IBAction func leftTapped(_ sender: Any)
     {
-        if currentIndex - 1 == 0
-        {
-            self.leftView.isHidden = true
-            self.rightView.isHidden = false
-        }
+        self.scrollFlag = -1
         
         if self.currentIndex != 0
         {
             self.currentIndex = self.currentIndex  - 1
             
-            self.cardNumber.text = self.cardDetailsArr[self.currentIndex].cardNumber
-            self.expDateTxt.text = self.cardDetailsArr[self.currentIndex].expDate
+            let indexPath = IndexPath(row: self.currentIndex, section: 0)
+            self.collectionView.scrollToItem(at: indexPath, at: .top, animated: true)
+            
+            self.collectionView.reloadData()
         }
     }
     @IBAction func rightTapped(_ sender: Any)
     {
         print("self.currentInde222222x : ", self.currentIndex)
         
+        self.scrollFlag = -1
+        
         if self.currentIndex != self.cardDetailsArr.count
         {
             self.currentIndex = self.currentIndex + 1
             
-            self.cardNumber.text = self.cardDetailsArr[self.currentIndex].cardNumber
-            self.expDateTxt.text = self.cardDetailsArr[self.currentIndex].expDate
+            let indexPath = IndexPath(row: self.currentIndex, section: 0)
+            self.collectionView.scrollToItem(at: indexPath, at: .top, animated: true)
+            
+            self.collectionView.reloadData()
         }
+    }
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool)
+    {
+//        let visibleRect = CGRect(origin: collectionView.contentOffset, size: collectionView.bounds.size)
+//        let visiblePoint = CGPoint(x: visibleRect.midX, y: visibleRect.midY)
+//        let visibleIndexPath = collectionView.indexPathForItem(at: visiblePoint)
+//
+//        self.currentIndex = visibleIndexPath!.row
+//
+//        print("self.currentIndex : ", self.currentIndex)
+//        print("visibleIndexPath : ", visibleIndexPath)
         
-        if self.currentIndex + 1 == self.cardDetailsArr.count
-        {
-            self.rightView.isHidden = true
-            self.leftView.isHidden = false
-        }
+        self.scrollFlag = 2
+        
+        self.collectionView.reloadData()
     }
 }
