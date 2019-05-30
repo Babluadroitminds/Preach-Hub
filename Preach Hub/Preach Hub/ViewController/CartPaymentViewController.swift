@@ -31,16 +31,19 @@ class CartPaymentViewController: UIViewController
         
         self.tickImage.isHidden = true
         
+        cvvTxt.delegate = self
+        expDateTxt.delegate = self
+        
         viewDot.layer.borderColor = UIColor.clear.cgColor
         viewDot.layer.borderWidth = 2.0
         viewDot.layer.cornerRadius = 9.0
-        viewDot.addViewDashedBorder(view: viewDot)
+        viewDot.addViewDashedBorder(view: viewDot, width: 52, xVal: 28)
 
-        self.datePicker.datePickerMode = NTMonthYearPickerModeMonthAndYear
-        self.datePicker.minimumDate = Date()
-        
-        self.datePicker.addTarget(self, action: #selector(onDatePicked), for: .valueChanged)
-        self.expDateTxt.inputView = self.datePicker
+//        self.datePicker.datePickerMode = NTMonthYearPickerModeMonthAndYear
+//        self.datePicker.minimumDate = Date()
+//
+//        self.datePicker.addTarget(self, action: #selector(onDatePicked), for: .valueChanged)
+//        self.expDateTxt.inputView = self.datePicker
         
         cardNumber.delegate = self
         cardNumber.keyboardType = .numberPad
@@ -175,6 +178,47 @@ class CartPaymentViewController: UIViewController
             
             return true
         }
+        else if textField == self.cvvTxt
+        {
+            let str = (self.cvvTxt.text! + string)
+            if str.count <= 3
+            {
+                return true
+            }
+            else{
+                return false
+            }
+        }
+        else if (textField == expDateTxt)
+        {
+            if range.length > 0
+            {
+                return true
+            }
+            if string == ""
+            {
+                return false
+            }
+            if range.location > 6
+            {
+                return false
+            }
+            var originalText = textField.text
+            let replacementText = string.replacingOccurrences(of: " ", with: "")
+            
+            //Verify entered text is a numeric value
+            if !CharacterSet.decimalDigits.isSuperset(of: CharacterSet(charactersIn: replacementText))
+            {
+                return false
+            }
+            
+            if range.location == 2
+            {
+                originalText?.append("/")
+                textField.text = originalText
+            }
+            return true
+        }
         
         return true
     }
@@ -278,13 +322,13 @@ class CartPaymentViewController: UIViewController
 }
 extension UIView
 {
-    func addViewDashedBorder(view : UIView)
+    func addViewDashedBorder(view : UIView, width : CGFloat, xVal : CGFloat)
     {
         let color = UIColor.gray.cgColor
         let shapeLayer:CAShapeLayer = CAShapeLayer()
-        let shapeRect = CGRect(x: 0, y: 0, width: view.layer.frame.width + 50, height: view.layer.frame.height)
+        let shapeRect = CGRect(x: 0, y: 0, width: view.layer.frame.width + width, height: view.layer.frame.height)
         shapeLayer.bounds = shapeRect
-        shapeLayer.position = CGPoint(x: view.layer.frame.width/2 + 25, y: view.layer.frame.height/2)
+        shapeLayer.position = CGPoint(x: view.layer.frame.width/2 + xVal, y: view.layer.frame.height/2)
         shapeLayer.fillColor = UIColor.clear.cgColor
         shapeLayer.strokeColor = color
         shapeLayer.lineWidth = 2

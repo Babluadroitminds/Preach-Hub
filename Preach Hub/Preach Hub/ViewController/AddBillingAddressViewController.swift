@@ -34,7 +34,8 @@ class AddBillingAddressViewController: UIViewController, UIPickerViewDataSource,
         
         self.countryTxt.delegate = self
         self.stateTxt.delegate = self
-        
+        self.txtFldName.delegate = self
+
         countryArray = ["South Africa", "India"]
         stateArray = ["Free State", "Gauteng", "Western Cape", "North West"]
         
@@ -128,17 +129,35 @@ class AddBillingAddressViewController: UIViewController, UIPickerViewDataSource,
             self.view.makeToast("Please enter valid phone number.", duration: 3.0, position: .bottom, style: style)
             return
         }
-        self.singleTon.nameBilling = self.txtFldName.text!
-        self.singleTon.streetBilling = self.txtFldStreet.text!
-        self.singleTon.streetLine2Billing = self.streetLine2Txt.text!
-        self.singleTon.cityBilling = self.txtFldCity.text!
-        self.singleTon.postalCodeBilling = self.txtFldPostalCode.text!
-        self.singleTon.stateBilling = self.stateTxt.text!
-        self.singleTon.countryBilling = self.countryTxt.text!
-        self.singleTon.phoneNumberBilling = self.txtFldPhoneNumber.text!
-        
-        self.navigationController?.popViewController(animated: true)
-        
+        let style = ToastStyle()
+ 
+        self.view.makeToast("Billing address added successfully!", duration: 3.0, position: .bottom, title: nil, image: nil, style: style , completion: { (true) in
+            
+            self.singleTon.nameBilling = self.txtFldName.text!
+            self.singleTon.streetBilling = self.txtFldStreet.text!
+            self.singleTon.streetLine2Billing = self.streetLine2Txt.text!
+            self.singleTon.cityBilling = self.txtFldCity.text!
+            self.singleTon.postalCodeBilling = self.txtFldPostalCode.text!
+            self.singleTon.stateBilling = self.stateTxt.text!
+            self.singleTon.countryBilling = self.countryTxt.text!
+            self.singleTon.phoneNumberBilling = self.txtFldPhoneNumber.text!
+            
+            self.navigationController?.popViewController(animated: true)
+        })
         //navigateToExistingCardPage()
+    }
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool
+    {
+        if textField == self.txtFldName
+        {
+            let characterSet = CharacterSet.letters
+            
+            if string.rangeOfCharacter(from: characterSet.inverted) != nil
+            {
+                return false
+            }
+            return true
+        }
+        return true
     }
 }

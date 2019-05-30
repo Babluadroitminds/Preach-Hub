@@ -59,7 +59,7 @@ class PaymentExistingCardViewController: UIViewController, UICollectionViewDataS
         viewDot.layer.borderColor = UIColor.clear.cgColor
         viewDot.layer.borderWidth = 2.0
         viewDot.layer.cornerRadius = 10.0
-        viewDot.addViewDashedBorder(view: viewDot)
+        viewDot.addViewDashedBorder(view: viewDot, width: 52, xVal: 28)
         
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(didSwipeRight(gestureRecognizer:)))
         swipeRight.delegate = self
@@ -94,8 +94,6 @@ class PaymentExistingCardViewController: UIViewController, UICollectionViewDataS
         
         cell?.leftView.isHidden = false
         cell?.rightView.isHidden = false
- 
-        cell?.cvvTxt.text = self.cvvArr[self.currentIndex]
         
         if self.cardDetailsArr.count == 0
         {
@@ -104,7 +102,12 @@ class PaymentExistingCardViewController: UIViewController, UICollectionViewDataS
         }
         else
         {
-            cell?.cardNumber.text = self.cardDetailsArr[self.currentIndex].cardNumber
+            cell?.cvvTxt.text = self.cvvArr[self.currentIndex]
+
+            let last4Digit = self.cardDetailsArr[self.currentIndex].cardNumber.suffix(4)
+        
+            cell?.cardNumber.text = "xxxx xxxx xxxx \(last4Digit)"
+            
             cell?.expDateTxt.text = self.cardDetailsArr[self.currentIndex].expDate
             
             if self.cardDetailsArr.count == 1
@@ -239,6 +242,22 @@ class PaymentExistingCardViewController: UIViewController, UICollectionViewDataS
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool
     {
         return true
+    }
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool
+    {
+        let indexPath = IndexPath(row: self.currentIndex, section: 0)
+        let cell = self.collectionView.cellForItem(at: indexPath) as? PaymentExistingCardCollectionViewCell
+        
+        let str = (cell!.cvvTxt.text! + string)
+        
+        if str.count <= 3
+        {
+            return true
+        }
+        else
+        {
+            return false
+        }        
     }
 }
 

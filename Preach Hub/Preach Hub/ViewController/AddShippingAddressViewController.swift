@@ -37,6 +37,7 @@ class AddShippingAddressViewController: UIViewController, UIPickerViewDataSource
         
         self.countryTxt.delegate = self
         self.stateTxt.delegate = self
+        self.txtFldName.delegate = self
         
         countryArray = ["South Africa", "India"]
         stateArray = ["Free State", "Gauteng", "Western Cape", "North West"]
@@ -162,8 +163,14 @@ class AddShippingAddressViewController: UIViewController, UIPickerViewDataSource
         if self.alreadyAdded == -1
         {
             self.saveShippingAddress()
+            
+            let style = ToastStyle()
+            
+            self.view.makeToast("Shipping address added successfully!", duration: 3.0, position: .bottom, title: nil, image: nil, style: style , completion: { (true) in
+                
+                self.navigateToExistingCardPage()
+            })
         }
-        navigateToExistingCardPage()
     }
     func saveShippingAddress()
     {
@@ -190,6 +197,20 @@ class AddShippingAddressViewController: UIViewController, UIPickerViewDataSource
         {
             print("errorCoreData : ", error.userInfo)
         }
+    }
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool
+    {
+        if textField == self.txtFldName
+        {
+            let characterSet = CharacterSet.letters
+            
+            if string.rangeOfCharacter(from: characterSet.inverted) != nil
+            {
+                return false
+            }
+            return true
+        }
+        return true
     }
 }
 

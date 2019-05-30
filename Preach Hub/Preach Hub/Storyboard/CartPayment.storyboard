@@ -95,7 +95,7 @@
                                                         <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                        <textInputTraits key="textInputTraits"/>
+                                                        <textInputTraits key="textInputTraits" keyboardType="alphabet"/>
                                                     </textField>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kK6-Yd-6CV">
                                                         <rect key="frame" x="20" y="49" width="280" height="1"/>
@@ -1620,14 +1620,14 @@
                                         <rect key="frame" x="20" y="332" width="280" height="45"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="" translatesAutoresizingMaskIntoConstraints="NO" id="Wr4-ft-abx">
-                                                <rect key="frame" x="81" y="14" width="15" height="17"/>
+                                                <rect key="frame" x="67" y="14" width="15" height="17"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="15" id="VPZ-VV-RZK"/>
                                                     <constraint firstAttribute="height" constant="17" id="XK2-oW-Sdj"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add New Card" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TFR-Xj-FJC">
-                                                <rect key="frame" x="108" y="13.5" width="92" height="18"/>
+                                                <rect key="frame" x="94" y="13.5" width="92" height="18"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="18" id="LZX-vb-FR4"/>
                                                 </constraints>
@@ -1648,7 +1648,7 @@
                                             <constraint firstItem="Wr4-ft-abx" firstAttribute="centerY" secondItem="TFR-Xj-FJC" secondAttribute="centerY" id="Fix-WE-jWc"/>
                                             <constraint firstAttribute="height" constant="45" id="Ig4-4d-kW5"/>
                                             <constraint firstItem="PTw-eY-uBb" firstAttribute="height" secondItem="Dy7-uX-M61" secondAttribute="height" id="MPd-9g-ELv"/>
-                                            <constraint firstItem="TFR-Xj-FJC" firstAttribute="centerX" secondItem="Dy7-uX-M61" secondAttribute="centerX" multiplier="1.1" id="eQA-RW-0na"/>
+                                            <constraint firstItem="TFR-Xj-FJC" firstAttribute="centerX" secondItem="Dy7-uX-M61" secondAttribute="centerX" id="eQA-RW-0na"/>
                                             <constraint firstItem="PTw-eY-uBb" firstAttribute="centerX" secondItem="Dy7-uX-M61" secondAttribute="centerX" id="fpn-qO-ydf"/>
                                             <constraint firstItem="PTw-eY-uBb" firstAttribute="centerY" secondItem="Dy7-uX-M61" secondAttribute="centerY" id="gWK-VT-kN0"/>
                                             <constraint firstItem="TFR-Xj-FJC" firstAttribute="leading" secondItem="Wr4-ft-abx" secondAttribute="trailing" constant="12" id="tNc-25-Vrx"/>
@@ -1961,14 +1961,14 @@
                                         <rect key="frame" x="20" y="321" width="280" height="45"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="" translatesAutoresizingMaskIntoConstraints="NO" id="zfo-yA-hOc">
-                                                <rect key="frame" x="81" y="14" width="15" height="17"/>
+                                                <rect key="frame" x="67" y="14" width="15" height="17"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="17" id="YLa-7C-iTz"/>
                                                     <constraint firstAttribute="width" constant="15" id="iKQ-ee-Phm"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add New Card" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K6h-Zo-54I">
-                                                <rect key="frame" x="108" y="13.5" width="92" height="18"/>
+                                                <rect key="frame" x="94" y="13.5" width="92" height="18"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="18" id="DgJ-cZ-pe6"/>
                                                 </constraints>
@@ -1988,7 +1988,7 @@
                                             <constraint firstItem="K6h-Zo-54I" firstAttribute="centerY" secondItem="Lfc-1K-G02" secondAttribute="centerY" id="5ZA-pE-aCG"/>
                                             <constraint firstItem="zfo-yA-hOc" firstAttribute="centerY" secondItem="K6h-Zo-54I" secondAttribute="centerY" id="6qu-lA-VYK"/>
                                             <constraint firstItem="K6h-Zo-54I" firstAttribute="leading" secondItem="zfo-yA-hOc" secondAttribute="trailing" constant="12" id="7Qm-qK-Kkg"/>
-                                            <constraint firstItem="K6h-Zo-54I" firstAttribute="centerX" secondItem="Lfc-1K-G02" secondAttribute="centerX" multiplier="1.1" id="9Yv-nb-tJF"/>
+                                            <constraint firstItem="K6h-Zo-54I" firstAttribute="centerX" secondItem="Lfc-1K-G02" secondAttribute="centerX" id="9Yv-nb-tJF"/>
                                             <constraint firstItem="sck-J8-sw7" firstAttribute="centerX" secondItem="Lfc-1K-G02" secondAttribute="centerX" id="Z5m-ZS-o7T"/>
                                             <constraint firstAttribute="height" constant="45" id="c0j-QG-ceG"/>
                                             <constraint firstItem="sck-J8-sw7" firstAttribute="width" secondItem="Lfc-1K-G02" secondAttribute="width" id="iWZ-ht-Adm"/>
