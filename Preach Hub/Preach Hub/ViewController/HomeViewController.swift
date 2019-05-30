@@ -18,6 +18,10 @@ struct DataKey{
     var isActive: Bool;
 }
 
+protocol CustomDelegate: class {
+    func didSelectItem(id: String)
+}
+
 class tableViewCell : UITableViewCell , UICollectionViewDelegate , UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
     @IBOutlet weak var lblHeader: UILabel!
     @IBOutlet weak var btnMore: UIButton!
@@ -25,7 +29,9 @@ class tableViewCell : UITableViewCell , UICollectionViewDelegate , UICollectionV
     var dataList: [DataKey] = []
     
     let topImageArray = ["minister_mukhubatwo.png","minister_muligwe.png","minister_paul.png","minister_masekona.png","minister_mauna.png"]
-   
+    
+    weak var delegate: CustomDelegate?
+    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
@@ -43,7 +49,7 @@ class tableViewCell : UITableViewCell , UICollectionViewDelegate , UICollectionV
         cell.imgView.sd_setShowActivityIndicatorView(true)
         cell.imgView.sd_setIndicatorStyle(.gray)
         cell.imgView.sd_setImage(with: URL.init(string: urlString!) , placeholderImage: UIImage.init(named:""))
-        
+    
         return cell
     }
    
@@ -58,18 +64,14 @@ class tableViewCell : UITableViewCell , UICollectionViewDelegate , UICollectionV
         selctedView.backgroundColor = UIColor.clear
         currentCell.selectedBackgroundView? = selctedView
         
+        let id = dataList[indexPath.row].id
+        delegate?.didSelectItem(id: id)
     }
     
     func setCollectioViewCell(with list: [DataKey]) {
         dataList = list
         self.collectionView.reloadData()
     }
-    
-//    @IBAction func btnMoreAction(_ sender: Any) {
-//        //        self.navigateToPastorScreenPage()
-//        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "MoreClickEventNotification"), object: nil)
-//
-//    }
     
 }
 
@@ -149,7 +151,7 @@ class collectionHeaderCell: UICollectionViewCell {
     
 }
 
-class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
+class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,CustomDelegate {
     @IBOutlet weak var tblView: UITableView!
     var churchLists: [DataKey] = []
     var pastorLists: [DataKey] = []
@@ -242,6 +244,7 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
             cell.btnMore.tag = 5
         }
         cell.backgroundColor = UIColor.clear
+        cell.delegate = self
         return cell
     }
     
@@ -295,6 +298,16 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
       self.navigationController?.pushViewController(listVC!, animated: true)
     }
     
+    func didSelectItem(id: String) {
+        let ProductVC = ProductViewController.storyboardInstance()
+        ProductVC!.categoryId = id
+        self.navigationController?.pushViewController(ProductVC!, animated: true)
+    }
     
 }
 
+extension tableViewCell: CustomDelegate {
+    func didSelectItem(id: String) {
+        delegate?.didSelectItem(id: id)
+    }
+}

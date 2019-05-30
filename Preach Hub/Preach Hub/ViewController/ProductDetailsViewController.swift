@@ -28,7 +28,7 @@ class ProductDetailsViewController: UIViewController, UICollectionViewDelegate, 
     @IBOutlet weak var lblProductPrice: UILabel!
     @IBOutlet weak var lblProductName: UILabel!
     @IBOutlet weak var productImagesCollectionView: UICollectionView!
-
+    @IBOutlet weak var lblCartBadgeCount: UILabel!
     var selectedRow = 0
     
     var sizePicker = UIPickerView()
@@ -41,7 +41,7 @@ class ProductDetailsViewController: UIViewController, UICollectionViewDelegate, 
     var valInt: Int = 1
     var selectedColor: String?
     var selectedSize: String?
-    let appdelegate = UIApplication.shared.delegate as! AppDelegate
+    var cartList: [[String: String]] = []
     
     override func viewDidLoad(){
         super.viewDidLoad()
@@ -50,6 +50,14 @@ class ProductDetailsViewController: UIViewController, UICollectionViewDelegate, 
         self.colorTxt.inputView = colorPicker
         setPickerLayout()
         getProductById()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        let cartInfo = UserDefaults.standard.object(forKey: "CartDetails") as? NSData
+        if let cartInfo = cartInfo {
+            let cartData = (NSKeyedUnarchiver.unarchiveObject(with: cartInfo as Data) as? [[String: String]])!
+              lblCartBadgeCount.text = String(cartData.count)
+        }
     }
     
     func setPickerLayout(){
@@ -118,7 +126,7 @@ class ProductDetailsViewController: UIViewController, UICollectionViewDelegate, 
                     if response["data"].dictionary != nil  {
                         self.productDict = response["data"].dictionary!
                         self.lblProductName.text = self.productDict["name"]?.string
-                        self.lblProductPrice.text = self.productDict["price"]!.string
+                        self.lblProductPrice.text = "$" + self.productDict["price"]!.string!
                         self.lblProductDescription.text = self.productDict["description"]!.string
                         
                         let imageUrl = response["data"]["img_thumb"].string
@@ -127,9 +135,9 @@ class ProductDetailsViewController: UIViewController, UICollectionViewDelegate, 
                         self.imgVwProduct.sd_setIndicatorStyle(.gray)
                         self.imgVwProduct.sd_setImage(with: URL.init(string: urlString!) , placeholderImage: UIImage.init(named:""))
                         
-                        self.productSize.append(productSub(id: self.productDict["productcolour"]!["id"] != JSON.null ? self.productDict["productcolour"]!["id"].string : "", name: self.productDict["productcolour"]!["name"] != JSON.null ? self.productDict["productcolour"]!["name"].string : ""))
+                        self.productSize.append(productSub(id: self.productDict["productsizes"]!["id"] != JSON.null ? self.productDict["productsizes"]!["id"].string : "", name: self.productDict["productsizes"]!["name"] != JSON.null ? self.productDict["productsizes"]!["name"].string : ""))
                         
-                        self.productColor.append(productSub(id: self.productDict["productsizes"]!["id"] != JSON.null ? self.productDict["productsizes"]!["id"].string : "", name: self.productDict["productsizes"]!["name"] != JSON.null ? self.productDict["productsizes"]!["name"].string : ""))
+                        self.productColor.append(productSub(id: self.productDict["productcolour"]!["id"] != JSON.null ? self.productDict["productcolour"]!["id"].string : "", name: self.productDict["productcolour"]!["name"] != JSON.null ? self.productDict["productcolour"]!["name"].string : ""))
                         
                         self.sizePicker.reloadAllComponents()
                         self.colorPicker.reloadAllComponents()
@@ -206,8 +214,27 @@ class ProductDetailsViewController: UIViewController, UICollectionViewDelegate, 
           self.view.makeToast("Please select size & color.", duration: 3.0, position: .bottom)
           return
         }
+        var isAlreadyAdded: Bool = false
         
-        self.appdelegate.cartList.append(["productData": productDict, "quantity": valInt, "color": selectedColor!, "size": selectedSize!])
+        let cartInfo = UserDefaults.standard.object(forKey: "CartDetails") as? NSData
+        if let cartInfo = cartInfo {
+            cartList = (NSKeyedUnarchiver.unarchiveObject(with: cartInfo as Data) as? [[String: String]])!
+        }
+        for (index, item) in cartList.enumerated() {
+            // check for already existing item
+            if item["id"] == (self.productDict["id"]?.string)!  && item["color"] == selectedColor && item["size"] == selectedSize{
+                isAlreadyAdded = true
+                let quantityTotal = valInt + Int((item["quantity"])!)!
+                self.cartList[index]["quantity"] = quantityTotal.description
+            }
+        }
+        
+        if isAlreadyAdded == false{
+            cartList.append(["id": productDict["id"] != JSON.null ? (productDict["id"]?.string)! : "","name": productDict["name"] != JSON.null ? (productDict["name"]?.string)! : "","img_thumb": productDict["img_thumb"] != JSON.null ? (productDict["img_thumb"]?.string!)! : "", "price": (productDict["price"]?.string)!, "quantity": valInt.description, "color": selectedColor!, "size": selectedSize!])
+        }
+        
+        let productData = NSKeyedArchiver.archivedData(withRootObject: cartList)
+        UserDefaults.standard.set(productData, forKey: "CartDetails")
         let viewCartVC = ViewCartViewController.storyboardInstance()
         self.navigationController?.pushViewController(viewCartVC!, animated: true)
     }

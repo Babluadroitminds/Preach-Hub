@@ -35,6 +35,7 @@ class ProductViewController: UIViewController, UICollectionViewDelegate, UIColle
     @IBOutlet weak var categoryText: UITextField!
     @IBOutlet weak var productCollectionView: UICollectionView!
     
+    @IBOutlet weak var lblCartBadgeCount: UILabel!
     var categoryPicker = UIPickerView()
     var pricePicker = UIPickerView()
     var categoryList: [DataKey] = []
@@ -47,6 +48,14 @@ class ProductViewController: UIViewController, UICollectionViewDelegate, UIColle
         getCategory()
         getProduct()
         setPickerLayout()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        let cartInfo = UserDefaults.standard.object(forKey: "CartDetails") as? NSData
+        if let cartInfo = cartInfo {
+            let cartData = (NSKeyedUnarchiver.unarchiveObject(with: cartInfo as Data) as? [[String: String]])!
+            lblCartBadgeCount.text = String(cartData.count)
+        }
     }
     
     func setPickerLayout(){
@@ -123,7 +132,7 @@ class ProductViewController: UIViewController, UICollectionViewDelegate, UIColle
         }
         let currentItem = productList[indexPath.row]
         cell.lblProductName.text = currentItem.name
-        cell.lblProductPrice.text = currentItem.price
+        cell.lblProductPrice.text = "$" + currentItem.price
         cell.btnAddToCart.addTarget(self, action: #selector(btnAddToCartClicked), for: .touchUpInside)
         cell.btnAddToCart.tag = indexPath.row
         let imageUrl = currentItem.thumb
