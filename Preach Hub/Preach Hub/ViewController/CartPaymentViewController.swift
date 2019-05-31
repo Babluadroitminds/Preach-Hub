@@ -44,7 +44,7 @@ class CartPaymentViewController: UIViewController
         viewDot.layer.borderColor = UIColor.clear.cgColor
         viewDot.layer.borderWidth = 2.0
         viewDot.layer.cornerRadius = 9.0
-        viewDot.addViewDashedBorder(view: viewDot, width: 52, xVal: 28)
+        viewDot.addViewDashedBorder(view: viewDot, width: 40, xVal: 20)
 
 //        self.datePicker.datePickerMode = NTMonthYearPickerModeMonthAndYear
 //        self.datePicker.minimumDate = Date()
@@ -71,7 +71,20 @@ class CartPaymentViewController: UIViewController
     }
     @IBAction func addBillingTapped(_ sender: Any)
     {
-       self.navigateToAddBillingPage()
+        if self.cardNumber.text! == "" || self.expDateTxt.text! == "" || self.cvvTxt.text! == ""
+        {
+            self.view.makeToast("Please enter all card details", duration: 3.0, position: .bottom, style: self.style)
+            return
+        }
+        
+        let storyBoard : UIStoryboard = UIStoryboard(name: "CartPayment", bundle:nil)
+        let paymentViewController = storyBoard.instantiateViewController(withIdentifier: "AddBillingAddressViewController") as! AddBillingAddressViewController
+        
+        paymentViewController.cardNumber = self.cardNumber.text!
+        paymentViewController.expDate = self.expDateTxt.text!
+        paymentViewController.cvc = self.cvvTxt.text!
+        
+        self.navigationController?.pushViewController(paymentViewController, animated: true)
     }
     @IBAction func sameBillingTapped(_ sender: Any)
     {
@@ -166,7 +179,7 @@ class CartPaymentViewController: UIViewController
         let parameters: [String: Any] = ["orderno": "order_1", "memberid": memberId!, "paymentmethod": "credit_card", "orderdate": orderDate, "orderstatus": "pending", "currency": "USD", "currencyvalue": amount, "parentid": ""]
         APIHelper().post(apiUrl: GlobalConstants.APIUrls.sendOrders, parameters: parameters as [String : AnyObject]) { (response) in
             if response["data"] != JSON.null{
-                self.sendOrderDetails(orderNo: response["data"]["orderno"].string!)
+                self.sendOrderDetails(orderNo: response["data"]["id"].string!)
             }
         }
     }
@@ -407,13 +420,13 @@ class CartPaymentViewController: UIViewController
 }
 extension UIView
 {
-    func addViewDashedBorder(view : UIView, width : CGFloat, xVal : CGFloat)
+    func addViewDashedBorder(view : UIView, width: CGFloat, xVal: CGFloat)
     {
         let color = UIColor.gray.cgColor
         let shapeLayer:CAShapeLayer = CAShapeLayer()
-        let shapeRect = CGRect(x: 0, y: 0, width: view.layer.frame.width + width, height: view.layer.frame.height)
+        let shapeRect = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width - width, height: view.layer.frame.height)//view.layer.frame.width + width, height: view.layer.frame.height)
         shapeLayer.bounds = shapeRect
-        shapeLayer.position = CGPoint(x: view.layer.frame.width/2 + xVal, y: view.layer.frame.height/2)
+        shapeLayer.position = CGPoint(x: UIScreen.main.bounds.width/2 - xVal, y: view.layer.frame.height/2)
         shapeLayer.fillColor = UIColor.clear.cgColor
         shapeLayer.strokeColor = color
         shapeLayer.lineWidth = 2

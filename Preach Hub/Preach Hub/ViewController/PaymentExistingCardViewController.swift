@@ -68,7 +68,7 @@ class PaymentExistingCardViewController: UIViewController, UICollectionViewDataS
         viewDot.layer.borderColor = UIColor.clear.cgColor
         viewDot.layer.borderWidth = 2.0
         viewDot.layer.cornerRadius = 10.0
-        viewDot.addViewDashedBorder(view: viewDot, width: 52, xVal: 28)
+        viewDot.addViewDashedBorder(view: viewDot, width: 44, xVal: 21)
         
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(didSwipeRight(gestureRecognizer:)))
         swipeRight.delegate = self
@@ -345,7 +345,7 @@ class PaymentExistingCardViewController: UIViewController, UICollectionViewDataS
         let parameters: [String: Any] = ["orderno": "order_1", "memberid": memberId!, "paymentmethod": "credit_card", "orderdate": orderDate, "orderstatus": "pending", "currency": "USD", "currencyvalue": amount, "parentid": ""]
         APIHelper().post(apiUrl: GlobalConstants.APIUrls.sendOrders, parameters: parameters as [String : AnyObject]) { (response) in
             if response["data"] != JSON.null{
-                self.sendOrderDetails(orderNo: response["data"]["orderno"].string!)
+                self.sendOrderDetails(orderNo: response["data"]["id"].string!)
             }
         }
     }

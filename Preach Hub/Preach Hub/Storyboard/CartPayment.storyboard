@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -74,6 +74,10 @@
                                     <constraint firstItem="eM0-0t-FiC" firstAttribute="centerX" secondItem="wRg-Vi-0VM" secondAttribute="centerX" id="sOu-TY-Alm"/>
                                     <constraint firstItem="z3z-a4-0gz" firstAttribute="top" secondItem="wRg-Vi-0VM" secondAttribute="top" id="z5D-Vg-In0"/>
                                 </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i0Y-1Z-vdx">
+                                <rect key="frame" x="0.0" y="144.5" width="320" height="523.5"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bTT-0h-IU3">
                                 <rect key="frame" x="0.0" y="144.5" width="320" height="523.5"/>
@@ -459,12 +463,16 @@
                         <constraints>
                             <constraint firstItem="bTT-0h-IU3" firstAttribute="top" secondItem="dvx-tO-suG" secondAttribute="bottom" constant="17" id="3k4-kk-4pY"/>
                             <constraint firstItem="dvx-tO-suG" firstAttribute="top" secondItem="wRg-Vi-0VM" secondAttribute="bottom" constant="30" id="96T-Er-mL5"/>
+                            <constraint firstItem="i0Y-1Z-vdx" firstAttribute="top" secondItem="bTT-0h-IU3" secondAttribute="top" id="9fD-M9-tOA"/>
                             <constraint firstItem="wRg-Vi-0VM" firstAttribute="top" secondItem="3fa-MP-Yzf" secondAttribute="top" id="GRh-sM-h2Z"/>
                             <constraint firstItem="dvx-tO-suG" firstAttribute="leading" secondItem="3fa-MP-Yzf" secondAttribute="leading" constant="15" id="OU1-ax-arL"/>
                             <constraint firstItem="wRg-Vi-0VM" firstAttribute="leading" secondItem="3fa-MP-Yzf" secondAttribute="leading" id="cEL-Cg-hlJ"/>
                             <constraint firstItem="3fa-MP-Yzf" firstAttribute="trailing" secondItem="bTT-0h-IU3" secondAttribute="trailing" id="etn-Um-J4Q"/>
+                            <constraint firstItem="i0Y-1Z-vdx" firstAttribute="leading" secondItem="bTT-0h-IU3" secondAttribute="leading" id="ix9-sc-0gB"/>
                             <constraint firstItem="bTT-0h-IU3" firstAttribute="leading" secondItem="3fa-MP-Yzf" secondAttribute="leading" id="k19-iH-n9E"/>
                             <constraint firstItem="wRg-Vi-0VM" firstAttribute="trailing" secondItem="3fa-MP-Yzf" secondAttribute="trailing" id="krj-fI-Ck2"/>
+                            <constraint firstAttribute="bottom" secondItem="i0Y-1Z-vdx" secondAttribute="bottom" id="pl2-gm-YX3"/>
+                            <constraint firstItem="i0Y-1Z-vdx" firstAttribute="trailing" secondItem="bTT-0h-IU3" secondAttribute="trailing" id="q6T-JT-XC6"/>
                             <constraint firstAttribute="bottom" secondItem="bTT-0h-IU3" secondAttribute="bottom" id="zXX-bY-xpe"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="3fa-MP-Yzf"/>
@@ -549,6 +557,10 @@
                                     <constraint firstAttribute="height" constant="50" id="cL1-WU-teP"/>
                                     <constraint firstAttribute="bottom" secondItem="URQ-WX-Djh" secondAttribute="bottom" id="oRz-ZI-V1j"/>
                                 </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kNb-kn-UNS">
+                                <rect key="frame" x="0.0" y="144.5" width="320" height="523.5"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C88-ea-tMg">
                                 <rect key="frame" x="0.0" y="144.5" width="320" height="523.5"/>
@@ -934,11 +946,15 @@
                         <constraints>
                             <constraint firstItem="5us-rG-FJA" firstAttribute="leading" secondItem="j6a-so-HMb" secondAttribute="leading" id="1Rw-md-mA6"/>
                             <constraint firstItem="5us-rG-FJA" firstAttribute="top" secondItem="j6a-so-HMb" secondAttribute="top" id="9c9-uE-nVT"/>
+                            <constraint firstItem="kNb-kn-UNS" firstAttribute="leading" secondItem="C88-ea-tMg" secondAttribute="leading" id="B2f-OB-bus"/>
                             <constraint firstItem="5us-rG-FJA" firstAttribute="trailing" secondItem="j6a-so-HMb" secondAttribute="trailing" id="FWg-dJ-ncA"/>
                             <constraint firstItem="C88-ea-tMg" firstAttribute="leading" secondItem="j6a-so-HMb" secondAttribute="leading" id="UT9-sc-6Ps"/>
                             <constraint firstItem="i5G-C0-Svf" firstAttribute="leading" secondItem="j6a-so-HMb" secondAttribute="leading" constant="15" id="WCJ-5L-YzT"/>
                             <constraint firstItem="i5G-C0-Svf" firstAttribute="top" secondItem="5us-rG-FJA" secondAttribute="bottom" constant="30" id="ZiV-Yd-o5B"/>
                             <constraint firstAttribute="bottom" secondItem="C88-ea-tMg" secondAttribute="bottom" id="bLX-c3-FpY"/>
+                            <constraint firstAttribute="bottom" secondItem="kNb-kn-UNS" secondAttribute="bottom" id="fWF-gD-K0A"/>
+                            <constraint firstItem="kNb-kn-UNS" firstAttribute="trailing" secondItem="C88-ea-tMg" secondAttribute="trailing" id="hWZ-0W-oeT"/>
+                            <constraint firstItem="kNb-kn-UNS" firstAttribute="top" secondItem="C88-ea-tMg" secondAttribute="top" id="lJU-dz-ObD"/>
                             <constraint firstItem="j6a-so-HMb" firstAttribute="trailing" secondItem="C88-ea-tMg" secondAttribute="trailing" id="oWL-HJ-cdJ"/>
                             <constraint firstItem="C88-ea-tMg" firstAttribute="top" secondItem="i5G-C0-Svf" secondAttribute="bottom" constant="17" id="p5W-Am-jtv"/>
                         </constraints>
@@ -2065,7 +2081,7 @@
         <image name="ic-logo-header" width="76" height="22"/>
         <image name="leftArrow_gray" width="8.5" height="48.5"/>
         <image name="rightArrow_gray" width="8.5" height="48.5"/>
-        <image name="tick_green" width="36" height="36"/>
+        <image name="tick_green" width="48" height="48"/>
         <image name="" width="32" height="30"/>
     </resources>
 </document>

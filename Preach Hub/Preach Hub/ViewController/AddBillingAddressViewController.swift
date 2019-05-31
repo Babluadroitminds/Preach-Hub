@@ -8,6 +8,9 @@
 
 import UIKit
 import Toast_Swift
+import SwiftyJSON
+import Stripe
+import CoreData
 
 class AddBillingAddressViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate
 {
@@ -27,6 +30,16 @@ class AddBillingAddressViewController: UIViewController, UIPickerViewDataSource,
     
     let countryPickerView =  UIPickerView()
     let statePickerView =  UIPickerView()
+    
+    var cardNumber = ""
+    var expDate = ""
+    var cvc = ""
+    
+    var stripeCustomerTokenId: String?
+    var stripeCardToken: String?
+    
+    var style = ToastStyle()
+    var cartList: [[String: String]] = []
     
     override func viewDidLoad()
     {
@@ -129,22 +142,102 @@ class AddBillingAddressViewController: UIViewController, UIPickerViewDataSource,
             self.view.makeToast("Please enter valid phone number.", duration: 3.0, position: .bottom, style: style)
             return
         }
-        let style = ToastStyle()
- 
-        self.view.makeToast("Billing address added successfully!", duration: 3.0, position: .bottom, title: nil, image: nil, style: style , completion: { (true) in
-            
-            self.singleTon.nameBilling = self.txtFldName.text!
-            self.singleTon.streetBilling = self.txtFldStreet.text!
-            self.singleTon.streetLine2Billing = self.streetLine2Txt.text!
-            self.singleTon.cityBilling = self.txtFldCity.text!
-            self.singleTon.postalCodeBilling = self.txtFldPostalCode.text!
-            self.singleTon.stateBilling = self.stateTxt.text!
-            self.singleTon.countryBilling = self.countryTxt.text!
-            self.singleTon.phoneNumberBilling = self.txtFldPhoneNumber.text!
-            
-            self.navigationController?.popViewController(animated: true)
-        })
+//        let style = ToastStyle()
+//
+//        self.view.makeToast("Billing address added successfully!", duration: 3.0, position: .bottom, title: nil, image: nil, style: style , completion: { (true) in
+//
+//            self.singleTon.nameBilling = self.txtFldName.text!
+//            self.singleTon.streetBilling = self.txtFldStreet.text!
+//            self.singleTon.streetLine2Billing = self.streetLine2Txt.text!
+//            self.singleTon.cityBilling = self.txtFldCity.text!
+//            self.singleTon.postalCodeBilling = self.txtFldPostalCode.text!
+//            self.singleTon.stateBilling = self.stateTxt.text!
+//            self.singleTon.countryBilling = self.countryTxt.text!
+//            self.singleTon.phoneNumberBilling = self.txtFldPhoneNumber.text!
+//
+//            self.navigationController?.popViewController(animated: true)
+//        })
         //navigateToExistingCardPage()
+        NotificationsHelper.showBusyIndicator(message: "")
+        
+        let cardNumber = self.cardNumber.replacingOccurrences(of: " ", with: "")
+        let cardParams = STPCardParams()
+        cardParams.number = cardNumber
+        cardParams.expMonth = UInt(self.expDate.prefix(2))!
+        cardParams.expYear = UInt(self.expDate.suffix(4))!
+        cardParams.cvc = self.cvc
+        cardParams.name = self.txtFldName.text!
+        cardParams.address.line1 = self.txtFldStreet.text!
+        cardParams.address.line2 = self.streetLine2Txt.text!
+        cardParams.address.state = self.stateTxt.text!
+        cardParams.address.country = self.countryTxt.text!
+        cardParams.address.city = self.txtFldCity.text!
+        cardParams.address.postalCode = self.txtFldPostalCode.text!
+        cardParams.address.phone = self.txtFldPhoneNumber.text!
+        
+        STPAPIClient.shared().createToken(withCard: cardParams) { (token: STPToken?, error: Error?) in
+            guard let token = token, error == nil
+                else {
+                    
+                    self.view.makeToast(error?.localizedDescription, duration: 3.0, position: .bottom, style: self.style)
+                    NotificationsHelper.hideBusyIndicator()
+                    return
+            }
+            print(token.stripeID)
+            
+            self.saveToCoreData()
+            
+            self.stripeCardToken = token.stripeID
+            self.sendOrder()
+        }
+    }
+    
+    func sendOrder(){
+        let cartInfo = UserDefaults.standard.object(forKey: "CartDetails") as? NSData
+        if let cartInfo = cartInfo {
+            cartList = (NSKeyedUnarchiver.unarchiveObject(with: cartInfo as Data) as? [[String: String]])!
+        }
+        
+        let dateFormatter = DateFormatter()
+        let date = Date()
+        dateFormatter.timeZone = TimeZone.current
+        dateFormatter.dateFormat =  "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+        let orderDate = dateFormatter.string(from: date)
+        let shippingAmount: Float = 0
+        var sum: Float = 0
+        for item in cartList {
+            sum = (sum + (Float((item["quantity"]!))! * Float((item["price"])!)!))
+        }
+        let amount = (sum + shippingAmount)
+        
+        let memberId = UserDefaults.standard.string(forKey: "memberId")
+        
+        let parameters: [String: Any] = ["orderno": "order_1", "memberid": memberId!, "paymentmethod": "credit_card", "orderdate": orderDate, "orderstatus": "pending", "currency": "USD", "currencyvalue": amount, "parentid": ""]
+        APIHelper().post(apiUrl: GlobalConstants.APIUrls.sendOrders, parameters: parameters as [String : AnyObject]) { (response) in
+            if response["data"] != JSON.null{
+                self.sendOrderDetails(orderNo: response["data"]["orderno"].string!)
+            }
+        }
+    }
+    
+    func sendOrderDetails(orderNo: String){
+        
+        for (index,item) in cartList.enumerated() {
+            let price = (Float((item["quantity"]!))! * Float((item["price"])!)!)
+            let parameters: [String: Any] = ["orderid": orderNo, "productid": item["id"]!, "qtyordered": item["quantity"]!, "price": price, "colourid": item["colorId"]!, "sizeid": item["sizeId"]!, "comments": "",]
+            APIHelper().post(apiUrl: GlobalConstants.APIUrls.sendOrderDetails, parameters: parameters as [String : AnyObject]) { (response) in
+                if response["data"] != JSON.null{
+                }
+                if index == (self.cartList.count - 1){
+                    let productData = NSKeyedArchiver.archivedData(withRootObject: [])
+                    UserDefaults.standard.set(productData, forKey: "CartDetails")
+                    self.view.makeToast("Payment successfull!", duration: 3.0, position: .bottom, title: nil, image: nil, style: self.style , completion: { (true) in
+                        
+                        self.navigateToHomeScreenPage()
+                    })
+                }
+            }
+        }
     }
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool
     {
@@ -159,5 +252,61 @@ class AddBillingAddressViewController: UIViewController, UIPickerViewDataSource,
             return true
         }
         return true
+    }
+    func saveToCoreData()
+    {
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        let managedContext = appDelegate?.persistentContainer.viewContext
+        let entity = NSEntityDescription.entity(forEntityName: "CardDetails", in: managedContext!)!
+        
+        let user = NSManagedObject(entity: entity, insertInto: managedContext!)
+        
+        user.setValue(self.cardNumber, forKey: "cardNumber")
+        user.setValue(self.expDate, forKey: "expDate")
+        
+        user.setValue(self.singleTon.nameShipping, forKey: "nameShipping")
+        user.setValue(self.singleTon.streetShipping, forKey: "streetShipping")
+        user.setValue(self.singleTon.streetLine2Shipping, forKey: "streetLineShipping")
+        user.setValue(self.singleTon.cityShipping, forKey: "cityShipping")
+        user.setValue(self.singleTon.postalCodeShipping, forKey: "postalCodeShipping")
+        user.setValue(self.singleTon.stateShipping, forKey: "stateShipping")
+        user.setValue(self.singleTon.countryShipping, forKey: "countryShipping")
+        user.setValue(self.singleTon.phoneNumberShipping, forKey: "phoneNoShipping")
+        
+        user.setValue(self.singleTon.nameBilling, forKey: "nameBilling")
+        user.setValue(self.singleTon.streetBilling, forKey: "streetBilling")
+        user.setValue(self.singleTon.streetLine2Billing, forKey: "streetLineBilling")
+        user.setValue(self.singleTon.cityBilling, forKey: "cityBilling")
+        user.setValue(self.singleTon.postalCodeBilling, forKey: "postalCodeBilling")
+        user.setValue(self.singleTon.stateBilling, forKey: "stateBilling")
+        user.setValue(self.singleTon.countryBilling, forKey: "countryBilling")
+        user.setValue(self.singleTon.phoneNumberBilling, forKey: "phoneNoBilling")
+        
+        do
+        {
+            try managedContext?.save()
+        }
+        catch let error as NSError
+        {
+            print("errorCoreData : ", error.userInfo)
+        }
+        
+        self.singleTon.nameShipping = ""
+        self.singleTon.streetShipping = ""
+        self.singleTon.streetLine2Shipping = ""
+        self.singleTon.cityShipping = ""
+        self.singleTon.postalCodeShipping = ""
+        self.singleTon.stateShipping = ""
+        self.singleTon.countryShipping = ""
+        self.singleTon.phoneNumberShipping = ""
+        
+        self.singleTon.nameBilling = ""
+        self.singleTon.streetBilling = ""
+        self.singleTon.streetLine2Billing = ""
+        self.singleTon.cityBilling = ""
+        self.singleTon.postalCodeBilling = ""
+        self.singleTon.stateBilling = ""
+        self.singleTon.countryBilling = ""
+        self.singleTon.phoneNumberBilling = ""
     }
 }

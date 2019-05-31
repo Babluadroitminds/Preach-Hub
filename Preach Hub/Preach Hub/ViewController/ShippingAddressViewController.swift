@@ -49,7 +49,8 @@ class ShippingAddressViewController: UIViewController, UITableViewDelegate, UITa
         viewDot.layer.borderColor = UIColor.clear.cgColor
         viewDot.layer.borderWidth = 2.0
         viewDot.layer.cornerRadius = 9.0
-        viewDot.addViewDashedBorder(view: viewDot, width: 60, xVal: 27)
+        
+        viewDot.addViewDashedBorder(view: viewDot, width: 37, xVal: 21)
         
         self.addressTableView.tableFooterView = UIView()
     }
