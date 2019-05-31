@@ -65,7 +65,7 @@ class RootViewController: UIViewController, UITabBarDelegate , UITableViewDataSo
             popUpInProgress()
             break
         case "Rate this app":
-            navigateToAddShippingAddressPage()
+            popUpInProgress()
             break
         case "Visit this apps":
             popUpInProgress()

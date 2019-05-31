@@ -27,7 +27,7 @@ class tableViewCell : UITableViewCell , UICollectionViewDelegate , UICollectionV
     @IBOutlet weak var btnMore: UIButton!
     @IBOutlet weak var collectionView: UICollectionView!
     var dataList: [DataKey] = []
-    
+    var selectedIndex : Int?
     let topImageArray = ["minister_mukhubatwo.png","minister_muligwe.png","minister_paul.png","minister_masekona.png","minister_mauna.png"]
     
     weak var delegate: CustomDelegate?
@@ -58,14 +58,16 @@ class tableViewCell : UITableViewCell , UICollectionViewDelegate , UICollectionV
     }
    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+
         print(indexPath.row)
         let currentCell = collectionView.cellForItem(at: indexPath) as! collectionViewCell
         let selctedView = UIView()
         selctedView.backgroundColor = UIColor.clear
         currentCell.selectedBackgroundView? = selctedView
-        
-        let id = dataList[indexPath.row].id
-        delegate?.didSelectItem(id: id)
+        if selectedIndex == 4 {
+            let id = dataList[indexPath.row].id
+            delegate?.didSelectItem(id: id)
+        }
     }
     
     func setCollectioViewCell(with list: [DataKey]) {
@@ -235,6 +237,7 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         cell.btnMore.addTarget(self, action: #selector(btnMoreClicked), for: .touchUpInside)
         cell.lblHeader.text = headingArray[indexPath.row]
         
+        cell.selectedIndex = indexPath.row
         if indexPath.row == 1 {
             cell.setCollectioViewCell(with: pastorLists)
             cell.btnMore.tag = 1

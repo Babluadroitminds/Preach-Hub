@@ -17,6 +17,7 @@ class viewCartTVCell : UITableViewCell{
     @IBOutlet weak var lblProductName: UILabel!
     @IBOutlet weak var imgVwProduct: UIImageView!
     @IBOutlet weak var btnDeleteProduct: UIButton!
+    @IBOutlet weak var lblColor: UILabel!
 }
 
 class ViewCartViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
@@ -68,6 +69,9 @@ class ViewCartViewController: UIViewController, UITableViewDelegate, UITableView
         cell.imgVwProduct.sd_setShowActivityIndicatorView(true)
         cell.imgVwProduct.sd_setIndicatorStyle(.gray)
         cell.imgVwProduct.sd_setImage(with: URL.init(string: urlString!) , placeholderImage: UIImage.init(named:""))
+        if currentItem["color"] != nil && currentItem["size"] != nil {
+            cell.lblColor.text = currentItem["color"]! + " " + currentItem["size"]!
+        }
         return cell
     }
     
