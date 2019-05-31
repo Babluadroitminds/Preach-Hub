@@ -43,6 +43,8 @@ class PaymentViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     let countryPickerView =  UIPickerView()
     let statePickerView =  UIPickerView()
     
+    var singleTon = SingleTon.shared
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setLayout()
@@ -321,7 +323,7 @@ class PaymentViewController: UIViewController, UIPickerViewDataSource, UIPickerV
             if response["status"].stringValue == "Success"{
                 self.view.makeToast("Payment successful!", duration: 3.0, position: .bottom, style: self.style)
                 
-               // self.saveToCoreData()
+                self.saveToCoreData()
                 
                 DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3), execute: {
                     self.navigateToLogin()
@@ -337,6 +339,7 @@ class PaymentViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         
         let user = NSManagedObject(entity: entity, insertInto: managedContext!)
 
+        user.setValue(self.singleTon.userId, forKey: "userId")
         user.setValue(self.txtCardNumber.text!, forKey: "cardNumber")
         user.setValue(self.txtExpires.text!, forKey: "expDate")
         
@@ -358,7 +361,7 @@ class PaymentViewController: UIViewController, UIPickerViewDataSource, UIPickerV
             print("errorCoreData : ", error.userInfo)
         }
         
-        self.saveShippingAddress()
+       // self.saveShippingAddress()
     }
     func saveShippingAddress()
     {

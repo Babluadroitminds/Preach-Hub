@@ -11,7 +11,9 @@ import Foundation
 class SingleTon
 {
     static let shared = SingleTon()
-        
+    
+    var userId = ""
+    
     var firstNameShipping = ""
     var lastNameShipping = ""
     var addressShipping = ""

@@ -221,6 +221,10 @@ class AddBillingAddressViewController: UIViewController, UIPickerViewDataSource,
         
         let user = NSManagedObject(entity: entity, insertInto: managedContext!)
         
+        let userId = UserDefaults.standard.value(forKey: "memberId") as? String
+        
+        user.setValue(userId, forKey: "userId")
+        
         user.setValue(self.cardNumber, forKey: "cardNumber")
         user.setValue(self.expDate, forKey: "expDate")
         

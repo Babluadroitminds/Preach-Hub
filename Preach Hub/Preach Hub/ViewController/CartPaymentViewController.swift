@@ -183,6 +183,10 @@ class CartPaymentViewController: UIViewController
         
         let user = NSManagedObject(entity: entity, insertInto: managedContext!)
         
+        let userId = UserDefaults.standard.value(forKey: "memberId") as? String
+        
+        user.setValue(userId, forKey: "userId")
+        
         user.setValue(self.cardNumber.text!, forKey: "cardNumber")
         user.setValue(self.expDateTxt.text!, forKey: "expDate")
         

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14460.32" systemVersion="18A2063" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14490.99" systemVersion="18F132" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="CardDetails" representedClassName=".CardDetails" syncable="YES" codeGenerationType="class">
         <attribute name="cardNumber" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="cityBilling" optional="YES" attributeType="String" syncable="YES"/>
@@ -11,6 +11,7 @@
         <attribute name="stateBilling" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="streetBilling" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="streetLineBilling" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userId" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="ShippingAddress" representedClassName="ShippingAddress" syncable="YES" codeGenerationType="class">
         <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
@@ -23,9 +24,10 @@
         <attribute name="state" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="street1" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="streetLine2" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userId" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="CardDetails" positionX="-54" positionY="-9" width="128" height="195"/>
-        <element name="ShippingAddress" positionX="-54" positionY="126" width="128" height="195"/>
+        <element name="CardDetails" positionX="-54" positionY="-9" width="128" height="210"/>
+        <element name="ShippingAddress" positionX="-54" positionY="126" width="128" height="210"/>
     </elements>
 </model>

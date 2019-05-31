@@ -71,14 +71,18 @@ class ShippingAddressViewController: UIViewController, UITableViewDelegate, UITa
         let managedContext = appDelegate?.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "ShippingAddress")
         
+        let userId = UserDefaults.standard.value(forKey: "memberId") as? String
+
         do
         {
             let result = try managedContext?.fetch(fetchRequest)
             
             for data in result as! [NSManagedObject]
             {
-                
-                self.shippingAddressArr.append(shippingAddress(firstNameShipping: data.value(forKey: "firstName") as! String, lastNameShipping: data.value(forKey: "lastName") as! String, addressShipping: data.value(forKey: "street1") as! String, streetLine2Shipping: data.value(forKey: "streetLine2") as! String, emailShipping: data.value(forKey: "email") as! String, cityShipping: data.value(forKey: "city") as! String, postalCodeShipping: data.value(forKey: "postalCode") as! String, stateShipping: data.value(forKey: "state") as! String, countryShipping: data.value(forKey: "country") as! String, phoneNumberShipping: data.value(forKey: "phoneNumber") as! String))
+                if userId == (data.value(forKey: "userId") as! String)
+                {
+                    self.shippingAddressArr.append(shippingAddress(firstNameShipping: data.value(forKey: "firstName") as! String, lastNameShipping: data.value(forKey: "lastName") as! String, addressShipping: data.value(forKey: "street1") as! String, streetLine2Shipping: data.value(forKey: "streetLine2") as! String, emailShipping: data.value(forKey: "email") as! String, cityShipping: data.value(forKey: "city") as! String, postalCodeShipping: data.value(forKey: "postalCode") as! String, stateShipping: data.value(forKey: "state") as! String, countryShipping: data.value(forKey: "country") as! String, phoneNumberShipping: data.value(forKey: "phoneNumber") as! String))
+                }
             }
             
             print("self.shippingAddressArr : ", self.shippingAddressArr)

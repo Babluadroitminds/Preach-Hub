@@ -19,6 +19,8 @@ class RegistrationVC: UIViewController{
     @IBOutlet weak var txtFirstName: UITextField!
     var style = ToastStyle()
     
+    var singleTon = SingleTon.shared
+
     override func viewDidLoad(){
         super.viewDidLoad()
         setLayout()
@@ -107,6 +109,8 @@ class RegistrationVC: UIViewController{
             if response["data"]["member"]["status"].string == "SUCCESS" {
                 let stripeCustomerTokenId = response["data"]["member"]["stripecustomertokenid"].string
                 
+                self.singleTon.userId = response["data"]["member"]["id"].string!
+
                // DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3), execute: {
                     let storyBoard : UIStoryboard = UIStoryboard(name: "Payment", bundle:nil)
                     let paymentViewController = storyBoard.instantiateViewController(withIdentifier: "PaymentViewController") as! PaymentViewController
