@@ -310,56 +310,14 @@ class PaymentExistingCardViewController: UIViewController, UICollectionViewDataS
             print(token.stripeID)
             
             self.stripeCardToken = token.stripeID
-           // self.sendOrder()
+            NotificationsHelper.hideBusyIndicator()
+            self.view.makeToast("Payment successfull!", duration: 3.0, position: .bottom, title: nil, image: nil, style: self.style , completion: { (true) in
+                let productData = NSKeyedArchiver.archivedData(withRootObject: [])
+                UserDefaults.standard.set(productData, forKey: "CartDetails")
+                self.navigateToHomeScreenPage()
+            })
+
         }
     }
-    
-//    func sendOrder(){
-//        let cartInfo = UserDefaults.standard.object(forKey: "CartDetails") as? NSData
-//        if let cartInfo = cartInfo {
-//            cartList = (NSKeyedUnarchiver.unarchiveObject(with: cartInfo as Data) as? [[String: String]])!
-//        }
-//
-//        let dateFormatter = DateFormatter()
-//        let date = Date()
-//        dateFormatter.timeZone = TimeZone.current
-//        dateFormatter.dateFormat =  "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
-//        let orderDate = dateFormatter.string(from: date)
-//        let shippingAmount: Float = 0
-//        var sum: Float = 0
-//        for item in cartList {
-//            sum = (sum + (Float((item["quantity"]!))! * Float((item["price"])!)!))
-//        }
-//        let amount = (sum + shippingAmount)
-//
-//        let memberId = UserDefaults.standard.string(forKey: "memberId")
-//
-//        let parameters: [String: Any] = ["orderno": "order_1", "memberid": memberId!, "paymentmethod": "credit_card", "orderdate": orderDate, "orderstatus": "pending", "currency": "USD", "currencyvalue": amount, "parentid": ""]
-//        APIHelper().post(apiUrl: GlobalConstants.APIUrls.sendOrders, parameters: parameters as [String : AnyObject]) { (response) in
-//            if response["data"] != JSON.null{
-//                self.sendOrderDetails(orderNo: response["data"]["id"].string!)
-//            }
-//        }
-//    }
-//
-//    func sendOrderDetails(orderNo: String){
-//
-//        for (index,item) in cartList.enumerated() {
-//            let price = (Float((item["quantity"]!))! * Float((item["price"])!)!)
-//            let parameters: [String: Any] = ["orderid": orderNo, "productid": item["id"]!, "qtyordered": item["quantity"]!, "price": price, "colourid": item["colorId"]!, "sizeid": item["sizeId"]!, "comments": "",]
-//            APIHelper().post(apiUrl: GlobalConstants.APIUrls.sendOrderDetails, parameters: parameters as [String : AnyObject]) { (response) in
-//                if response["data"] != JSON.null{
-//                }
-//                if index == (self.cartList.count - 1){
-//                    let productData = NSKeyedArchiver.archivedData(withRootObject: [])
-//                    UserDefaults.standard.set(productData, forKey: "CartDetails")
-//                    self.view.makeToast("Payment successfull!", duration: 3.0, position: .bottom, title: nil, image: nil, style: self.style , completion: { (true) in
-//
-//                        self.navigateToHomeScreenPage()
-//                    })
-//                }
-//            }
-//        }
-//    }
 }
 

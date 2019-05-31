@@ -148,6 +148,12 @@ class AddShippingAddressViewController: UIViewController, UIPickerViewDataSource
             self.view.makeToast("Please enter all details.", duration: 3.0, position: .bottom)
             return
         }
+        
+        if(!isValidEmail(testStr: txtEmail.text!)){
+            self.view.makeToast("Email format: user@mail.com", duration: 3.0, position: .bottom)
+            return
+        }
+        
         if(!isValidPhone(testStr: txtFldPhoneNumber.text!))
         {
             let style = ToastStyle()

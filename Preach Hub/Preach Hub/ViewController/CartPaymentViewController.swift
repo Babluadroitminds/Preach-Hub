@@ -148,14 +148,30 @@ class CartPaymentViewController: UIViewController
                     
                     self.view.makeToast(error?.localizedDescription, duration: 3.0, position: .bottom, style: self.style)
                     NotificationsHelper.hideBusyIndicator()
+                    if self.tickImage.isHidden == false
+                    {
+                        self.singleTon.nameBilling = ""
+                        self.singleTon.streetBilling = ""
+                        self.singleTon.streetLine2Billing = ""
+                        self.singleTon.cityBilling = ""
+                        self.singleTon.postalCodeBilling = ""
+                        self.singleTon.stateBilling = ""
+                        self.singleTon.countryBilling = ""
+                        self.singleTon.phoneNumberBilling = ""
+                    }
                     return
             }
             print(token.stripeID)
             self.stripeCardToken = token.stripeID
             
             self.saveToCoreData()
-            
-           // self.sendOrder()
+            NotificationsHelper.hideBusyIndicator()
+            self.view.makeToast("Payment successfull!", duration: 3.0, position: .bottom, title: nil, image: nil, style: self.style , completion: { (true) in
+                let productData = NSKeyedArchiver.archivedData(withRootObject: [])
+                UserDefaults.standard.set(productData, forKey: "CartDetails")
+                self.navigateToHomeScreenPage()
+            })
+
         }
     }
    

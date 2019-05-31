@@ -183,6 +183,7 @@ class ViewCartViewController: UIViewController, UITableViewDelegate, UITableView
 //                    let productData = NSKeyedArchiver.archivedData(withRootObject: [])
 //                    UserDefaults.standard.set(productData, forKey: "CartDetails")
                     let shippingAddressVC = ShippingAddressViewController.storyboardInstance()
+                    shippingAddressVC?.orderId = orderNo
                     self.navigationController?.pushViewController(shippingAddressVC!, animated: true)
                 }
             }

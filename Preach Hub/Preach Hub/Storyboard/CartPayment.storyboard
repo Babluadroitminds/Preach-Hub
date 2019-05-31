@@ -83,7 +83,7 @@
                                 <rect key="frame" x="0.0" y="144.5" width="320" height="523.5"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TmR-4j-JGt">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="700"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="732.5"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vQn-Me-khg" userLabel="Name">
                                                 <rect key="frame" x="0.0" y="25" width="320" height="50"/>
@@ -496,6 +496,7 @@
                                             <constraint firstAttribute="trailing" secondItem="Nxx-WK-6Wv" secondAttribute="trailing" id="7mF-L3-bEB"/>
                                             <constraint firstAttribute="trailing" secondItem="gA7-19-3tZ" secondAttribute="trailing" id="7yW-qc-D56"/>
                                             <constraint firstItem="e1n-At-bbP" firstAttribute="width" secondItem="Uan-Qj-BdS" secondAttribute="width" id="8hl-xN-K9C"/>
+                                            <constraint firstAttribute="bottom" secondItem="y4c-8H-TOv" secondAttribute="bottom" constant="20" id="9bY-lg-Gof"/>
                                             <constraint firstItem="Uan-Qj-BdS" firstAttribute="leading" secondItem="TmR-4j-JGt" secondAttribute="leading" id="A2o-bO-Bvm"/>
                                             <constraint firstItem="e1n-At-bbP" firstAttribute="height" secondItem="Uan-Qj-BdS" secondAttribute="height" id="APM-b4-sgE"/>
                                             <constraint firstItem="gA7-19-3tZ" firstAttribute="leading" secondItem="TmR-4j-JGt" secondAttribute="leading" id="HJw-Jd-ozR"/>
@@ -521,7 +522,6 @@
                                             <constraint firstItem="1BG-3k-SAP" firstAttribute="leading" secondItem="TmR-4j-JGt" secondAttribute="leading" id="e1S-Nt-hox"/>
                                             <constraint firstItem="1BG-3k-SAP" firstAttribute="height" secondItem="hKr-7l-bHb" secondAttribute="height" id="f9t-3U-7ne"/>
                                             <constraint firstItem="9Iq-Ej-R7N" firstAttribute="centerX" secondItem="3hc-iw-AkZ" secondAttribute="centerX" id="fkl-KL-xna"/>
-                                            <constraint firstAttribute="height" constant="700" id="hWD-a9-6vP"/>
                                             <constraint firstItem="3hc-iw-AkZ" firstAttribute="height" secondItem="hKr-7l-bHb" secondAttribute="height" id="jSg-e9-2Ha"/>
                                             <constraint firstItem="e1n-At-bbP" firstAttribute="top" secondItem="gA7-19-3tZ" secondAttribute="bottom" constant="15" id="lh1-2w-UHO"/>
                                             <constraint firstAttribute="trailing" secondItem="hKr-7l-bHb" secondAttribute="trailing" id="uC6-9Z-2NG"/>
