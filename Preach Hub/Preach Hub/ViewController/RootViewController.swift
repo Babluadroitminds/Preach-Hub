@@ -82,15 +82,15 @@ class RootViewController: UIViewController, UITabBarDelegate , UITableViewDataSo
         let alert = UIAlertController(title: "Logout", message: "Are you sure you want to logout?", preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "YES", style: UIAlertAction.Style.default, handler: {(action:UIAlertAction!) in
             
-            self.deleteCoreData()
+            //self.deleteCoreData()
             
             UserDefaults.standard.set(false, forKey: "Is_Logged_In")
             UserDefaults.standard.removeObject(forKey: "memberId")
             let productData = NSKeyedArchiver.archivedData(withRootObject: [])
             UserDefaults.standard.set(productData, forKey: "CartDetails")
-            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
-                self.navigateToLogin()
-            })
+            
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "RefreshLogoutRequest"), object: nil)
+            self.dismiss(animated: true, completion: nil)
             
         }))
         alert.addAction(UIAlertAction(title: "NO", style: UIAlertAction.Style.default, handler: nil))

@@ -163,16 +163,23 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        NotificationCenter.default.addObserver(self, selector: #selector(HomeViewController.MoreToCall), name: NSNotification.Name(rawValue: "MoreClickEventNotification"), object: nil)
+
         tblView.dataSource = self
         getChurches()
         getPastors()
         getStores()
         getMusic()
+        NotificationCenter.default.addObserver(self, selector: #selector(HomeViewController.refreshRequest), name: NSNotification.Name(rawValue: "RefreshLogoutRequest"), object: nil)
     }
     
     @objc func MoreToCall() {
         self.navigateToPastorScreenPage()
+    }
+    
+    @objc func refreshRequest(notification: NSNotification) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
+            self.navigateToLogin()
+        })
     }
     
     func getChurches(){
