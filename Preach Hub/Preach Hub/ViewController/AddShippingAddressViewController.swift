@@ -164,13 +164,14 @@ class AddShippingAddressViewController: UIViewController, UIPickerViewDataSource
         {
             self.saveShippingAddress()
             
-            let style = ToastStyle()
-            
-            self.view.makeToast("Shipping address added successfully!", duration: 3.0, position: .bottom, title: nil, image: nil, style: style , completion: { (true) in
-                
-                self.navigateToExistingCardPage()
-            })
         }
+        
+        let style = ToastStyle()
+            
+        self.view.makeToast("Shipping address added successfully!", duration: 3.0, position: .bottom, title: nil, image: nil, style: style , completion: { (true) in
+                
+            self.navigateToExistingCardPage()
+        })
     }
     func saveShippingAddress()
     {

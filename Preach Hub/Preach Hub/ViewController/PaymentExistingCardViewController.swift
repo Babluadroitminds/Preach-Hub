@@ -107,6 +107,8 @@ class PaymentExistingCardViewController: UIViewController, UICollectionViewDataS
         {
             cell?.leftView.isHidden = true
             cell?.rightView.isHidden = true
+            
+            cell?.cvvTxt.isEnabled = false
         }
         else
         {
@@ -159,28 +161,34 @@ class PaymentExistingCardViewController: UIViewController, UICollectionViewDataS
     {
         print("self.currentIndexweewweweee :", self.currentIndex)
 
-        if self.currentIndex != 0
+        if self.cardDetailsArr.count != 0
         {
-            self.currentIndex = self.currentIndex  - 1
-            
-            let indexPath = IndexPath(row: self.currentIndex, section: 0)
-            self.collectionView.scrollToItem(at: indexPath, at: .bottom, animated: true)
-            
-            self.collectionView.reloadData()
+            if self.currentIndex != 0
+            {
+                self.currentIndex = self.currentIndex  - 1
+                
+                let indexPath = IndexPath(row: self.currentIndex, section: 0)
+                self.collectionView.scrollToItem(at: indexPath, at: .bottom, animated: true)
+                
+                self.collectionView.reloadData()
+            }
         }
     }
     @objc func didSwipeLeft(gestureRecognizer : UISwipeGestureRecognizer)
     {
         print("self.currentIndex :", self.currentIndex)
         
-        if self.currentIndex + 1 != self.cardDetailsArr.count
+        if self.cardDetailsArr.count != 0
         {
-            self.currentIndex = self.currentIndex + 1
-            
-            let indexPath = IndexPath(row: self.currentIndex, section: 0)
-            self.collectionView.scrollToItem(at: indexPath, at: .bottom, animated: true)
-            
-            self.collectionView.reloadData()
+            if self.currentIndex + 1 != self.cardDetailsArr.count
+            {
+                self.currentIndex = self.currentIndex + 1
+                
+                let indexPath = IndexPath(row: self.currentIndex, section: 0)
+                self.collectionView.scrollToItem(at: indexPath, at: .bottom, animated: true)
+                
+                self.collectionView.reloadData()
+            }
         }
     }
     func fetchCoreData()
@@ -204,6 +212,8 @@ class PaymentExistingCardViewController: UIViewController, UICollectionViewDataS
             }
             
             print("self.cardDetailsArr : ", self.cardDetailsArr)
+            
+            
             
             self.collectionView.reloadData()
             
@@ -269,6 +279,11 @@ class PaymentExistingCardViewController: UIViewController, UICollectionViewDataS
     }
     @IBAction func payNowTapped(_ sender: Any)
     {
+        if self.cvvArr.count == 0
+        {
+            self.view.makeToast("Please Add a New Card", duration: 3.0, position: .bottom, style: self.style)
+            return
+        }
         if self.cvvArr[self.currentIndex] == ""
         {
             self.view.makeToast("Please enter all card details", duration: 3.0, position: .bottom, style: self.style)
