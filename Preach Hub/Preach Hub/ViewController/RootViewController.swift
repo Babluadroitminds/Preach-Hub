@@ -85,6 +85,9 @@ class RootViewController: UIViewController, UITabBarDelegate , UITableViewDataSo
             self.deleteCoreData()
             
             UserDefaults.standard.set(false, forKey: "Is_Logged_In")
+            UserDefaults.standard.removeObject(forKey: "memberId")
+            let productData = NSKeyedArchiver.archivedData(withRootObject: [])
+            UserDefaults.standard.set(productData, forKey: "CartDetails")
             DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
                 self.navigateToLogin()
             })

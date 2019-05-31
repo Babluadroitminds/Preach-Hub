@@ -28,5 +28,7 @@ struct GlobalConstants {
         static let getPreachStatistics: String = "https://www.jmtbiz.co.za/preach/statistics.json"
         static let sendOrders: String = "orders"
         static let sendOrderDetails: String = "orderdetails"
+        static let memberDetails: String = "members/%@"
+        static let shippingDetails: String = "shippings"
     }
 }

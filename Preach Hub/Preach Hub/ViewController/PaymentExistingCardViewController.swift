@@ -18,15 +18,6 @@ struct cardDetailsVal
     var cardNumber : String
     var expDate : String
     
-    var nameShipping : String
-    var streetShipping : String
-    var streetLine2Shipping : String
-    var cityShipping : String
-    var postalCodeShipping : String
-    var stateShipping : String
-    var countryShipping : String
-    var phoneNumberShipping : String
-    
     var nameBilling : String
     var streetBilling : String
     var streetLine2Billing : String
@@ -207,7 +198,7 @@ class PaymentExistingCardViewController: UIViewController, UICollectionViewDataS
 
             for data in result as! [NSManagedObject]
             {
-                self.cardDetailsArr.append(cardDetailsVal(cardNumber: data.value(forKey: "cardNumber") as! String, expDate: data.value(forKey: "expDate") as! String, nameShipping: data.value(forKey: "nameShipping") as! String, streetShipping: data.value(forKey: "streetShipping") as! String, streetLine2Shipping: data.value(forKey: "streetLineShipping") as! String, cityShipping: data.value(forKey: "cityShipping") as! String, postalCodeShipping: data.value(forKey: "postalCodeShipping") as! String, stateShipping: data.value(forKey: "stateShipping") as! String, countryShipping: data.value(forKey: "countryShipping") as! String, phoneNumberShipping: data.value(forKey: "phoneNoShipping") as! String, nameBilling: data.value(forKey: "nameBilling") as! String, streetBilling: data.value(forKey: "streetBilling") as! String, streetLine2Billing: data.value(forKey: "streetLineBilling") as! String, cityBilling: data.value(forKey: "cityBilling") as! String, postalCodeBilling: data.value(forKey: "postalCodeBilling") as! String, stateBilling: data.value(forKey: "stateBilling") as! String, countryBilling: data.value(forKey: "countryBilling") as! String, phoneNumberBilling: data.value(forKey: "phoneNoBilling") as! String))
+                self.cardDetailsArr.append(cardDetailsVal(cardNumber: data.value(forKey: "cardNumber") as! String, expDate: data.value(forKey: "expDate") as! String, nameBilling: data.value(forKey: "nameBilling") as! String, streetBilling: data.value(forKey: "streetBilling") as! String, streetLine2Billing: data.value(forKey: "streetLineBilling") as! String, cityBilling: data.value(forKey: "cityBilling") as! String, postalCodeBilling: data.value(forKey: "postalCodeBilling") as! String, stateBilling: data.value(forKey: "stateBilling") as! String, countryBilling: data.value(forKey: "countryBilling") as! String, phoneNumberBilling: data.value(forKey: "phoneNoBilling") as! String))
                 
                 self.cvvArr.append("")
             }
@@ -280,6 +271,7 @@ class PaymentExistingCardViewController: UIViewController, UICollectionViewDataS
     }
     @IBAction func payNowTapped(_ sender: Any)
     {
+        self.view.endEditing(false)
         if self.cvvArr.count == 0
         {
             self.view.makeToast("Please Add a New Card", duration: 3.0, position: .bottom, style: self.style)
@@ -318,56 +310,56 @@ class PaymentExistingCardViewController: UIViewController, UICollectionViewDataS
             print(token.stripeID)
             
             self.stripeCardToken = token.stripeID
-            self.sendOrder()
+           // self.sendOrder()
         }
     }
     
-    func sendOrder(){
-        let cartInfo = UserDefaults.standard.object(forKey: "CartDetails") as? NSData
-        if let cartInfo = cartInfo {
-            cartList = (NSKeyedUnarchiver.unarchiveObject(with: cartInfo as Data) as? [[String: String]])!
-        }
-        
-        let dateFormatter = DateFormatter()
-        let date = Date()
-        dateFormatter.timeZone = TimeZone.current
-        dateFormatter.dateFormat =  "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
-        let orderDate = dateFormatter.string(from: date)
-        let shippingAmount: Float = 0
-        var sum: Float = 0
-        for item in cartList {
-            sum = (sum + (Float((item["quantity"]!))! * Float((item["price"])!)!))
-        }
-        let amount = (sum + shippingAmount)
-        
-        let memberId = UserDefaults.standard.string(forKey: "memberId")
-        
-        let parameters: [String: Any] = ["orderno": "order_1", "memberid": memberId!, "paymentmethod": "credit_card", "orderdate": orderDate, "orderstatus": "pending", "currency": "USD", "currencyvalue": amount, "parentid": ""]
-        APIHelper().post(apiUrl: GlobalConstants.APIUrls.sendOrders, parameters: parameters as [String : AnyObject]) { (response) in
-            if response["data"] != JSON.null{
-                self.sendOrderDetails(orderNo: response["data"]["id"].string!)
-            }
-        }
-    }
-    
-    func sendOrderDetails(orderNo: String){
-        
-        for (index,item) in cartList.enumerated() {
-            let price = (Float((item["quantity"]!))! * Float((item["price"])!)!)
-            let parameters: [String: Any] = ["orderid": orderNo, "productid": item["id"]!, "qtyordered": item["quantity"]!, "price": price, "colourid": item["colorId"]!, "sizeid": item["sizeId"]!, "comments": "",]
-            APIHelper().post(apiUrl: GlobalConstants.APIUrls.sendOrderDetails, parameters: parameters as [String : AnyObject]) { (response) in
-                if response["data"] != JSON.null{
-                }
-                if index == (self.cartList.count - 1){
-                    let productData = NSKeyedArchiver.archivedData(withRootObject: [])
-                    UserDefaults.standard.set(productData, forKey: "CartDetails")
-                    self.view.makeToast("Payment successfull!", duration: 3.0, position: .bottom, title: nil, image: nil, style: self.style , completion: { (true) in
-                        
-                        self.navigateToHomeScreenPage()
-                    })
-                }
-            }
-        }
-    }
+//    func sendOrder(){
+//        let cartInfo = UserDefaults.standard.object(forKey: "CartDetails") as? NSData
+//        if let cartInfo = cartInfo {
+//            cartList = (NSKeyedUnarchiver.unarchiveObject(with: cartInfo as Data) as? [[String: String]])!
+//        }
+//
+//        let dateFormatter = DateFormatter()
+//        let date = Date()
+//        dateFormatter.timeZone = TimeZone.current
+//        dateFormatter.dateFormat =  "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+//        let orderDate = dateFormatter.string(from: date)
+//        let shippingAmount: Float = 0
+//        var sum: Float = 0
+//        for item in cartList {
+//            sum = (sum + (Float((item["quantity"]!))! * Float((item["price"])!)!))
+//        }
+//        let amount = (sum + shippingAmount)
+//
+//        let memberId = UserDefaults.standard.string(forKey: "memberId")
+//
+//        let parameters: [String: Any] = ["orderno": "order_1", "memberid": memberId!, "paymentmethod": "credit_card", "orderdate": orderDate, "orderstatus": "pending", "currency": "USD", "currencyvalue": amount, "parentid": ""]
+//        APIHelper().post(apiUrl: GlobalConstants.APIUrls.sendOrders, parameters: parameters as [String : AnyObject]) { (response) in
+//            if response["data"] != JSON.null{
+//                self.sendOrderDetails(orderNo: response["data"]["id"].string!)
+//            }
+//        }
+//    }
+//
+//    func sendOrderDetails(orderNo: String){
+//
+//        for (index,item) in cartList.enumerated() {
+//            let price = (Float((item["quantity"]!))! * Float((item["price"])!)!)
+//            let parameters: [String: Any] = ["orderid": orderNo, "productid": item["id"]!, "qtyordered": item["quantity"]!, "price": price, "colourid": item["colorId"]!, "sizeid": item["sizeId"]!, "comments": "",]
+//            APIHelper().post(apiUrl: GlobalConstants.APIUrls.sendOrderDetails, parameters: parameters as [String : AnyObject]) { (response) in
+//                if response["data"] != JSON.null{
+//                }
+//                if index == (self.cartList.count - 1){
+//                    let productData = NSKeyedArchiver.archivedData(withRootObject: [])
+//                    UserDefaults.standard.set(productData, forKey: "CartDetails")
+//                    self.view.makeToast("Payment successfull!", duration: 3.0, position: .bottom, title: nil, image: nil, style: self.style , completion: { (true) in
+//
+//                        self.navigateToHomeScreenPage()
+//                    })
+//                }
+//            }
+//        }
+//    }
 }
 

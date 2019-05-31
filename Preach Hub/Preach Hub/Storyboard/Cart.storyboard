@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="mZD-gE-ieb">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="mZD-gE-ieb">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -988,6 +988,8 @@ EENob29zZSBzaXplA
                         <outlet property="productImagesCollectionView" destination="stB-zW-bvG" id="icA-kL-dRN"/>
                         <outlet property="qtyLbl" destination="hzg-Mc-uCt" id="3Vh-33-g1q"/>
                         <outlet property="sizeTxt" destination="K6h-bq-Xfh" id="1Ur-XP-DgY"/>
+                        <outlet property="vwColor" destination="cWm-PQ-5AB" id="Fzr-RK-p93"/>
+                        <outlet property="vwSize" destination="G1c-zd-iDY" id="zq1-bf-JyM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f6f-sr-PIU" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1346,7 +1348,7 @@ EENob29zZSBzaXplA
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <segue destination="3FL-mH-rse" kind="show" id="syx-c0-Vw2"/>
+                                                    <action selector="checkoutClicked:" destination="tPc-om-YNg" eventType="touchUpInside" id="AYy-ef-9Up"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -1695,9 +1697,9 @@ EENob29zZSBzaXplA
         </scene>
     </scenes>
     <resources>
-        <image name="arrow_top" width="50" height="50"/>
-        <image name="downArrow_black" width="50" height="50"/>
-        <image name="expand_arrow" width="50" height="50"/>
+        <image name="arrow_top" width="37.5" height="37.5"/>
+        <image name="downArrow_black" width="37.5" height="37.5"/>
+        <image name="expand_arrow" width="37.5" height="37.5"/>
         <image name="garbage" width="12.5" height="15"/>
         <image name="ic-back" width="38" height="38"/>
         <image name="ic-logo-header" width="76" height="22"/>

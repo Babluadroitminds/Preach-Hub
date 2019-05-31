@@ -12,11 +12,13 @@ import CoreData
 
 class AddShippingAddressViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate
 {
+    @IBOutlet weak var streetLine2: UITextField!
     @IBOutlet weak var countryTxt: UITextField!
     @IBOutlet weak var stateTxt: UITextField!
-    @IBOutlet weak var streetLine2Txt: UITextField!
-    @IBOutlet weak var txtFldStreet: UITextField!
-    @IBOutlet weak var txtFldName: UITextField!
+    @IBOutlet weak var txtStreetAddress: UITextField!
+    @IBOutlet weak var txtEmail: UITextField!
+    @IBOutlet weak var txtFirstName: UITextField!
+    @IBOutlet weak var txtLastName: UITextField!
     @IBOutlet weak var txtFldCity: UITextField!
     @IBOutlet weak var txtFldPostalCode: UITextField!
     @IBOutlet weak var txtFldPhoneNumber: UITextField!
@@ -37,8 +39,9 @@ class AddShippingAddressViewController: UIViewController, UIPickerViewDataSource
         
         self.countryTxt.delegate = self
         self.stateTxt.delegate = self
-        self.txtFldName.delegate = self
-        
+        self.txtFirstName.delegate = self
+        self.txtLastName.delegate = self
+
         countryArray = ["South Africa", "India"]
         stateArray = ["Free State", "Gauteng", "Western Cape", "North West"]
         
@@ -57,7 +60,7 @@ class AddShippingAddressViewController: UIViewController, UIPickerViewDataSource
     
     override func viewWillAppear(_ animated: Bool)
     {
-        if self.txtFldName.text != ""
+        if self.txtFirstName.text != ""
         {
             self.alreadyAdded = 2
         }
@@ -124,9 +127,11 @@ class AddShippingAddressViewController: UIViewController, UIPickerViewDataSource
     
     @IBAction func backTapped(_ sender: Any)
     {
-        self.singleTon.nameShipping = ""
-        self.singleTon.streetShipping = ""
-        self.singleTon.streetLine2Shipping = ""
+        self.singleTon.firstNameShipping = ""
+        self.singleTon.lastNameShipping = ""
+        self.singleTon.addressShipping = ""
+        self.singleTon.streeLine2Shipping = ""
+        self.singleTon.emailShipping = ""
         self.singleTon.cityShipping = ""
         self.singleTon.postalCodeShipping = ""
         self.singleTon.stateShipping = ""
@@ -138,7 +143,7 @@ class AddShippingAddressViewController: UIViewController, UIPickerViewDataSource
     
     @IBAction func btnSavePayAction(_ sender: Any)
     {
-        if countryTxt.text?.count == 0 || stateTxt.text?.count == 0 || streetLine2Txt.text?.count == 0 || txtFldStreet.text?.count == 0 || txtFldName.text?.count == 0 || txtFldCity.text?.count == 0 || txtFldPostalCode.text?.count == 0 || txtFldPhoneNumber.text?.count == 0
+        if countryTxt.text?.count == 0 || stateTxt.text?.count == 0 || txtStreetAddress.text?.count == 0 || txtEmail.text?.count == 0 || txtFirstName.text?.count == 0 || txtLastName.text?.count == 0 || txtFldCity.text?.count == 0 || txtFldPostalCode.text?.count == 0 || txtFldPhoneNumber.text?.count == 0 || streetLine2.text?.count == 0
         {
             self.view.makeToast("Please enter all details.", duration: 3.0, position: .bottom)
             return
@@ -151,9 +156,11 @@ class AddShippingAddressViewController: UIViewController, UIPickerViewDataSource
             return
         }
         
-        self.singleTon.nameShipping = self.txtFldName.text!
-        self.singleTon.streetShipping = self.txtFldStreet.text!
-        self.singleTon.streetLine2Shipping = self.streetLine2Txt.text!
+        self.singleTon.firstNameShipping = self.txtFirstName.text!
+        self.singleTon.lastNameShipping = self.txtLastName.text!
+        self.singleTon.emailShipping = self.txtEmail.text!
+        self.singleTon.addressShipping = self.txtStreetAddress.text!
+        self.singleTon.streeLine2Shipping = self.streetLine2.text!
         self.singleTon.cityShipping = self.txtFldCity.text!
         self.singleTon.postalCodeShipping = self.txtFldPostalCode.text!
         self.singleTon.stateShipping = self.stateTxt.text!
@@ -170,7 +177,7 @@ class AddShippingAddressViewController: UIViewController, UIPickerViewDataSource
             
         self.view.makeToast("Shipping address added successfully!", duration: 3.0, position: .bottom, title: nil, image: nil, style: style , completion: { (true) in
                 
-            self.navigateToExistingCardPage()
+           self.navigationController?.popViewController(animated: true)
         })
     }
     func saveShippingAddress()
@@ -181,9 +188,11 @@ class AddShippingAddressViewController: UIViewController, UIPickerViewDataSource
         
         let user = NSManagedObject(entity: entity, insertInto: managedContext!)
         
-        user.setValue(self.txtFldName.text!, forKey: "name")
-        user.setValue(self.txtFldStreet.text!, forKey: "street")
-        user.setValue(self.streetLine2Txt.text!, forKey: "streetLine")
+        user.setValue(self.txtFirstName.text!, forKey: "firstName")
+        user.setValue(self.txtLastName.text!, forKey: "lastName")
+        user.setValue(self.txtEmail.text!, forKey: "email")
+        user.setValue(self.txtStreetAddress.text!, forKey: "street1")
+        user.setValue(self.streetLine2.text!, forKey: "streetLine2")
         user.setValue(self.txtFldCity.text!, forKey: "city")
         user.setValue(self.txtFldPostalCode.text!, forKey: "postalCode")
         user.setValue(self.stateTxt.text!, forKey: "state")
@@ -201,7 +210,7 @@ class AddShippingAddressViewController: UIViewController, UIPickerViewDataSource
     }
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool
     {
-        if textField == self.txtFldName
+        if textField == self.txtFirstName || textField == self.txtLastName
         {
             let characterSet = CharacterSet.letters
             

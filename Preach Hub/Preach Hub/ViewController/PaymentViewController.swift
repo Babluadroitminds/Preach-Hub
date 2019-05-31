@@ -321,7 +321,7 @@ class PaymentViewController: UIViewController, UIPickerViewDataSource, UIPickerV
             if response["status"].stringValue == "Success"{
                 self.view.makeToast("Payment successful!", duration: 3.0, position: .bottom, style: self.style)
                 
-                self.saveToCoreData()
+               // self.saveToCoreData()
                 
                 DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3), execute: {
                     self.navigateToLogin()
@@ -339,14 +339,6 @@ class PaymentViewController: UIViewController, UIPickerViewDataSource, UIPickerV
 
         user.setValue(self.txtCardNumber.text!, forKey: "cardNumber")
         user.setValue(self.txtExpires.text!, forKey: "expDate")
-        user.setValue(self.txtCardName.text!, forKey: "nameShipping")
-        user.setValue(self.txtStreet.text!, forKey: "streetShipping")
-        user.setValue(self.txtStreet2.text!, forKey: "streetLineShipping")
-        user.setValue(self.txtCity.text!, forKey: "cityShipping")
-        user.setValue(self.txtPostal.text!, forKey: "postalCodeShipping")
-        user.setValue(self.txtState.text!, forKey: "stateShipping")
-        user.setValue(self.txtCountry.text!, forKey: "countryShipping")
-        user.setValue(self.phoneNumberTxt.text!, forKey: "phoneNoShipping")
         
         user.setValue(self.txtCardName.text!, forKey: "nameBilling")
         user.setValue(self.txtStreet.text!, forKey: "streetBilling")

@@ -188,57 +188,57 @@ class AddBillingAddressViewController: UIViewController, UIPickerViewDataSource,
             self.saveToCoreData()
             
             self.stripeCardToken = token.stripeID
-            self.sendOrder()
+            //self.sendOrder()
         }
     }
     
-    func sendOrder(){
-        let cartInfo = UserDefaults.standard.object(forKey: "CartDetails") as? NSData
-        if let cartInfo = cartInfo {
-            cartList = (NSKeyedUnarchiver.unarchiveObject(with: cartInfo as Data) as? [[String: String]])!
-        }
-        
-        let dateFormatter = DateFormatter()
-        let date = Date()
-        dateFormatter.timeZone = TimeZone.current
-        dateFormatter.dateFormat =  "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
-        let orderDate = dateFormatter.string(from: date)
-        let shippingAmount: Float = 0
-        var sum: Float = 0
-        for item in cartList {
-            sum = (sum + (Float((item["quantity"]!))! * Float((item["price"])!)!))
-        }
-        let amount = (sum + shippingAmount)
-        
-        let memberId = UserDefaults.standard.string(forKey: "memberId")
-        
-        let parameters: [String: Any] = ["orderno": "order_1", "memberid": memberId!, "paymentmethod": "credit_card", "orderdate": orderDate, "orderstatus": "pending", "currency": "USD", "currencyvalue": amount, "parentid": ""]
-        APIHelper().post(apiUrl: GlobalConstants.APIUrls.sendOrders, parameters: parameters as [String : AnyObject]) { (response) in
-            if response["data"] != JSON.null{
-                self.sendOrderDetails(orderNo: response["data"]["orderno"].string!)
-            }
-        }
-    }
-    
-    func sendOrderDetails(orderNo: String){
-        
-        for (index,item) in cartList.enumerated() {
-            let price = (Float((item["quantity"]!))! * Float((item["price"])!)!)
-            let parameters: [String: Any] = ["orderid": orderNo, "productid": item["id"]!, "qtyordered": item["quantity"]!, "price": price, "colourid": item["colorId"]!, "sizeid": item["sizeId"]!, "comments": "",]
-            APIHelper().post(apiUrl: GlobalConstants.APIUrls.sendOrderDetails, parameters: parameters as [String : AnyObject]) { (response) in
-                if response["data"] != JSON.null{
-                }
-                if index == (self.cartList.count - 1){
-                    let productData = NSKeyedArchiver.archivedData(withRootObject: [])
-                    UserDefaults.standard.set(productData, forKey: "CartDetails")
-                    self.view.makeToast("Payment successfull!", duration: 3.0, position: .bottom, title: nil, image: nil, style: self.style , completion: { (true) in
-                        
-                        self.navigateToHomeScreenPage()
-                    })
-                }
-            }
-        }
-    }
+//    func sendOrder(){
+//        let cartInfo = UserDefaults.standard.object(forKey: "CartDetails") as? NSData
+//        if let cartInfo = cartInfo {
+//            cartList = (NSKeyedUnarchiver.unarchiveObject(with: cartInfo as Data) as? [[String: String]])!
+//        }
+//        
+//        let dateFormatter = DateFormatter()
+//        let date = Date()
+//        dateFormatter.timeZone = TimeZone.current
+//        dateFormatter.dateFormat =  "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+//        let orderDate = dateFormatter.string(from: date)
+//        let shippingAmount: Float = 0
+//        var sum: Float = 0
+//        for item in cartList {
+//            sum = (sum + (Float((item["quantity"]!))! * Float((item["price"])!)!))
+//        }
+//        let amount = (sum + shippingAmount)
+//        
+//        let memberId = UserDefaults.standard.string(forKey: "memberId")
+//        
+//        let parameters: [String: Any] = ["orderno": "order_1", "memberid": memberId!, "paymentmethod": "credit_card", "orderdate": orderDate, "orderstatus": "pending", "currency": "USD", "currencyvalue": amount, "parentid": ""]
+//        APIHelper().post(apiUrl: GlobalConstants.APIUrls.sendOrders, parameters: parameters as [String : AnyObject]) { (response) in
+//            if response["data"] != JSON.null{
+//                self.sendOrderDetails(orderNo: response["data"]["orderno"].string!)
+//            }
+//        }
+//    }
+//    
+//    func sendOrderDetails(orderNo: String){
+//        
+//        for (index,item) in cartList.enumerated() {
+//            let price = (Float((item["quantity"]!))! * Float((item["price"])!)!)
+//            let parameters: [String: Any] = ["orderid": orderNo, "productid": item["id"]!, "qtyordered": item["quantity"]!, "price": price, "colourid": item["colorId"]!, "sizeid": item["sizeId"]!, "comments": "",]
+//            APIHelper().post(apiUrl: GlobalConstants.APIUrls.sendOrderDetails, parameters: parameters as [String : AnyObject]) { (response) in
+//                if response["data"] != JSON.null{
+//                }
+//                if index == (self.cartList.count - 1){
+//                    let productData = NSKeyedArchiver.archivedData(withRootObject: [])
+//                    UserDefaults.standard.set(productData, forKey: "CartDetails")
+//                    self.view.makeToast("Payment successfull!", duration: 3.0, position: .bottom, title: nil, image: nil, style: self.style , completion: { (true) in
+//                        
+//                        self.navigateToHomeScreenPage()
+//                    })
+//                }
+//            }
+//        }
+//    }
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool
     {
         if textField == self.txtFldName
@@ -264,15 +264,6 @@ class AddBillingAddressViewController: UIViewController, UIPickerViewDataSource,
         user.setValue(self.cardNumber, forKey: "cardNumber")
         user.setValue(self.expDate, forKey: "expDate")
         
-        user.setValue(self.singleTon.nameShipping, forKey: "nameShipping")
-        user.setValue(self.singleTon.streetShipping, forKey: "streetShipping")
-        user.setValue(self.singleTon.streetLine2Shipping, forKey: "streetLineShipping")
-        user.setValue(self.singleTon.cityShipping, forKey: "cityShipping")
-        user.setValue(self.singleTon.postalCodeShipping, forKey: "postalCodeShipping")
-        user.setValue(self.singleTon.stateShipping, forKey: "stateShipping")
-        user.setValue(self.singleTon.countryShipping, forKey: "countryShipping")
-        user.setValue(self.singleTon.phoneNumberShipping, forKey: "phoneNoShipping")
-        
         user.setValue(self.singleTon.nameBilling, forKey: "nameBilling")
         user.setValue(self.singleTon.streetBilling, forKey: "streetBilling")
         user.setValue(self.singleTon.streetLine2Billing, forKey: "streetLineBilling")
@@ -291,9 +282,11 @@ class AddBillingAddressViewController: UIViewController, UIPickerViewDataSource,
             print("errorCoreData : ", error.userInfo)
         }
         
-        self.singleTon.nameShipping = ""
-        self.singleTon.streetShipping = ""
-        self.singleTon.streetLine2Shipping = ""
+        self.singleTon.firstNameShipping = ""
+        self.singleTon.lastNameShipping = ""
+        self.singleTon.addressShipping = ""
+        self.singleTon.streeLine2Shipping = ""
+        self.singleTon.emailShipping = ""
         self.singleTon.cityShipping = ""
         self.singleTon.postalCodeShipping = ""
         self.singleTon.stateShipping = ""

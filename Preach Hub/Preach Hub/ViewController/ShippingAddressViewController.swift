@@ -9,12 +9,15 @@
 import UIKit
 import CoreData
 import Toast_Swift
+import SwiftyJSON
 
 struct shippingAddress
 {
-    var nameShipping : String
-    var streetShipping : String
+    var firstNameShipping : String
+    var lastNameShipping : String
+    var addressShipping : String
     var streetLine2Shipping : String
+    var emailShipping : String
     var cityShipping : String
     var postalCodeShipping : String
     var stateShipping : String
@@ -41,6 +44,7 @@ class ShippingAddressViewController: UIViewController, UITableViewDelegate, UITa
     
     var shippingAddressArr = [shippingAddress]()
     var singleTon = SingleTon.shared
+    var orderId: String?
 
     override func viewDidLoad()
     {
@@ -73,7 +77,8 @@ class ShippingAddressViewController: UIViewController, UITableViewDelegate, UITa
             
             for data in result as! [NSManagedObject]
             {
-                self.shippingAddressArr.append(shippingAddress(nameShipping: data.value(forKey: "name") as! String, streetShipping: data.value(forKey: "street") as! String, streetLine2Shipping: data.value(forKey: "streetLine") as! String, cityShipping: data.value(forKey: "city") as! String, postalCodeShipping: data.value(forKey: "postalCode") as! String, stateShipping: data.value(forKey: "state") as! String, countryShipping: data.value(forKey: "country") as! String, phoneNumberShipping: data.value(forKey: "phoneNumber") as! String))
+                
+                self.shippingAddressArr.append(shippingAddress(firstNameShipping: data.value(forKey: "firstName") as! String, lastNameShipping: data.value(forKey: "lastName") as! String, addressShipping: data.value(forKey: "street1") as! String, streetLine2Shipping: data.value(forKey: "streetLine2") as! String, emailShipping: data.value(forKey: "email") as! String, cityShipping: data.value(forKey: "city") as! String, postalCodeShipping: data.value(forKey: "postalCode") as! String, stateShipping: data.value(forKey: "state") as! String, countryShipping: data.value(forKey: "country") as! String, phoneNumberShipping: data.value(forKey: "phoneNumber") as! String))
             }
             
             print("self.shippingAddressArr : ", self.shippingAddressArr)
@@ -98,7 +103,8 @@ class ShippingAddressViewController: UIViewController, UITableViewDelegate, UITa
     {
         let cell = tableView.dequeueReusableCell(withIdentifier: "shippingCell", for: indexPath) as! ShippingAddressTVCell
         
-        cell.addressLine1.text = self.shippingAddressArr[indexPath.row].nameShipping + ", " + self.shippingAddressArr[indexPath.row].streetShipping
+        let fullName = self.shippingAddressArr[indexPath.row].firstNameShipping + " " + self.shippingAddressArr[indexPath.row].lastNameShipping
+        cell.addressLine1.text = fullName + ", " + self.shippingAddressArr[indexPath.row].addressShipping
         cell.addressLine2.text = self.shippingAddressArr[indexPath.row].streetLine2Shipping + ", " + self.shippingAddressArr[indexPath.row].cityShipping
         cell.addressLine3.text = self.shippingAddressArr[indexPath.row].stateShipping + ", " + self.shippingAddressArr[indexPath.row].countryShipping + ", " + self.shippingAddressArr[indexPath.row].postalCodeShipping
         
@@ -146,9 +152,11 @@ class ShippingAddressViewController: UIViewController, UITableViewDelegate, UITa
         }
         else
         {
-            self.singleTon.nameShipping = self.shippingAddressArr[self.selectedRow].nameShipping
-            self.singleTon.streetShipping = self.shippingAddressArr[self.selectedRow].streetShipping
-            self.singleTon.streetLine2Shipping = self.shippingAddressArr[self.selectedRow].streetLine2Shipping
+            self.singleTon.firstNameShipping = self.shippingAddressArr[self.selectedRow].firstNameShipping
+            self.singleTon.lastNameShipping = self.shippingAddressArr[self.selectedRow].lastNameShipping
+            self.singleTon.addressShipping = self.shippingAddressArr[self.selectedRow].addressShipping
+            self.singleTon.streeLine2Shipping = self.shippingAddressArr[self.selectedRow].streetLine2Shipping
+            self.singleTon.emailShipping = self.shippingAddressArr[self.selectedRow].emailShipping
             self.singleTon.cityShipping = self.shippingAddressArr[self.selectedRow].cityShipping
             self.singleTon.postalCodeShipping = self.shippingAddressArr[self.selectedRow].postalCodeShipping
             self.singleTon.stateShipping = self.shippingAddressArr[self.selectedRow].stateShipping
@@ -157,5 +165,19 @@ class ShippingAddressViewController: UIViewController, UITableViewDelegate, UITa
             
             self.navigateToExistingCardPage()
         }
+    }
+    
+    func saveShippingDetails(){
+        let parameters: [String: Any] = ["email": "", "firstname": "", "lastname": "", "streetaddress": "", "shippingcity": "", "postcode": "", "country": "", "state": "", "orderid": ""]
+        APIHelper().post(apiUrl: GlobalConstants.APIUrls.shippingDetails, parameters: parameters as [String : AnyObject]) { (response) in
+            if response["data"] != JSON.null{
+              
+            }
+        }
+    }
+    
+    static func storyboardInstance() -> ShippingAddressViewController? {
+        let storyboard = UIStoryboard(name: "Cart", bundle: nil)
+        return storyboard.instantiateViewController(withIdentifier: "ShippingAddressViewController") as? ShippingAddressViewController
     }
 }

@@ -18,6 +18,7 @@ class LoginViewController: UIViewController{
     @IBOutlet weak var txtUsername: UITextField!
     @IBOutlet weak var viewUsername: UIView!
     var style = ToastStyle()
+    let userDefaults = UserDefaults.standard
     
     override func viewDidLoad(){
         super.viewDidLoad()
@@ -61,18 +62,24 @@ class LoginViewController: UIViewController{
             }
             
             if response["data"] != JSON.null {
-                let userDefaults = UserDefaults.standard
-                userDefaults.set(true, forKey: "Is_Logged_In")
+                self.userDefaults.set(true, forKey: "Is_Logged_In")
                 let memberId = response["data"]["userId"].string
-                userDefaults.set(memberId, forKey: "memberId")
-                
+                self.userDefaults.set(memberId, forKey: "memberId")
+                self.getDetails(memberId: memberId!)
+            }
+        }
+    }
+    
+    func getDetails(memberId: String){
+        let parameters: [String: String] = [:]
+        APIHelper().get(apiUrl: String.init(format: GlobalConstants.APIUrls.memberDetails,memberId), parameters: parameters as [String : AnyObject]) { (response) in
+            if response["data"] != JSON.null  {
+                self.userDefaults.set(response["data"]["stripecustomertokenid"].string, forKey: "stripeCustomerTokenId")
                 self.view.makeToast("You are now logged in", duration: 3.0, position: .bottom, style: self.style)
                 DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3), execute: {
-                   self.navigateToHomeScreenPage()
+                    self.navigateToHomeScreenPage()
                 })
             }
-          
-           
         }
     }
 }

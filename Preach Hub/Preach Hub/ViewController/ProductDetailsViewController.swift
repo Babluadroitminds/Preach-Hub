@@ -30,6 +30,8 @@ class ProductDetailsViewController: UIViewController, UICollectionViewDelegate, 
     @IBOutlet weak var productImagesCollectionView: UICollectionView!
     @IBOutlet weak var lblCartBadgeCount: UILabel!
     @IBOutlet weak var lblMessage: UILabel!
+    @IBOutlet weak var vwSize: UIView!
+    @IBOutlet weak var vwColor: UIView!
     var selectedRow = 0
     
     var sizePicker = UIPickerView()
@@ -185,6 +187,7 @@ class ProductDetailsViewController: UIViewController, UICollectionViewDelegate, 
                             self.productColor.append(productSub(id: self.productDict["productcolour"]!["id"] != JSON.null ? self.productDict["productcolour"]!["id"].string : "", name: self.productDict["productcolour"]!["name"] != JSON.null ? self.productDict["productcolour"]!["name"].string : ""))
                         }
                         
+                        
                         self.sizePicker.reloadAllComponents()
                         self.colorPicker.reloadAllComponents()
                         self.lblMessage.isHidden = true
@@ -193,18 +196,24 @@ class ProductDetailsViewController: UIViewController, UICollectionViewDelegate, 
                             self.colorTxt.text = self.productColor[0].name
                             self.selectedColor = self.productColor[0].name
                             self.selectedColorId = self.productColor[0].id
+                            self.colorTxt.isHidden = false
+                            self.vwColor.isHidden = false
                         }
                         else{
-                            self.colorTxt.isUserInteractionEnabled = false
+                            self.colorTxt.isHidden = true
+                            self.vwColor.isHidden = true
                         }
                         
                         if self.productSize.count != 0 {
                             self.sizeTxt.text = self.productSize[0].name
                             self.selectedSize = self.productSize[0].name
                             self.selectedSizeId = self.productSize[0].id
+                            self.sizeTxt.isHidden = false
+                            self.vwSize.isHidden = false
                         }
                         else{
-                            self.sizeTxt.isUserInteractionEnabled = false
+                            self.sizeTxt.isHidden = true
+                            self.vwSize.isHidden = true
                         }
                        
                     }
@@ -288,6 +297,16 @@ class ProductDetailsViewController: UIViewController, UICollectionViewDelegate, 
         for (index, item) in cartList.enumerated() {
             // check for already existing item
             if item["id"] == (self.productDict["id"]?.string)!  && item["color"] == selectedColor && item["size"] == selectedSize{
+                isAlreadyAdded = true
+                let quantityTotal = valInt + Int((item["quantity"])!)!
+                self.cartList[index]["quantity"] = quantityTotal.description
+            }
+            else if item["id"] == (self.productDict["id"]?.string)!  && item["color"] == selectedColor {
+                isAlreadyAdded = true
+                let quantityTotal = valInt + Int((item["quantity"])!)!
+                self.cartList[index]["quantity"] = quantityTotal.description
+            }
+            else if item["id"] == (self.productDict["id"]?.string)! {
                 isAlreadyAdded = true
                 let quantityTotal = valInt + Int((item["quantity"])!)!
                 self.cartList[index]["quantity"] = quantityTotal.description

@@ -99,6 +99,7 @@ class CartPaymentViewController: UIViewController
     }
     @IBAction func payNowTapped(_ sender: Any)
     {
+        self.view.endEditing(false)
         if self.cardNumber.text! == "" || self.expDateTxt.text! == "" || self.cvvTxt.text! == ""
         {
             self.view.makeToast("Please enter all card details", duration: 3.0, position: .bottom, style: self.style)
@@ -112,9 +113,11 @@ class CartPaymentViewController: UIViewController
         
         if self.tickImage.isHidden == false
         {
-            self.singleTon.nameBilling = self.singleTon.nameShipping
-            self.singleTon.streetBilling = self.singleTon.streetShipping
-            self.singleTon.streetLine2Billing = self.singleTon.streetLine2Shipping
+            let fullName = self.singleTon.firstNameShipping + " " + self.singleTon.lastNameShipping
+            
+            self.singleTon.nameBilling = fullName
+            self.singleTon.streetBilling = self.singleTon.addressShipping
+            self.singleTon.streetLine2Billing = self.singleTon.streeLine2Shipping
             self.singleTon.cityBilling = self.singleTon.cityShipping
             self.singleTon.postalCodeBilling = self.singleTon.postalCodeShipping
             self.singleTon.stateBilling = self.singleTon.stateShipping
@@ -152,59 +155,10 @@ class CartPaymentViewController: UIViewController
             
             self.saveToCoreData()
             
-            self.sendOrder()
+           // self.sendOrder()
         }
     }
-    
-    func sendOrder(){
-        let cartInfo = UserDefaults.standard.object(forKey: "CartDetails") as? NSData
-        if let cartInfo = cartInfo {
-            cartList = (NSKeyedUnarchiver.unarchiveObject(with: cartInfo as Data) as? [[String: String]])!
-        }
-        
-        let dateFormatter = DateFormatter()
-        let date = Date()
-        dateFormatter.timeZone = TimeZone.current
-        dateFormatter.dateFormat =  "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
-        let orderDate = dateFormatter.string(from: date)
-        let shippingAmount: Float = 0
-        var sum: Float = 0
-        for item in cartList {
-            sum = (sum + (Float((item["quantity"]!))! * Float((item["price"])!)!))
-        }
-        let amount = (sum + shippingAmount)
-        
-        let memberId = UserDefaults.standard.string(forKey: "memberId")
-        
-        let parameters: [String: Any] = ["orderno": "order_1", "memberid": memberId!, "paymentmethod": "credit_card", "orderdate": orderDate, "orderstatus": "pending", "currency": "USD", "currencyvalue": amount, "parentid": ""]
-        APIHelper().post(apiUrl: GlobalConstants.APIUrls.sendOrders, parameters: parameters as [String : AnyObject]) { (response) in
-            if response["data"] != JSON.null{
-                self.sendOrderDetails(orderNo: response["data"]["id"].string!)
-            }
-        }
-    }
-    
-    func sendOrderDetails(orderNo: String){
-        
-        for (index,item) in cartList.enumerated() {
-            let price = (Float((item["quantity"]!))! * Float((item["price"])!)!)
-            let parameters: [String: Any] = ["orderid": orderNo, "productid": item["id"]!, "qtyordered": item["quantity"]!, "price": price, "colourid": item["colorId"]!, "sizeid": item["sizeId"]!, "comments": "",]
-            APIHelper().post(apiUrl: GlobalConstants.APIUrls.sendOrderDetails, parameters: parameters as [String : AnyObject]) { (response) in
-                if response["data"] != JSON.null{
-                }
-                if index == (self.cartList.count - 1){
-                    let productData = NSKeyedArchiver.archivedData(withRootObject: [])
-                    UserDefaults.standard.set(productData, forKey: "CartDetails")
-                    self.view.makeToast("Payment successfull!", duration: 3.0, position: .bottom, title: nil, image: nil, style: self.style , completion: { (true) in
-                        
-                        self.navigateToHomeScreenPage()
-                    })
-                }
-            }
-        }
-    }
-    
-
+   
     func saveToCoreData()
     {
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
@@ -215,15 +169,6 @@ class CartPaymentViewController: UIViewController
         
         user.setValue(self.cardNumber.text!, forKey: "cardNumber")
         user.setValue(self.expDateTxt.text!, forKey: "expDate")
-        
-        user.setValue(self.singleTon.nameShipping, forKey: "nameShipping")
-        user.setValue(self.singleTon.streetShipping, forKey: "streetShipping")
-        user.setValue(self.singleTon.streetLine2Shipping, forKey: "streetLineShipping")
-        user.setValue(self.singleTon.cityShipping, forKey: "cityShipping")
-        user.setValue(self.singleTon.postalCodeShipping, forKey: "postalCodeShipping")
-        user.setValue(self.singleTon.stateShipping, forKey: "stateShipping")
-        user.setValue(self.singleTon.countryShipping, forKey: "countryShipping")
-        user.setValue(self.singleTon.phoneNumberShipping, forKey: "phoneNoShipping")
         
         user.setValue(self.singleTon.nameBilling, forKey: "nameBilling")
         user.setValue(self.singleTon.streetBilling, forKey: "streetBilling")
@@ -247,9 +192,11 @@ class CartPaymentViewController: UIViewController
         self.cardNumber.text = ""
         self.expDateTxt.text = ""
         
-        self.singleTon.nameShipping = ""
-        self.singleTon.streetShipping = ""
-        self.singleTon.streetLine2Shipping = ""
+        self.singleTon.firstNameShipping = ""
+        self.singleTon.lastNameShipping = ""
+        self.singleTon.addressShipping = ""
+        self.singleTon.streeLine2Shipping = ""
+        self.singleTon.emailShipping = ""
         self.singleTon.cityShipping = ""
         self.singleTon.postalCodeShipping = ""
         self.singleTon.stateShipping = ""

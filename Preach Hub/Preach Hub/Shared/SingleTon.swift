@@ -11,10 +11,12 @@ import Foundation
 class SingleTon
 {
     static let shared = SingleTon()
-    
-    var nameShipping = ""
-    var streetShipping = ""
-    var streetLine2Shipping = ""
+        
+    var firstNameShipping = ""
+    var lastNameShipping = ""
+    var addressShipping = ""
+    var streeLine2Shipping = ""
+    var emailShipping = ""
     var cityShipping = ""
     var postalCodeShipping = ""
     var stateShipping = ""
