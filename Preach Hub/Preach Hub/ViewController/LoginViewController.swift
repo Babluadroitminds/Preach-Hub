@@ -50,23 +50,29 @@ class LoginViewController: UIViewController{
         }
         
         let parameters: [String: String] = ["username": self.txtUsername.text!, "password": self.txtPassword.text!]
-        APIHelper().postUserRequest(apiUrl: GlobalConstants.APIUrls.memberLogin, parameters: parameters as [String : AnyObject]) { (response) in
+        APIHelper().post(apiUrl: GlobalConstants.APIUrls.memberLogin, parameters: parameters as [String : AnyObject]) { (response) in
+            if response["error"]["statusCode"].int == 401 {
+                self.view.makeToast("Wrong Email or Password", duration: 3.0, position: .bottom, style: self.style)
+                return
+            }
+            else if response["error"]["statusCode"].int == 500 {
+                self.view.makeToast("Oops! Something went wrong!", duration: 3.0, position: .bottom, style: self.style)
+                return
+            }
             
-            if response == 200 {
+            if response["data"] != JSON.null {
                 let userDefaults = UserDefaults.standard
                 userDefaults.set(true, forKey: "Is_Logged_In")
+                let memberId = response["data"]["userId"].string
+                userDefaults.set(memberId, forKey: "memberId")
                 
                 self.view.makeToast("You are now logged in", duration: 3.0, position: .bottom, style: self.style)
                 DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3), execute: {
                    self.navigateToHomeScreenPage()
                 })
             }
-            else if response == 401 {
-                self.view.makeToast("Wrong Email or Password", duration: 3.0, position: .bottom, style: self.style)
-            }
-            else if response == 500 {
-                self.view.makeToast("Oops! Something went wrong!", duration: 3.0, position: .bottom, style: self.style)
-            }
+          
+           
         }
     }
 }

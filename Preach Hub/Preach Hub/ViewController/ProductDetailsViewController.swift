@@ -42,6 +42,8 @@ class ProductDetailsViewController: UIViewController, UICollectionViewDelegate, 
     var valInt: Int = 1
     var selectedColor: String?
     var selectedSize: String?
+    var selectedColorId: String?
+    var selectedSizeId: String?
     var cartList: [[String: String]] = []
     
     override func viewDidLoad(){
@@ -125,6 +127,7 @@ class ProductDetailsViewController: UIViewController, UICollectionViewDelegate, 
         self.colorPicker.selectRow(row, inComponent: 0, animated: false)
         self.colorTxt.text = self.productColor[row].name
         selectedColor = productColor[row].name
+        selectedColorId = productColor[row].id
         self.colorTxt.resignFirstResponder()
     }
     
@@ -139,6 +142,7 @@ class ProductDetailsViewController: UIViewController, UICollectionViewDelegate, 
         self.sizePicker.selectRow(row, inComponent: 0, animated: false)
         self.sizeTxt.text = self.productSize[row].name
         selectedSize = productSize[row].name
+        selectedSizeId = productSize[row].id
         self.sizeTxt.resignFirstResponder()
     }
     
@@ -188,6 +192,7 @@ class ProductDetailsViewController: UIViewController, UICollectionViewDelegate, 
                         if self.productColor.count != 0 {
                             self.colorTxt.text = self.productColor[0].name
                             self.selectedColor = self.productColor[0].name
+                            self.selectedColorId = self.productColor[0].id
                         }
                         else{
                             self.colorTxt.isUserInteractionEnabled = false
@@ -196,6 +201,7 @@ class ProductDetailsViewController: UIViewController, UICollectionViewDelegate, 
                         if self.productSize.count != 0 {
                             self.sizeTxt.text = self.productSize[0].name
                             self.selectedSize = self.productSize[0].name
+                            self.selectedSizeId = self.productSize[0].id
                         }
                         else{
                             self.sizeTxt.isUserInteractionEnabled = false
@@ -289,7 +295,7 @@ class ProductDetailsViewController: UIViewController, UICollectionViewDelegate, 
         }
         
         if isAlreadyAdded == false{
-            cartList.append(["id": productDict["id"] != JSON.null ? (productDict["id"]?.string)! : "","name": productDict["name"] != JSON.null ? (productDict["name"]?.string)! : "","img_thumb": productDict["img_thumb"] != JSON.null ? (productDict["img_thumb"]?.string!)! : "", "price": (productDict["price"]?.string)!, "quantity": valInt.description, "color": selectedColor != nil ? selectedColor!: "", "size": selectedSize != nil ? selectedSize! : ""])
+            cartList.append(["id": productDict["id"] != JSON.null ? (productDict["id"]?.string)! : "","name": productDict["name"] != JSON.null ? (productDict["name"]?.string)! : "","img_thumb": productDict["img_thumb"] != JSON.null ? (productDict["img_thumb"]?.string!)! : "", "price": (productDict["price"]?.string)!, "quantity": valInt.description, "color": selectedColor != nil ? selectedColor!: "", "size": selectedSize != nil ? selectedSize! : "", "colorId": selectedColorId != nil ? selectedColorId!: "", "sizeId": selectedSizeId != nil ? selectedSizeId!: ""])
         }
         
         let productData = NSKeyedArchiver.archivedData(withRootObject: cartList)
