@@ -196,22 +196,7 @@ class AddBillingAddressViewController: UIViewController, UIPickerViewDataSource,
             self.chargeMemberCard()
         }
     }
-    
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool
-    {
-        if textField == self.txtFldName
-        {
-            let characterSet = CharacterSet.letters
-            
-            if string.rangeOfCharacter(from: characterSet.inverted) != nil
-            {
-                return false
-            }
-            return true
-        }
-        return true
-    }
-    
+        
     func chargeMemberCard(){
         let cartInfo = UserDefaults.standard.object(forKey: "CartDetails") as? NSData
         if let cartInfo = cartInfo {

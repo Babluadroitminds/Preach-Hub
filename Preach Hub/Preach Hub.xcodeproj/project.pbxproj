@@ -33,6 +33,8 @@
 		820877E02298085800513037 /* ic-left-arrow-black.png in Resources */ = {isa = PBXBuildFile; fileRef = 820877DF2298085800513037 /* ic-left-arrow-black.png */; };
 		822AFABA22A515F8008BC9F1 /* ic-placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 822AFAB922A515F7008BC9F1 /* ic-placeholder.png */; };
 		822AFABC22A52CAC008BC9F1 /* ic-user-profile.png in Resources */ = {isa = PBXBuildFile; fileRef = 822AFABB22A52CAB008BC9F1 /* ic-user-profile.png */; };
+		822AFAC022A67168008BC9F1 /* OrderHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822AFABF22A67168008BC9F1 /* OrderHistoryViewController.swift */; };
+		822AFAC422A679BF008BC9F1 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822AFAC322A679BF008BC9F1 /* ProfileViewController.swift */; };
 		8235EB472293C3760090230B /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8235EB462293C3760090230B /* ForgotPasswordViewController.swift */; };
 		8235EB49229418C60090230B /* Payment.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8235EB48229418C60090230B /* Payment.storyboard */; };
 		82CADDCB22941DD300EBBDFD /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82CADDCA22941DD300EBBDFD /* PaymentViewController.swift */; };
@@ -111,6 +113,8 @@
 		820877DF2298085800513037 /* ic-left-arrow-black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic-left-arrow-black.png"; sourceTree = "<group>"; };
 		822AFAB922A515F7008BC9F1 /* ic-placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic-placeholder.png"; sourceTree = "<group>"; };
 		822AFABB22A52CAB008BC9F1 /* ic-user-profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic-user-profile.png"; sourceTree = "<group>"; };
+		822AFABF22A67168008BC9F1 /* OrderHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderHistoryViewController.swift; sourceTree = "<group>"; };
+		822AFAC322A679BF008BC9F1 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		8235EB462293C3760090230B /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		8235EB48229418C60090230B /* Payment.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Payment.storyboard; sourceTree = "<group>"; };
 		82CADDCA22941DD300EBBDFD /* PaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentViewController.swift; sourceTree = "<group>"; };
@@ -266,6 +270,8 @@
 				E3578603229D39D6009E8BBE /* PaymentExistingCardViewController.swift */,
 				820877DD2298040100513037 /* TermsNConditionViewController.swift */,
 				5273C57D229E900200328BEC /* PreachHub.xcdatamodeld */,
+				822AFABF22A67168008BC9F1 /* OrderHistoryViewController.swift */,
+				822AFAC322A679BF008BC9F1 /* ProfileViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -576,6 +582,8 @@
 				E3578604229D39D6009E8BBE /* PaymentExistingCardViewController.swift in Sources */,
 				E3B730CC229BF652008D3E7C /* ShippingAddressViewController.swift in Sources */,
 				E3ACFC45228D760F00F798D6 /* LoginViewController.swift in Sources */,
+				822AFAC422A679BF008BC9F1 /* ProfileViewController.swift in Sources */,
+				822AFAC022A67168008BC9F1 /* OrderHistoryViewController.swift in Sources */,
 				E366C127228E8B53003CBE58 /* HomeViewController.swift in Sources */,
 				E3B730CE229BF677008D3E7C /* AddShippingAddressViewController.swift in Sources */,
 				82CADDCB22941DD300EBBDFD /* PaymentViewController.swift in Sources */,

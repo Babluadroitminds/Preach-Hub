@@ -259,20 +259,20 @@
             <objects>
                 <viewController id="UIT-fZ-N3j" customClass="RegistrationVC" customModule="Preach_Hub" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Bei-qf-ASe">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="700"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="800"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xaa-Os-mj6">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="700"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="800"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_background" translatesAutoresizingMaskIntoConstraints="NO" id="f0c-Oz-9hw">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="700"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="800"/>
                                     </imageView>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fzI-hw-o3L">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="700"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="800"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YFB-QA-S9b">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="733"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="809"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic-logo" translatesAutoresizingMaskIntoConstraints="NO" id="3AI-bJ-4Bw">
                                                         <rect key="frame" x="92.5" y="20" width="240" height="120"/>
@@ -597,6 +597,26 @@
                                                             <constraint firstAttribute="trailing" secondItem="w6C-o4-aK9" secondAttribute="trailing" id="yeH-xz-XTb"/>
                                                         </constraints>
                                                     </view>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZmU-Hm-rVa">
+                                                        <rect key="frame" x="20" y="719" width="335" height="60"/>
+                                                        <color key="backgroundColor" red="0.043137254899999998" green="0.58431372550000005" blue="0.92549019610000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="60" id="4c4-r9-LSo"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" name="Gibson-Regular" family="Gibson" pointSize="18"/>
+                                                        <state key="normal" title="Login">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                <integer key="value" value="30"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="loginClicked:" destination="UIT-fZ-N3j" eventType="touchUpInside" id="Whj-K8-Zjo"/>
+                                                            <action selector="registerClicked:" destination="UIT-fZ-N3j" eventType="touchUpInside" id="zO6-tK-PKE"/>
+                                                        </connections>
+                                                    </button>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
@@ -629,10 +649,13 @@
                                                     <constraint firstItem="8Bp-1N-G0y" firstAttribute="top" secondItem="w8j-D6-ATu" secondAttribute="bottom" constant="15" id="l52-3X-uej"/>
                                                     <constraint firstItem="9sb-dn-DoI" firstAttribute="top" secondItem="TP6-60-960" secondAttribute="bottom" constant="15" id="qPo-wd-Pxg"/>
                                                     <constraint firstItem="8Bp-1N-G0y" firstAttribute="leading" secondItem="YFB-QA-S9b" secondAttribute="leading" constant="20" id="ql9-ha-Rx2"/>
+                                                    <constraint firstAttribute="bottom" secondItem="ZmU-Hm-rVa" secondAttribute="bottom" constant="30" id="r3E-iu-VZs"/>
                                                     <constraint firstAttribute="trailing" secondItem="jMk-HT-N1r" secondAttribute="trailing" constant="20" id="r6e-pk-X0u"/>
                                                     <constraint firstItem="B4O-Vy-BQK" firstAttribute="leading" secondItem="YFB-QA-S9b" secondAttribute="leading" constant="20" id="rpg-17-NqL"/>
                                                     <constraint firstAttribute="trailing" secondItem="TP6-60-960" secondAttribute="trailing" constant="20" id="sCw-6T-tAw"/>
+                                                    <constraint firstItem="ZmU-Hm-rVa" firstAttribute="leading" secondItem="YFB-QA-S9b" secondAttribute="leading" constant="20" id="uwU-Xf-m1A"/>
                                                     <constraint firstItem="eKW-zx-G72" firstAttribute="top" secondItem="YFB-QA-S9b" secondAttribute="top" constant="20" id="vP8-Lb-7w7"/>
+                                                    <constraint firstAttribute="trailing" secondItem="ZmU-Hm-rVa" secondAttribute="trailing" constant="20" id="xgJ-Uq-RhT"/>
                                                     <constraint firstAttribute="trailing" secondItem="w8j-D6-ATu" secondAttribute="trailing" constant="20" id="yFL-Wi-lMo"/>
                                                     <constraint firstItem="EG3-8h-026" firstAttribute="height" secondItem="s1N-Wj-oO0" secondAttribute="height" id="yPN-Hk-DDa"/>
                                                     <constraint firstItem="PMx-id-RUE" firstAttribute="width" secondItem="pMe-Ec-PYC" secondAttribute="width" id="z5I-Jd-c6K"/>
@@ -659,8 +682,8 @@
                                             </button>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstAttribute="bottom" secondItem="XHQ-AW-LY1" secondAttribute="bottom" constant="30" id="2BY-Sc-T0A"/>
                                             <constraint firstItem="YFB-QA-S9b" firstAttribute="top" secondItem="fzI-hw-o3L" secondAttribute="top" id="3cs-3b-5Wq"/>
+                                            <constraint firstItem="ZmU-Hm-rVa" firstAttribute="top" secondItem="XHQ-AW-LY1" secondAttribute="bottom" constant="16" id="4bK-tg-wGn"/>
                                             <constraint firstItem="YFB-QA-S9b" firstAttribute="leading" secondItem="fzI-hw-o3L" secondAttribute="leading" id="5Jk-Bo-ZkG"/>
                                             <constraint firstItem="XHQ-AW-LY1" firstAttribute="top" secondItem="jMk-HT-N1r" secondAttribute="bottom" constant="22" id="78K-eK-pAS"/>
                                             <constraint firstAttribute="bottom" secondItem="YFB-QA-S9b" secondAttribute="bottom" id="BGW-Ff-Doi"/>
@@ -693,7 +716,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Nnd-DQ-Wbv"/>
                     </view>
-                    <size key="freeformSize" width="375" height="700"/>
+                    <size key="freeformSize" width="375" height="800"/>
                     <connections>
                         <outlet property="btnRegister" destination="XHQ-AW-LY1" id="G3F-CC-nQn"/>
                         <outlet property="txtContactNumber" destination="44B-xJ-WOb" id="1MV-Ss-P8q"/>
@@ -706,7 +729,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wzm-OV-5Yz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3431" y="85"/>
+            <point key="canvasLocation" x="3429.5999999999999" y="84.557721139430285"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="GxD-uo-mJ4">

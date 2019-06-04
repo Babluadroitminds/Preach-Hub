@@ -33,5 +33,6 @@ struct GlobalConstants {
         static let shippingDetails: String = "shippings"
         static let confirmOrdersById: String = "orders/%@"
         static let memberPayByCard: String = "members/MemberPayByCard"
+        static let getOrders: String = "orders"
     }
 }

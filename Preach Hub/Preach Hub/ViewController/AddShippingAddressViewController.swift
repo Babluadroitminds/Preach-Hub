@@ -218,19 +218,5 @@ class AddShippingAddressViewController: UIViewController, UIPickerViewDataSource
             print("errorCoreData : ", error.userInfo)
         }
     }
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool
-    {
-        if textField == self.txtFirstName || textField == self.txtLastName
-        {
-            let characterSet = CharacterSet.letters
-            
-            if string.rangeOfCharacter(from: characterSet.inverted) != nil
-            {
-                return false
-            }
-            return true
-        }
-        return true
-    }
 }
 

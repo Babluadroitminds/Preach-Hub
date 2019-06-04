@@ -46,6 +46,10 @@ class RegistrationVC: UIViewController{
         }
     }
     
+    @IBAction func loginClicked(_ sender: Any) {
+        navigateToLogin()
+    }
+    
     @IBAction func registerClicked(_ sender: Any) {
         self.view.endEditing(true)
         
@@ -120,6 +124,8 @@ class RegistrationVC: UIViewController{
             }
             
         }
+        
+        
     }
     
     func isValidText(testStr:String) -> Bool {
