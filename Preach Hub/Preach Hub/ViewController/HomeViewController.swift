@@ -48,7 +48,7 @@ class tableViewCell : UITableViewCell , UICollectionViewDelegate , UICollectionV
         let urlString = imageUrl.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
         cell.imgView.sd_setShowActivityIndicatorView(true)
         cell.imgView.sd_setIndicatorStyle(.gray)
-        cell.imgView.sd_setImage(with: URL.init(string: urlString!) , placeholderImage: UIImage.init(named:""))
+        cell.imgView.sd_setImage(with: URL.init(string: urlString!) , placeholderImage: UIImage.init(named:"ic-placeholder.png"))
     
         return cell
     }
@@ -104,7 +104,7 @@ class tableHeaderCell: UITableViewCell, UICollectionViewDelegate , UICollectionV
         let urlString = imageUrl.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
         cell.imgView.sd_setShowActivityIndicatorView(true)
         cell.imgView.sd_setIndicatorStyle(.gray)
-        cell.imgView.sd_setImage(with: URL.init(string: urlString!) , placeholderImage: UIImage.init(named:""))
+        cell.imgView.sd_setImage(with: URL.init(string: urlString!) , placeholderImage: UIImage.init(named:"ic-placeholder.png"))
         return cell
     }
     
@@ -159,7 +159,7 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     var pastorLists: [DataKey] = []
     var storeLists: [DataKey] = []
     var musicLists: [DataKey] = []
-    var headingArray = ["", "Continue Watching", "Churches", "Church Ministry Channel", "Store", "Gospel Music"]
+    var headingArray = ["", "CONTINUE WATCHING", "CHURCHES", "CHURCH MINISTRY CHANNEL", "STORE", "GOSPEL MUSIC"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -168,7 +168,7 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         getChurches()
         getPastors()
         getStores()
-        getMusic()
+        getDetails()
         NotificationCenter.default.addObserver(self, selector: #selector(HomeViewController.refreshRequest), name: NSNotification.Name(rawValue: "RefreshLogoutRequest"), object: nil)
     }
     
@@ -218,7 +218,7 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         }
     }
     
-    func getMusic(){
+    func getDetails(){
         let parameters: [String: String] = [:]
         APIHelper().get(apiUrl: GlobalConstants.APIUrls.getPreachStatistics, parameters: parameters as [String : AnyObject]) { (response) in
             for item in response["data"]["musiclists"].arrayValue {
@@ -254,7 +254,7 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
             cell.btnMore.tag = 2
         }
         else if indexPath.row == 3 {
-            cell.setCollectioViewCell(with: churchLists)
+            cell.setCollectioViewCell(with: pastorLists)
             cell.btnMore.tag = 3
         }
         else if indexPath.row == 4 {
@@ -298,7 +298,7 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
             navigateToListViewPage(dataList: churchLists, tag: sender.tag)
             break
         case 3:
-            navigateToListViewPage(dataList: churchLists, tag: sender.tag)
+            navigateToListViewPage(dataList: pastorLists, tag: sender.tag)
             break
         case 4:
             navigateToListViewPage(dataList: storeLists, tag: sender.tag)

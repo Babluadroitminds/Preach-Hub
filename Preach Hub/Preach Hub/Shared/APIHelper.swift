@@ -21,6 +21,11 @@ class APIHelper: NSObject {
     func post(apiUrl:String, parameters:[String:AnyObject], callback:@escaping (JSON) -> Void){
         sendRequest(apiUrl: apiUrl, method: .post, parameters: parameters, showBusyIndicator: true, callback: callback)
     }
+    
+    func patch(apiUrl:String, parameters:[String:AnyObject], callback:@escaping (JSON) -> Void){
+        sendRequest(apiUrl: apiUrl, method: .patch, parameters: parameters, showBusyIndicator: true, callback: callback)
+    }
+    
     func delete(apiUrl:String, parameters:[String:AnyObject], callback:@escaping (JSON) -> Void){
         sendRequest(apiUrl: apiUrl, method: .delete, parameters: parameters, showBusyIndicator: true, callback: callback)
     }
@@ -41,7 +46,7 @@ class APIHelper: NSObject {
         
         if(!NetworkReachabilityManager()!.isReachable){
             if(showBusyIndicator){
-                NotificationsHelper.hideBusyIndicator()
+                self.alertOnError("Please check your internet connectivity and try again.")
             }
             
             return

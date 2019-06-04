@@ -36,12 +36,13 @@ class RootViewController: UIViewController, UITabBarDelegate , UITableViewDataSo
     func setMenuOptions(){
         menuOptions.append(MenuOption(Name: "About us", Image: "ic-aboutus"))
         menuOptions.append(MenuOption(Name: "Rate this app", Image: "ic-rate"))
-        menuOptions.append(MenuOption(Name: "Visit this apps", Image: "ic-visit"))
+        menuOptions.append(MenuOption(Name: "Visit the website", Image: "ic-visit"))
         menuOptions.append(MenuOption(Name: "Logout", Image: "ic-logout"))
         self.tblView.reloadData()
     }
     
     func setLayout(){
+        lblName.text = UserDefaults.standard.string(forKey: "memberName")
         imgVwProfilePic.layer.cornerRadius = imgVwProfilePic.frame.size.width / 2
         imgVwProfilePic.clipsToBounds = true
     }
@@ -62,13 +63,15 @@ class RootViewController: UIViewController, UITabBarDelegate , UITableViewDataSo
         let  currentMenu = menuOptions[indexPath.row]
         switch currentMenu.Name {
         case "About us":
-            popUpInProgress()
+            guard let url = URL(string: GlobalConstants.APIUrls.websiteLink) else { return }
+            UIApplication.shared.open(url)
             break
         case "Rate this app":
             popUpInProgress()
             break
-        case "Visit this apps":
-            popUpInProgress()
+        case "Visit the website":
+            guard let url = URL(string: GlobalConstants.APIUrls.websiteLink) else { return }
+            UIApplication.shared.open(url)
             break
         case "Logout":
             logoutClicked()

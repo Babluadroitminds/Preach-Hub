@@ -45,6 +45,7 @@ class ShippingAddressViewController: UIViewController, UITableViewDelegate, UITa
     var shippingAddressArr = [shippingAddress]()
     var singleTon = SingleTon.shared
     var orderId: String?
+    var orderNo: String?
 
     override func viewDidLoad()
     {
@@ -174,8 +175,15 @@ class ShippingAddressViewController: UIViewController, UITableViewDelegate, UITa
     func saveShippingDetails(){
         let parameters: [String: Any] = ["email": self.shippingAddressArr[self.selectedRow].emailShipping, "firstname": self.shippingAddressArr[self.selectedRow].firstNameShipping, "lastname": self.shippingAddressArr[self.selectedRow].lastNameShipping, "streetaddress": self.shippingAddressArr[self.selectedRow].addressShipping + ", " + self.shippingAddressArr[self.selectedRow].streetLine2Shipping, "shippingcity": self.shippingAddressArr[self.selectedRow].cityShipping, "postcode": self.shippingAddressArr[self.selectedRow].postalCodeShipping, "country": self.shippingAddressArr[self.selectedRow].countryShipping, "state": self.shippingAddressArr[self.selectedRow].stateShipping, "orderid": orderId!]
         APIHelper().post(apiUrl: GlobalConstants.APIUrls.shippingDetails, parameters: parameters as [String : AnyObject]) { (response) in
-            if response["data"] != JSON.null{
-                self.navigateToExistingCardPage()
+             if response["data"] != JSON.null{
+                let paymemtExistingCardVC = PaymentExistingCardViewController.storyboardInstance()
+                paymemtExistingCardVC?.orderId = self.orderId
+                paymemtExistingCardVC?.orderNo = self.orderNo
+                self.navigationController?.pushViewController(paymemtExistingCardVC!, animated: true)
+             }
+             else{
+                self.view.makeToast("Oops! Something went wrong!", duration: 3.0, position: .bottom)
+                return
             }
         }
     }

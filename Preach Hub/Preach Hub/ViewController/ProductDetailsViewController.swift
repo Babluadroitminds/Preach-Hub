@@ -177,7 +177,7 @@ class ProductDetailsViewController: UIViewController, UICollectionViewDelegate, 
                         let urlString = imageUrl!.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
                         self.imgVwProduct.sd_setShowActivityIndicatorView(true)
                         self.imgVwProduct.sd_setIndicatorStyle(.gray)
-                        self.imgVwProduct.sd_setImage(with: URL.init(string: urlString!) , placeholderImage: UIImage.init(named:""))
+                        self.imgVwProduct.sd_setImage(with: URL.init(string: urlString!) , placeholderImage: UIImage.init(named:"ic-placeholder.png"))
                         
                         if self.productDict["productsizes"] != nil{
                             self.productSize.append(productSub(id: self.productDict["productsizes"]!["id"] != JSON.null ? self.productDict["productsizes"]!["id"].string : "", name: self.productDict["productsizes"]!["name"] != JSON.null ? self.productDict["productsizes"]!["name"].string : ""))

@@ -167,27 +167,39 @@ class ViewCartViewController: UIViewController, UITableViewDelegate, UITableView
         
         let memberId = UserDefaults.standard.string(forKey: "memberId")
         
-        let parameters: [String: Any] = ["orderno": "order_1", "memberid": memberId!, "paymentmethod": "credit_card", "orderdate": orderDate, "orderstatus": "pending", "currency": "USD", "currencyvalue": amount, "parentid": ""]
+        let parameters: [String: Any] = ["memberId": memberId!, "orderstatus": "pending", "currency": "USD", "currencyvalue": amount]
         APIHelper().post(apiUrl: GlobalConstants.APIUrls.sendOrders, parameters: parameters as [String : AnyObject]) { (response) in
+            NotificationsHelper.showBusyIndicator(message: "Please Wait")
             if response["data"] != JSON.null{
-                self.sendOrderDetails(orderNo: response["data"]["id"].string!)
+                if response["data"]["createdOrder"] != JSON.null {
+                    self.sendOrderDetails(orderId: response["data"]["createdOrder"]["id"].string!, orderNo: response["data"]["createdOrder"]["orderno"].string!)
+                }
+            }
+            else {
+                self.view.makeToast("Oops! Something went wrong!", duration: 3.0, position: .bottom)
+                return
             }
         }
     }
     
-    func sendOrderDetails(orderNo: String){
+    func sendOrderDetails(orderId: String, orderNo: String){
         
         for (index,item) in cartList.enumerated() {
             let price = (Float((item["quantity"]!))! * Float((item["price"])!)!)
-            let parameters: [String: Any] = ["orderid": orderNo, "productid": item["id"]!, "qtyordered": item["quantity"]!, "price": price, "colourid": item["colorId"]!, "sizeid": item["sizeId"]!, "comments": "",]
+            let parameters: [String: Any] = ["orderid": orderId, "productid": item["id"]!, "qtyordered": item["quantity"]!, "price": price, "colourid": item["colorId"]!, "sizeid": item["sizeId"]!, "comments": "",]
             APIHelper().post(apiUrl: GlobalConstants.APIUrls.sendOrderDetails, parameters: parameters as [String : AnyObject]) { (response) in
                 if response["data"] != JSON.null{
+                }
+                else {
+                    self.view.makeToast("Oops! Something went wrong!", duration: 3.0, position: .bottom)
+                    return
                 }
                 if index == (self.cartList.count - 1){
 //                    let productData = NSKeyedArchiver.archivedData(withRootObject: [])
 //                    UserDefaults.standard.set(productData, forKey: "CartDetails")
                     let shippingAddressVC = ShippingAddressViewController.storyboardInstance()
-                    shippingAddressVC?.orderId = orderNo
+                    shippingAddressVC?.orderId = orderId
+                    shippingAddressVC?.orderNo = orderNo
                     self.navigationController?.pushViewController(shippingAddressVC!, animated: true)
                 }
             }

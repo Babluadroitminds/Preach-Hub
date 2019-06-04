@@ -40,6 +40,8 @@ class AddBillingAddressViewController: UIViewController, UIPickerViewDataSource,
     
     var style = ToastStyle()
     var cartList: [[String: String]] = []
+    var orderId: String?
+    var orderNo: String?
     
     override func viewDidLoad()
     {
@@ -190,12 +192,8 @@ class AddBillingAddressViewController: UIViewController, UIPickerViewDataSource,
             self.stripeCardToken = token.stripeID
             
             NotificationsHelper.hideBusyIndicator()
-            self.view.makeToast("Payment successfull!", duration: 3.0, position: .bottom, title: nil, image: nil, style: self.style , completion: { (true) in
-                let productData = NSKeyedArchiver.archivedData(withRootObject: [])
-                UserDefaults.standard.set(productData, forKey: "CartDetails")
-                self.navigateToHomeScreenPage()
-            })
-
+            
+            self.chargeMemberCard()
         }
     }
     
@@ -213,6 +211,56 @@ class AddBillingAddressViewController: UIViewController, UIPickerViewDataSource,
         }
         return true
     }
+    
+    func chargeMemberCard(){
+        let cartInfo = UserDefaults.standard.object(forKey: "CartDetails") as? NSData
+        if let cartInfo = cartInfo {
+            cartList = (NSKeyedUnarchiver.unarchiveObject(with: cartInfo as Data) as? [[String: String]])!
+        }
+        
+        let dateFormatter = DateFormatter()
+        let date = Date()
+        dateFormatter.timeZone = TimeZone.current
+        dateFormatter.dateFormat =  "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+        let orderDate = dateFormatter.string(from: date)
+        let shippingAmount: Float = 0
+        var sum: Float = 0
+        for item in cartList {
+            sum = (sum + (Float((item["quantity"]!))! * Float((item["price"])!)!))
+        }
+        let amount = (sum + shippingAmount)
+        let memberId = UserDefaults.standard.string(forKey: "memberId")
+        let chargeAmount = (amount * 1000)
+        
+       // let stripeCustomerTokenId = UserDefaults.standard.string(forKey: "stripeCustomerTokenId")
+        let parameters: [String: Any] = ["amount": chargeAmount, "cardToken": stripeCardToken!, "orderno": orderNo!]
+        APIHelper().post(apiUrl: GlobalConstants.APIUrls.memberPayByCard, parameters: parameters as [String : AnyObject]) { (response) in
+            if response["data"]["transactionresponse"] != JSON.null{
+                let parameters: [String: Any] = ["orderno": self.orderNo!, "memberid": memberId!, "paymentmethod": "credit_card", "orderdate": orderDate, "orderstatus": "ordered", "currency": "USD", "currencyvalue": amount, "id": self.orderId!, "parentid": ""]
+                APIHelper().patch(apiUrl: String.init(format: GlobalConstants.APIUrls.confirmOrdersById, self.orderId!), parameters: parameters as [String : AnyObject]) { (response) in
+                    if response["data"] != JSON.null{
+                        self.view.makeToast("Payment successfull!", duration: 3.0, position: .bottom, title: nil, image: nil, style: self.style , completion: { (true) in
+                            let productData = NSKeyedArchiver.archivedData(withRootObject: [])
+                            UserDefaults.standard.set(productData, forKey: "CartDetails")
+                            self.navigateToHomeScreenPage()
+                        })
+                    }
+                    else {
+                        self.view.makeToast("Oops! Something went wrong!", duration: 3.0, position: .bottom)
+                        return
+                    }
+                }
+            }
+            else if response["error"]["message"] != JSON.null {
+                self.view.makeToast(response["error"]["message"].string, duration: 3.0, position: .bottom)
+            }
+            else {
+                self.view.makeToast("Oops! Something went wrong!", duration: 3.0, position: .bottom)
+                return
+            }
+        }
+    }
+    
     func saveToCoreData()
     {
         let appDelegate = UIApplication.shared.delegate as? AppDelegate

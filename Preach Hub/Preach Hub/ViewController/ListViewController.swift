@@ -64,7 +64,7 @@ class ListViewController: UIViewController,UICollectionViewDataSource , UICollec
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if(header == "Store"){
+        if(header == "STORE"){
             navigateToProductPage(index: indexPath.row)
         }
     }

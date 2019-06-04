@@ -13,6 +13,7 @@ struct GlobalConstants {
     struct APIUrls {
         static let baseUrl:String = ""
         static let apiBaseUrl:String = "https://preachapi.herokuapp.com/api/"
+        static let websiteLink:String = "http://www.preachhub.net"
         static let memberLogin:String = "members/login"
         static let memberRegister:String = "members/savemember"
         static let memberReset:String = "members/reset"
@@ -26,9 +27,11 @@ struct GlobalConstants {
         static let getProduct: String = "products?filter=%@"
         static let getProductById: String = "products/%@?filter=%@"
         static let getPreachStatistics: String = "https://www.jmtbiz.co.za/preach/statistics.json"
-        static let sendOrders: String = "orders"
+        static let sendOrders: String = "orders/createOrder"
         static let sendOrderDetails: String = "orderdetails"
         static let memberDetails: String = "members/%@"
         static let shippingDetails: String = "shippings"
+        static let confirmOrdersById: String = "orders/%@"
+        static let memberPayByCard: String = "members/MemberPayByCard"
     }
 }
