@@ -14,6 +14,7 @@ struct OrderKey {
     var orderno: String;
     var orderdate: String;
     var currencyvalue: Int;
+    var paymentmethod: String
 }
 
 class OrderHistoryTableViewCell : UITableViewCell{
@@ -21,16 +22,21 @@ class OrderHistoryTableViewCell : UITableViewCell{
     @IBOutlet weak var lblPrice: UILabel!
     @IBOutlet weak var lblOrderDate: UILabel!
     @IBOutlet weak var lblOrderId: UILabel!
+    
+    @IBOutlet weak var lblPaymentType: UILabel!
 }
 
 class OrderHistoryViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
    
+    @IBOutlet weak var lblMessage: UILabel!
     @IBOutlet weak var tableview: UITableView!
     var Orders: [OrderKey] = []
+    var selectedRow: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableview.tableFooterView = UIView()
+        self.lblMessage.isHidden = true
         getOrders()
     }
 
@@ -42,23 +48,62 @@ class OrderHistoryViewController: UIViewController, UITableViewDataSource, UITab
         let cell = tableview.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! OrderHistoryTableViewCell
         let currentItem = Orders[indexPath.row]
         cell.lblOrderId.text = "Order No: " + currentItem.orderno
-        cell.lblOrderDate.text = "Order Date:"
+        cell.lblOrderDate.text = "Order Date: " + dateString(date: currentItem.orderdate)
         cell.lblPrice.text = "$" + currentItem.currencyvalue.description
+        cell.lblPaymentType.text = "Payment type: " + currentItem.paymentmethod
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
+       self.selectedRow = indexPath.row
+       navigateToOrderDetailsPage()
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat{
-       return 90
+       return 100
+    }
+    
+    func dateString(date: String) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat =  "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+        let dt = dateFormatter.date(from: date)
+        dateFormatter.timeZone = TimeZone.current
+        dateFormatter.dateFormat =  "MM/dd/yyyy"
+        return dateFormatter.string(from: dt!)
+    }
+    
+    func navigateToOrderDetailsPage(){
+        let orderHistoryDetailsVC = OrderHistoryDetailsViewController.storyboardInstance()
+        orderHistoryDetailsVC!.orderId = Orders[selectedRow!].id
+        orderHistoryDetailsVC!.orderNo =  Orders[selectedRow!].orderno
+        self.navigationController?.pushViewController(orderHistoryDetailsVC!, animated: true)
     }
     
     func getOrders(){
+        let memberId = UserDefaults.standard.value(forKey: "memberId") as? String
         let parameters: [String: String] = [:]
-        APIHelper().get(apiUrl: GlobalConstants.APIUrls.getOrders, parameters: parameters as [String : AnyObject]) { (response) in
-            if response["data"].array != nil  {
-                for item in response["data"].arrayValue {
-                    self.Orders.append(OrderKey(id: item["id"] != JSON.null ? item["id"].string! : "", orderno: item["orderno"] != JSON.null ? item["orderno"].string! : "", orderdate: item["orderdate"] != JSON.null ? item["orderdate"].string! : "", currencyvalue: item["currencyvalue"] != JSON.null ? item["currencyvalue"].int!: 0))
+        let dict = ["where": [ "memberid": memberId], "order": ["orderdate DESC"]] as [String : Any]
+        
+        if let json = try? JSONSerialization.data(withJSONObject: dict, options: []) {
+            if let content = String(data: json, encoding: String.Encoding.utf8) {
+                APIHelper().get(apiUrl: String.init(format: GlobalConstants.APIUrls.getOrdersByMemberId,content), parameters: parameters as [String : AnyObject]) { (response) in
+                    self.Orders = []
+                    if response["data"].array != nil  {
+                        for item in response["data"].arrayValue {
+                            self.Orders.append(OrderKey(id: item["id"] != JSON.null ? item["id"].string! : "", orderno: item["orderno"] != JSON.null ? item["orderno"].string! : "", orderdate: item["orderdate"] != JSON.null ? item["orderdate"].string! : "", currencyvalue: item["currencyvalue"] != JSON.null ? item["currencyvalue"].int!: 0, paymentmethod: item["paymentmethod"] != JSON.null ? item["paymentmethod"].string! : ""))
+                        }
+                        self.tableview.reloadData()
+                        if response["data"].count == 0 {
+                            self.lblMessage.isHidden = false
+                        }
+                        else{
+                            self.lblMessage.isHidden = true
+                        }
+                    }
+                    else{
+                        self.lblMessage.isHidden = false
+                    }
                 }
-                self.tableview.reloadData()
             }
         }
     }
