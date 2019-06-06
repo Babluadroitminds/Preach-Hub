@@ -36,6 +36,8 @@
 		820877DC229803D500513037 /* terms.html in Resources */ = {isa = PBXBuildFile; fileRef = 820877DB229803D500513037 /* terms.html */; };
 		820877DE2298040100513037 /* TermsNConditionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820877DD2298040100513037 /* TermsNConditionViewController.swift */; };
 		820877E02298085800513037 /* ic-left-arrow-black.png in Resources */ = {isa = PBXBuildFile; fileRef = 820877DF2298085800513037 /* ic-left-arrow-black.png */; };
+		8209454C22A8DD3D00B75ACE /* OrderHistoryDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8209454B22A8DD3D00B75ACE /* OrderHistoryDetailsViewController.swift */; };
+		8209454E22A9361600B75ACE /* ic-bag.png in Resources */ = {isa = PBXBuildFile; fileRef = 8209454D22A9361600B75ACE /* ic-bag.png */; };
 		822AFABA22A515F8008BC9F1 /* ic-placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 822AFAB922A515F7008BC9F1 /* ic-placeholder.png */; };
 		822AFABC22A52CAC008BC9F1 /* ic-user-profile.png in Resources */ = {isa = PBXBuildFile; fileRef = 822AFABB22A52CAB008BC9F1 /* ic-user-profile.png */; };
 		822AFAC022A67168008BC9F1 /* OrderHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822AFABF22A67168008BC9F1 /* OrderHistoryViewController.swift */; };
@@ -121,6 +123,8 @@
 		820877DB229803D500513037 /* terms.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = terms.html; sourceTree = "<group>"; };
 		820877DD2298040100513037 /* TermsNConditionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsNConditionViewController.swift; sourceTree = "<group>"; };
 		820877DF2298085800513037 /* ic-left-arrow-black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic-left-arrow-black.png"; sourceTree = "<group>"; };
+		8209454B22A8DD3D00B75ACE /* OrderHistoryDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderHistoryDetailsViewController.swift; sourceTree = "<group>"; };
+		8209454D22A9361600B75ACE /* ic-bag.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic-bag.png"; sourceTree = "<group>"; };
 		822AFAB922A515F7008BC9F1 /* ic-placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic-placeholder.png"; sourceTree = "<group>"; };
 		822AFABB22A52CAB008BC9F1 /* ic-user-profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic-user-profile.png"; sourceTree = "<group>"; };
 		822AFABF22A67168008BC9F1 /* OrderHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderHistoryViewController.swift; sourceTree = "<group>"; };
@@ -286,6 +290,7 @@
 				5273C57D229E900200328BEC /* PreachHub.xcdatamodeld */,
 				822AFABF22A67168008BC9F1 /* OrderHistoryViewController.swift */,
 				822AFAC322A679BF008BC9F1 /* ProfileViewController.swift */,
+				8209454B22A8DD3D00B75ACE /* OrderHistoryDetailsViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -293,6 +298,7 @@
 		8203F0CB228D74E800F9D65D /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				8209454D22A9361600B75ACE /* ic-bag.png */,
 				820877DB229803D500513037 /* terms.html */,
 				822AFAB922A515F7008BC9F1 /* ic-placeholder.png */,
 				820877C92297B68400513037 /* ic-eye-gray.png */,
@@ -469,6 +475,7 @@
 				E3BFD8BC229D089400770BDB /* CartPayment.storyboard in Resources */,
 				820877E02298085800513037 /* ic-left-arrow-black.png in Resources */,
 				820877BC2295223900513037 /* Gibson-Bold.ttf in Resources */,
+				8209454E22A9361600B75ACE /* ic-bag.png in Resources */,
 				822AFABC22A52CAC008BC9F1 /* ic-user-profile.png in Resources */,
 				E366C124228E8A71003CBE58 /* Home.storyboard in Resources */,
 				820877C22297B17500513037 /* ic-eye.png in Resources */,
@@ -611,6 +618,7 @@
 				8235EB472293C3760090230B /* ForgotPasswordViewController.swift in Sources */,
 				52C7691922A8E44300A780D0 /* DetailsHeaderView.swift in Sources */,
 				8203F0C8228D69B700F9D65D /* NotificationsHelper.swift in Sources */,
+				8209454C22A8DD3D00B75ACE /* OrderHistoryDetailsViewController.swift in Sources */,
 				E3B730CA229BC48C008D3E7C /* ViewCartViewController.swift in Sources */,
 				E3FAA41B2292A84D00E369C6 /* HomeTabBarViewController.swift in Sources */,
 				E3FAA41D2292A97800E369C6 /* ListViewController.swift in Sources */,
