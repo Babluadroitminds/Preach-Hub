@@ -11,15 +11,16 @@ import SideMenu
 import SwiftyJSON
 
 struct DataKey{
-    var id: String;
-    var title: String;
-    var thumb: String;
-    var description: String;
-    var isActive: Bool;
+    var id: String
+    var title: String
+    var thumb: String
+    var description: String
+    var isActive: Bool
+    var url : String
 }
 
 protocol CustomDelegate: class {
-    func didSelectItem(id: String)
+    func didSelectItem(id: String, selectedRow : Int, url: String)
 }
 
 class tableViewCell : UITableViewCell , UICollectionViewDelegate , UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
@@ -64,10 +65,9 @@ class tableViewCell : UITableViewCell , UICollectionViewDelegate , UICollectionV
         let selctedView = UIView()
         selctedView.backgroundColor = UIColor.clear
         currentCell.selectedBackgroundView? = selctedView
-        if selectedIndex == 4 {
-            let id = dataList[indexPath.row].id
-            delegate?.didSelectItem(id: id)
-        }
+
+        let id = dataList[indexPath.row].id
+        delegate?.didSelectItem(id: id, selectedRow : selectedIndex!, url: dataList[indexPath.row].url)
     }
     
     func setCollectioViewCell(with list: [DataKey]) {
@@ -159,6 +159,7 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     var pastorLists: [DataKey] = []
     var storeLists: [DataKey] = []
     var musicLists: [DataKey] = []
+    
     var headingArray = ["", "CONTINUE WATCHING", "CHURCHES", "CHURCH MINISTRY CHANNEL", "STORE", "GOSPEL MUSIC"]
     
     override func viewDidLoad() {
@@ -187,23 +188,24 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         APIHelper().get(apiUrl: GlobalConstants.APIUrls.getChurches, parameters: parameters as [String : AnyObject]) { (response) in
             if response["data"].array != nil  {
                 for item in response["data"].arrayValue {
-                      self.churchLists.append(DataKey(id: item["id"] != JSON.null ? item["id"].string! : "", title: item["name"] != JSON.null ? item["name"].string! : "", thumb: item["img_thumb"] != JSON.null ? item["img_thumb"].string! : "", description: item["description"] != JSON.null ? item["description"].string! : "", isActive: item["is_active"] != JSON.null ? item["is_active"].bool! : true))
+                    self.churchLists.append(DataKey(id: item["id"] != JSON.null ? item["id"].string! : "", title: item["name"] != JSON.null ? item["name"].string! : "", thumb: item["img_thumb"] != JSON.null ? item["img_thumb"].string! : "", description: item["description"] != JSON.null ? item["description"].string! : "", isActive: item["is_active"] != JSON.null ? item["is_active"].bool! : true, url : ""))
                 }
                self.tblView.reloadData()
             }
         }
     }
     
-    func getPastors(){
-        let parameters: [String: String] = [:]
-        APIHelper().get(apiUrl: GlobalConstants.APIUrls.getPastors, parameters: parameters as [String : AnyObject]) { (response) in
-            if response["data"].array != nil  {
-                for item in response["data"].arrayValue {
-                    self.pastorLists.append(DataKey(id: item["id"] != JSON.null ? item["id"].string! : "", title: item["name"] != JSON.null ? item["name"].string! : "", thumb: item["img_thumb"] != JSON.null ? item["img_thumb"].string! : "", description: item["description"] != JSON.null ? item["description"].string! : "", isActive: item["is_active"] != JSON.null ? item["is_active"].bool! : true))
-                }
-                self.tblView.reloadData()
-            }
-        }
+    func getPastors()
+    {
+//        let parameters: [String: String] = [:]
+//        APIHelper().get(apiUrl: GlobalConstants.APIUrls.getPastors, parameters: parameters as [String : AnyObject]) { (response) in
+//            if response["data"].array != nil  {
+//                for item in response["data"].arrayValue {
+//                    self.pastorLists.append(DataKey(id: item["id"] != JSON.null ? item["id"].string! : "", title: item["name"] != JSON.null ? item["name"].string! : "", thumb: item["img_thumb"] != JSON.null ? item["img_thumb"].string! : "", description: item["description"] != JSON.null ? item["description"].string! : "", isActive: item["is_active"] != JSON.null ? item["is_active"].bool! : true))
+//                }
+//                self.tblView.reloadData()
+//            }
+//        }
     }
     
     func getStores(){
@@ -211,19 +213,29 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         APIHelper().get(apiUrl: GlobalConstants.APIUrls.getStores, parameters: parameters as [String : AnyObject]) { (response) in
             if response["data"].array != nil  {
                 for item in response["data"].arrayValue {
-                    self.storeLists.append(DataKey(id: item["id"] != JSON.null ? item["id"].string! : "", title: item["name"] != JSON.null ? item["name"].string! : "", thumb: item["img_thumb"] != JSON.null ? item["img_thumb"].string! : "", description: item["description"] != JSON.null ? item["description"].string! : "", isActive: item["is_active"] != JSON.null ? item["is_active"].bool! : true))
+                    self.storeLists.append(DataKey(id: item["id"] != JSON.null ? item["id"].string! : "", title: item["name"] != JSON.null ? item["name"].string! : "", thumb: item["img_thumb"] != JSON.null ? item["img_thumb"].string! : "", description: item["description"] != JSON.null ? item["description"].string! : "", isActive: item["is_active"] != JSON.null ? item["is_active"].bool! : true, url : ""))
                 }
                 self.tblView.reloadData()
             }
         }
     }
     
-    func getDetails(){
+    func getDetails()
+    {
         let parameters: [String: String] = [:]
         APIHelper().get(apiUrl: GlobalConstants.APIUrls.getPreachStatistics, parameters: parameters as [String : AnyObject]) { (response) in
+            
+            print("responseDetails : ", response)
+            
             for item in response["data"]["musiclists"].arrayValue {
                 let is_Active = item["is_active"] != JSON.null ? item["is_active"].int : 0
-                self.musicLists.append(DataKey(id: item["id"] != JSON.null ? String(item["id"].int!) : "", title: item["name"] != JSON.null ? item["name"].string! : "", thumb: item["img_thumb"] != JSON.null ? item["img_thumb"].string! : "", description: item["description"] != JSON.null ? item["description"].string! : "", isActive:is_Active == 1 ? true : false))
+                self.musicLists.append(DataKey(id: item["id"] != JSON.null ? String(item["id"].int!) : "", title: item["name"] != JSON.null ? item["name"].string! : "", thumb: item["img_thumb"] != JSON.null ? item["img_thumb"].string! : "", description: item["description"] != JSON.null ? item["description"].string! : "", isActive:is_Active == 1 ? true : false, url : ""))
+            }
+            for item in response["data"]["pastorlists"].arrayValue
+            {
+                let is_Active = item["is_active"] != JSON.null ? item["is_active"].int : 0
+                
+                self.pastorLists.append(DataKey(id: item["id"] != JSON.null ? String(item["id"].int!) : "", title: item["name"] != JSON.null ? item["name"].string! : "", thumb: item["img_thumb"] != JSON.null ? item["img_thumb"].string! : "", description: item["description"] != JSON.null ? item["description"].string! : "", isActive:is_Active == 1 ? true : false, url: item["url"] != JSON.null ? item["url"].string! : ""))
             }
             self.tblView.reloadData()
         }
@@ -319,16 +331,45 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
       self.navigationController?.pushViewController(listVC!, animated: true)
     }
     
-    func didSelectItem(id: String) {
-        let ProductVC = ProductViewController.storyboardInstance()
-        ProductVC!.categoryId = id
-        self.navigationController?.pushViewController(ProductVC!, animated: true)
+    func didSelectItem(id: String, selectedRow: Int, url: String)
+    {
+        if selectedRow == 4
+        {
+            let ProductVC = ProductViewController.storyboardInstance()
+            ProductVC!.categoryId = id
+            self.navigationController?.pushViewController(ProductVC!, animated: true)
+        }
+        else if selectedRow == 0 || selectedRow == 1 || selectedRow == 3
+        {
+            self.getPastorDetails(url : url)
+        }
     }
-    
+    func getPastorDetails(url : String)
+    {
+        let parameters: [String: String] = [:]
+        
+        let urlStr = url.replacingOccurrences(of: " ", with: "")
+        print("url : ", urlStr)
+        
+        APIHelper().get(apiUrl: urlStr, parameters: parameters as [String : AnyObject]) { (response) in
+            
+            print("responsePastorDetails : ", response)
+            
+            if response["data"].dictionary != nil
+            {
+                let storyBoard : UIStoryboard = UIStoryboard(name: "HomeDetails", bundle:nil)
+                let vc = storyBoard.instantiateViewController(withIdentifier: "HomeDetailsViewController") as! HomeDetailsViewController
+                
+                vc.detailsDict = response["data"].dictionary!
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+        }
+    }
 }
 
 extension tableViewCell: CustomDelegate {
-    func didSelectItem(id: String) {
-        delegate?.didSelectItem(id: id)
+    func didSelectItem(id: String, selectedRow: Int, url: String)
+    {
+        delegate?.didSelectItem(id: id, selectedRow: selectedRow, url: url)
     }
 }

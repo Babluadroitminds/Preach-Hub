@@ -15,6 +15,11 @@
 		189516A7228D6732005FA99A /* Preach_HubUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189516A6228D6732005FA99A /* Preach_HubUITests.swift */; };
 		5273C57F229E900200328BEC /* PreachHub.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5273C57D229E900200328BEC /* PreachHub.xcdatamodeld */; };
 		5273C581229E9D3D00328BEC /* SingleTon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5273C580229E9D3D00328BEC /* SingleTon.swift */; };
+		52C7691322A8E2E000A780D0 /* HomeDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52C7691222A8E2E000A780D0 /* HomeDetails.storyboard */; };
+		52C7691522A8E3D800A780D0 /* HomeDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C7691422A8E3D800A780D0 /* HomeDetailsViewController.swift */; };
+		52C7691722A8E40900A780D0 /* ScrollableSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C7691622A8E40900A780D0 /* ScrollableSegmentedControl.swift */; };
+		52C7691922A8E44300A780D0 /* DetailsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C7691822A8E44300A780D0 /* DetailsHeaderView.swift */; };
+		52C7691B22A8E48B00A780D0 /* DetailsHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52C7691A22A8E48B00A780D0 /* DetailsHeaderView.xib */; };
 		8203F0C1228D68BF00F9D65D /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8203F0C0228D68BF00F9D65D /* Extensions.swift */; };
 		8203F0C4228D695100F9D65D /* APIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8203F0C3228D695100F9D65D /* APIHelper.swift */; };
 		8203F0C6228D695C00F9D65D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8203F0C5228D695C00F9D65D /* Constants.swift */; };
@@ -95,6 +100,11 @@
 		189516A8228D6732005FA99A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5273C57E229E900200328BEC /* PreachHub.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PreachHub.xcdatamodel; sourceTree = "<group>"; };
 		5273C580229E9D3D00328BEC /* SingleTon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleTon.swift; sourceTree = "<group>"; };
+		52C7691222A8E2E000A780D0 /* HomeDetails.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HomeDetails.storyboard; sourceTree = "<group>"; };
+		52C7691422A8E3D800A780D0 /* HomeDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailsViewController.swift; sourceTree = "<group>"; };
+		52C7691622A8E40900A780D0 /* ScrollableSegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollableSegmentedControl.swift; sourceTree = "<group>"; };
+		52C7691822A8E44300A780D0 /* DetailsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsHeaderView.swift; sourceTree = "<group>"; };
+		52C7691A22A8E48B00A780D0 /* DetailsHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailsHeaderView.xib; sourceTree = "<group>"; };
 		8203F0C0228D68BF00F9D65D /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		8203F0C3228D695100F9D65D /* APIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIHelper.swift; sourceTree = "<group>"; };
 		8203F0C5228D695C00F9D65D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -237,6 +247,7 @@
 			isa = PBXGroup;
 			children = (
 				E366C11B228E87E5003CBE58 /* Navigation.swift */,
+				52C7691622A8E40900A780D0 /* ScrollableSegmentedControl.swift */,
 				8203F0BF228D689400F9D65D /* Extensions */,
 				8203F0C3228D695100F9D65D /* APIHelper.swift */,
 				8203F0C5228D695C00F9D65D /* Constants.swift */,
@@ -269,6 +280,9 @@
 				E3BFD8BD229D100000770BDB /* CartPaymentViewController.swift */,
 				E3578603229D39D6009E8BBE /* PaymentExistingCardViewController.swift */,
 				820877DD2298040100513037 /* TermsNConditionViewController.swift */,
+				52C7691422A8E3D800A780D0 /* HomeDetailsViewController.swift */,
+				52C7691822A8E44300A780D0 /* DetailsHeaderView.swift */,
+				52C7691A22A8E48B00A780D0 /* DetailsHeaderView.xib */,
 				5273C57D229E900200328BEC /* PreachHub.xcdatamodeld */,
 				822AFABF22A67168008BC9F1 /* OrderHistoryViewController.swift */,
 				822AFAC322A679BF008BC9F1 /* ProfileViewController.swift */,
@@ -327,6 +341,7 @@
 				1895168A228D672C005FA99A /* Main.storyboard */,
 				1895168F228D6732005FA99A /* LaunchScreen.storyboard */,
 				E323E0032297E904006B6EBA /* Cart.storyboard */,
+				52C7691222A8E2E000A780D0 /* HomeDetails.storyboard */,
 				E366C123228E8A71003CBE58 /* Home.storyboard */,
 				8235EB48229418C60090230B /* Payment.storyboard */,
 				E3BFD8BB229D089300770BDB /* CartPayment.storyboard */,
@@ -449,6 +464,7 @@
 				E366C12C22927B6A003CBE58 /* ic_nav_menu.png in Resources */,
 				8235EB49229418C60090230B /* Payment.storyboard in Resources */,
 				E323E0042297E904006B6EBA /* Cart.storyboard in Resources */,
+				52C7691322A8E2E000A780D0 /* HomeDetails.storyboard in Resources */,
 				18951691228D6732005FA99A /* LaunchScreen.storyboard in Resources */,
 				E3BFD8BC229D089400770BDB /* CartPayment.storyboard in Resources */,
 				820877E02298085800513037 /* ic-left-arrow-black.png in Resources */,
@@ -458,6 +474,7 @@
 				820877C22297B17500513037 /* ic-eye.png in Resources */,
 				820877C82297B43E00513037 /* ic-hide-eye.png in Resources */,
 				820877DC229803D500513037 /* terms.html in Resources */,
+				52C7691B22A8E48B00A780D0 /* DetailsHeaderView.xib in Resources */,
 				1895168E228D6732005FA99A /* Assets.xcassets in Resources */,
 				822AFABA22A515F8008BC9F1 /* ic-placeholder.png in Resources */,
 				8203F0CF228D7A7A00F9D65D /* InitialStoryboard.storyboard in Resources */,
@@ -578,9 +595,11 @@
 				E366C11C228E87E5003CBE58 /* Navigation.swift in Sources */,
 				820877DE2298040100513037 /* TermsNConditionViewController.swift in Sources */,
 				E3BFD8B8229D009E00770BDB /* (null) in Sources */,
+				52C7691522A8E3D800A780D0 /* HomeDetailsViewController.swift in Sources */,
 				5273C57F229E900200328BEC /* PreachHub.xcdatamodeld in Sources */,
 				E3578604229D39D6009E8BBE /* PaymentExistingCardViewController.swift in Sources */,
 				E3B730CC229BF652008D3E7C /* ShippingAddressViewController.swift in Sources */,
+				52C7691722A8E40900A780D0 /* ScrollableSegmentedControl.swift in Sources */,
 				E3ACFC45228D760F00F798D6 /* LoginViewController.swift in Sources */,
 				822AFAC422A679BF008BC9F1 /* ProfileViewController.swift in Sources */,
 				822AFAC022A67168008BC9F1 /* OrderHistoryViewController.swift in Sources */,
@@ -590,6 +609,7 @@
 				E3578606229D3AA9009E8BBE /* AddBillingAddressViewController.swift in Sources */,
 				E3ACFC47228D7B0300F798D6 /* RegistrationVC.swift in Sources */,
 				8235EB472293C3760090230B /* ForgotPasswordViewController.swift in Sources */,
+				52C7691922A8E44300A780D0 /* DetailsHeaderView.swift in Sources */,
 				8203F0C8228D69B700F9D65D /* NotificationsHelper.swift in Sources */,
 				E3B730CA229BC48C008D3E7C /* ViewCartViewController.swift in Sources */,
 				E3FAA41B2292A84D00E369C6 /* HomeTabBarViewController.swift in Sources */,

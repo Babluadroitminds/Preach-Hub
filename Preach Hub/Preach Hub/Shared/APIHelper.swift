@@ -69,6 +69,10 @@ class APIHelper: NSObject {
         else if apiUrl.contains("https://www.jmtbiz"){
              fullUrl = apiUrl
         }
+        else if apiUrl.contains("http://jmtbiz")
+        {
+            fullUrl = apiUrl
+        }
         else {
             fullUrl = GlobalConstants.APIUrls.apiBaseUrl + apiUrl
             fullUrl = fullUrl.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!

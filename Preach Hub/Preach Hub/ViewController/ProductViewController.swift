@@ -211,7 +211,7 @@ class ProductViewController: UIViewController, UICollectionViewDelegate, UIColle
         APIHelper().get(apiUrl: GlobalConstants.APIUrls.getStores, parameters: parameters as [String : AnyObject]) { (response) in
             if response["data"].array != nil  {
                 for item in response["data"].arrayValue {
-                    self.categoryList.append(DataKey(id: item["id"] != JSON.null ? item["id"].string! : "", title: item["name"] != JSON.null ? item["name"].string! : "", thumb: item["img_thumb"] != JSON.null ? item["img_thumb"].string! : "", description: item["description"] != JSON.null ? item["description"].string! : "", isActive: item["is_active"] != JSON.null ? item["is_active"].bool! : true))
+                    self.categoryList.append(DataKey(id: item["id"] != JSON.null ? item["id"].string! : "", title: item["name"] != JSON.null ? item["name"].string! : "", thumb: item["img_thumb"] != JSON.null ? item["img_thumb"].string! : "", description: item["description"] != JSON.null ? item["description"].string! : "", isActive: item["is_active"] != JSON.null ? item["is_active"].bool! : true, url : ""))
                 }
                 self.categoryList.sort{ $0.title.caseInsensitiveCompare($1.title) == .orderedAscending }
                 self.categoryPicker.reloadAllComponents()
