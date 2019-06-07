@@ -69,18 +69,25 @@ class PaymentViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     }
     
     func setPickerLayout(){
-        txtCountry.inputView = countryPickerView
+        txtState.inputView = statePickerView
         let toolbar = UIToolbar();
         toolbar.sizeToFit()
-        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(donePickerClicked))
-        toolbar.setItems([doneButton], animated: false)
-        txtCountry.inputAccessoryView = toolbar
-        countryPickerView.delegate = self
-        
-        txtState.inputView = statePickerView
+        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(doneStatePickerClicked))
+        let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
+        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(self.stateDidTapCancel))
+        toolbar.setItems([cancelButton,spaceButton,doneButton], animated: false)
         txtState.inputAccessoryView = toolbar
         statePickerView.delegate = self
         
+        txtCountry.inputView = countryPickerView
+        let toolbar2 = UIToolbar();
+        toolbar2.sizeToFit()
+        let doneButton2 = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(doneCountryPickerClicked))
+        let spaceButton2 = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
+        let cancelButton2 = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(self.countryDidTapCancel))
+        toolbar2.setItems([cancelButton2,spaceButton2,doneButton2], animated: false)
+        txtCountry.inputAccessoryView = toolbar2
+        countryPickerView.delegate = self
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -113,8 +120,26 @@ class PaymentViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         }
     }
 
-    @objc func donePickerClicked(){
-        self.view.endEditing(true)
+    @objc func doneStatePickerClicked(){
+        let row = self.statePickerView.selectedRow(inComponent: 0)
+        self.statePickerView.selectRow(row, inComponent: 0, animated: false)
+        self.txtState.text = self.stateArray[row]
+        self.txtState.resignFirstResponder()
+    }
+    
+    @objc func stateDidTapCancel() {
+        self.txtState.resignFirstResponder()
+    }
+    
+    @objc func doneCountryPickerClicked(){
+        let row = self.countryPickerView.selectedRow(inComponent: 0)
+        self.countryPickerView.selectRow(row, inComponent: 0, animated: false)
+        self.txtCountry.text = self.countryArray[row]
+        self.txtCountry.resignFirstResponder()
+    }
+    
+    @objc func countryDidTapCancel() {
+        self.txtCountry.resignFirstResponder()
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {

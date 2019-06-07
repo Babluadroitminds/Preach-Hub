@@ -149,6 +149,16 @@ class AddShippingAddressViewController: UIViewController, UIPickerViewDataSource
             return
         }
         
+        if(!isValidText(testStr: txtFirstName.text!)){
+            self.view.makeToast("Please enter valid first name.", duration: 3.0, position: .bottom)
+            return
+        }
+        
+        if(!isValidText(testStr: txtLastName.text!)){
+            self.view.makeToast("Please enter valid last name.", duration: 3.0, position: .bottom)
+            return
+        }
+        
         if(!isValidEmail(testStr: txtEmail.text!)){
             self.view.makeToast("Email format: user@mail.com", duration: 3.0, position: .bottom)
             return

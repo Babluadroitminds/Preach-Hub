@@ -128,12 +128,7 @@ class RegistrationVC: UIViewController{
         
     }
     
-    func isValidText(testStr:String) -> Bool {
-        let myCharSet=CharacterSet(charactersIn:"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ ")
-        let output: String = testStr.trimmingCharacters(in: myCharSet.inverted)
-        let isValid: Bool = (testStr == output)
-        return isValid
-    }
+ 
 }
 extension UIViewController
 {

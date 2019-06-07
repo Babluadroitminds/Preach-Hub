@@ -84,6 +84,12 @@ extension UIViewController : UIGestureRecognizerDelegate, UITextFieldDelegate {
         return dateFormatter.string(from: dt!)
     }
     
+    func isValidText(testStr:String) -> Bool {
+        let myCharSet=CharacterSet(charactersIn:"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ ")
+        let output: String = testStr.trimmingCharacters(in: myCharSet.inverted)
+        let isValid: Bool = (testStr == output)
+        return isValid
+    }
     
     func convertToString(dateString: String) -> String {
         let dateFormatter = DateFormatter()

@@ -137,6 +137,12 @@ class AddBillingAddressViewController: UIViewController, UIPickerViewDataSource,
             self.view.makeToast("Please enter all details.", duration: 3.0, position: .bottom)
             return
         }
+        
+        if(!isValidText(testStr: txtFldName.text!)){
+            self.view.makeToast("Please enter valid first name.", duration: 3.0, position: .bottom, style: style)
+            return
+        }
+
         if(!isValidPhone(testStr: txtFldPhoneNumber.text!))
         {
             let style = ToastStyle()
