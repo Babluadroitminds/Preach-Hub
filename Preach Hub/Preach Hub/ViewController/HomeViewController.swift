@@ -83,6 +83,8 @@ class tableHeaderCell: UITableViewCell, UICollectionViewDelegate , UICollectionV
     @IBOutlet weak var collectionView: UICollectionView!
     var pastorLists: [DataKey] = []
     
+    weak var delegate: CustomDelegate?
+
     override func awakeFromNib() {
         pagerControl.currentPage = 0
         collectionView.isPagingEnabled = true
@@ -105,6 +107,7 @@ class tableHeaderCell: UITableViewCell, UICollectionViewDelegate , UICollectionV
         cell.imgView.sd_setShowActivityIndicatorView(true)
         cell.imgView.sd_setIndicatorStyle(.gray)
         cell.imgView.sd_setImage(with: URL.init(string: urlString!) , placeholderImage: UIImage.init(named:"ic-placeholder.png"))
+        
         return cell
     }
     
@@ -122,6 +125,8 @@ class tableHeaderCell: UITableViewCell, UICollectionViewDelegate , UICollectionV
         let selctedView = UIView()
         selctedView.backgroundColor = UIColor.clear
         currentCell.selectedBackgroundView? = selctedView
+        
+        delegate?.didSelectItem(id: "", selectedRow : 0, url: pastorLists[indexPath.row].url)
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -250,6 +255,9 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         if indexPath.row == 0 {
             let cell = tblView.dequeueReusableCell(withIdentifier: "HeaderTableCell", for: indexPath) as! tableHeaderCell
             cell.fillCollectionView(with: pastorLists)
+            
+            cell.delegate = self
+
             return cell
         }
         let cell = tblView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! tableViewCell
@@ -324,11 +332,13 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         
     }
     
-    func navigateToListViewPage(dataList: [DataKey], tag: Int){
-      let listVC = ListViewController.storyboardInstance()
-      listVC!.dataList = dataList
-      listVC!.header = headingArray[tag]
-      self.navigationController?.pushViewController(listVC!, animated: true)
+    func navigateToListViewPage(dataList: [DataKey], tag: Int)
+    {
+        let listVC = ListViewController.storyboardInstance()
+        listVC!.dataList = dataList
+        listVC!.header = headingArray[tag]
+        
+        self.navigationController?.pushViewController(listVC!, animated: true)
     }
     
     func didSelectItem(id: String, selectedRow: Int, url: String)
@@ -367,7 +377,8 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     }
 }
 
-extension tableViewCell: CustomDelegate {
+extension tableViewCell: CustomDelegate
+{
     func didSelectItem(id: String, selectedRow: Int, url: String)
     {
         delegate?.didSelectItem(id: id, selectedRow: selectedRow, url: url)

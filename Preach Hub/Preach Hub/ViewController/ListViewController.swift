@@ -63,12 +63,36 @@ class ListViewController: UIViewController,UICollectionViewDataSource , UICollec
         return CGSize(width: size, height: size)
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if(header == "STORE"){
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
+    {
+        if(header == "STORE")
+        {
             navigateToProductPage(index: indexPath.row)
         }
+        else if(header == "CONTINUE WATCHING") || (header == "CHURCH MINISTRY CHANNEL") 
+        {
+            self.getPastorDetails(url: dataList[indexPath.row].url)
+        }
     }
-    
+    func getPastorDetails(url : String)
+    {
+        let parameters: [String: String] = [:]
+        
+        let urlStr = url.replacingOccurrences(of: " ", with: "")
+        print("url : ", urlStr)
+        
+        APIHelper().get(apiUrl: urlStr, parameters: parameters as [String : AnyObject]) { (response) in
+                        
+            if response["data"].dictionary != nil
+            {
+                let storyBoard : UIStoryboard = UIStoryboard(name: "HomeDetails", bundle:nil)
+                let vc = storyBoard.instantiateViewController(withIdentifier: "HomeDetailsViewController") as! HomeDetailsViewController
+                
+                vc.detailsDict = response["data"].dictionary!
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+        }
+    }
     func navigateToProductPage(index: Int){
         let ProductVC = ProductViewController.storyboardInstance()
         ProductVC!.categoryId = dataList[index].id
