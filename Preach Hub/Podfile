@@ -33,5 +33,6 @@ target 'Preach Hub' do
   pod 'BRYXBanner'
   pod 'Stripe'
   pod 'NTMonthYearPicker'
+  pod 'DropDown'
   
 end

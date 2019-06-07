@@ -8,12 +8,16 @@
 
 import UIKit
 import SwiftyJSON
+import DropDown
+import CoreData
+import Toast_Swift
 
 struct SermonsTestimony
 {
     var imageThumb: String
     var title: String
     var duration: String
+    var id : String
 }
 struct Products
 {
@@ -64,7 +68,7 @@ class sectionHeaderCell: UITableViewCell
             self.segmentControl.segmentStyle = .textOnly
             
             self.segmentControl.underlineSelected = true
-
+            
             self.segmentControl.segmentContentColor = UIColor(red: 57/255.0, green: 146/255.0, blue: 223/255.0, alpha: 1.0)
             self.segmentControl.selectedSegmentContentColor = UIColor(red: 57/255.0, green: 146/255.0, blue: 223/255.0, alpha: 1.0)
             self.segmentControl.tintColor = UIColor(red: 57/255.0, green: 146/255.0, blue: 223/255.0, alpha: 1.0)
@@ -89,9 +93,11 @@ class HomeDetailsViewController: UIViewController, UITableViewDataSource, UITabl
     var semonsArr = [SermonsTestimony]()
     var testimonyArr = [SermonsTestimony]()
     var productsArr = [Products]()
-    
+        
     var height = 0
     var segmentIndex = 0
+    
+    var moreIndex = -1
     
     override func viewDidLoad()
     {
@@ -146,7 +152,7 @@ class HomeDetailsViewController: UIViewController, UITableViewDataSource, UITabl
             {
                 for item in detailsDict["sermons"]!.array!
                 {
-                    self.semonsArr.append(SermonsTestimony(imageThumb: item["img_thumb"] != JSON.null ? item["img_thumb"].string! : "", title: item["name"] != JSON.null ? item["name"].string! : "", duration: item["duration"] != JSON.null ? item["duration"].string! : ""))
+                    self.semonsArr.append(SermonsTestimony(imageThumb: item["img_thumb"] != JSON.null ? item["img_thumb"].string! : "", title: item["name"] != JSON.null ? item["name"].string! : "", duration: item["duration"] != JSON.null ? item["duration"].string! : "", id: item["id"] != JSON.null ? item["id"].int!.description : ""))
                 }
             }
         }
@@ -157,15 +163,13 @@ class HomeDetailsViewController: UIViewController, UITableViewDataSource, UITabl
             {
                 for item in detailsDict["testimonies"]!.array!
                 {
-                    self.testimonyArr.append(SermonsTestimony(imageThumb: item["img_thumb"] != JSON.null ? item["img_thumb"].string! : "", title: item["name"] != JSON.null ? item["name"].string! : "", duration: item["duration"] != JSON.null ? item["duration"].string! : ""))
+                    self.testimonyArr.append(SermonsTestimony(imageThumb: item["img_thumb"] != JSON.null ? item["img_thumb"].string! : "", title: item["name"] != JSON.null ? item["name"].string! : "", duration: item["duration"] != JSON.null ? item["duration"].string! : "", id: item["id"] != JSON.null ? item["id"].int!.description : ""))
                 }
             }
         }
     }
-    override func viewWillAppear(_ animated: Bool)
+    override func viewDidAppear(_ animated: Bool)
     {
-        self.segmentIndex = 0
-        
         self.tableView.reloadSections([1], with: .automatic)
     }
     override func didReceiveMemoryWarning()
@@ -191,9 +195,9 @@ class HomeDetailsViewController: UIViewController, UITableViewDataSource, UITabl
             cell?.segmentControl.insertSegment(withTitle: "SERMONS", image: nil, at: 2)
             cell?.segmentControl.insertSegment(withTitle: "TITHE", image: nil, at: 3)
             cell?.segmentControl.insertSegment(withTitle: "TESTIMONY", image: nil, at: 4)
-
+            
             cell?.segmentControl.selectedSegmentIndex = 0
-
+            
             return cell
         }
         else
@@ -216,7 +220,7 @@ class HomeDetailsViewController: UIViewController, UITableViewDataSource, UITabl
     @objc func segmentSelected(sender: ScrollableSegmentedControl)
     {
         self.segmentIndex = sender.selectedSegmentIndex
-    
+        
         self.tableView.reloadSections([1], with: .automatic)
     }
     //MARK: UITableViewDataSource
@@ -285,7 +289,7 @@ class HomeDetailsViewController: UIViewController, UITableViewDataSource, UITabl
                     
                     cell!.name.text = self.semonsArr[indexPath.row].title
                     cell!.timeLbl.text = self.semonsArr[indexPath.row].duration
-                
+                    
                     cell!.moreBtn.tag = indexPath.row
                 }
                 return cell!
@@ -334,12 +338,9 @@ class HomeDetailsViewController: UIViewController, UITableViewDataSource, UITabl
         else
         {
             let cell = tableView.dequeueReusableCell(withIdentifier: "CellID") as? segmentData
-                        
-            cell?.aboutLbl.text = detailsDict["description"]!.string!
-
-            cell?.aboutLbl.isHidden = false
             
-            print("description ", cell?.aboutLbl.text)
+            cell?.aboutLbl.text = detailsDict["description"]!.string!
+            cell?.aboutLbl.isHidden = false
             
             return cell!
         }
@@ -397,8 +398,149 @@ class HomeDetailsViewController: UIViewController, UITableViewDataSource, UITabl
         return CGFloat(self.height)
     }
     
-    @IBAction func moreTapped(_ sender: Any)
+    @objc func donePickerClicked()
     {
+        self.view.endEditing(true)
+    }
+    @IBAction func moreTapped(_ sender: UIButton)
+    {
+        self.moreIndex = sender.tag
+        
+        let dropDown = DropDown()
+        
+        dropDown.anchorView = sender
+        dropDown.bottomOffset = CGPoint(x: 0, y:(dropDown.anchorView?.plainView.bounds.height)!)
+        
+        dropDown.dataSource = ["Favourite", "Share"]
+        
+        dropDown.selectionAction = { [unowned self] (index: Int, item: String) in
+
+            if index == 1
+            {
+                var textToShare = [String]()
+                
+                if self.segmentIndex == 2
+                {
+                    textToShare = [self.semonsArr[sender.tag].title]
+                }
+                else
+                {
+                    textToShare = [self.testimonyArr[sender.tag].title]
+                }
+                let activityViewController = UIActivityViewController(activityItems: textToShare, applicationActivities: nil)
+                activityViewController.popoverPresentationController?.sourceView = self.view
+                
+                activityViewController.excludedActivityTypes = [UIActivity.ActivityType.airDrop, UIActivity.ActivityType.postToFacebook ]
+                
+                self.present(activityViewController, animated: true, completion: nil)
+            }
+            else
+            {
+                self.alreadyExistCheck(index: sender.tag)
+            }
+        }
+        
+        dropDown.width = 150
+        dropDown.dismissMode = .onTap
+        
+        dropDown.show()
+    }
+    func alreadyExistCheck(index : Int)
+    {
+        var id = ""
+        var type = ""
+
+        if self.segmentIndex == 2
+        {
+            id = self.semonsArr[index].id
+            type = "sermons"
+        }
+        else
+        {
+            id = self.semonsArr[index].id
+            type = "testimony"
+        }
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        let managedContext = appDelegate?.persistentContainer.viewContext
+        
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Favourite")
+        
+        let idKeyPredicate = NSPredicate(format: "id = %@", id)
+        let typeKeyPredicate = NSPredicate(format: "type = %@", type)
+        
+        let andPredicate = NSCompoundPredicate(type: NSCompoundPredicate.LogicalType.and, subpredicates: [idKeyPredicate, typeKeyPredicate])
+        
+        fetchRequest.predicate = andPredicate
+        
+        do
+        {
+            let fetchResults = try managedContext!.fetch(fetchRequest) as? [Favourite]
+            
+            if fetchResults?.count != 0
+            {
+                let style = ToastStyle()
+                
+                self.view.makeToast("Already added in Favourites", duration: 3.0, position: .bottom, title: nil, image: nil, style: style , completion: nil)
+            }
+            else
+            {
+                self.saveFavourite(index : index)
+            }
+        }
+        catch
+        {
+            print("coreDataFetchFail")
+        }
+    }
+    func saveFavourite(index : Int)
+    {
+        var imageStr = ""
+        var name = ""
+        var id = ""
+        var type = ""
+        
+        if self.segmentIndex == 2
+        {
+            name = self.semonsArr[index].title
+            imageStr = self.semonsArr[index].imageThumb
+            id = self.semonsArr[index].id
+            type = "sermons"
+        }
+        else
+        {
+            name = self.testimonyArr[index].title
+            imageStr = self.semonsArr[index].imageThumb
+            id = self.semonsArr[index].id
+            type = "testimony"
+        }
+        
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        let managedContext = appDelegate?.persistentContainer.viewContext
+        let entity = NSEntityDescription.entity(forEntityName: "Favourite", in: managedContext!)!
+        
+        let user = NSManagedObject(entity: entity, insertInto: managedContext!)
+        
+        let userId = UserDefaults.standard.value(forKey: "memberId") as? String
+        
+        user.setValue(userId, forKey: "userId")
+        
+        user.setValue(id, forKey: "favId")
+        user.setValue(imageStr, forKey: "imageStr")
+        user.setValue(name, forKey: "name")
+        user.setValue(userId, forKey: "userId")
+        user.setValue(type, forKey: "type")
+        
+        do
+        {
+            try managedContext?.save()
+        }
+        catch let error as NSError
+        {
+            print("errorCoreData : ", error.userInfo)
+        }
+        
+        let style = ToastStyle()
+        
+        self.view.makeToast("Favourites added", duration: 3.0, position: .bottom, title: nil, image: nil, style: style , completion: nil)
     }
 }
-

@@ -13,6 +13,13 @@
         <attribute name="streetLineBilling" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="userId" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
+    <entity name="Favourite" representedClassName="Favourite" syncable="YES" codeGenerationType="class">
+        <attribute name="favId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="imageStr" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userId" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <entity name="ShippingAddress" representedClassName="ShippingAddress" syncable="YES" codeGenerationType="class">
         <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="country" optional="YES" attributeType="String" syncable="YES"/>
@@ -29,5 +36,6 @@
     <elements>
         <element name="CardDetails" positionX="-54" positionY="-9" width="128" height="210"/>
         <element name="ShippingAddress" positionX="-54" positionY="126" width="128" height="210"/>
+        <element name="Favourite" positionX="-54" positionY="144" width="128" height="120"/>
     </elements>
 </model>

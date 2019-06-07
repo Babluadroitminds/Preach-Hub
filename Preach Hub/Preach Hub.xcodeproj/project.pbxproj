@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,6 +13,7 @@
 		18951691228D6732005FA99A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1895168F228D6732005FA99A /* LaunchScreen.storyboard */; };
 		1895169C228D6732005FA99A /* Preach_HubTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1895169B228D6732005FA99A /* Preach_HubTests.swift */; };
 		189516A7228D6732005FA99A /* Preach_HubUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189516A6228D6732005FA99A /* Preach_HubUITests.swift */; };
+		523E967D22AA4522008B51B9 /* FavouritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523E967C22AA4522008B51B9 /* FavouritesViewController.swift */; };
 		5273C57F229E900200328BEC /* PreachHub.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5273C57D229E900200328BEC /* PreachHub.xcdatamodeld */; };
 		5273C581229E9D3D00328BEC /* SingleTon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5273C580229E9D3D00328BEC /* SingleTon.swift */; };
 		52C7691322A8E2E000A780D0 /* HomeDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52C7691222A8E2E000A780D0 /* HomeDetails.storyboard */; };
@@ -100,6 +101,7 @@
 		189516A2228D6732005FA99A /* Preach HubUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Preach HubUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		189516A6228D6732005FA99A /* Preach_HubUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preach_HubUITests.swift; sourceTree = "<group>"; };
 		189516A8228D6732005FA99A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		523E967C22AA4522008B51B9 /* FavouritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesViewController.swift; sourceTree = "<group>"; };
 		5273C57E229E900200328BEC /* PreachHub.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PreachHub.xcdatamodel; sourceTree = "<group>"; };
 		5273C580229E9D3D00328BEC /* SingleTon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleTon.swift; sourceTree = "<group>"; };
 		52C7691222A8E2E000A780D0 /* HomeDetails.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HomeDetails.storyboard; sourceTree = "<group>"; };
@@ -284,6 +286,7 @@
 				E3BFD8BD229D100000770BDB /* CartPaymentViewController.swift */,
 				E3578603229D39D6009E8BBE /* PaymentExistingCardViewController.swift */,
 				820877DD2298040100513037 /* TermsNConditionViewController.swift */,
+				523E967C22AA4522008B51B9 /* FavouritesViewController.swift */,
 				52C7691422A8E3D800A780D0 /* HomeDetailsViewController.swift */,
 				52C7691822A8E44300A780D0 /* DetailsHeaderView.swift */,
 				52C7691A22A8E48B00A780D0 /* DetailsHeaderView.xib */,
@@ -514,59 +517,16 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Preach Hub/Pods-Preach Hub-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/BRYXBanner/BRYXBanner.framework",
-				"${BUILT_PRODUCTS_DIR}/FSPagerView/FSPagerView.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
-				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/MXParallaxHeader/MXParallaxHeader.framework",
-				"${BUILT_PRODUCTS_DIR}/NTMonthYearPicker/NTMonthYearPicker.framework",
-				"${BUILT_PRODUCTS_DIR}/PinCodeTextField/PinCodeTextField.framework",
-				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
-				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/ReachabilitySwift.framework",
-				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
-				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
-				"${BUILT_PRODUCTS_DIR}/SearchTextField/SearchTextField.framework",
-				"${BUILT_PRODUCTS_DIR}/SideMenu/SideMenu.framework",
-				"${BUILT_PRODUCTS_DIR}/Stripe/Stripe.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftMoment/SwiftMoment.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
-				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
-				"${BUILT_PRODUCTS_DIR}/XLPagerTabStrip/XLPagerTabStrip.framework",
-				"${BUILT_PRODUCTS_DIR}/YPDrawSignatureView/YPDrawSignatureView.framework",
-				"${BUILT_PRODUCTS_DIR}/eWAYPaymentsSDK/eWAYPaymentsSDK.framework",
-				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Preach Hub/Pods-Preach Hub-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BRYXBanner.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FSPagerView.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MXParallaxHeader.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NTMonthYearPicker.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PinCodeTextField.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReachabilitySwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SearchTextField.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SideMenu.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Stripe.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftMoment.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XLPagerTabStrip.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YPDrawSignatureView.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/eWAYPaymentsSDK.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Preach Hub/Pods-Preach Hub-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Preach Hub/Pods-Preach Hub-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Preach Hub/Pods-Preach Hub-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E9DC4A60699044DC431E6716 /* [CP] Check Pods Manifest.lock */ = {
@@ -594,6 +554,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				523E967D22AA4522008B51B9 /* FavouritesViewController.swift in Sources */,
 				8203F0C6228D695C00F9D65D /* Constants.swift in Sources */,
 				82EF35B3228D90EC003BE3E2 /* InitialViewController.swift in Sources */,
 				8203F0C4228D695100F9D65D /* APIHelper.swift in Sources */,
