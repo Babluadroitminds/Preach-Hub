@@ -34,10 +34,10 @@ class RootViewController: UIViewController, UITabBarDelegate , UITableViewDataSo
     }
     
     func setMenuOptions(){
-        menuOptions.append(MenuOption(Name: "About us", Image: "ic-aboutus"))
-        menuOptions.append(MenuOption(Name: "Rate this app", Image: "ic-rate"))
-        menuOptions.append(MenuOption(Name: "Visit the website", Image: "ic-visit"))
-        menuOptions.append(MenuOption(Name: "Logout", Image: "ic-logout"))
+        menuOptions.append(MenuOption(Name: "About us", Image: "about_blue"))
+        menuOptions.append(MenuOption(Name: "Rate this app", Image: "rate_blue"))
+        menuOptions.append(MenuOption(Name: "Visit the website", Image: "download_blue"))
+        menuOptions.append(MenuOption(Name: "Logout", Image: "logout_blue"))
         self.tblView.reloadData()
     }
     
