@@ -24,7 +24,7 @@ struct GlobalConstants {
         static let getChurches: String = "churches"
         static let getPastors: String = "pastors"
         static let getStores: String = "categories"
-        static let getProduct: String = "products?filter=%@"
+        static let getProductByCategoryId: String = "products?filter=%@"
         static let getProductById: String = "products/%@?filter=%@"
         static let getPreachStatistics: String = "https://www.jmtbiz.co.za/preach/statistics.json"
         static let sendOrders: String = "orders/createOrder"
@@ -35,5 +35,7 @@ struct GlobalConstants {
         static let memberPayByCard: String = "members/MemberPayByCard"
         static let getOrdersByMemberId: String = "orders?filter=%@"
         static let getOrderDetailsById: String = "orders/%@/orderdetail?filter=%@"
+        static let getAllPastors: String = "https://www.jmtbiz.co.za/preach/pastorlist.json?per-page=50"
+        static let getAllProducts: String = "products"
     }
 }

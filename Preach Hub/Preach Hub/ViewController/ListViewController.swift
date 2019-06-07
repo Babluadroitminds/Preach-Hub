@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import SwiftyJSON
 
 struct listPastor {
     var name : String!
@@ -26,10 +26,32 @@ class ListViewController: UIViewController,UICollectionViewDataSource , UICollec
     var dataList: [DataKey] = []
     var listPastorArray = [listPastor]()
     var header: String?
+    var isAllPastors: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        lblHeader.text = header
+        
+        if isAllPastors {
+            lblHeader.text = "All Pastors"
+            getAllPastors()
+        }
+        else{
+            lblHeader.text = header
+        }
+
+    }
+    
+    func getAllPastors(){
+        let parameters: [String: String] = [:]
+        APIHelper().get(apiUrl: GlobalConstants.APIUrls.getAllPastors, parameters: parameters as [String : AnyObject]) { (response) in
+            if response["data"].array != nil  {
+                for item in response["data"].arrayValue {
+                    let is_Active = item["is_active"] != JSON.null ? item["is_active"].int : 0
+                    self.dataList.append(DataKey(id: item["id"] != JSON.null ? String(item["id"].int!) : "", title: item["name"] != JSON.null ? item["name"].string! : "", thumb: item["img_thumb"] != JSON.null ? item["img_thumb"].string! : "", description: item["description"] != JSON.null ? item["description"].string! : "", isActive: is_Active == 1 ? true : false, url: item["url"] != JSON.null ? item["url"].string! : ""))
+                }
+                self.collectionView.reloadData()
+            }
+        }
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -53,14 +75,7 @@ class ListViewController: UIViewController,UICollectionViewDataSource , UICollec
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
-        let noOfCellsInRow = 2
-        let flowLayout = collectionViewLayout as! UICollectionViewFlowLayout
-        let totalSpace = flowLayout.sectionInset.left
-            + flowLayout.sectionInset.right
-            + (flowLayout.minimumInteritemSpacing * CGFloat(noOfCellsInRow - 1))
-        let size = Int((collectionView.bounds.width - totalSpace) / CGFloat(noOfCellsInRow))
-        return CGSize(width: size, height: size)
+        return CGSize(width: collectionView.frame.size.width / 2.07, height: 160)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)

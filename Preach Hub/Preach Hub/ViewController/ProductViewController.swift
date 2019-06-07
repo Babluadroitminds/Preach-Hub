@@ -209,6 +209,7 @@ class ProductViewController: UIViewController, UICollectionViewDelegate, UIColle
     func getCategory(){
         let parameters: [String: String] = [:]
         APIHelper().get(apiUrl: GlobalConstants.APIUrls.getStores, parameters: parameters as [String : AnyObject]) { (response) in
+            self.categoryList.append(DataKey(id: "", title: "All", thumb: "", description: "", isActive: false, url: ""))
             if response["data"].array != nil  {
                 for item in response["data"].arrayValue {
                     self.categoryList.append(DataKey(id: item["id"] != JSON.null ? item["id"].string! : "", title: item["name"] != JSON.null ? item["name"].string! : "", thumb: item["img_thumb"] != JSON.null ? item["img_thumb"].string! : "", description: item["description"] != JSON.null ? item["description"].string! : "", isActive: item["is_active"] != JSON.null ? item["is_active"].bool! : true, url : ""))
@@ -224,8 +225,16 @@ class ProductViewController: UIViewController, UICollectionViewDelegate, UIColle
         let dict = ["where": [ "categoryid": categoryId]]
 
         if let json = try? JSONSerialization.data(withJSONObject: dict, options: []) {
-            if let content = String(data: json, encoding: String.Encoding.utf8) {
-                APIHelper().get(apiUrl: String.init(format: GlobalConstants.APIUrls.getProduct,content), parameters: parameters as [String : AnyObject]) { (response) in
+            if var content = String(data: json, encoding: String.Encoding.utf8) {
+                var url = ""
+                if categoryText.text == "All"{
+                    url = GlobalConstants.APIUrls.getAllProducts
+                    content = ""
+                }
+                else {
+                    url = GlobalConstants.APIUrls.getProductByCategoryId
+                }
+                APIHelper().get(apiUrl: String.init(format: url,content), parameters: parameters as [String : AnyObject]) { (response) in
                     self.productList = []
                     if response["data"].array != nil  {
                         for item in response["data"].arrayValue {

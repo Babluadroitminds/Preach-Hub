@@ -20,7 +20,7 @@ struct DataKey{
 }
 
 protocol CustomDelegate: class {
-    func didSelectItem(id: String, selectedRow : Int, url: String)
+    func didSelectItem(id: String, selectedRow : Int, url: String, categoryTitle: String)
 }
 
 class tableViewCell : UITableViewCell , UICollectionViewDelegate , UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
@@ -55,7 +55,7 @@ class tableViewCell : UITableViewCell , UICollectionViewDelegate , UICollectionV
     }
    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.size.width / 3.2, height: 110)
+        return CGSize(width: collectionView.frame.size.width / 2.07, height: 170)
     }
    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -67,7 +67,8 @@ class tableViewCell : UITableViewCell , UICollectionViewDelegate , UICollectionV
         currentCell.selectedBackgroundView? = selctedView
 
         let id = dataList[indexPath.row].id
-        delegate?.didSelectItem(id: id, selectedRow : selectedIndex!, url: dataList[indexPath.row].url)
+        let title = dataList[indexPath.row].title
+        delegate?.didSelectItem(id: id, selectedRow : selectedIndex!, url: dataList[indexPath.row].url, categoryTitle: title)
     }
     
     func setCollectioViewCell(with list: [DataKey]) {
@@ -126,7 +127,7 @@ class tableHeaderCell: UITableViewCell, UICollectionViewDelegate , UICollectionV
         selctedView.backgroundColor = UIColor.clear
         currentCell.selectedBackgroundView? = selctedView
         
-        delegate?.didSelectItem(id: "", selectedRow : 0, url: pastorLists[indexPath.row].url)
+        delegate?.didSelectItem(id: "", selectedRow : 0, url: pastorLists[indexPath.row].url, categoryTitle: "")
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -172,7 +173,6 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
 
         tblView.dataSource = self
         getChurches()
-        getPastors()
         getStores()
         getDetails()
         NotificationCenter.default.addObserver(self, selector: #selector(HomeViewController.refreshRequest), name: NSNotification.Name(rawValue: "RefreshLogoutRequest"), object: nil)
@@ -198,19 +198,6 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                self.tblView.reloadData()
             }
         }
-    }
-    
-    func getPastors()
-    {
-//        let parameters: [String: String] = [:]
-//        APIHelper().get(apiUrl: GlobalConstants.APIUrls.getPastors, parameters: parameters as [String : AnyObject]) { (response) in
-//            if response["data"].array != nil  {
-//                for item in response["data"].arrayValue {
-//                    self.pastorLists.append(DataKey(id: item["id"] != JSON.null ? item["id"].string! : "", title: item["name"] != JSON.null ? item["name"].string! : "", thumb: item["img_thumb"] != JSON.null ? item["img_thumb"].string! : "", description: item["description"] != JSON.null ? item["description"].string! : "", isActive: item["is_active"] != JSON.null ? item["is_active"].bool! : true))
-//                }
-//                self.tblView.reloadData()
-//            }
-//        }
     }
     
     func getStores(){
@@ -297,7 +284,7 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         }
         else
         {
-            return 170
+            return 230
         }
     }
     
@@ -312,19 +299,19 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     @objc func btnMoreClicked(sender : UIButton){
         switch sender.tag {
         case 1:
-            navigateToListViewPage(dataList: pastorLists, tag: sender.tag)
+            navigateToListViewPage(dataList: [], tag: sender.tag, isAllPastors: true)
             break
         case 2:
-            navigateToListViewPage(dataList: churchLists, tag: sender.tag)
+            navigateToListViewPage(dataList: churchLists, tag: sender.tag, isAllPastors: false)
             break
         case 3:
-            navigateToListViewPage(dataList: pastorLists, tag: sender.tag)
+            navigateToListViewPage(dataList: [], tag: sender.tag, isAllPastors: true)
             break
         case 4:
-            navigateToListViewPage(dataList: storeLists, tag: sender.tag)
+            navigateToListViewPage(dataList: storeLists, tag: sender.tag, isAllPastors: false)
             break
         case 5:
-            navigateToListViewPage(dataList: musicLists, tag: sender.tag)
+            navigateToListViewPage(dataList: musicLists, tag: sender.tag, isAllPastors: false)
             break
         default:
             break
@@ -332,21 +319,22 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         
     }
     
-    func navigateToListViewPage(dataList: [DataKey], tag: Int)
+    func navigateToListViewPage(dataList: [DataKey], tag: Int, isAllPastors: Bool)
     {
         let listVC = ListViewController.storyboardInstance()
         listVC!.dataList = dataList
         listVC!.header = headingArray[tag]
-        
+        listVC!.isAllPastors = isAllPastors
         self.navigationController?.pushViewController(listVC!, animated: true)
     }
     
-    func didSelectItem(id: String, selectedRow: Int, url: String)
+    func didSelectItem(id: String, selectedRow: Int, url: String, categoryTitle: String)
     {
         if selectedRow == 4
         {
             let ProductVC = ProductViewController.storyboardInstance()
             ProductVC!.categoryId = id
+            ProductVC!.categoryTitle = categoryTitle
             self.navigationController?.pushViewController(ProductVC!, animated: true)
         }
         else if selectedRow == 0 || selectedRow == 1 || selectedRow == 3
@@ -379,8 +367,8 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
 
 extension tableViewCell: CustomDelegate
 {
-    func didSelectItem(id: String, selectedRow: Int, url: String)
+    func didSelectItem(id: String, selectedRow: Int, url: String, categoryTitle: String)
     {
-        delegate?.didSelectItem(id: id, selectedRow: selectedRow, url: url)
+        delegate?.didSelectItem(id: id, selectedRow: selectedRow, url: url, categoryTitle: categoryTitle)
     }
 }
