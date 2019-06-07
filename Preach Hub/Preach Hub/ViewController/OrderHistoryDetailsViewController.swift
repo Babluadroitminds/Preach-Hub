@@ -21,9 +21,7 @@ struct OrdersDetailsKey {
 
 class OrderHistoryDetailsTableViewCell : UITableViewCell{
     
-    @IBOutlet weak var vwSize: UIView!
-    @IBOutlet weak var vwColor: UIView!
-    @IBOutlet weak var vwQuantity: UIView!
+    @IBOutlet weak var lblStatus: UITextField!
     @IBOutlet weak var lblSize: UITextField!
     @IBOutlet weak var lblColor: UITextField!
     @IBOutlet weak var lblQuantity: UITextField!
@@ -36,6 +34,7 @@ class OrderHistoryDetailsViewController: UIViewController, UITableViewDataSource
     var ordersDetails: [OrdersDetailsKey] = []
     var orderId : String?
     var orderNo: String?
+    var orderStatus: String?
 
     @IBOutlet weak var lblOrderNo: UILabel!
     @IBOutlet weak var tblvwOrders: UITableView!
@@ -76,25 +75,26 @@ class OrderHistoryDetailsViewController: UIViewController, UITableViewDataSource
         let currentItem = ordersDetails[indexPath.row]
         cell.lblProductName.text = currentItem.title
         cell.lblQuantity.text = "Quantity: " + currentItem.quantity.description
-        cell.lblColor.text = "Color: " + currentItem.color
+        cell.lblColor.text = "Colour: " + currentItem.color
         cell.lblSize.text = "Size: " + currentItem.size
         cell.lblPrice.text = "$" + currentItem.price.description
+        cell.lblStatus.text = "Status: " + orderStatus!
         let imageUrl = currentItem.thumb
         let urlString = imageUrl.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
         cell.imgVwProduct.sd_setShowActivityIndicatorView(true)
         cell.imgVwProduct.sd_setIndicatorStyle(.gray)
         cell.imgVwProduct.sd_setImage(with: URL.init(string: urlString!) , placeholderImage: UIImage.init(named:"ic-placeholder.png"))
-        if currentItem.color == "" {
-            cell.vwColor.isHidden = true
+        if currentItem.color == ""{
+             cell.lblColor.isHidden = true
         }
-        if currentItem.size == "" {
-            cell.vwSize.isHidden = true
+        if currentItem.size == ""{
+            cell.lblSize.isHidden = true
         }
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat{
-        return 305
+        return 120
     }
     
     @IBAction func backClicked(_ sender: Any) {

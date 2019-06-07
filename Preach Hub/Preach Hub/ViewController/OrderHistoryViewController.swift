@@ -15,6 +15,7 @@ struct OrderKey {
     var orderdate: String;
     var currencyvalue: Int;
     var paymentmethod: String
+    var status: String;
 }
 
 class OrderHistoryTableViewCell : UITableViewCell{
@@ -75,7 +76,8 @@ class OrderHistoryViewController: UIViewController, UITableViewDataSource, UITab
     func navigateToOrderDetailsPage(){
         let orderHistoryDetailsVC = OrderHistoryDetailsViewController.storyboardInstance()
         orderHistoryDetailsVC!.orderId = Orders[selectedRow!].id
-        orderHistoryDetailsVC!.orderNo =  Orders[selectedRow!].orderno
+        orderHistoryDetailsVC!.orderNo = Orders[selectedRow!].orderno
+        orderHistoryDetailsVC!.orderStatus = Orders[selectedRow!].status
         self.navigationController?.pushViewController(orderHistoryDetailsVC!, animated: true)
     }
     
@@ -90,7 +92,7 @@ class OrderHistoryViewController: UIViewController, UITableViewDataSource, UITab
                     self.Orders = []
                     if response["data"].array != nil  {
                         for item in response["data"].arrayValue {
-                            self.Orders.append(OrderKey(id: item["id"] != JSON.null ? item["id"].string! : "", orderno: item["orderno"] != JSON.null ? item["orderno"].string! : "", orderdate: item["orderdate"] != JSON.null ? item["orderdate"].string! : "", currencyvalue: item["currencyvalue"] != JSON.null ? item["currencyvalue"].int!: 0, paymentmethod: item["paymentmethod"] != JSON.null ? item["paymentmethod"].string! : ""))
+                            self.Orders.append(OrderKey(id: item["id"] != JSON.null ? item["id"].string! : "", orderno: item["orderno"] != JSON.null ? item["orderno"].string! : "", orderdate: item["orderdate"] != JSON.null ? item["orderdate"].string! : "", currencyvalue: item["currencyvalue"] != JSON.null ? item["currencyvalue"].int!: 0, paymentmethod: item["paymentmethod"] != JSON.null ? item["paymentmethod"].string! : "", status: item["orderstatus"] != JSON.null ? item["orderstatus"].string!: ""))
                         }
                         self.tableview.reloadData()
                         if response["data"].count == 0 {
