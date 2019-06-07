@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 struct favourites
 {
@@ -28,15 +29,50 @@ class favouritesell: UITableViewCell
 }
 class FavouritesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate
 {
+    @IBOutlet weak var favouritesTableView: UITableView!
+    
     var favouritesArr = [favourites]()
     
     override func viewDidLoad()
     {
+        super.viewDidLoad()
         
+        self.favouritesTableView.tableFooterView = UIView()
+        self.fetchFavourites()
+    }
+    func fetchFavourites()
+    {
+        self.favouritesArr.removeAll()
+        
+        let userId = UserDefaults.standard.value(forKey: "memberId") as? String
+
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        let managedContext = appDelegate?.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Favourite")
+        let predicate = NSPredicate(format: "userId == %@", userId!)
+        fetchRequest.predicate = predicate
+        
+        do
+        {
+            let fetchResults = try managedContext!.fetch(fetchRequest) as? [Favourite]
+            
+            if fetchResults?.count != 0
+            {
+                for data in fetchResults!
+                {
+                    self.favouritesArr.append(favourites(imageThumb: data.imageStr!, title: data.name!, id: data.favId!))
+                }
+            }
+            self.favouritesTableView.reloadData()
+        }
+        catch
+        {
+            print("coreDataFetchFail")
+        }
     }
     func numberOfSections(in tableView: UITableView) -> Int
     {
-        return 2
+        return 1
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
@@ -60,6 +96,10 @@ class FavouritesViewController: UIViewController, UITableViewDataSource, UITable
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
     {
-        return 70
+        return 85
+    }
+    @IBAction func backTapped(_ sender: Any)
+    {
+        self.navigationController?.popViewController(animated: true)
     }
 }

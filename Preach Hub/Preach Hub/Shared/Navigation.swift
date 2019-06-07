@@ -78,5 +78,11 @@ extension UIViewController {
         let paymentViewController = storyBoard.instantiateViewController(withIdentifier: "PaymentExistingCardViewController") as! PaymentExistingCardViewController
         self.navigationController?.pushViewController(paymentViewController, animated: true)
     }
+    func navigateToFavouritesPage()
+    {
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Home", bundle:nil)
+        let paymentViewController = storyBoard.instantiateViewController(withIdentifier: "FavouritesViewController") as! FavouritesViewController
+        self.navigationController?.pushViewController(paymentViewController, animated: true)
+    }
 }
 

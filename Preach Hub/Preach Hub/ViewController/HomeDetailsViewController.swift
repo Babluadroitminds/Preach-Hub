@@ -281,6 +281,12 @@ class HomeDetailsViewController: UIViewController, UITableViewDataSource, UITabl
                 }
                 else
                 {
+                    cell!.sermonImage.isHidden = false
+                    cell!.name.isHidden = false
+                    cell!.timeLbl.isHidden = false
+                    cell!.availableLbl.isHidden = false
+                    cell!.moreView.isHidden = false
+                    
                     let imageUrl = self.semonsArr[indexPath.row].imageThumb
                     let urlString = imageUrl.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
                     cell!.sermonImage.sd_setShowActivityIndicatorView(true)
@@ -465,7 +471,7 @@ class HomeDetailsViewController: UIViewController, UITableViewDataSource, UITabl
         
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Favourite")
         
-        let idKeyPredicate = NSPredicate(format: "id = %@", id)
+        let idKeyPredicate = NSPredicate(format: "favId = %@", id)
         let typeKeyPredicate = NSPredicate(format: "type = %@", type)
         
         let andPredicate = NSCompoundPredicate(type: NSCompoundPredicate.LogicalType.and, subpredicates: [idKeyPredicate, typeKeyPredicate])

@@ -16,6 +16,10 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
         setLayout()
     }
+    @IBAction func favouriteTapped(_ sender: Any)
+    {
+        self.navigateToFavouritesPage()
+    }
     
     func setLayout(){
         imgVwOrder.layer.cornerRadius = imgVwOrder.frame.size.width / 2
