@@ -561,7 +561,10 @@
                                                             </connections>
                                                         </collectionView>
                                                         <pageControl opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="OSh-rf-lpt">
-                                                            <rect key="frame" x="10" y="183" width="394" height="37"/>
+                                                            <rect key="frame" x="354" y="183" width="50" height="37"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="50" id="cyv-yq-Tbi"/>
+                                                            </constraints>
                                                             <color key="pageIndicatorTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <color key="currentPageIndicatorTintColor" red="0.17116057870000001" green="0.5" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         </pageControl>
@@ -572,7 +575,6 @@
                                                         <constraint firstAttribute="trailing" secondItem="E7Z-dX-xRK" secondAttribute="trailing" id="UAp-tO-Gq2"/>
                                                         <constraint firstItem="E7Z-dX-xRK" firstAttribute="top" secondItem="K9Q-fO-Ndr" secondAttribute="top" id="VXD-ja-U4r"/>
                                                         <constraint firstAttribute="bottom" secondItem="OSh-rf-lpt" secondAttribute="bottom" constant="5" id="fUx-Es-NRn"/>
-                                                        <constraint firstItem="OSh-rf-lpt" firstAttribute="leading" secondItem="K9Q-fO-Ndr" secondAttribute="leading" constant="10" id="lgO-od-cap"/>
                                                         <constraint firstAttribute="trailing" secondItem="OSh-rf-lpt" secondAttribute="trailing" constant="10" id="vAP-i4-r8M"/>
                                                         <constraint firstItem="E7Z-dX-xRK" firstAttribute="leading" secondItem="K9Q-fO-Ndr" secondAttribute="leading" id="wkV-N1-LMS"/>
                                                     </constraints>
@@ -706,12 +708,12 @@
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fW5-Na-ptN">
-                                                    <rect key="frame" x="0.0" y="145" width="196" height="25"/>
-                                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <rect key="frame" x="0.0" y="145" width="196" height="30"/>
+                                                    <color key="backgroundColor" red="0.12941176470588234" green="0.58823529411764708" blue="0.95294117647058818" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="25" id="yqt-vC-0jd"/>
+                                                        <constraint firstAttribute="height" constant="30" id="yqt-vC-0jd"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -721,7 +723,7 @@
                                         <constraints>
                                             <constraint firstItem="cK3-p8-zos" firstAttribute="top" secondItem="MGh-pk-7PF" secondAttribute="top" constant="5" id="EmT-Cc-gKL"/>
                                             <constraint firstItem="cK3-p8-zos" firstAttribute="leading" secondItem="MGh-pk-7PF" secondAttribute="leading" id="InB-34-MoB"/>
-                                            <constraint firstAttribute="bottom" secondItem="fW5-Na-ptN" secondAttribute="bottom" constant="5" id="VYd-eX-BQZ"/>
+                                            <constraint firstAttribute="bottom" secondItem="fW5-Na-ptN" secondAttribute="bottom" id="VYd-eX-BQZ"/>
                                             <constraint firstItem="fW5-Na-ptN" firstAttribute="leading" secondItem="MGh-pk-7PF" secondAttribute="leading" id="dAb-lW-vlG"/>
                                             <constraint firstAttribute="bottom" secondItem="cK3-p8-zos" secondAttribute="bottom" id="pm2-bT-UUi"/>
                                             <constraint firstAttribute="trailing" secondItem="cK3-p8-zos" secondAttribute="trailing" id="qZk-OJ-Zru"/>
@@ -1532,6 +1534,6 @@
         <image name="slide_howto" width="4002" height="3366"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="21M-BN-uT9"/>
+        <segue reference="8pA-4M-SbX"/>
     </inferredMetricsTieBreakers>
 </document>

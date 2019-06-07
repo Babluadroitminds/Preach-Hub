@@ -201,7 +201,8 @@ class CartPaymentViewController: UIViewController
             if response["data"]["transactionresponse"] != JSON.null{
                 let parameters: [String: Any] = ["orderno": self.orderNo!, "memberid": memberId!, "paymentmethod": "credit_card", "orderdate": orderDate, "orderstatus": "Ordered", "currency": "USD", "currencyvalue": amount, "id": self.orderId!, "parentid": ""]
                 APIHelper().patch(apiUrl: String.init(format: GlobalConstants.APIUrls.confirmOrdersById, self.orderId!), parameters: parameters as [String : AnyObject]) { (response) in
-                    if response["data"] != JSON.null{
+                    if response["data"] != JSON.null
+                    {
                         self.view.makeToast("Payment successfull!", duration: 3.0, position: .bottom, title: nil, image: nil, style: self.style , completion: { (true) in
                             let productData = NSKeyedArchiver.archivedData(withRootObject: [])
                             UserDefaults.standard.set(productData, forKey: "CartDetails")
@@ -305,6 +306,19 @@ class CartPaymentViewController: UIViewController
         }
         else if (textField == expDateTxt)
         {
+            if textField.text!.count < 2
+            {
+                if let text = textField.text
+                {
+                    let newStr = (text as NSString).replacingCharacters(in: range, with: string)
+                    if newStr.isEmpty
+                    {
+                        return true
+                    }
+                    let intvalue = Int(newStr)
+                    return (intvalue! >= 0 && intvalue! <= 12)
+                }
+            }
             if range.length > 0
             {
                 return true

@@ -158,7 +158,22 @@ class PaymentViewController: UIViewController, UIPickerViewDataSource, UIPickerV
                 return false
             }
         }
-        else if (textField == txtExpires){
+        else if (textField == txtExpires)
+        {            
+            if textField.text!.count < 2
+            {
+                if let text = textField.text
+                {
+                    let newStr = (text as NSString).replacingCharacters(in: range, with: string)
+                    if newStr.isEmpty
+                    {
+                        return true
+                    }
+                    let intvalue = Int(newStr)
+                    return (intvalue! >= 0 && intvalue! <= 12)
+                }
+            }
+            
             if range.length > 0 {
                 return true
             }
