@@ -162,10 +162,18 @@ class FavouritesViewController: UIViewController, UITableViewDataSource, UITable
     }
     func clearAllFavourite()
     {
+        let userId = UserDefaults.standard.value(forKey: "memberId") as? String
+
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let managedContext = appDelegate.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Favourite")
         fetchRequest.returnsObjectsAsFaults = false
+
+        let userIdKeyPredicate = NSPredicate(format: "userId == %@", userId!)
+        
+        let andPredicate = NSCompoundPredicate(type: NSCompoundPredicate.LogicalType.and, subpredicates: [userIdKeyPredicate])
+        
+        fetchRequest.predicate = andPredicate
         
         do
         {
@@ -189,11 +197,18 @@ class FavouritesViewController: UIViewController, UITableViewDataSource, UITable
     }
     func clearIndividualFavourite(index : Int)
     {
+        let userId = UserDefaults.standard.value(forKey: "memberId") as? String
+
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let managedContext = appDelegate.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Favourite")
+        
+        let userIdKeyPredicate = NSPredicate(format: "userId == %@", userId!)
         let predicate = NSPredicate(format: "favId == %@", self.favouritesArr[index].id)
-        fetchRequest.predicate = predicate
+
+        let andPredicate = NSCompoundPredicate(type: NSCompoundPredicate.LogicalType.and, subpredicates: [userIdKeyPredicate, predicate])
+        
+        fetchRequest.predicate = andPredicate
         
         do
         {

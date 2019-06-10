@@ -466,6 +466,8 @@ class HomeDetailsViewController: UIViewController, UITableViewDataSource, UITabl
             id = self.semonsArr[index].id
             type = "testimony"
         }
+        let userId = UserDefaults.standard.value(forKey: "memberId") as? String
+
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
         let managedContext = appDelegate?.persistentContainer.viewContext
         
@@ -474,8 +476,10 @@ class HomeDetailsViewController: UIViewController, UITableViewDataSource, UITabl
         let idKeyPredicate = NSPredicate(format: "favId = %@", id)
         let typeKeyPredicate = NSPredicate(format: "type = %@", type)
         
-        let andPredicate = NSCompoundPredicate(type: NSCompoundPredicate.LogicalType.and, subpredicates: [idKeyPredicate, typeKeyPredicate])
+        let userIdKeyPredicate = NSPredicate(format: "userId == %@", userId!)
         
+        let andPredicate = NSCompoundPredicate(type: NSCompoundPredicate.LogicalType.and, subpredicates: [idKeyPredicate, typeKeyPredicate, userIdKeyPredicate])
+                
         fetchRequest.predicate = andPredicate
         
         do
