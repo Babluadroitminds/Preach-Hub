@@ -92,7 +92,7 @@ class OrderHistoryViewController: UIViewController, UITableViewDataSource, UITab
                     self.Orders = []
                     if response["data"].array != nil  {
                         for item in response["data"].arrayValue {
-                            if item["orderstatus"] != "pending" || item["orderstatus"] != "Pending" {
+                            if item["orderstatus"].string != "pending" {
                                 self.Orders.append(OrderKey(id: item["id"] != JSON.null ? item["id"].string! : "", orderno: item["orderno"] != JSON.null ? item["orderno"].string! : "", orderdate: item["orderdate"] != JSON.null ? item["orderdate"].string! : "", currencyvalue: item["currencyvalue"] != JSON.null ? item["currencyvalue"].int!: 0, paymentmethod: item["paymentmethod"] != JSON.null ? item["paymentmethod"].string! : "", status: item["orderstatus"] != JSON.null ? item["orderstatus"].string!: ""))
                             }
                         }
