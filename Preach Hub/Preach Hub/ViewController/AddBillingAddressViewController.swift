@@ -221,10 +221,9 @@ class AddBillingAddressViewController: UIViewController, UIPickerViewDataSource,
         }
         let amount = (sum + shippingAmount)
         let memberId = UserDefaults.standard.string(forKey: "memberId")
-        let chargeAmount = (amount * 1000)
         
        // let stripeCustomerTokenId = UserDefaults.standard.string(forKey: "stripeCustomerTokenId")
-        let parameters: [String: Any] = ["amount": chargeAmount, "cardToken": stripeCardToken!, "orderno": orderNo!]
+        let parameters: [String: Any] = ["amount": amount, "cardToken": stripeCardToken!, "orderno": orderNo!]
         APIHelper().post(apiUrl: GlobalConstants.APIUrls.memberPayByCard, parameters: parameters as [String : AnyObject]) { (response) in
             if response["data"]["transactionresponse"] != JSON.null{
                 let parameters: [String: Any] = ["orderno": self.orderNo!, "memberid": memberId!, "paymentmethod": "credit_card", "orderdate": orderDate, "orderstatus": "Ordered", "currency": "USD", "currencyvalue": amount, "id": self.orderId!, "parentid": ""]

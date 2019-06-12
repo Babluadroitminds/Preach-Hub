@@ -71,6 +71,7 @@ class LoginViewController: UIViewController{
     }
     
     func getDetails(memberId: String){
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
         let parameters: [String: String] = [:]
         APIHelper().get(apiUrl: String.init(format: GlobalConstants.APIUrls.memberDetails,memberId), parameters: parameters as [String : AnyObject]) { (response) in
             if response["data"] != JSON.null  {
@@ -79,6 +80,7 @@ class LoginViewController: UIViewController{
                 let memberName = firstName! + " " + lastName!
                 self.userDefaults.set(response["data"]["stripecustomertokenid"].string, forKey: "stripeCustomerTokenId")
                 self.userDefaults.set(memberName, forKey: "memberName")
+                appDelegate?.registerDevice()
                 self.view.makeToast("You are now logged in", duration: 3.0, position: .bottom, style: self.style)
                 DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3), execute: {
                     self.navigateToHomeScreenPage()

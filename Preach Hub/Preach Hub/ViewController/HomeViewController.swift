@@ -16,11 +16,11 @@ struct DataKey{
     var thumb: String
     var description: String
     var isActive: Bool
-    var url : String
+    var videoUrl: String
 }
 
 protocol CustomDelegate: class {
-    func didSelectItem(id: String, selectedRow : Int, url: String, categoryTitle: String)
+    func didSelectItem(id: String, selectedRow : Int, categoryTitle: String)
 }
 
 class tableViewCell : UITableViewCell , UICollectionViewDelegate , UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
@@ -68,7 +68,7 @@ class tableViewCell : UITableViewCell , UICollectionViewDelegate , UICollectionV
 
         let id = dataList[indexPath.row].id
         let title = dataList[indexPath.row].title
-        delegate?.didSelectItem(id: id, selectedRow : selectedIndex!, url: dataList[indexPath.row].url, categoryTitle: title)
+        delegate?.didSelectItem(id: id, selectedRow : selectedIndex!, categoryTitle: title)
     }
     
     func setCollectioViewCell(with list: [DataKey]) {
@@ -127,7 +127,7 @@ class tableHeaderCell: UITableViewCell, UICollectionViewDelegate , UICollectionV
         selctedView.backgroundColor = UIColor.clear
         currentCell.selectedBackgroundView? = selctedView
         
-        delegate?.didSelectItem(id: "", selectedRow : 0, url: pastorLists[indexPath.row].url, categoryTitle: "")
+        //delegate?.didSelectItem(id: "", selectedRow : 0, categoryTitle: "")
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -160,11 +160,14 @@ class collectionHeaderCell: UICollectionViewCell {
 }
 
 class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,CustomDelegate {
+    
     @IBOutlet weak var tblView: UITableView!
     var churchLists: [DataKey] = []
     var pastorLists: [DataKey] = []
     var storeLists: [DataKey] = []
     var musicLists: [DataKey] = []
+    var continueWatchingLists: [DataKey] = []
+    var bannerList: [DataKey] = []
     
     var headingArray = ["", "CONTINUE WATCHING", "CHURCHES", "CHURCH MINISTRY CHANNEL", "STORE", "GOSPEL MUSIC"]
     
@@ -172,9 +175,10 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         super.viewDidLoad()
 
         tblView.dataSource = self
-        getChurches()
+        //getChurches()
         getStores()
-        getDetails()
+        getHomeDetails()
+        getContinueWatchings()
         NotificationCenter.default.addObserver(self, selector: #selector(HomeViewController.refreshRequest), name: NSNotification.Name(rawValue: "RefreshLogoutRequest"), object: nil)
     }
     
@@ -188,48 +192,58 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         })
     }
     
-    func getChurches(){
+    func getHomeDetails(){
         let parameters: [String: String] = [:]
-        APIHelper().get(apiUrl: GlobalConstants.APIUrls.getChurches, parameters: parameters as [String : AnyObject]) { (response) in
-            if response["data"].array != nil  {
-                for item in response["data"].arrayValue {
-                    self.churchLists.append(DataKey(id: item["id"] != JSON.null ? item["id"].string! : "", title: item["name"] != JSON.null ? item["name"].string! : "", thumb: item["img_thumb"] != JSON.null ? item["img_thumb"].string! : "", description: item["description"] != JSON.null ? item["description"].string! : "", isActive: item["is_active"] != JSON.null ? item["is_active"].bool! : true, url : ""))
+        APIHelper().get(apiUrl: GlobalConstants.APIUrls.getHomeDetails, parameters: parameters as [String : AnyObject]) { (response) in
+            
+                for item in response["data"]["home"]["banners"].arrayValue {
+                    self.bannerList.append(DataKey(id: item["id"] != JSON.null ? item["id"].string! : "", title: item["name"] != JSON.null ? item["name"].string! : "", thumb: item["img_thumb"] != JSON.null ? item["img_thumb"].string! : "", description: item["description"] != JSON.null ? item["description"].string! : "", isActive: item["is_active"] != JSON.null ? item["is_active"].bool! : false, videoUrl: ""))
                 }
-               self.tblView.reloadData()
+            
+                for item in response["data"]["home"]["pastors"].arrayValue {
+                    self.pastorLists.append(DataKey(id: item["id"] != JSON.null ? item["id"].string! : "", title: item["name"] != JSON.null ? item["name"].string! : "", thumb: item["img_thumb"] != JSON.null ? item["img_thumb"].string! : "", description: item["description"] != JSON.null ? item["description"].string! : "", isActive: item["is_active"] != JSON.null ? item["is_active"].bool! : false, videoUrl: ""))
+                }
+                
+                for item in response["data"]["home"]["churches"].arrayValue {
+                    self.churchLists.append(DataKey(id: item["id"] != JSON.null ? item["id"].string! : "", title: item["name"] != JSON.null ? item["name"].string! : "", thumb: item["img_thumb"] != JSON.null ? item["img_thumb"].string! : "", description: item["description"] != JSON.null ? item["description"].string! : "", isActive: item["is_active"] != JSON.null ? item["is_active"].bool! : false, videoUrl: ""))
+                }
+                
+                for item in response["data"]["home"]["music"].arrayValue {
+                    self.musicLists.append(DataKey(id: item["id"] != JSON.null ? item["id"].string! : "", title: item["name"] != JSON.null ? item["name"].string! : "", thumb: item["img_thumb"] != JSON.null ? item["img_thumb"].string! : "", description: item["description"] != JSON.null ? item["description"].string! : "", isActive: item["is_active"] != JSON.null ? item["is_active"].bool! : false, videoUrl: ""))
+                }
+                self.tblView.reloadData()
+        }
+    }
+    
+    func getContinueWatchings(){
+        let parameters: [String: String] = [:]
+        let memberId = UserDefaults.standard.value(forKey: "memberId") as? String
+        let dict = ["where": [ "memberid": "5cf7b25972d6720016488f27"], "include": ["sermon"]] as [String : Any]
+        
+        if let json = try? JSONSerialization.data(withJSONObject: dict, options: []) {
+            if let content = String(data: json, encoding: String.Encoding.utf8) {
+                APIHelper().get(apiUrl: String.init(format: GlobalConstants.APIUrls.getContinueWatchings,content), parameters: parameters as [String : AnyObject]) { (response) in
+                   
+                    if response["data"].array != nil  {
+                        for item in response["data"].arrayValue {
+                           self.continueWatchingLists.append(DataKey(id: item["sermonid"] != JSON.null ? item["sermonid"].string! : "", title: item["sermon"]["name"] != JSON.null ? item["sermon"]["name"].string! : "", thumb: item["sermon"]["img_thumb"] != JSON.null ? item["sermon"]["img_thumb"].string! : "", description: item["sermon"]["description"] != JSON.null ? item["sermon"]["description"].string! : "", isActive: item["sermon"]["is_active"] != JSON.null ? item["sermon"]["is_active"].bool! : false, videoUrl: item["sermon"]["video"] != JSON.null ? item["sermon"]["video"].string! : ""))
+                        }
+                        self.tblView.reloadData()
+                    }
+                }
             }
         }
     }
     
     func getStores(){
         let parameters: [String: String] = [:]
-        APIHelper().get(apiUrl: GlobalConstants.APIUrls.getStores, parameters: parameters as [String : AnyObject]) { (response) in
+        APIHelper().get(apiUrl: GlobalConstants.APIUrls.getCategory, parameters: parameters as [String : AnyObject]) { (response) in
             if response["data"].array != nil  {
                 for item in response["data"].arrayValue {
-                    self.storeLists.append(DataKey(id: item["id"] != JSON.null ? item["id"].string! : "", title: item["name"] != JSON.null ? item["name"].string! : "", thumb: item["img_thumb"] != JSON.null ? item["img_thumb"].string! : "", description: item["description"] != JSON.null ? item["description"].string! : "", isActive: item["is_active"] != JSON.null ? item["is_active"].bool! : true, url : ""))
+                    self.storeLists.append(DataKey(id: item["id"] != JSON.null ? item["id"].string! : "", title: item["name"] != JSON.null ? item["name"].string! : "", thumb: item["img_thumb"] != JSON.null ? item["img_thumb"].string! : "", description: item["description"] != JSON.null ? item["description"].string! : "", isActive: item["is_active"] != JSON.null ? item["is_active"].bool! : true, videoUrl: ""))
                 }
                 self.tblView.reloadData()
             }
-        }
-    }
-    
-    func getDetails()
-    {
-        let parameters: [String: String] = [:]
-        APIHelper().get(apiUrl: GlobalConstants.APIUrls.getPreachStatistics, parameters: parameters as [String : AnyObject]) { (response) in
-            
-            print("responseDetails : ", response)
-            
-            for item in response["data"]["musiclists"].arrayValue {
-                let is_Active = item["is_active"] != JSON.null ? item["is_active"].int : 0
-                self.musicLists.append(DataKey(id: item["id"] != JSON.null ? String(item["id"].int!) : "", title: item["name"] != JSON.null ? item["name"].string! : "", thumb: item["img_thumb"] != JSON.null ? item["img_thumb"].string! : "", description: item["description"] != JSON.null ? item["description"].string! : "", isActive:is_Active == 1 ? true : false, url : ""))
-            }
-            for item in response["data"]["pastorlists"].arrayValue
-            {
-                let is_Active = item["is_active"] != JSON.null ? item["is_active"].int : 0
-                
-                self.pastorLists.append(DataKey(id: item["id"] != JSON.null ? String(item["id"].int!) : "", title: item["name"] != JSON.null ? item["name"].string! : "", thumb: item["img_thumb"] != JSON.null ? item["img_thumb"].string! : "", description: item["description"] != JSON.null ? item["description"].string! : "", isActive:is_Active == 1 ? true : false, url: item["url"] != JSON.null ? item["url"].string! : ""))
-            }
-            self.tblView.reloadData()
         }
     }
     
@@ -241,7 +255,7 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         
         if indexPath.row == 0 {
             let cell = tblView.dequeueReusableCell(withIdentifier: "HeaderTableCell", for: indexPath) as! tableHeaderCell
-            cell.fillCollectionView(with: pastorLists)
+            cell.fillCollectionView(with: bannerList)
             
             cell.delegate = self
 
@@ -253,7 +267,7 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         
         cell.selectedIndex = indexPath.row
         if indexPath.row == 1 {
-            cell.setCollectioViewCell(with: pastorLists)
+            cell.setCollectioViewCell(with: continueWatchingLists)
             cell.btnMore.tag = 1
         }
         else if indexPath.row == 2 {
@@ -299,19 +313,19 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     @objc func btnMoreClicked(sender : UIButton){
         switch sender.tag {
         case 1:
-            navigateToListViewPage(dataList: [], tag: sender.tag, isAllPastors: true)
+            navigateToListViewPage(dataList: continueWatchingLists, tag: sender.tag)
             break
         case 2:
-            navigateToListViewPage(dataList: churchLists, tag: sender.tag, isAllPastors: false)
+            navigateToListViewPage(dataList: churchLists, tag: sender.tag)
             break
         case 3:
-            navigateToListViewPage(dataList: [], tag: sender.tag, isAllPastors: true)
+            navigateToListViewPage(dataList: pastorLists, tag: sender.tag)
             break
         case 4:
-            navigateToListViewPage(dataList: storeLists, tag: sender.tag, isAllPastors: false)
+            navigateToListViewPage(dataList: storeLists, tag: sender.tag)
             break
         case 5:
-            navigateToListViewPage(dataList: musicLists, tag: sender.tag, isAllPastors: false)
+            navigateToListViewPage(dataList: musicLists, tag: sender.tag)
             break
         default:
             break
@@ -319,16 +333,15 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         
     }
     
-    func navigateToListViewPage(dataList: [DataKey], tag: Int, isAllPastors: Bool)
+    func navigateToListViewPage(dataList: [DataKey], tag: Int)
     {
         let listVC = ListViewController.storyboardInstance()
         listVC!.dataList = dataList
         listVC!.header = headingArray[tag]
-        listVC!.isAllPastors = isAllPastors
         self.navigationController?.pushViewController(listVC!, animated: true)
     }
     
-    func didSelectItem(id: String, selectedRow: Int, url: String, categoryTitle: String)
+    func didSelectItem(id: String, selectedRow: Int, categoryTitle: String)
     {
         if selectedRow == 4
         {
@@ -339,27 +352,25 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         }
         else if selectedRow == 0 || selectedRow == 1 || selectedRow == 3
         {
-            self.getPastorDetails(url : url)
+            self.getPastorDetails(id : id)
         }
     }
-    func getPastorDetails(url : String)
-    {
-        let parameters: [String: String] = [:]
+    
+    func getPastorDetails(id : String){
+         let parameters: [String: String] = [:]
+        let dict = ["include": ["pastorsermons","products","events","testimonies"]] as [String : Any]
         
-        let urlStr = url.replacingOccurrences(of: " ", with: "")
-        print("url : ", urlStr)
-        
-        APIHelper().get(apiUrl: urlStr, parameters: parameters as [String : AnyObject]) { (response) in
-            
-            print("responsePastorDetails : ", response)
-            
-            if response["data"].dictionary != nil
-            {
-                let storyBoard : UIStoryboard = UIStoryboard(name: "HomeDetails", bundle:nil)
-                let vc = storyBoard.instantiateViewController(withIdentifier: "HomeDetailsViewController") as! HomeDetailsViewController
-                
-                vc.detailsDict = response["data"].dictionary!
-                self.navigationController?.pushViewController(vc, animated: true)
+        if let json = try? JSONSerialization.data(withJSONObject: dict, options: []) {
+            if let content = String(data: json, encoding: String.Encoding.utf8) {
+                APIHelper().get(apiUrl: String.init(format: GlobalConstants.APIUrls.getPastorDetails, id, content), parameters: parameters as [String : AnyObject]) { (response) in
+                    
+                    if response["data"].dictionary != nil  {
+                        let storyBoard : UIStoryboard = UIStoryboard(name: "HomeDetails", bundle:nil)
+                        let vc = storyBoard.instantiateViewController(withIdentifier: "HomeDetailsViewController") as! HomeDetailsViewController
+                        vc.detailsDict = response["data"].dictionary!
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    }
+                }
             }
         }
     }
@@ -367,8 +378,8 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
 
 extension tableViewCell: CustomDelegate
 {
-    func didSelectItem(id: String, selectedRow: Int, url: String, categoryTitle: String)
+    func didSelectItem(id: String, selectedRow: Int, categoryTitle: String)
     {
-        delegate?.didSelectItem(id: id, selectedRow: selectedRow, url: url, categoryTitle: categoryTitle)
+        delegate?.didSelectItem(id: id, selectedRow: selectedRow, categoryTitle: categoryTitle)
     }
 }

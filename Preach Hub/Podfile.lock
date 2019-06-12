@@ -3,7 +3,7 @@ PODS:
   - BRYXBanner (0.8.3)
   - Crashlytics (3.12.0):
     - Fabric (~> 1.9.0)
-  - DropDown (2.3.13)
+  - DropDown (2.3.12)
   - eWAYPaymentsSDK (1.1.0)
   - Fabric (1.9.0)
   - Firebase/Core (5.16.0):
@@ -79,7 +79,7 @@ PODS:
   - SearchTextField (1.2.2)
   - SideMenu (5.0.3)
   - Stripe (14.0.0)
-  - SVProgressHUD (2.2.5)
+  - SVProgressHUD (2.2.6)
   - SwiftMoment (0.7)
   - SwiftyJSON (4.2.0)
   - Toast-Swift (4.0.1)
@@ -152,14 +152,14 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   SVProgressHUD:
-    :commit: e2a6aaa12321962cbe9fbecc370475f369c6566c
+    :commit: 4fdf3fdc8703fd9915dae33fc1363c604a06b24e
     :git: https://github.com/SVProgressHUD/SVProgressHUD.git
 
 SPEC CHECKSUMS:
   Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
   BRYXBanner: 8cf1b119792e1cee8d7ba107297ef89f7409bc53
   Crashlytics: 07fb167b1694128c1c9a5a5cc319b0e9c3ca0933
-  DropDown: 8a2116376c1981888557f72ec2ffc9a5e0e456ec
+  DropDown: 0bcc278799ec11a3d34ce1aac9367fbbaf5423d9
   eWAYPaymentsSDK: d0cb78895acae95abd274ebafff9658c7e70cde0
   Fabric: f988e33c97f08930a413e08123064d2e5f68d655
   Firebase: 749a8ff4962f9d8c79dda1966de20f6f77583d67
@@ -182,13 +182,13 @@ SPEC CHECKSUMS:
   SearchTextField: a0992739d4b05dcbb40fb3a5cc6526bd991bdd23
   SideMenu: 1dcaabce84538c53325c287f7fe62999379a641c
   Stripe: db29ad197c74aca6fb981e4e8355cf7ebd0fca5a
-  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
+  SVProgressHUD: 6ed134667e9ebb2f33679e8273cd48fd3fa349e5
   SwiftMoment: dc6dd27012e267819104cbb03f74ff9192dd0b42
   SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
   Toast-Swift: e42a638589a2f95036b4bb7626cfbdde7daf0393
   XLPagerTabStrip: 63166e21c9844fa30f2d95d30f335e73be5caf22
   YPDrawSignatureView: 0ca1cfcd329b9f4bf74172859f80a47a200a0e0d
 
-PODFILE CHECKSUM: ce88133469832d769bcba71dcb131a3014a56953
+PODFILE CHECKSUM: 4aeeb4425d4e5a0fa923a281f75223fb62381576
 
-COCOAPODS: 1.7.0
+COCOAPODS: 1.5.3

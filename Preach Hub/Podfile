@@ -34,5 +34,7 @@ target 'Preach Hub' do
   pod 'Stripe'
   pod 'NTMonthYearPicker'
   pod 'DropDown'
-  
+  pod 'Firebase/Core'
+  pod 'Firebase/Messaging'
+  pod 'BRYXBanner'
 end

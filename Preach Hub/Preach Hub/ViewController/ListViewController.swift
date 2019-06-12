@@ -31,27 +31,7 @@ class ListViewController: UIViewController,UICollectionViewDataSource , UICollec
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if isAllPastors {
-            lblHeader.text = "All Pastors"
-            getAllPastors()
-        }
-        else{
-            lblHeader.text = header
-        }
-
-    }
-    
-    func getAllPastors(){
-        let parameters: [String: String] = [:]
-        APIHelper().get(apiUrl: GlobalConstants.APIUrls.getAllPastors, parameters: parameters as [String : AnyObject]) { (response) in
-            if response["data"].array != nil  {
-                for item in response["data"].arrayValue {
-                    let is_Active = item["is_active"] != JSON.null ? item["is_active"].int : 0
-                    self.dataList.append(DataKey(id: item["id"] != JSON.null ? String(item["id"].int!) : "", title: item["name"] != JSON.null ? item["name"].string! : "", thumb: item["img_thumb"] != JSON.null ? item["img_thumb"].string! : "", description: item["description"] != JSON.null ? item["description"].string! : "", isActive: is_Active == 1 ? true : false, url: item["url"] != JSON.null ? item["url"].string! : ""))
-                }
-                self.collectionView.reloadData()
-            }
-        }
+         lblHeader.text = header
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -84,30 +64,31 @@ class ListViewController: UIViewController,UICollectionViewDataSource , UICollec
         {
             navigateToProductPage(index: indexPath.row)
         }
-        else if(header == "CONTINUE WATCHING") || (header == "CHURCH MINISTRY CHANNEL") 
+        else if (header == "CHURCH MINISTRY CHANNEL") 
         {
-            self.getPastorDetails(url: dataList[indexPath.row].url)
+           self.getPastorDetails(id: dataList[indexPath.row].id)
         }
     }
-    func getPastorDetails(url : String)
-    {
+    
+    func getPastorDetails(id : String){
         let parameters: [String: String] = [:]
+        let dict = ["include": ["pastorsermons","products","events","testimonies"]] as [String : Any]
         
-        let urlStr = url.replacingOccurrences(of: " ", with: "")
-        print("url : ", urlStr)
-        
-        APIHelper().get(apiUrl: urlStr, parameters: parameters as [String : AnyObject]) { (response) in
-                        
-            if response["data"].dictionary != nil
-            {
-                let storyBoard : UIStoryboard = UIStoryboard(name: "HomeDetails", bundle:nil)
-                let vc = storyBoard.instantiateViewController(withIdentifier: "HomeDetailsViewController") as! HomeDetailsViewController
-                
-                vc.detailsDict = response["data"].dictionary!
-                self.navigationController?.pushViewController(vc, animated: true)
+        if let json = try? JSONSerialization.data(withJSONObject: dict, options: []) {
+            if let content = String(data: json, encoding: String.Encoding.utf8) {
+                APIHelper().get(apiUrl: String.init(format: GlobalConstants.APIUrls.getPastorDetails, id, content), parameters: parameters as [String : AnyObject]) { (response) in
+                    
+                    if response["data"].dictionary != nil  {
+                        let storyBoard : UIStoryboard = UIStoryboard(name: "HomeDetails", bundle:nil)
+                        let vc = storyBoard.instantiateViewController(withIdentifier: "HomeDetailsViewController") as! HomeDetailsViewController
+                        vc.detailsDict = response["data"].dictionary!
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    }
+                }
             }
         }
     }
+    
     func navigateToProductPage(index: Int){
         let ProductVC = ProductViewController.storyboardInstance()
         ProductVC!.categoryId = dataList[index].id
