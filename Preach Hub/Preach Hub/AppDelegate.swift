@@ -229,7 +229,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         Alamofire.request(fullUrl, method: .post, parameters: parameters, headers: httpHeader).responseJSON { (response) in
             switch response.result {
             case .success(let value):
-                _ = JSON(value)
+              let data = JSON(value)
+              if data["data"] != JSON.null  {
+                if data["data"]["id"] != JSON.null{
+                    UserDefaults.standard.set(data["data"]["id"].string, forKey: "memberDeviceId")
+                }
+              }
             //callback(json)
             case .failure(let error):
                 Crashlytics.sharedInstance().recordError(error)

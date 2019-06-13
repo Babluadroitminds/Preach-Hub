@@ -26,6 +26,7 @@ protocol CustomDelegate: class {
 class tableViewCell : UITableViewCell , UICollectionViewDelegate , UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
     @IBOutlet weak var lblHeader: UILabel!
     @IBOutlet weak var btnMore: UIButton!
+    @IBOutlet weak var lblMessage: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
     var dataList: [DataKey] = []
     var selectedIndex : Int?
@@ -218,7 +219,7 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     func getContinueWatchings(){
         let parameters: [String: String] = [:]
         let memberId = UserDefaults.standard.value(forKey: "memberId") as? String
-        let dict = ["where": [ "memberid": "5cf7b25972d6720016488f27"], "include": ["sermon"]] as [String : Any]
+        let dict = ["where": [ "memberid": memberId], "include": ["sermon"]] as [String : Any]
         
         if let json = try? JSONSerialization.data(withJSONObject: dict, options: []) {
             if let content = String(data: json, encoding: String.Encoding.utf8) {
@@ -269,22 +270,52 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         if indexPath.row == 1 {
             cell.setCollectioViewCell(with: continueWatchingLists)
             cell.btnMore.tag = 1
+            if continueWatchingLists.count == 0 {
+                cell.lblMessage.isHidden = false
+            }
+            else {
+                cell.lblMessage.isHidden = true
+            }
         }
         else if indexPath.row == 2 {
             cell.setCollectioViewCell(with: churchLists)
             cell.btnMore.tag = 2
+            if churchLists.count == 0 {
+                cell.lblMessage.isHidden = false
+            }
+            else {
+                cell.lblMessage.isHidden = true
+            }
         }
         else if indexPath.row == 3 {
             cell.setCollectioViewCell(with: pastorLists)
             cell.btnMore.tag = 3
+            if pastorLists.count == 0 {
+                cell.lblMessage.isHidden = false
+            }
+            else {
+                cell.lblMessage.isHidden = true
+            }
         }
         else if indexPath.row == 4 {
             cell.setCollectioViewCell(with: storeLists)
             cell.btnMore.tag = 4
+            if storeLists.count == 0 {
+                cell.lblMessage.isHidden = false
+            }
+            else {
+                cell.lblMessage.isHidden = true
+            }
         }
         else {
             cell.setCollectioViewCell(with: musicLists)
             cell.btnMore.tag = 5
+            if musicLists.count == 0 {
+                cell.lblMessage.isHidden = false
+            }
+            else {
+                cell.lblMessage.isHidden = true
+            }
         }
         cell.backgroundColor = UIColor.clear
         cell.delegate = self
@@ -343,16 +374,17 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     
     func didSelectItem(id: String, selectedRow: Int, categoryTitle: String)
     {
-        if selectedRow == 4
-        {
+        if selectedRow == 4{
             let ProductVC = ProductViewController.storyboardInstance()
             ProductVC!.categoryId = id
             ProductVC!.categoryTitle = categoryTitle
             self.navigationController?.pushViewController(ProductVC!, animated: true)
         }
-        else if selectedRow == 0 || selectedRow == 1 || selectedRow == 3
-        {
+        else if selectedRow == 3{
             self.getPastorDetails(id : id)
+        }
+        else if selectedRow == 2{
+            self.getChurchDetails(id: id)
         }
     }
     
@@ -374,6 +406,27 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
             }
         }
     }
+    
+    func getChurchDetails(id : String){
+        let parameters: [String: String] = [:]
+        let dict = ["include": ["branches","events","products","news"]] as [String : Any]
+        
+        if let json = try? JSONSerialization.data(withJSONObject: dict, options: []) {
+            if let content = String(data: json, encoding: String.Encoding.utf8) {
+                APIHelper().get(apiUrl: String.init(format: GlobalConstants.APIUrls.getChurchDetails, id, content), parameters: parameters as [String : AnyObject]) { (response) in
+                    
+                    if response["data"].dictionary != nil  {
+                        let storyBoard : UIStoryboard = UIStoryboard(name: "ChurchDetails", bundle:nil)
+                        let vc = storyBoard.instantiateViewController(withIdentifier: "ChurchDetailsViewController") as! ChurchDetailsViewController
+                        vc.detailsDict = response["data"].dictionary!
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    }
+                }
+            }
+        }
+    }
+    
+    
 }
 
 extension tableViewCell: CustomDelegate

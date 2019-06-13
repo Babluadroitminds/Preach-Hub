@@ -43,5 +43,7 @@ struct GlobalConstants {
         static let getCategoryByParentId: String = "categories?filter=%@"
         static let getAllProductsByParentId: String = "products?filter=%@"
         static let registerDevice: String = "memberdevices/replaceOrCreate"
+        static let getChurchDetails: String = "churches/%@?filter=%@"
+        static let removeMemberDevicesById: String = "memberdevices/%@/members/memberdevices"
     }
 }

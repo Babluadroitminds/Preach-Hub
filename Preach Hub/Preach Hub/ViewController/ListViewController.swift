@@ -64,9 +64,12 @@ class ListViewController: UIViewController,UICollectionViewDataSource , UICollec
         {
             navigateToProductPage(index: indexPath.row)
         }
-        else if (header == "CHURCH MINISTRY CHANNEL") 
+        else if(header == "CHURCH MINISTRY CHANNEL")
         {
            self.getPastorDetails(id: dataList[indexPath.row].id)
+        }
+        else if(header == "CHURCHES") {
+          self.getChurchDetails(id: dataList[indexPath.row].id)
         }
     }
     
@@ -88,6 +91,26 @@ class ListViewController: UIViewController,UICollectionViewDataSource , UICollec
             }
         }
     }
+    
+    func getChurchDetails(id : String){
+        let parameters: [String: String] = [:]
+        let dict = ["include": ["branches","events","products","news"]] as [String : Any]
+        
+        if let json = try? JSONSerialization.data(withJSONObject: dict, options: []) {
+            if let content = String(data: json, encoding: String.Encoding.utf8) {
+                APIHelper().get(apiUrl: String.init(format: GlobalConstants.APIUrls.getChurchDetails, id, content), parameters: parameters as [String : AnyObject]) { (response) in
+                    
+                    if response["data"].dictionary != nil  {
+                        let storyBoard : UIStoryboard = UIStoryboard(name: "ChurchDetails", bundle:nil)
+                        let vc = storyBoard.instantiateViewController(withIdentifier: "ChurchDetailsViewController") as! ChurchDetailsViewController
+                        vc.detailsDict = response["data"].dictionary!
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    }
+                }
+            }
+        }
+    }
+    
     
     func navigateToProductPage(index: Int){
         let ProductVC = ProductViewController.storyboardInstance()

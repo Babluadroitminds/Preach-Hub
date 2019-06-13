@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -46,6 +46,9 @@
 		8235EB472293C3760090230B /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8235EB462293C3760090230B /* ForgotPasswordViewController.swift */; };
 		8235EB49229418C60090230B /* Payment.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8235EB48229418C60090230B /* Payment.storyboard */; };
 		8277467D22AE4E86005A650B /* notification.png in Resources */ = {isa = PBXBuildFile; fileRef = 8277467C22AE4E86005A650B /* notification.png */; };
+		828D9CE022B10137007506CC /* ChurchDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 828D9CDF22B10137007506CC /* ChurchDetails.storyboard */; };
+		828D9CE222B101B5007506CC /* ChurchDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828D9CE122B101B5007506CC /* ChurchDetailsViewController.swift */; };
+		828D9CE422B2305F007506CC /* ic-share.png in Resources */ = {isa = PBXBuildFile; fileRef = 828D9CE322B2305F007506CC /* ic-share.png */; };
 		82CADDCB22941DD300EBBDFD /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82CADDCA22941DD300EBBDFD /* PaymentViewController.swift */; };
 		82E0975D22AE2AAC002069EE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 82E0975C22AE2AAC002069EE /* GoogleService-Info.plist */; };
 		82EF35B3228D90EC003BE3E2 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EF35B2228D90EC003BE3E2 /* InitialViewController.swift */; };
@@ -65,8 +68,8 @@
 		E3B730CA229BC48C008D3E7C /* ViewCartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B730C9229BC48C008D3E7C /* ViewCartViewController.swift */; };
 		E3B730CC229BF652008D3E7C /* ShippingAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B730CB229BF652008D3E7C /* ShippingAddressViewController.swift */; };
 		E3B730CE229BF677008D3E7C /* AddShippingAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B730CD229BF677008D3E7C /* AddShippingAddressViewController.swift */; };
-		E3BFD8B8229D009E00770BDB /* BuildFile in Sources */ = {isa = PBXBuildFile; };
-		E3BFD8BA229D00D600770BDB /* BuildFile in Resources */ = {isa = PBXBuildFile; };
+		E3BFD8B8229D009E00770BDB /* (null) in Sources */ = {isa = PBXBuildFile; };
+		E3BFD8BA229D00D600770BDB /* (null) in Resources */ = {isa = PBXBuildFile; };
 		E3BFD8BC229D089400770BDB /* CartPayment.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3BFD8BB229D089300770BDB /* CartPayment.storyboard */; };
 		E3BFD8BE229D100000770BDB /* CartPaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3BFD8BD229D100000770BDB /* CartPaymentViewController.swift */; };
 		E3FAA41B2292A84D00E369C6 /* HomeTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3FAA41A2292A84D00E369C6 /* HomeTabBarViewController.swift */; };
@@ -136,6 +139,9 @@
 		8235EB462293C3760090230B /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		8235EB48229418C60090230B /* Payment.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Payment.storyboard; sourceTree = "<group>"; };
 		8277467C22AE4E86005A650B /* notification.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = notification.png; sourceTree = "<group>"; };
+		828D9CDF22B10137007506CC /* ChurchDetails.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ChurchDetails.storyboard; sourceTree = "<group>"; };
+		828D9CE122B101B5007506CC /* ChurchDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChurchDetailsViewController.swift; sourceTree = "<group>"; };
+		828D9CE322B2305F007506CC /* ic-share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic-share.png"; sourceTree = "<group>"; };
 		82CADDCA22941DD300EBBDFD /* PaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentViewController.swift; sourceTree = "<group>"; };
 		82E0975C22AE2AAC002069EE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		82EF35B2228D90EC003BE3E2 /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
@@ -299,6 +305,7 @@
 				822AFABF22A67168008BC9F1 /* OrderHistoryViewController.swift */,
 				822AFAC322A679BF008BC9F1 /* ProfileViewController.swift */,
 				8209454B22A8DD3D00B75ACE /* OrderHistoryDetailsViewController.swift */,
+				828D9CE122B101B5007506CC /* ChurchDetailsViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -315,6 +322,7 @@
 				820877CB2297B68A00513037 /* ic-hide-gray.png */,
 				822AFABB22A52CAB008BC9F1 /* ic-user-profile.png */,
 				820877C12297B17500513037 /* ic-eye.png */,
+				828D9CE322B2305F007506CC /* ic-share.png */,
 				820877C72297B43E00513037 /* ic-hide-eye.png */,
 				820877DF2298085800513037 /* ic-left-arrow-black.png */,
 				E366C12B22927B69003CBE58 /* ic_nav_menu.png */,
@@ -360,6 +368,7 @@
 				E366C123228E8A71003CBE58 /* Home.storyboard */,
 				8235EB48229418C60090230B /* Payment.storyboard */,
 				E3BFD8BB229D089300770BDB /* CartPayment.storyboard */,
+				828D9CDF22B10137007506CC /* ChurchDetails.storyboard */,
 			);
 			path = Storyboard;
 			sourceTree = "<group>";
@@ -487,6 +496,7 @@
 				E3BFD8BC229D089400770BDB /* CartPayment.storyboard in Resources */,
 				820877E02298085800513037 /* ic-left-arrow-black.png in Resources */,
 				820877BC2295223900513037 /* Gibson-Bold.ttf in Resources */,
+				828D9CE422B2305F007506CC /* ic-share.png in Resources */,
 				8209454E22A9361600B75ACE /* ic-bag.png in Resources */,
 				822AFABC22A52CAC008BC9F1 /* ic-user-profile.png in Resources */,
 				E366C124228E8A71003CBE58 /* Home.storyboard in Resources */,
@@ -498,8 +508,9 @@
 				1895168E228D6732005FA99A /* Assets.xcassets in Resources */,
 				82E0975D22AE2AAC002069EE /* GoogleService-Info.plist in Resources */,
 				822AFABA22A515F8008BC9F1 /* ic-placeholder.png in Resources */,
+				828D9CE022B10137007506CC /* ChurchDetails.storyboard in Resources */,
 				8203F0CF228D7A7A00F9D65D /* InitialStoryboard.storyboard in Resources */,
-				E3BFD8BA229D00D600770BDB /* BuildFile in Resources */,
+				E3BFD8BA229D00D600770BDB /* (null) in Resources */,
 				820877CA2297B68400513037 /* ic-eye-gray.png in Resources */,
 				820877CC2297B68A00513037 /* ic-hide-gray.png in Resources */,
 				1895168C228D672C005FA99A /* Main.storyboard in Resources */,
@@ -622,7 +633,7 @@
 				E366C129229270CE003CBE58 /* RootViewController.swift in Sources */,
 				E366C11C228E87E5003CBE58 /* Navigation.swift in Sources */,
 				820877DE2298040100513037 /* TermsNConditionViewController.swift in Sources */,
-				E3BFD8B8229D009E00770BDB /* BuildFile in Sources */,
+				E3BFD8B8229D009E00770BDB /* (null) in Sources */,
 				52C7691522A8E3D800A780D0 /* HomeDetailsViewController.swift in Sources */,
 				5273C57F229E900200328BEC /* PreachHub.xcdatamodeld in Sources */,
 				E3578604229D39D6009E8BBE /* PaymentExistingCardViewController.swift in Sources */,
@@ -646,6 +657,7 @@
 				E323E00822981C25006B6EBA /* ProductDetailsViewController.swift in Sources */,
 				820877D02297E8C800513037 /* CartViewController.swift in Sources */,
 				820877CE2297D8FC00513037 /* SideMenuNavigationController.swift in Sources */,
+				828D9CE222B101B5007506CC /* ChurchDetailsViewController.swift in Sources */,
 				8203F0C1228D68BF00F9D65D /* Extensions.swift in Sources */,
 				18951687228D672C005FA99A /* AppDelegate.swift in Sources */,
 				5273C581229E9D3D00328BEC /* SingleTon.swift in Sources */,

@@ -30,6 +30,10 @@ class APIHelper: NSObject {
         sendRequest(apiUrl: apiUrl, method: .delete, parameters: parameters, showBusyIndicator: true, callback: callback)
     }
     
+    func deleteBackground(apiUrl:String, parameters:[String:AnyObject], callback:@escaping (JSON) -> Void){
+        sendRequest(apiUrl: apiUrl, method: .delete, parameters: parameters, showBusyIndicator: false, callback: callback)
+    }
+    
     func postBackground(apiUrl:String, parameters:[String:AnyObject], callback:@escaping (JSON) -> Void){
         sendRequest(apiUrl: apiUrl, method: .post, parameters: parameters, showBusyIndicator: false, callback: callback)
     }

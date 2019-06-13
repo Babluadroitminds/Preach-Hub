@@ -110,6 +110,12 @@ class CartPaymentViewController: UIViewController
             self.view.makeToast("Please enter all card details", duration: 3.0, position: .bottom, style: self.style)
             return
         }
+        
+        if self.expDateTxt.text!.count < 7 {
+            self.view.makeToast("Please enter valid Expiry Date", duration: 3.0, position: .bottom, style: self.style)
+            return
+        }
+        
         if self.singleTon.nameBilling == "" && self.tickImage.isHidden == true
         {
             self.view.makeToast("Please Add Billing Address", duration: 3.0, position: .bottom, style: self.style)

@@ -91,7 +91,7 @@ class RootViewController: UIViewController, UITabBarDelegate , UITableViewDataSo
             UserDefaults.standard.removeObject(forKey: "memberId")
             let productData = NSKeyedArchiver.archivedData(withRootObject: [])
             UserDefaults.standard.set(productData, forKey: "CartDetails")
-            
+            self.removeMemberDevice()
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "RefreshLogoutRequest"), object: nil)
             self.dismiss(animated: true, completion: nil)
             
@@ -99,6 +99,17 @@ class RootViewController: UIViewController, UITabBarDelegate , UITableViewDataSo
         alert.addAction(UIAlertAction(title: "NO", style: UIAlertAction.Style.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
+    
+    func removeMemberDevice(){
+        let parameters: [String: String] = [:]
+        let deviceId = UserDefaults.standard.value(forKey: "memberDeviceId") as? String
+        if deviceId != nil {
+            APIHelper().deleteBackground(apiUrl: String.init(format: GlobalConstants.APIUrls.removeMemberDevicesById, deviceId!), parameters: parameters as [String : AnyObject]) { (response) in
+                UserDefaults.standard.removeObject(forKey: "memberDeviceId")
+            }
+        }
+    }
+    
     func deleteCoreData()
     {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate

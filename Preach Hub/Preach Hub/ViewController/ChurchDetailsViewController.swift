@@ -1,8 +1,8 @@
 //
-//  HomeDetailsViewController.swift
+//  ChurchDetailsViewController.swift
 //  Preach Hub
 //
-//  Created by Divya on 06/06/19.
+//  Created by Sajeev S L on 12/06/19.
 //  Copyright © 2019 AdroitMinds. All rights reserved.
 //
 
@@ -13,63 +13,98 @@ import CoreData
 import Toast_Swift
 import AVKit
 import AVFoundation
+import CoreLocation
+import MapKit
+//struct SermonsTestimony
+//{
+//    var imageThumb: String
+//    var title: String
+//    var duration: String
+//    var id : String
+//    var video : String
+//}
+//
+//struct Product{
+//    var id : String
+//    var imageThumb: String
+//    var title: String
+//    var price: String
+//}
+//
+//class noDataCell: UITableViewCell
+//{
+//    override func awakeFromNib()
+//    {
+//        super.awakeFromNib()
+//    }
+//}
+//class paymentCell: UITableViewCell
+//{
+//    override func awakeFromNib()
+//    {
+//        super.awakeFromNib()
+//    }
+//}
 
-struct SermonsTestimony
-{
-    var imageThumb: String
-    var title: String
-    var duration: String
-    var id : String
-    var video : String
+//class sermonsCell: UITableViewCell
+//{
+//    @IBOutlet weak var moreBtn: UIButton!
+//    @IBOutlet weak var moreView: UIView!
+//    @IBOutlet weak var timeLbl: UILabel!
+//    @IBOutlet weak var availableLbl: UILabel!
+//    @IBOutlet weak var name: UILabel!
+//    @IBOutlet weak var sermonImage: UIImageView!
+//
+//    override func awakeFromNib()
+//    {
+//        super.awakeFromNib()
+//    }
+//}
+
+struct EventKey {
+    var id: String
+    var name: String
+    var venue: String
+    var thumb: String
+    var endDate: String
 }
 
-struct Product{
-    var id : String
-    var imageThumb: String
-    var title: String
-    var price: String
+struct BranchKey {
+    var id: String
+    var name: String
+    var description: String
+    var status: String
+    var address: String
+    var cellphone: String
+    var leader: String
 }
 
-class noDataCell: UITableViewCell
-{
-    override func awakeFromNib()
-    {
+class BranchCell: UITableViewCell{
+    @IBOutlet weak var btnDirection: UIButton!
+    @IBOutlet weak var btnCall: UIButton!
+    @IBOutlet weak var lblAddress: UILabel!
+    @IBOutlet weak var lblName: UILabel!
+    @IBOutlet weak var lblLeader: UILabel!
+    @IBOutlet weak var imgVwBranch: UIImageView!
+    @IBOutlet weak var vwContainer: UIView!
+    override func awakeFromNib(){
         super.awakeFromNib()
     }
 }
-class paymentCell: UITableViewCell
-{
-    override func awakeFromNib()
-    {
+
+class EventCell: UITableViewCell{
+    @IBOutlet weak var lblDate: UILabel!
+    @IBOutlet weak var lblMonth: UILabel!
+    @IBOutlet weak var lblVenue: UILabel!
+    @IBOutlet weak var lblName: UILabel!
+    @IBOutlet weak var btnShare: UIButton!
+    @IBOutlet weak var imgVwEvent: UIImageView!
+    override func awakeFromNib(){
         super.awakeFromNib()
     }
 }
-class ProductCell: UITableViewCell
-{
-    @IBOutlet weak var imgVwProduct: UIImageView!
-    @IBOutlet weak var lblPrice: UILabel!
-    @IBOutlet weak var lblTitle: UILabel!
-    @IBOutlet weak var btnMore: UIButton!
-    override func awakeFromNib()
-    {
-        super.awakeFromNib()
-    }
-}
-class sermonsCell: UITableViewCell
-{
-    @IBOutlet weak var moreBtn: UIButton!
-    @IBOutlet weak var moreView: UIView!
-    @IBOutlet weak var timeLbl: UILabel!
-    @IBOutlet weak var availableLbl: UILabel!
-    @IBOutlet weak var name: UILabel!
-    @IBOutlet weak var sermonImage: UIImageView!
-    
-    override func awakeFromNib()
-    {
-        super.awakeFromNib()
-    }
-}
-class sectionHeaderCell: UITableViewCell
+
+class sectionsHeaderCell: UITableViewCell
 {
     @IBOutlet var segmentControl: ScrollableSegmentedControl!
     
@@ -92,14 +127,14 @@ class sectionHeaderCell: UITableViewCell
         }
     }
 }
-class segmentData: UITableViewCell
-{
-    @IBOutlet weak var aboutLbl: UILabel!
-    
-    @IBOutlet weak var secondView: UIView!
-    
-}
-class HomeDetailsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate
+//class segmentData: UITableViewCell
+//{
+//    @IBOutlet weak var aboutLbl: UILabel!
+//
+//    @IBOutlet weak var secondView: UIView!
+//
+//}
+class ChurchDetailsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate
 {
     @IBOutlet var tableView: UITableView!
     
@@ -107,16 +142,19 @@ class HomeDetailsViewController: UIViewController, UITableViewDataSource, UITabl
     var semonsArr = [SermonsTestimony]()
     var testimonyArr = [SermonsTestimony]()
     var productsArr = [ProductKey]()
-        
+    var branchArr = [BranchKey]()
+    var eventArr = [EventKey]()
     var height = 0
     var segmentIndex = 0
     
     var moreIndex = -1
     var id: String?
+    var locManager = CLLocationManager()
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        locManager.requestWhenInUseAuthorization()
         
         height = Int(UIScreen.main.bounds.size.height - 110)
         
@@ -161,28 +199,33 @@ class HomeDetailsViewController: UIViewController, UITableViewDataSource, UITabl
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.topBackTapped), name: NSNotification.Name(rawValue: "topBackTapped"), object: nil)
         id = detailsDict["id"]?.string
-        if detailsDict["pastorsermons"] != nil
-        {
-            if detailsDict["pastorsermons"]?.array?.count != 0
-            {
-                for item in detailsDict["pastorsermons"]!.array!
-                {
-                    self.semonsArr.append(SermonsTestimony(imageThumb: item["img_thumb"] != JSON.null ? item["img_thumb"].string! : "", title: item["name"] != JSON.null ? item["name"].string! : "", duration: item["duration"] != JSON.null ? item["duration"].string! : "", id: item["id"] != JSON.null ? item["id"].string! : "", video: item["video"] != JSON.null ? item["video"].string! : ""))
+        if detailsDict["branches"] != nil{
+            if detailsDict["branches"]?.array?.count != 0{
+                for item in detailsDict["branches"]!.array!{
+                    self.branchArr.append(BranchKey(id: item["id"] != JSON.null ? item["id"].string! : "", name: item["name"] != JSON.null ? item["name"].string! : "", description: item["description"] != JSON.null ? item["description"].string! : "", status: item["status"] != JSON.null ? item["status"].string! : "", address: item["address"] != JSON.null ? item["address"].string! : "", cellphone: item["cellphone"] != JSON.null ? item["cellphone"].string! : "", leader: item["leadername"] != JSON.null ? item["leadername"].string! : ""))
                 }
             }
         }
         
-        if detailsDict["testimonies"] != nil
-        {
-            if detailsDict["testimonies"]?.array?.count != 0
-            {
-                for item in detailsDict["testimonies"]!.array!
-                {
-                    self.testimonyArr.append(SermonsTestimony(imageThumb: item["img_thumb"] != JSON.null ? item["img_thumb"].string! : "", title: item["name"] != JSON.null ? item["name"].string! : "", duration: item["duration"] != JSON.null ? item["duration"].string! : "", id: item["id"] != JSON.null ? item["id"].string! : "", video: item["video"] != JSON.null ? item["video"].string! : ""))
+        if detailsDict["events"] != nil{
+            if detailsDict["events"]?.array?.count != 0{
+                for item in detailsDict["events"]!.array!{
+                    self.eventArr.append(EventKey(id: item["id"] != JSON.null ? item["id"].string! : "", name: item["name"] != JSON.null ? item["name"].string! : "", venue: item["venue"] != JSON.null ? item["venue"].string! : "", thumb: item["img_thumb"] != JSON.null ? item["img_thumb"].string! : "", endDate: item["enddate"] != JSON.null ? item["enddate"].string! : ""))
                 }
             }
         }
-        
+//
+//        if detailsDict["testimonies"] != nil
+//        {
+//            if detailsDict["testimonies"]?.array?.count != 0
+//            {
+//                for item in detailsDict["testimonies"]!.array!
+//                {
+//                    self.testimonyArr.append(SermonsTestimony(imageThumb: item["img_thumb"] != JSON.null ? item["img_thumb"].string! : "", title: item["name"] != JSON.null ? item["name"].string! : "", duration: item["duration"] != JSON.null ? item["duration"].string! : "", id: item["id"] != JSON.null ? item["id"].string! : "", video: item["video"] != JSON.null ? item["video"].string! : ""))
+//                }
+//            }
+//        }
+//
         if detailsDict["products"] != nil
         {
             if detailsDict["products"]?.array?.count != 0
@@ -213,16 +256,17 @@ class HomeDetailsViewController: UIViewController, UITableViewDataSource, UITabl
     {
         if section == 0
         {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "sectionHeader") as? sectionHeaderCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "sectionHeader") as? sectionsHeaderCell
             
             cell?.segmentControl.addTarget(self, action: #selector(self.segmentSelected(sender:)), for: .valueChanged)
             
-            cell?.segmentControl.insertSegment(withTitle: "ABOUT", image: nil, at: 0)
+            cell?.segmentControl.insertSegment(withTitle: "STATEMENT OF FAITH", image: nil, at: 0)
             cell?.segmentControl.insertSegment(withTitle: "PRODUCTS", image: nil, at: 1)
-            cell?.segmentControl.insertSegment(withTitle: "SERMONS", image: nil, at: 2)
-            cell?.segmentControl.insertSegment(withTitle: "TITHE", image: nil, at: 3)
-            cell?.segmentControl.insertSegment(withTitle: "TESTIMONY", image: nil, at: 4)
-            
+            cell?.segmentControl.insertSegment(withTitle: "MEMBERSHIP FORM", image: nil, at: 2)
+            cell?.segmentControl.insertSegment(withTitle: "EVENTS", image: nil, at: 3)
+            cell?.segmentControl.insertSegment(withTitle: "BIBLE COLLEGE", image: nil, at: 4)
+            cell?.segmentControl.insertSegment(withTitle: "HOME CELLS/BRANCHES", image: nil, at: 5)
+            cell?.segmentControl.insertSegment(withTitle: "OFFERING", image: nil, at: 6)
             cell?.segmentControl.selectedSegmentIndex = 0
             
             return cell
@@ -273,10 +317,17 @@ class HomeDetailsViewController: UIViewController, UITableViewDataSource, UITabl
             {
                 return self.semonsArr.count + 1
             }
+            else if self.segmentIndex == 3 {
+                return self.eventArr.count + 1
+            }
             else if self.segmentIndex == 4
             {
                 return self.testimonyArr.count + 1
             }
+            else if self.segmentIndex == 5 {
+                return self.branchArr.count + 1
+            }
+            
             return 1
         }
     }
@@ -290,43 +341,19 @@ class HomeDetailsViewController: UIViewController, UITableViewDataSource, UITabl
             }
             else{
                 let cell = tableView.dequeueReusableCell(withIdentifier: "productCell") as? ProductCell
-                    if self.productsArr.count >= 3{
-                        if indexPath.row < 3 {
-                            cell?.lblTitle.isHidden = false
-                            cell?.lblPrice.isHidden = false
-                            cell?.imgVwProduct.isHidden = false
-                            cell?.btnMore.isHidden = true
-                            cell?.lblTitle.text = self.productsArr[indexPath.row].name
-                            cell?.lblPrice.text = "$" + self.productsArr[indexPath.row].price
-                            let imageUrl = self.productsArr[indexPath.row].thumb
-                            let urlString = imageUrl.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
-                            cell!.imgVwProduct.sd_setShowActivityIndicatorView(true)
-                            cell!.imgVwProduct.sd_setIndicatorStyle(.gray)
-                            cell!.imgVwProduct.sd_setImage(with: URL.init(string: urlString!) , placeholderImage: UIImage.init(named:"ic-placeholder.png"))
-                            if indexPath.row == self.productsArr.count{
-                                cell?.imgVwProduct.isHidden = true
-                                cell?.btnMore.isHidden = false
-                                cell?.lblTitle.isHidden = true
-                                cell?.lblPrice.isHidden = true
-                                cell?.btnMore.addTarget(self, action: #selector(btnMoreProductClicked), for: .touchUpInside)
-                            }
-                        }
-                        else {
-                            cell?.lblTitle.isHidden = true
-                            cell?.lblPrice.isHidden = true
-                            cell?.imgVwProduct.isHidden = true
-                            if indexPath.row == 3{
-                                cell?.btnMore.isHidden = false
-                                cell?.btnMore.addTarget(self, action: #selector(btnMoreProductClicked), for: .touchUpInside)
-                            }
-                            else{
-                                cell?.btnMore.isHidden = true
-                            }
-                        }
-                
-                    }
-                        
-                    else{
+                if self.productsArr.count >= 3{
+                    if indexPath.row < 3 {
+                        cell?.lblTitle.isHidden = false
+                        cell?.lblPrice.isHidden = false
+                        cell?.imgVwProduct.isHidden = false
+                        cell?.btnMore.isHidden = true
+                        cell?.lblTitle.text = self.productsArr[indexPath.row].name
+                        cell?.lblPrice.text = "$" + self.productsArr[indexPath.row].price
+                        let imageUrl = self.productsArr[indexPath.row].thumb
+                        let urlString = imageUrl.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
+                        cell!.imgVwProduct.sd_setShowActivityIndicatorView(true)
+                        cell!.imgVwProduct.sd_setIndicatorStyle(.gray)
+                        cell!.imgVwProduct.sd_setImage(with: URL.init(string: urlString!) , placeholderImage: UIImage.init(named:"ic-placeholder.png"))
                         if indexPath.row == self.productsArr.count{
                             cell?.imgVwProduct.isHidden = true
                             cell?.btnMore.isHidden = false
@@ -334,20 +361,44 @@ class HomeDetailsViewController: UIViewController, UITableViewDataSource, UITabl
                             cell?.lblPrice.isHidden = true
                             cell?.btnMore.addTarget(self, action: #selector(btnMoreProductClicked), for: .touchUpInside)
                         }
-                        else{
-                            cell?.lblTitle.isHidden = false
-                            cell?.lblPrice.isHidden = false
-                            cell?.imgVwProduct.isHidden = false
-                            cell?.btnMore.isHidden = true
-                            cell?.lblTitle.text = self.productsArr[indexPath.row].name
-                            cell?.lblPrice.text = "$" + self.productsArr[indexPath.row].price
-                            let imageUrl = self.productsArr[indexPath.row].thumb
-                            let urlString = imageUrl.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
-                            cell!.imgVwProduct.sd_setShowActivityIndicatorView(true)
-                            cell!.imgVwProduct.sd_setIndicatorStyle(.gray)
-                            cell!.imgVwProduct.sd_setImage(with: URL.init(string: urlString!) , placeholderImage: UIImage.init(named:"ic-placeholder.png"))
+                    }
+                    else {
+                        cell?.lblTitle.isHidden = true
+                        cell?.lblPrice.isHidden = true
+                        cell?.imgVwProduct.isHidden = true
+                        if indexPath.row == 3{
+                            cell?.btnMore.isHidden = false
+                            cell?.btnMore.addTarget(self, action: #selector(btnMoreProductClicked), for: .touchUpInside)
                         }
-                   
+                        else{
+                            cell?.btnMore.isHidden = true
+                        }
+                    }
+                    
+                }
+                    
+                else{
+                    if indexPath.row == self.productsArr.count{
+                        cell?.imgVwProduct.isHidden = true
+                        cell?.btnMore.isHidden = false
+                        cell?.lblTitle.isHidden = true
+                        cell?.lblPrice.isHidden = true
+                        cell?.btnMore.addTarget(self, action: #selector(btnMoreProductClicked), for: .touchUpInside)
+                    }
+                    else{
+                        cell?.lblTitle.isHidden = false
+                        cell?.lblPrice.isHidden = false
+                        cell?.imgVwProduct.isHidden = false
+                        cell?.btnMore.isHidden = true
+                        cell?.lblTitle.text = self.productsArr[indexPath.row].name
+                        cell?.lblPrice.text = "$" + self.productsArr[indexPath.row].price
+                        let imageUrl = self.productsArr[indexPath.row].thumb
+                        let urlString = imageUrl.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
+                        cell!.imgVwProduct.sd_setShowActivityIndicatorView(true)
+                        cell!.imgVwProduct.sd_setIndicatorStyle(.gray)
+                        cell!.imgVwProduct.sd_setImage(with: URL.init(string: urlString!) , placeholderImage: UIImage.init(named:"ic-placeholder.png"))
+                    }
+                    
                 }
                 return cell!
             }
@@ -393,10 +444,57 @@ class HomeDetailsViewController: UIViewController, UITableViewDataSource, UITabl
                 return cell!
             }
         }
-        else if self.segmentIndex == 3
-        {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "paymentCell") as? paymentCell
-            return cell!
+        else if self.segmentIndex == 3 {
+            if self.eventArr.count == 0{
+                let cell = tableView.dequeueReusableCell(withIdentifier: "noDataCell") as? noDataCell
+                return cell!
+            }
+            else{
+                let cell = tableView.dequeueReusableCell(withIdentifier: "eventCell") as? EventCell
+                
+                if indexPath.row == self.eventArr.count{
+                    cell!.imgVwEvent.isHidden = true
+                    cell!.lblName.isHidden = true
+                    cell!.lblMonth.isHidden = true
+                    cell!.lblDate.isHidden = true
+                    cell!.lblVenue.isHidden = true
+                    cell!.btnShare.isHidden = true
+                }
+                else{
+                    cell!.imgVwEvent.isHidden = false
+                    cell!.lblName.isHidden = false
+                    cell!.lblMonth.isHidden = false
+                    cell!.lblDate.isHidden = false
+                    cell!.lblVenue.isHidden = false
+                    cell!.btnShare.isHidden = false
+                    
+                    let imageUrl = self.eventArr[indexPath.row].thumb
+                    let urlString = imageUrl.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
+                    cell!.imgVwEvent.sd_setShowActivityIndicatorView(true)
+                    cell!.imgVwEvent.sd_setIndicatorStyle(.gray)
+                    cell!.imgVwEvent.sd_setImage(with: URL.init(string: urlString!) , placeholderImage: UIImage.init(named:"ic-placeholder.png"))
+                    
+                    cell!.lblName.text = self.eventArr[indexPath.row].name
+                    cell!.lblVenue.text = self.eventArr[indexPath.row].venue
+                    
+                    let dateString = self.eventArr[indexPath.row].endDate
+                    let formatter = DateFormatter()
+                    formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z"
+                    let dateFromString = formatter.date(from: dateString)
+                    
+                    let dateFormatter2 = DateFormatter()
+                    dateFormatter2.dateFormat = "MMM"
+                    let month = dateFormatter2.string(from: dateFromString!)
+                    dateFormatter2.dateFormat = "dd"
+                    let day = dateFormatter2.string(from: dateFromString!)
+                  
+                    cell?.lblMonth.text = month
+                    cell?.lblDate.text = day
+                    cell!.btnShare.tag = indexPath.row
+                    cell?.btnShare.addTarget(self, action: #selector(btnShareEventClicked(sender:)), for: .touchUpInside)
+                }
+                return cell!
+            }
         }
         else if self.segmentIndex == 4
         {
@@ -433,6 +531,39 @@ class HomeDetailsViewController: UIViewController, UITableViewDataSource, UITabl
                 return cell!
             }
         }
+        else if self.segmentIndex == 5 {
+            if self.branchArr.count == 0{
+                let cell = tableView.dequeueReusableCell(withIdentifier: "noDataCell") as? noDataCell
+                return cell!
+            }
+            else{
+                let cell = tableView.dequeueReusableCell(withIdentifier: "branchCell") as? BranchCell
+                
+                if indexPath.row == self.branchArr.count{
+                    cell!.vwContainer.isHidden = true
+                }
+                else{
+                    cell!.vwContainer.isHidden = false
+                    cell!.lblName.text = self.branchArr[indexPath.row].name
+                    cell!.lblLeader.text = self.branchArr[indexPath.row].leader
+                    cell!.lblAddress.text = self.branchArr[indexPath.row].address
+                    cell!.btnCall.tag = indexPath.row
+                    cell!.btnDirection.tag = indexPath.row
+                    let imageUrl = detailsDict["img_thumb"] != JSON.null ? detailsDict["img_thumb"]?.string! : ""
+                    let urlString = imageUrl!.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
+                    cell!.imgVwBranch.sd_setShowActivityIndicatorView(true)
+                    cell!.imgVwBranch.sd_setIndicatorStyle(.gray)
+                    cell!.imgVwBranch.sd_setImage(with: URL.init(string: urlString!) , placeholderImage: UIImage.init(named:"ic-placeholder.png"))
+                    cell?.btnCall.addTarget(self, action: #selector(btnCallClicked), for: .touchUpInside)
+                    cell?.btnDirection.addTarget(self, action: #selector(btnDirectionClicked), for: .touchUpInside)
+                }
+                return cell!
+            }
+        }
+        else if self.segmentIndex == 6 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "paymentCell") as? paymentCell
+            return cell!
+        }
         else
         {
             let cell = tableView.dequeueReusableCell(withIdentifier: "CellID") as? segmentData
@@ -447,16 +578,19 @@ class HomeDetailsViewController: UIViewController, UITableViewDataSource, UITabl
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if self.segmentIndex == 2 {
             if self.semonsArr.count != 0 {
-                playVideo(videoUrl: semonsArr[indexPath.row].video)
-            }
-        }
-        else if self.segmentIndex == 4 {
-            if self.testimonyArr.count != 0 {
-                playVideo(videoUrl: testimonyArr[indexPath.row].video)
+                let currentItem = semonsArr[indexPath.row]
+                let videoURL = URL(string: currentItem.video)
+                let player = AVPlayer(url: videoURL!)
+                let vc = AVPlayerViewController()
+                vc.player = player
+                
+                present(vc, animated: true) {
+                    vc.player?.play()
+                }
             }
         }
     }
-
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
     {
         if self.segmentIndex == 1
@@ -503,6 +637,23 @@ class HomeDetailsViewController: UIViewController, UITableViewDataSource, UITabl
             }
             return 70
         }
+        else if self.segmentIndex == 3 {
+            if self.eventArr.count == 0 {
+                return CGFloat(self.height)
+            }
+            else if indexPath.row == self.eventArr.count {
+                let rowHeight = 285 * self.eventArr.count
+                
+                if rowHeight < self.height {
+                    let minus = self.height - rowHeight
+                    return CGFloat(minus)
+                }
+                else{
+                    return 0
+                }
+            }
+            return 285
+        }
         else if self.segmentIndex == 4
         {
             if self.testimonyArr.count == 0
@@ -525,18 +676,80 @@ class HomeDetailsViewController: UIViewController, UITableViewDataSource, UITabl
             }
             return 70
         }
+        else if self.segmentIndex == 5 {
+            if self.branchArr.count == 0{
+                return CGFloat(self.height)
+            }
+            else if indexPath.row == self.branchArr.count{
+                let rowHeight = 265 * self.branchArr.count
+                
+                if rowHeight < self.height{
+                    let minus = self.height - rowHeight
+                    return CGFloat(minus)
+                }
+                else
+                {
+                    return 0
+                }
+            }
+            return 265
+        }
         return CGFloat(self.height)
     }
     
-    func playVideo(videoUrl: String){
-        let videoURL = URL(string: videoUrl)
-        let player = AVPlayer(url: videoURL!)
-        let vc = AVPlayerViewController()
-        vc.player = player
+    @objc func btnCallClicked(sender : UIButton){
+        guard let number = URL(string: "tel://" + branchArr[sender.tag].cellphone) else { return }
+        UIApplication.shared.open(number)
+    }
+    
+    @objc func btnDirectionClicked(sender : UIButton){
         
-        present(vc, animated: true) {
-            vc.player?.play()
-        }
+        let address: String = branchArr[sender.tag].address
+        let geocoder: CLGeocoder = CLGeocoder()
+        // Get place marks for the address to be opened
+        geocoder.geocodeAddressString(address, completionHandler: {(placemarks, error) -> Void in
+            if((error) != nil){
+                //print("Error", error)
+            }
+            if let placemark = placemarks?.first {
+                let coordinates:CLLocationCoordinate2D = placemark.location!.coordinate
+//                let regionSpan = MKCoordinateRegion(center: coordinates, latitudinalMeters: 1000, longitudinalMeters: 1000)
+//                let placemark = MKPlacemark(coordinate: coordinates, addressDictionary: nil)
+                
+//                let mapItem = MKMapItem(placemark: placemark)
+//                mapItem.name = "Destination"
+//                mapItem.openInMaps(launchOptions:[
+//                MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: regionSpan.center)
+//                ] as [String : Any])
+                var currentLocation: CLLocation!
+                
+                if( CLLocationManager.authorizationStatus() == .authorizedWhenInUse ||
+                    CLLocationManager.authorizationStatus() ==  .authorizedAlways){
+                    
+                    currentLocation = self.locManager.location
+                    let source = MKMapItem(placemark: MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: currentLocation.coordinate.latitude, longitude: currentLocation.coordinate.longitude)))
+                    source.name = "Source"
+                    
+                    let destination = MKMapItem(placemark: MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: coordinates.latitude, longitude: coordinates.longitude)))
+                    destination.name = "Destination"
+                    
+                    MKMapItem.openMaps(with: [source, destination], launchOptions: [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving])
+                }
+                
+            }
+        })
+    }
+    
+    @objc func btnShareEventClicked(sender: UIButton) {
+        let eventName = eventArr[sender.tag].name
+        let messageToShare = "Hey, check out this cool Event: " + eventName + " - on #Preach Hub"
+        let indexPath = IndexPath(row: sender.tag, section: 1)
+        let cell = self.tableView.cellForRow(at: indexPath) as? EventCell
+        let eventImage = cell?.imgVwEvent.image
+        let activityViewController = UIActivityViewController(activityItems: [eventImage!, messageToShare], applicationActivities: nil)
+        activityViewController.popoverPresentationController?.sourceView = self.view
+        activityViewController.excludedActivityTypes = [UIActivity.ActivityType.airDrop, UIActivity.ActivityType.postToFacebook, UIActivity.ActivityType.postToTwitter]
+        self.present(activityViewController, animated: true, completion: nil)
     }
     
     @objc func btnMoreProductClicked(sender: UIButton) {
@@ -544,7 +757,7 @@ class HomeDetailsViewController: UIViewController, UITableViewDataSource, UITabl
         ProductVC!.parentId = id
         ProductVC!.categoryTitle = "All"
         ProductVC!.productList = productsArr
-        ProductVC!.isPastor = true
+        ProductVC!.isChurch = true
         self.navigationController?.pushViewController(ProductVC!, animated: true)
     }
     
@@ -564,7 +777,7 @@ class HomeDetailsViewController: UIViewController, UITableViewDataSource, UITabl
         dropDown.dataSource = ["Favourite", "Share"]
         
         dropDown.selectionAction = { [unowned self] (index: Int, item: String) in
-
+            
             if index == 1
             {
                 var textToShare = [String]()
@@ -599,7 +812,7 @@ class HomeDetailsViewController: UIViewController, UITableViewDataSource, UITabl
     {
         var id = ""
         var type = ""
-
+        
         if self.segmentIndex == 2
         {
             id = self.semonsArr[index].id
@@ -611,7 +824,7 @@ class HomeDetailsViewController: UIViewController, UITableViewDataSource, UITabl
             type = "testimony"
         }
         let userId = UserDefaults.standard.value(forKey: "memberId") as? String
-
+        
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
         let managedContext = appDelegate?.persistentContainer.viewContext
         
@@ -623,7 +836,7 @@ class HomeDetailsViewController: UIViewController, UITableViewDataSource, UITabl
         let userIdKeyPredicate = NSPredicate(format: "userId == %@", userId!)
         
         let andPredicate = NSCompoundPredicate(type: NSCompoundPredicate.LogicalType.and, subpredicates: [idKeyPredicate, typeKeyPredicate, userIdKeyPredicate])
-                
+        
         fetchRequest.predicate = andPredicate
         
         do
@@ -698,3 +911,4 @@ class HomeDetailsViewController: UIViewController, UITableViewDataSource, UITabl
         self.view.makeToast("Favourites added", duration: 3.0, position: .bottom, title: nil, image: nil, style: style , completion: nil)
     }
 }
+

@@ -310,6 +310,12 @@ class PaymentViewController: UIViewController, UIPickerViewDataSource, UIPickerV
             self.view.makeToast("Please enter all card details.", duration: 3.0, position: .bottom)
             return
         }
+        
+        if self.txtExpires.text!.count < 7 {
+            self.view.makeToast("Please enter valid Expiry Date", duration: 3.0, position: .bottom, style: self.style)
+            return
+        }
+        
         if(!isValidPhone(testStr: phoneNumberTxt.text!)){
             self.view.makeToast("Please enter valid phone number.", duration: 3.0, position: .bottom, style: style)
             return

@@ -45,11 +45,12 @@ class ProductViewController: UIViewController, UICollectionViewDelegate, UIColle
     var productList: [ProductKey] = []
     var categoryTitle: String?
     var isPastor: Bool = false
+    var isChurch: Bool = false
     var parentId: String?
     
     override func viewDidLoad(){
         super.viewDidLoad()
-        if isPastor {
+        if isPastor || isChurch {
             productCollectionView.reloadData()
         }
         else{
@@ -215,12 +216,12 @@ class ProductViewController: UIViewController, UICollectionViewDelegate, UIColle
     func getCategory(){
         
         let parameters: [String: String] = [:]
-        let dict = ["where": ["parentid":"5cec6ae08da8a000165a9a0b"]] as [String : Any]
+        let dict = ["where": ["parentid": parentId]] as [String : Any]
         
         if let json = try? JSONSerialization.data(withJSONObject: dict, options: []) {
             if let content = String(data: json, encoding: String.Encoding.utf8) {
                 var url = ""
-                if isPastor {
+                if isPastor || isChurch {
                     url = String.init(format: GlobalConstants.APIUrls.getCategoryByParentId,content)
                 }
                 else{
@@ -244,7 +245,7 @@ class ProductViewController: UIViewController, UICollectionViewDelegate, UIColle
         let parameters: [String: String] = [:]
         var dict = ["where": [ "categoryid": categoryId]]
         if categoryText.text == "All" {
-            if isPastor {
+            if isPastor || isChurch {
                 dict = ["where": [ "parentid": parentId]]
             }
         }
@@ -253,7 +254,7 @@ class ProductViewController: UIViewController, UICollectionViewDelegate, UIColle
             if var content = String(data: json, encoding: String.Encoding.utf8) {
                 var url = ""
                 if categoryText.text == "All"{
-                    if isPastor {
+                    if isPastor || isChurch {
                        url = GlobalConstants.APIUrls.getAllProductsByParentId
                     }
                     else{
