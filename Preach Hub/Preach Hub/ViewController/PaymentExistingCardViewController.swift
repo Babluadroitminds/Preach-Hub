@@ -63,18 +63,18 @@ class PaymentExistingCardViewController: UIViewController, UICollectionViewDataS
         viewDot.layer.cornerRadius = 10.0
         viewDot.addViewDashedBorder(view: viewDot, width: 44, xVal: 21)
         
-        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(didSwipeRight(gestureRecognizer:)))
-        swipeRight.delegate = self
-        swipeRight.numberOfTouchesRequired = 1
-        swipeRight.direction = .right
-        
-        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(didSwipeLeft(gestureRecognizer:)))
-        swipeLeft.delegate = self
-        swipeLeft.numberOfTouchesRequired = 1
-        swipeLeft.direction = .left
-        
-        self.collectionView.addGestureRecognizer(swipeRight)
-        self.collectionView.addGestureRecognizer(swipeLeft)
+//        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(didSwipeRight(gestureRecognizer:)))
+//        swipeRight.delegate = self
+//        swipeRight.numberOfTouchesRequired = 1
+//        swipeRight.direction = .right
+//
+//        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(didSwipeLeft(gestureRecognizer:)))
+//        swipeLeft.delegate = self
+//        swipeLeft.numberOfTouchesRequired = 1
+//        swipeLeft.direction = .left
+//
+//        self.collectionView.addGestureRecognizer(swipeRight)
+//        self.collectionView.addGestureRecognizer(swipeLeft)
     }
     func textFieldDidEndEditing(_ textField: UITextField)
     {
@@ -91,6 +91,27 @@ class PaymentExistingCardViewController: UIViewController, UICollectionViewDataS
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
     {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "existingCardCell", for: indexPath) as? PaymentExistingCardCollectionViewCell
+        
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(didSwipeRight(gestureRecognizer:)))
+        swipeRight.delegate = self
+        swipeRight.numberOfTouchesRequired = 1
+        swipeRight.delaysTouchesBegan = true
+        swipeRight.direction = .right
+        
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(didSwipeLeft(gestureRecognizer:)))
+        swipeLeft.delegate = self
+        swipeLeft.numberOfTouchesRequired = 1
+        swipeLeft.delaysTouchesBegan = true
+        swipeLeft.direction = .left
+        
+        cell?.addGestureRecognizer(swipeRight)
+        cell?.addGestureRecognizer(swipeLeft)
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(didTapRight(gestureRecognizer:)))
+        cell?.leftView.addGestureRecognizer(tap)
+        
+        let tapRight = UITapGestureRecognizer(target: self, action: #selector(didTapLeft(gestureRecognizer:)))
+        cell?.rightView.addGestureRecognizer(tapRight)
         
         cell?.cvvTxt.delegate = self
         
@@ -147,13 +168,51 @@ class PaymentExistingCardViewController: UIViewController, UICollectionViewDataS
         
         return CGSize(width: screenSize.width, height: 185)
     }
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath)
+    {
+        print("indexPathDisplayCell : ", indexPath.row)
+    }
     override func viewWillAppear(_ animated: Bool)
     {
         self.fetchCoreData()
     }
+    @objc func didTapRight(gestureRecognizer : UITapGestureRecognizer)
+    {
+        print("self.currentIndexRight :", self.currentIndex)
+        
+        if self.cardDetailsArr.count != 0
+        {
+            if self.currentIndex != 0
+            {
+                self.currentIndex = self.currentIndex  - 1
+                
+                let indexPath = IndexPath(row: self.currentIndex, section: 0)
+                self.collectionView.scrollToItem(at: indexPath, at: .bottom, animated: true)
+                
+                self.collectionView.reloadData()
+            }
+        }
+    }
+    @objc func didTapLeft(gestureRecognizer : UITapGestureRecognizer)
+    {
+        print("self.currentIndexLeft :", self.currentIndex)
+        
+        if self.cardDetailsArr.count != 0
+        {
+            if self.currentIndex + 1 != self.cardDetailsArr.count
+            {
+                self.currentIndex = self.currentIndex + 1
+                
+                let indexPath = IndexPath(row: self.currentIndex, section: 0)
+                self.collectionView.scrollToItem(at: indexPath, at: .bottom, animated: true)
+                
+                self.collectionView.reloadData()
+            }
+        }
+    }
     @objc func didSwipeRight(gestureRecognizer : UISwipeGestureRecognizer)
     {
-        print("self.currentIndexweewweweee :", self.currentIndex)
+        print("self.currentIndexRight :", self.currentIndex)
 
         if self.cardDetailsArr.count != 0
         {
@@ -170,7 +229,7 @@ class PaymentExistingCardViewController: UIViewController, UICollectionViewDataS
     }
     @objc func didSwipeLeft(gestureRecognizer : UISwipeGestureRecognizer)
     {
-        print("self.currentIndex :", self.currentIndex)
+        print("self.currentIndexLeft :", self.currentIndex)
         
         if self.cardDetailsArr.count != 0
         {
@@ -266,10 +325,12 @@ class PaymentExistingCardViewController: UIViewController, UICollectionViewDataS
     }
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool
     {
-        let indexPath = IndexPath(row: self.currentIndex, section: 0)
-        let cell = self.collectionView.cellForItem(at: indexPath) as? PaymentExistingCardCollectionViewCell
+        print("self.currentIndex : ", self.currentIndex)
         
-        let str = (cell!.cvvTxt.text! + string)
+//        let indexPath = IndexPath(row: self.currentIndex, section: 0)
+//        let cell = self.collectionView.cellForItem(at: indexPath) as? PaymentExistingCardCollectionViewCell
+        
+        let str = (textField.text! + string)
         
         if str.count <= 3
         {

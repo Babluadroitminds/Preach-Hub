@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -1629,12 +1629,6 @@
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rightArrow_gray" translatesAutoresizingMaskIntoConstraints="NO" id="gwa-p8-zIC">
                                                                     <rect key="frame" x="1.5" y="12.5" width="25" height="60"/>
                                                                 </imageView>
-                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9hu-En-7dq">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="25" height="85"/>
-                                                                    <connections>
-                                                                        <action selector="rightTapped:" destination="H03-eI-oZx" eventType="touchUpInside" id="v21-2M-cTD"/>
-                                                                    </connections>
-                                                                </button>
                                                             </subviews>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
@@ -1643,36 +1637,22 @@
                                                                 <constraint firstItem="gwa-p8-zIC" firstAttribute="width" secondItem="mxD-v2-51r" secondAttribute="width" id="Btl-Oe-fXE"/>
                                                                 <constraint firstAttribute="height" constant="85" id="Jbm-IJ-TJf"/>
                                                                 <constraint firstItem="gwa-p8-zIC" firstAttribute="centerY" secondItem="mxD-v2-51r" secondAttribute="centerY" id="Z02-cP-ZKV"/>
-                                                                <constraint firstItem="9hu-En-7dq" firstAttribute="centerY" secondItem="mxD-v2-51r" secondAttribute="centerY" id="cd5-pg-fdh"/>
-                                                                <constraint firstItem="9hu-En-7dq" firstAttribute="centerX" secondItem="mxD-v2-51r" secondAttribute="centerX" id="jyV-ax-0Qv"/>
-                                                                <constraint firstItem="9hu-En-7dq" firstAttribute="height" secondItem="mxD-v2-51r" secondAttribute="height" id="nb2-HF-UQk"/>
                                                                 <constraint firstItem="gwa-p8-zIC" firstAttribute="centerX" secondItem="mxD-v2-51r" secondAttribute="centerX" multiplier="1.1" id="qc5-BB-45w"/>
-                                                                <constraint firstItem="9hu-En-7dq" firstAttribute="width" secondItem="mxD-v2-51r" secondAttribute="width" id="uIZ-Y9-HWP"/>
                                                             </constraints>
                                                         </view>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SqS-Br-ThF" userLabel="LeftView">
-                                                            <rect key="frame" x="0.0" y="35" width="30" height="73"/>
+                                                            <rect key="frame" x="0.0" y="29" width="25" height="85"/>
                                                             <subviews>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="leftArrow_gray" translatesAutoresizingMaskIntoConstraints="NO" id="Cuc-Ne-qt3">
-                                                                    <rect key="frame" x="-1.5" y="12.5" width="30" height="48"/>
+                                                                    <rect key="frame" x="-1.5" y="12.5" width="25.5" height="60"/>
                                                                 </imageView>
-                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iLT-pN-bbv">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="30" height="73"/>
-                                                                    <connections>
-                                                                        <action selector="leftTapped:" destination="H03-eI-oZx" eventType="touchUpInside" id="xDz-ru-RBb"/>
-                                                                    </connections>
-                                                                </button>
                                                             </subviews>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
                                                                 <constraint firstItem="Cuc-Ne-qt3" firstAttribute="centerY" secondItem="SqS-Br-ThF" secondAttribute="centerY" id="08x-8i-3a5"/>
-                                                                <constraint firstItem="iLT-pN-bbv" firstAttribute="centerX" secondItem="SqS-Br-ThF" secondAttribute="centerX" id="5fQ-HN-XxV"/>
-                                                                <constraint firstItem="iLT-pN-bbv" firstAttribute="centerY" secondItem="SqS-Br-ThF" secondAttribute="centerY" id="ItW-U0-TJY"/>
                                                                 <constraint firstItem="Cuc-Ne-qt3" firstAttribute="height" secondItem="SqS-Br-ThF" secondAttribute="height" constant="-25" id="LbX-HQ-RwQ"/>
                                                                 <constraint firstItem="Cuc-Ne-qt3" firstAttribute="centerX" secondItem="SqS-Br-ThF" secondAttribute="centerX" multiplier="0.9" id="WAy-sw-uxh"/>
-                                                                <constraint firstItem="iLT-pN-bbv" firstAttribute="width" secondItem="SqS-Br-ThF" secondAttribute="width" id="nmH-Np-no3"/>
                                                                 <constraint firstItem="Cuc-Ne-qt3" firstAttribute="width" secondItem="SqS-Br-ThF" secondAttribute="width" id="tbe-Bg-17T"/>
-                                                                <constraint firstItem="iLT-pN-bbv" firstAttribute="height" secondItem="SqS-Br-ThF" secondAttribute="height" id="w1h-cy-gsT"/>
                                                             </constraints>
                                                         </view>
                                                     </subviews>
@@ -1681,6 +1661,8 @@
                                                     <constraint firstItem="SqS-Br-ThF" firstAttribute="centerY" secondItem="V59-Iy-Kyu" secondAttribute="centerY" id="08p-82-USC"/>
                                                     <constraint firstItem="sTm-t8-EId" firstAttribute="top" secondItem="V59-Iy-Kyu" secondAttribute="top" constant="5" id="Hs1-ZF-6dX"/>
                                                     <constraint firstItem="SqS-Br-ThF" firstAttribute="leading" secondItem="V59-Iy-Kyu" secondAttribute="leading" id="Wul-WZ-KBc"/>
+                                                    <constraint firstItem="SqS-Br-ThF" firstAttribute="height" secondItem="mxD-v2-51r" secondAttribute="height" id="XY5-6z-9FM"/>
+                                                    <constraint firstItem="SqS-Br-ThF" firstAttribute="width" secondItem="mxD-v2-51r" secondAttribute="width" id="Z0Z-qD-Pvm"/>
                                                     <constraint firstItem="mxD-v2-51r" firstAttribute="centerY" secondItem="V59-Iy-Kyu" secondAttribute="centerY" id="cNG-eL-RiH"/>
                                                     <constraint firstAttribute="trailing" secondItem="mxD-v2-51r" secondAttribute="trailing" id="cvM-be-jUE"/>
                                                     <constraint firstAttribute="trailing" secondItem="sTm-t8-EId" secondAttribute="trailing" constant="20" id="nNK-cl-yIa"/>
@@ -2166,7 +2148,7 @@
         <image name="ic-logo-header" width="76" height="22"/>
         <image name="leftArrow_gray" width="8.5" height="48.5"/>
         <image name="rightArrow_gray" width="8.5" height="48.5"/>
-        <image name="tick_green" width="36" height="36"/>
+        <image name="tick_green" width="48" height="48"/>
         <image name="" width="32" height="30"/>
     </resources>
 </document>
