@@ -104,6 +104,26 @@ class EventCell: UITableViewCell{
     }
 }
 
+class MembershipFormCell: UITableViewCell{
+    
+    @IBOutlet weak var vwContactNumber: UIView!
+    @IBOutlet weak var vwLastName: UIView!
+    @IBOutlet weak var btnApply: UIButton!
+    @IBOutlet weak var vwEmail: UIView!
+    @IBOutlet weak var vwOccupation: UIView!
+    @IBOutlet weak var vwFirstName: UIView!
+    @IBOutlet weak var lblHeading: UILabel!
+    @IBOutlet weak var txtEmail: UITextField!
+    @IBOutlet weak var txtContactNumber: UITextField!
+    @IBOutlet weak var txtOccupation: UITextField!
+    @IBOutlet weak var txtLastName: UITextField!
+    @IBOutlet weak var txtFirstName: UITextField!
+    
+    override func awakeFromNib(){
+        super.awakeFromNib()
+    }
+}
+
 class sectionsHeaderCell: UITableViewCell
 {
     @IBOutlet var segmentControl: ScrollableSegmentedControl!
@@ -309,13 +329,11 @@ class ChurchDetailsViewController: UIViewController, UITableViewDataSource, UITa
         }
         else
         {
-            if self.segmentIndex == 1
-            {
+            if self.segmentIndex == 1{
                 return self.productsArr.count + 1
             }
-            else if self.segmentIndex == 2
-            {
-                return self.semonsArr.count + 1
+            else if self.segmentIndex == 2{
+                return 2
             }
             else if self.segmentIndex == 3 {
                 return self.eventArr.count + 1
@@ -403,46 +421,29 @@ class ChurchDetailsViewController: UIViewController, UITableViewDataSource, UITa
                 return cell!
             }
         }
-        else if self.segmentIndex == 2
-        {
-            if self.semonsArr.count == 0
-            {
-                let cell = tableView.dequeueReusableCell(withIdentifier: "noDataCell") as? noDataCell
-                return cell!
-            }
-            else
-            {
-                let cell = tableView.dequeueReusableCell(withIdentifier: "sermonsCell") as? sermonsCell
-                
-                if indexPath.row == self.semonsArr.count
-                {
-                    cell!.sermonImage.isHidden = true
-                    cell!.name.isHidden = true
-                    cell!.timeLbl.isHidden = true
-                    cell!.availableLbl.isHidden = true
-                    cell!.moreView.isHidden = true
+        else if self.segmentIndex == 2 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "membershipFormCell") as? MembershipFormCell
+                if indexPath.row == 1 {
+                   cell?.lblHeading.isHidden = true
+                   cell?.vwFirstName.isHidden = true
+                   cell?.vwLastName.isHidden = true
+                   cell?.vwContactNumber.isHidden = true
+                   cell?.vwEmail.isHidden = true
+                   cell?.vwOccupation.isHidden = true
+                   cell?.btnApply.isHidden = true
                 }
-                else
-                {
-                    cell!.sermonImage.isHidden = false
-                    cell!.name.isHidden = false
-                    cell!.timeLbl.isHidden = false
-                    cell!.availableLbl.isHidden = false
-                    cell!.moreView.isHidden = false
-                    
-                    let imageUrl = self.semonsArr[indexPath.row].imageThumb
-                    let urlString = imageUrl.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
-                    cell!.sermonImage.sd_setShowActivityIndicatorView(true)
-                    cell!.sermonImage.sd_setIndicatorStyle(.gray)
-                    cell!.sermonImage.sd_setImage(with: URL.init(string: urlString!) , placeholderImage: UIImage.init(named:"ic-placeholder.png"))
-                    
-                    cell!.name.text = self.semonsArr[indexPath.row].title
-                    cell!.timeLbl.text = self.semonsArr[indexPath.row].duration
-                    
-                    cell!.moreBtn.tag = indexPath.row
+                else{
+                    cell?.lblHeading.isHidden = false
+                    cell?.vwFirstName.isHidden = false
+                    cell?.vwLastName.isHidden = false
+                    cell?.vwContactNumber.isHidden = false
+                    cell?.vwEmail.isHidden = false
+                    cell?.vwOccupation.isHidden = false
+                    cell?.btnApply.isHidden = false
+                    cell?.btnApply.addTarget(self, action: #selector(btnApplyMembership(sender:)), for: .touchUpInside)
+                    cell?.btnApply.tag = indexPath.row
                 }
                 return cell!
-            }
         }
         else if self.segmentIndex == 3 {
             if self.eventArr.count == 0{
@@ -615,27 +616,12 @@ class ChurchDetailsViewController: UIViewController, UITableViewDataSource, UITa
             }
             return 70
         }
-        else if self.segmentIndex == 2
-        {
-            if self.semonsArr.count == 0
-            {
-                return CGFloat(self.height)
+        else if self.segmentIndex == 2{
+            if indexPath.row == 1 {
+                let minus = self.height - 450
+                return CGFloat(minus)
             }
-            else if indexPath.row == self.semonsArr.count
-            {
-                let rowHeight = 70 * self.semonsArr.count
-                
-                if rowHeight < self.height
-                {
-                    let minus = self.height - rowHeight
-                    return CGFloat(minus)
-                }
-                else
-                {
-                    return 0
-                }
-            }
-            return 70
+            return 450
         }
         else if self.segmentIndex == 3 {
             if self.eventArr.count == 0 {
@@ -695,6 +681,43 @@ class ChurchDetailsViewController: UIViewController, UITableViewDataSource, UITa
             return 265
         }
         return CGFloat(self.height)
+    }
+    
+    @objc func btnApplyMembership(sender : UIButton){
+        let indexPath = IndexPath(row: sender.tag, section: 1)
+        let style = ToastStyle()
+        let cell = self.tableView.cellForRow(at: indexPath) as? MembershipFormCell
+        if cell!.txtFirstName.text?.count == 0 || cell!.txtLastName.text?.count == 0 || cell!.txtContactNumber.text?.count == 0 || cell!.txtOccupation.text?.count == 0 || cell!.txtEmail.text?.count == 0 {
+            self.view.makeToast("Please enter all fields.", duration: 3.0, position: .bottom, style: style)
+            return
+        }
+
+        if(!isValidText(testStr: cell!.txtFirstName.text!)){
+            self.view.makeToast("Please enter valid first name.", duration: 3.0, position: .bottom, style: style)
+            return
+        }
+
+        if(!isValidText(testStr: cell!.txtLastName.text!)){
+            self.view.makeToast("Please enter valid last name.", duration: 3.0, position: .bottom, style: style)
+            return
+        }
+        
+        if(!isValidPhone(testStr: cell!.txtContactNumber.text!)){
+            self.view.makeToast("Please enter valid contact number.", duration: 3.0, position: .bottom, style: style)
+            return
+        }
+        
+        if(!isValidEmail(testStr: cell!.txtEmail.text!)){
+            self.view.makeToast("Email format: user@mail.com", duration: 3.0, position: .bottom, style: style)
+            return
+        }
+        
+        let memberId = UserDefaults.standard.value(forKey: "memberId") as? String
+        let churchName = detailsDict["name"]!.string!
+        let parameters: [String: Any] = ["userId": memberId!, "churchName": churchName]
+        APIHelper().post(apiUrl: GlobalConstants.APIUrls.AddChurchMember, parameters: parameters as [String : AnyObject]) { (response) in
+           
+        }
     }
     
     @objc func btnCallClicked(sender : UIButton){
@@ -820,7 +843,7 @@ class ChurchDetailsViewController: UIViewController, UITableViewDataSource, UITa
         }
         else
         {
-            id = self.semonsArr[index].id
+            id = self.testimonyArr[index].id
             type = "testimony"
         }
         let userId = UserDefaults.standard.value(forKey: "memberId") as? String

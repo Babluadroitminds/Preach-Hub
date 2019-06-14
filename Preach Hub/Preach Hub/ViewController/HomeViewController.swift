@@ -170,14 +170,13 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     var continueWatchingLists: [DataKey] = []
     var bannerList: [DataKey] = []
     
-    var headingArray = ["", "CONTINUE WATCHING", "CHURCHES", "CHURCH MINISTRY CHANNEL", "STORE", "GOSPEL MUSIC"]
+    var headingArray = ["", "CONTINUE WATCHING", "CHURCHES", "CHURCH MINISTRY CHANNEL","GOSPEL MUSIC"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         tblView.dataSource = self
-        //getChurches()
-        getStores()
+        //getStores()
         getHomeDetails()
         getContinueWatchings()
         NotificationCenter.default.addObserver(self, selector: #selector(HomeViewController.refreshRequest), name: NSNotification.Name(rawValue: "RefreshLogoutRequest"), object: nil)
@@ -249,7 +248,7 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 6
+        return 5
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -297,19 +296,19 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                 cell.lblMessage.isHidden = true
             }
         }
-        else if indexPath.row == 4 {
-            cell.setCollectioViewCell(with: storeLists)
-            cell.btnMore.tag = 4
-            if storeLists.count == 0 {
-                cell.lblMessage.isHidden = false
-            }
-            else {
-                cell.lblMessage.isHidden = true
-            }
-        }
+//        else if indexPath.row == 4 {
+//            cell.setCollectioViewCell(with: storeLists)
+//            cell.btnMore.tag = 4
+//            if storeLists.count == 0 {
+//                cell.lblMessage.isHidden = false
+//            }
+//            else {
+//                cell.lblMessage.isHidden = true
+//            }
+//        }
         else {
             cell.setCollectioViewCell(with: musicLists)
-            cell.btnMore.tag = 5
+            cell.btnMore.tag = 4
             if musicLists.count == 0 {
                 cell.lblMessage.isHidden = false
             }
@@ -352,10 +351,10 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         case 3:
             navigateToListViewPage(dataList: pastorLists, tag: sender.tag)
             break
+//        case 4:
+//            navigateToListViewPage(dataList: storeLists, tag: sender.tag)
+//            break
         case 4:
-            navigateToListViewPage(dataList: storeLists, tag: sender.tag)
-            break
-        case 5:
             navigateToListViewPage(dataList: musicLists, tag: sender.tag)
             break
         default:
@@ -374,13 +373,14 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     
     func didSelectItem(id: String, selectedRow: Int, categoryTitle: String)
     {
-        if selectedRow == 4{
-            let ProductVC = ProductViewController.storyboardInstance()
-            ProductVC!.categoryId = id
-            ProductVC!.categoryTitle = categoryTitle
-            self.navigationController?.pushViewController(ProductVC!, animated: true)
-        }
-        else if selectedRow == 3{
+//        if selectedRow == 4{
+//            let ProductVC = ProductViewController.storyboardInstance()
+//            ProductVC!.categoryId = id
+//            ProductVC!.categoryTitle = categoryTitle
+//            self.navigationController?.pushViewController(ProductVC!, animated: true)
+//        }
+//        else
+        if selectedRow == 3{
             self.getPastorDetails(id : id)
         }
         else if selectedRow == 2{

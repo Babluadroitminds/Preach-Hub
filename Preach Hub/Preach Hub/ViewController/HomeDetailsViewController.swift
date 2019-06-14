@@ -599,16 +599,19 @@ class HomeDetailsViewController: UIViewController, UITableViewDataSource, UITabl
     {
         var id = ""
         var type = ""
-
+        var video = ""
+        
         if self.segmentIndex == 2
         {
             id = self.semonsArr[index].id
             type = "sermons"
+            video = self.semonsArr[index].video
         }
         else
         {
-            id = self.semonsArr[index].id
+            id = self.testimonyArr[index].id
             type = "testimony"
+            video = self.testimonyArr[index].video
         }
         let userId = UserDefaults.standard.value(forKey: "memberId") as? String
 
@@ -619,10 +622,11 @@ class HomeDetailsViewController: UIViewController, UITableViewDataSource, UITabl
         
         let idKeyPredicate = NSPredicate(format: "favId = %@", id)
         let typeKeyPredicate = NSPredicate(format: "type = %@", type)
+        let videoKeyPredicate = NSPredicate(format: "video = %@", video)
         
         let userIdKeyPredicate = NSPredicate(format: "userId == %@", userId!)
         
-        let andPredicate = NSCompoundPredicate(type: NSCompoundPredicate.LogicalType.and, subpredicates: [idKeyPredicate, typeKeyPredicate, userIdKeyPredicate])
+        let andPredicate = NSCompoundPredicate(type: NSCompoundPredicate.LogicalType.and, subpredicates: [idKeyPredicate, typeKeyPredicate, userIdKeyPredicate, videoKeyPredicate])
                 
         fetchRequest.predicate = andPredicate
         
@@ -652,19 +656,22 @@ class HomeDetailsViewController: UIViewController, UITableViewDataSource, UITabl
         var name = ""
         var id = ""
         var type = ""
+        var video = ""
         
         if self.segmentIndex == 2
         {
             name = self.semonsArr[index].title
             imageStr = self.semonsArr[index].imageThumb
             id = self.semonsArr[index].id
+            video = self.semonsArr[index].video
             type = "sermons"
         }
         else
         {
             name = self.testimonyArr[index].title
-            imageStr = self.semonsArr[index].imageThumb
-            id = self.semonsArr[index].id
+            imageStr = self.testimonyArr[index].imageThumb
+            id = self.testimonyArr[index].id
+            video = self.testimonyArr[index].video
             type = "testimony"
         }
         
@@ -683,7 +690,7 @@ class HomeDetailsViewController: UIViewController, UITableViewDataSource, UITabl
         user.setValue(name, forKey: "name")
         user.setValue(userId, forKey: "userId")
         user.setValue(type, forKey: "type")
-        
+        user.setValue(video, forKey: "video")
         do
         {
             try managedContext?.save()

@@ -9,12 +9,15 @@
 import UIKit
 import CoreData
 import DropDown
+import AVKit
+import SwiftyJSON
 
 struct favourites
 {
     var imageThumb: String
     var title: String
     var id : String
+    var video: String
 }
 
 class favouritesell: UITableViewCell
@@ -64,7 +67,7 @@ class FavouritesViewController: UIViewController, UITableViewDataSource, UITable
             {
                 for data in fetchResults!
                 {
-                    self.favouritesArr.append(favourites(imageThumb: data.imageStr!, title: data.name!, id: data.favId!))
+                    self.favouritesArr.append(favourites(imageThumb: data.imageStr!, title: data.name!, id: data.favId!, video: data.video != nil ? data.video! : ""))
                 }
             }
             
@@ -121,9 +124,19 @@ class FavouritesViewController: UIViewController, UITableViewDataSource, UITable
         dropDown.dataSource = ["Play", "Unfavourite"]
         
         dropDown.selectionAction = { [unowned self] (index: Int, item: String) in
-            
-            if index == 1
-            {
+            if index == 0 {
+                let videoURL = URL(string: self.favouritesArr[sender.tag].video)
+                if videoURL != nil {
+                    let player = AVPlayer(url: videoURL!)
+                    let vc = AVPlayerViewController()
+                    vc.player = player
+                    
+                    self.present(vc, animated: true) {
+                        vc.player?.play()
+                    }
+                }
+            }
+            if index == 1{
                 self.clearIndividualFavourite(index: sender.tag)
             }
         }
