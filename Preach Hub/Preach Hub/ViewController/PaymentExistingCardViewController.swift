@@ -107,10 +107,10 @@ class PaymentExistingCardViewController: UIViewController, UICollectionViewDataS
         cell?.addGestureRecognizer(swipeRight)
         cell?.addGestureRecognizer(swipeLeft)
         
-        let tap = UITapGestureRecognizer(target: self, action: #selector(didTapRight(gestureRecognizer:)))
+        let tap = UITapGestureRecognizer(target: self, action: #selector(didTapLeft(gestureRecognizer:)))
         cell?.leftView.addGestureRecognizer(tap)
         
-        let tapRight = UITapGestureRecognizer(target: self, action: #selector(didTapLeft(gestureRecognizer:)))
+        let tapRight = UITapGestureRecognizer(target: self, action: #selector(didTapRight(gestureRecognizer:)))
         cell?.rightView.addGestureRecognizer(tapRight)
         
         cell?.cvvTxt.delegate = self
@@ -168,46 +168,36 @@ class PaymentExistingCardViewController: UIViewController, UICollectionViewDataS
         
         return CGSize(width: screenSize.width, height: 185)
     }
-    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath)
-    {
-        print("indexPathDisplayCell : ", indexPath.row)
-    }
     override func viewWillAppear(_ animated: Bool)
     {
         self.fetchCoreData()
     }
-    @objc func didTapRight(gestureRecognizer : UITapGestureRecognizer)
-    {
-        print("self.currentIndexRight :", self.currentIndex)
-        
-        if self.cardDetailsArr.count != 0
-        {
-            if self.currentIndex != 0
-            {
-                self.currentIndex = self.currentIndex  - 1
-                
-                let indexPath = IndexPath(row: self.currentIndex, section: 0)
-                self.collectionView.scrollToItem(at: indexPath, at: .bottom, animated: true)
-                
-                self.collectionView.reloadData()
-            }
-        }
-    }
     @objc func didTapLeft(gestureRecognizer : UITapGestureRecognizer)
     {
-        print("self.currentIndexLeft :", self.currentIndex)
+        print("self.TapLeft :", self.currentIndex)
         
-        if self.cardDetailsArr.count != 0
+        if self.currentIndex != 0
         {
-            if self.currentIndex + 1 != self.cardDetailsArr.count
-            {
-                self.currentIndex = self.currentIndex + 1
-                
-                let indexPath = IndexPath(row: self.currentIndex, section: 0)
-                self.collectionView.scrollToItem(at: indexPath, at: .bottom, animated: true)
-                
-                self.collectionView.reloadData()
-            }
+            self.currentIndex = self.currentIndex  - 1
+            
+            let indexPath = IndexPath(row: self.currentIndex, section: 0)
+            self.collectionView.scrollToItem(at: indexPath, at: .left, animated: true)
+            
+            self.collectionView.reloadData()
+        }
+    }
+    @objc func didTapRight(gestureRecognizer : UITapGestureRecognizer)
+    {
+        print("self.TapRight :", self.currentIndex)
+        
+        if self.currentIndex != self.cardDetailsArr.count
+        {
+            self.currentIndex = self.currentIndex + 1
+            
+            let indexPath = IndexPath(row: self.currentIndex, section: 0)
+            self.collectionView.scrollToItem(at: indexPath, at: .right, animated: true)
+            
+            self.collectionView.reloadData()
         }
     }
     @objc func didSwipeRight(gestureRecognizer : UISwipeGestureRecognizer)
