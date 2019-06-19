@@ -21,6 +21,7 @@ struct SermonsTestimony
     var duration: String
     var id : String
     var video : String
+    var isSermons: Bool
 }
 
 struct Product{
@@ -113,6 +114,10 @@ class HomeDetailsViewController: UIViewController, UITableViewDataSource, UITabl
     
     var moreIndex = -1
     var id: String?
+    var player: AVPlayer?
+    var selectedSermonsId: String?
+    var memberId = UserDefaults.standard.value(forKey: "memberId") as? String
+    var sectionHeaderCellCount: Int = 5
     
     override func viewDidLoad()
     {
@@ -167,7 +172,7 @@ class HomeDetailsViewController: UIViewController, UITableViewDataSource, UITabl
             {
                 for item in detailsDict["pastorsermons"]!.array!
                 {
-                    self.semonsArr.append(SermonsTestimony(imageThumb: item["img_thumb"] != JSON.null ? item["img_thumb"].string! : "", title: item["name"] != JSON.null ? item["name"].string! : "", duration: item["duration"] != JSON.null ? item["duration"].string! : "", id: item["id"] != JSON.null ? item["id"].string! : "", video: item["video"] != JSON.null ? item["video"].string! : ""))
+                    self.semonsArr.append(SermonsTestimony(imageThumb: item["img_thumb"] != JSON.null ? item["img_thumb"].string! : "", title: item["name"] != JSON.null ? item["name"].string! : "", duration: item["duration"] != JSON.null ? item["duration"].string! : "", id: item["id"] != JSON.null ? item["id"].string! : "", video: item["video"] != JSON.null ? item["video"].string! : "", isSermons: true))
                 }
             }
         }
@@ -178,7 +183,7 @@ class HomeDetailsViewController: UIViewController, UITableViewDataSource, UITabl
             {
                 for item in detailsDict["testimonies"]!.array!
                 {
-                    self.testimonyArr.append(SermonsTestimony(imageThumb: item["img_thumb"] != JSON.null ? item["img_thumb"].string! : "", title: item["name"] != JSON.null ? item["name"].string! : "", duration: item["duration"] != JSON.null ? item["duration"].string! : "", id: item["id"] != JSON.null ? item["id"].string! : "", video: item["video"] != JSON.null ? item["video"].string! : ""))
+                    self.testimonyArr.append(SermonsTestimony(imageThumb: item["img_thumb"] != JSON.null ? item["img_thumb"].string! : "", title: item["name"] != JSON.null ? item["name"].string! : "", duration: item["duration"] != JSON.null ? item["duration"].string! : "", id: item["id"] != JSON.null ? item["id"].string! : "", video: item["video"] != JSON.null ? item["video"].string! : "", isSermons: false))
                 }
             }
         }
@@ -193,6 +198,7 @@ class HomeDetailsViewController: UIViewController, UITableViewDataSource, UITabl
                 }
             }
         }
+        setGestureLayout()
     }
     override func viewDidAppear(_ animated: Bool)
     {
@@ -201,6 +207,47 @@ class HomeDetailsViewController: UIViewController, UITableViewDataSource, UITabl
     override func didReceiveMemoryWarning()
     {
         super.didReceiveMemoryWarning()
+    }
+    
+    func setGestureLayout(){
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(didSwipeRight(gestureRecognizer:)))
+        swipeRight.delegate = self
+        swipeRight.numberOfTouchesRequired = 1
+        swipeRight.delaysTouchesBegan = true
+        swipeRight.direction = .right
+        
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(didSwipeLeft(gestureRecognizer:)))
+        swipeLeft.delegate = self
+        swipeLeft.numberOfTouchesRequired = 1
+        swipeLeft.delaysTouchesBegan = true
+        swipeLeft.direction = .left
+        
+        tableView?.addGestureRecognizer(swipeRight)
+        tableView?.addGestureRecognizer(swipeLeft)
+    }
+    
+    @objc func didSwipeRight(gestureRecognizer : UISwipeGestureRecognizer){
+        if self.segmentIndex != 0{
+            self.segmentIndex = self.segmentIndex  - 1
+         //   self.tableView.reloadSections([1], with: .automatic)
+         
+//            let indexPath = IndexPath(row: 0, section: 0)
+            let cell = tableView.dequeueReusableCell(withIdentifier: "sectionHeader") as? sectionHeaderCell
+//
+//             let TbcellView = cellView?.subviews[0]
+//             print(TbcellView?.subviews)
+//
+            cell!.segmentControl.selectedSegmentIndex = self.segmentIndex
+           
+            self.tableView.reloadSections([1], with: .automatic)
+        }
+    }
+    
+    @objc func didSwipeLeft(gestureRecognizer : UISwipeGestureRecognizer){
+        if self.segmentIndex + 1 != self.sectionHeaderCellCount {
+            self.segmentIndex = self.segmentIndex + 1
+            self.tableView.reloadSections([1], with: .automatic)
+        }
     }
     
     @objc func topBackTapped(notification: NSNotification)
@@ -447,12 +494,16 @@ class HomeDetailsViewController: UIViewController, UITableViewDataSource, UITabl
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if self.segmentIndex == 2 {
             if self.semonsArr.count != 0 {
-                playVideo(videoUrl: semonsArr[indexPath.row].video)
+                if indexPath.row < semonsArr.count{
+                    playVideo(list: semonsArr[indexPath.row])
+                }
             }
         }
         else if self.segmentIndex == 4 {
             if self.testimonyArr.count != 0 {
-                playVideo(videoUrl: testimonyArr[indexPath.row].video)
+                if indexPath.row < testimonyArr.count {
+                    playVideo(list: testimonyArr[indexPath.row])
+                }
             }
         }
     }
@@ -528,15 +579,61 @@ class HomeDetailsViewController: UIViewController, UITableViewDataSource, UITabl
         return CGFloat(self.height)
     }
     
-    func playVideo(videoUrl: String){
-        let videoURL = URL(string: videoUrl)
-        let player = AVPlayer(url: videoURL!)
+    func playVideo(list: SermonsTestimony){
+        let videoURL = URL(string: list.video)
+        player = AVPlayer(url: videoURL!)
         let vc = AVPlayerViewController()
         vc.player = player
         
         present(vc, animated: true) {
             vc.player?.play()
         }
+        if list.isSermons {
+            selectedSermonsId = list.id
+            self.player!.addObserver(self, forKeyPath: "rate", options: NSKeyValueObservingOptions(), context: nil)
+        }
+        else {
+            selectedSermonsId = ""
+        }
+    }
+    
+    //observer for av play
+    override  func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+            if keyPath == "rate" {
+                if player?.timeControlStatus == .paused {
+                    print (player?.actionAtItemEnd as Any)
+                    
+                     continueWatchingsPaused()
+                }
+                
+                if player!.rate == 0 {
+                   
+                }
+        }
+    }
+    
+    func continueWatchingsPaused(){
+        if selectedSermonsId != "" {
+            let parameters: [String: String] = [:]
+            let dict = ["where":["sermonid": selectedSermonsId, "memberid": memberId]] as [String : Any]
+            
+            if let json = try? JSONSerialization.data(withJSONObject: dict, options: []) {
+                if let content = String(data: json, encoding: String.Encoding.utf8) {
+                    APIHelper().getBackground(apiUrl: String.init(format: GlobalConstants.APIUrls.getContinueWatchingById, content), parameters: parameters as [String : AnyObject]) { (response) in
+                        if response["data"].array!.count == 0 {
+                            let param: [String: Any] = ["sermonid": self.selectedSermonsId!, "memberid": self.memberId!]
+                            APIHelper().postBackground(apiUrl: GlobalConstants.APIUrls.continueWatchings, parameters: param as [String : AnyObject]) { (response) in
+                                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "RefreshHomeRequest"), object: nil)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private func deallocObservers(player: AVPlayer) {
+        player.removeObserver(self, forKeyPath: "rate")
     }
     
     @objc func btnMoreProductClicked(sender: UIButton) {
@@ -657,6 +754,7 @@ class HomeDetailsViewController: UIViewController, UITableViewDataSource, UITabl
         var id = ""
         var type = ""
         var video = ""
+        var isSermons = false
         
         if self.segmentIndex == 2
         {
@@ -665,6 +763,7 @@ class HomeDetailsViewController: UIViewController, UITableViewDataSource, UITabl
             id = self.semonsArr[index].id
             video = self.semonsArr[index].video
             type = "sermons"
+            isSermons = self.semonsArr[index].isSermons
         }
         else
         {
@@ -673,6 +772,7 @@ class HomeDetailsViewController: UIViewController, UITableViewDataSource, UITabl
             id = self.testimonyArr[index].id
             video = self.testimonyArr[index].video
             type = "testimony"
+            isSermons = self.testimonyArr[index].isSermons
         }
         
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
@@ -691,6 +791,7 @@ class HomeDetailsViewController: UIViewController, UITableViewDataSource, UITabl
         user.setValue(userId, forKey: "userId")
         user.setValue(type, forKey: "type")
         user.setValue(video, forKey: "video")
+        user.setValue(isSermons, forKey: "isSermons")
         do
         {
             try managedContext?.save()

@@ -24,7 +24,7 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="bvx-f0-YPV">
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
-                                <color key="backgroundColor" red="0.27056124806404114" green="0.27060544490814209" blue="0.27055162191390991" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.13333333333333333" green="0.12156862745098039" blue="0.12156862745098039" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="CellID" rowHeight="148" id="th4-YH-DlR" customClass="segmentData" customModule="Preach_Hub" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="148"/>
@@ -41,14 +41,14 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <color key="backgroundColor" red="0.26666666666666666" green="0.26666666666666666" blue="0.26666666666666666" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="backgroundColor" red="0.13333333333333333" green="0.12156862745098039" blue="0.12156862745098039" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstItem="XHh-sO-YBf" firstAttribute="leading" secondItem="0UL-DE-54b" secondAttribute="leading" constant="20" id="9C4-1k-9n7"/>
                                                 <constraint firstAttribute="trailing" secondItem="XHh-sO-YBf" secondAttribute="trailing" constant="20" id="jDD-g2-sDL"/>
                                                 <constraint firstItem="XHh-sO-YBf" firstAttribute="top" secondItem="0UL-DE-54b" secondAttribute="top" constant="30" id="sVI-10-cdn"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.27056124809999998" green="0.27060544489999999" blue="0.27055162189999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="0.13333333333333333" green="0.12156862745098039" blue="0.12156862745098039" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
                                             <outlet property="aboutLbl" destination="XHh-sO-YBf" id="zce-Hd-Hzg"/>
                                         </connections>
@@ -144,7 +144,7 @@
                                                     </constraints>
                                                 </view>
                                             </subviews>
-                                            <color key="backgroundColor" red="0.23529411764705882" green="0.27843137254901962" blue="0.30196078431372547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="backgroundColor" red="0.27058823529411763" green="0.27058823529411763" blue="0.27058823529411763" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstItem="9gR-iX-ZY7" firstAttribute="leading" secondItem="4yd-Q2-9T1" secondAttribute="leading" id="8v1-fs-BjN"/>
                                                 <constraint firstItem="wCi-JU-KfK" firstAttribute="centerY" secondItem="5fP-SR-Xtj" secondAttribute="centerY" id="FP3-A4-fKP"/>
@@ -282,7 +282,7 @@
                                         <rect key="frame" x="0.0" y="872" width="414" height="230"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0wl-cS-PxE" id="qg7-AI-JYM">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="230"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="229.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Rt3-6p-5JZ">
@@ -313,7 +313,7 @@
                                                     <state key="normal" title="Show All Products"/>
                                                 </button>
                                             </subviews>
-                                            <color key="backgroundColor" red="0.23529411764705882" green="0.27843137254901962" blue="0.30196078431372547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="backgroundColor" red="0.27058823529411763" green="0.27058823529411763" blue="0.27058823529411763" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstItem="Rt3-6p-5JZ" firstAttribute="centerY" secondItem="qg7-AI-JYM" secondAttribute="centerY" id="6TD-Pj-sv5"/>
                                                 <constraint firstItem="utq-qb-n25" firstAttribute="leading" secondItem="Rt3-6p-5JZ" secondAttribute="trailing" constant="20" id="DeT-e9-P2W"/>
@@ -338,7 +338,7 @@
                                 </prototypes>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" red="0.27058823529411763" green="0.27058823529411763" blue="0.27058823529411763" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.13333333333333333" green="0.12156862745098039" blue="0.12156862745098039" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="bvx-f0-YPV" firstAttribute="leading" secondItem="Nzc-x5-VuL" secondAttribute="leading" id="6Ga-JK-LRn"/>
                             <constraint firstItem="UfD-Rv-dYj" firstAttribute="top" secondItem="bvx-f0-YPV" secondAttribute="bottom" id="TcL-6Q-jla"/>

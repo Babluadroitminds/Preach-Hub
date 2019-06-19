@@ -18,6 +18,7 @@ struct favourites
     var title: String
     var id : String
     var video: String
+    var isSermons: Bool
 }
 
 class favouritesell: UITableViewCell
@@ -37,6 +38,9 @@ class FavouritesViewController: UIViewController, UITableViewDataSource, UITable
     @IBOutlet weak var favouritesTableView: UITableView!
     
     var favouritesArr = [favourites]()
+    var selectedSermonsId: String?
+    var player: AVPlayer?
+    var memberId = UserDefaults.standard.value(forKey: "memberId") as? String
     
     override func viewDidLoad()
     {
@@ -67,7 +71,7 @@ class FavouritesViewController: UIViewController, UITableViewDataSource, UITable
             {
                 for data in fetchResults!
                 {
-                    self.favouritesArr.append(favourites(imageThumb: data.imageStr!, title: data.name!, id: data.favId!, video: data.video != nil ? data.video! : ""))
+                    self.favouritesArr.append(favourites(imageThumb: data.imageStr!, title: data.name!, id: data.favId!, video: data.video != nil ? data.video! : "", isSermons: data.isSermons))
                 }
             }
             
@@ -127,12 +131,19 @@ class FavouritesViewController: UIViewController, UITableViewDataSource, UITable
             if index == 0 {
                 let videoURL = URL(string: self.favouritesArr[sender.tag].video)
                 if videoURL != nil {
-                    let player = AVPlayer(url: videoURL!)
+                    self.player = AVPlayer(url: videoURL!)
                     let vc = AVPlayerViewController()
-                    vc.player = player
+                    vc.player = self.player
                     
                     self.present(vc, animated: true) {
                         vc.player?.play()
+                    }
+                    if self.favouritesArr[sender.tag].isSermons {
+                        self.selectedSermonsId = self.favouritesArr[sender.tag].id
+                        self.player!.addObserver(self, forKeyPath: "rate", options: NSKeyValueObservingOptions(), context: nil)
+                    }
+                    else {
+                        self.selectedSermonsId = ""
                     }
                 }
             }
@@ -145,6 +156,39 @@ class FavouritesViewController: UIViewController, UITableViewDataSource, UITable
         dropDown.dismissMode = .onTap
         
         dropDown.show()
+    }
+    
+    //observer for av play
+    override  func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        if keyPath == "rate" {
+            if player?.timeControlStatus == .paused {
+                continueWatchingsPaused()
+            }
+        }
+    }
+    
+    func continueWatchingsPaused(){
+        if selectedSermonsId != "" {
+            let parameters: [String: String] = [:]
+            let dict = ["where":["sermonid": selectedSermonsId, "memberid": memberId]] as [String : Any]
+            
+            if let json = try? JSONSerialization.data(withJSONObject: dict, options: []) {
+                if let content = String(data: json, encoding: String.Encoding.utf8) {
+                    APIHelper().getBackground(apiUrl: String.init(format: GlobalConstants.APIUrls.getContinueWatchingById, content), parameters: parameters as [String : AnyObject]) { (response) in
+                        if response["data"].array!.count == 0 {
+                            let param: [String: Any] = ["sermonid": self.selectedSermonsId!, "memberid": self.memberId!]
+                            APIHelper().postBackground(apiUrl: GlobalConstants.APIUrls.continueWatchings, parameters: param as [String : AnyObject]) { (response) in
+                                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "RefreshHomeRequest"), object: nil)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    private func deallocObservers(player: AVPlayer) {
+        player.removeObserver(self, forKeyPath: "rate")
     }
     @IBAction func topMoreTapped(_ sender: UIButton)
     {

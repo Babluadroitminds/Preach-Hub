@@ -10,6 +10,7 @@ import UIKit
 
 class ProfileViewController: UIViewController {
 
+    @IBOutlet weak var lblMemberName: UILabel!
     @IBOutlet weak var imgVwOrder: UIImageView!
     @IBOutlet weak var imgVwFavourite: UIImageView!
     override func viewDidLoad() {
@@ -26,5 +27,6 @@ class ProfileViewController: UIViewController {
         imgVwOrder.clipsToBounds = true
         imgVwFavourite.layer.cornerRadius = imgVwFavourite.frame.size.width / 2
         imgVwOrder.clipsToBounds = true
+        lblMemberName.text = UserDefaults.standard.string(forKey: "memberName")
     }
 }

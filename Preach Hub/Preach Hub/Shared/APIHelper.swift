@@ -18,12 +18,20 @@ class APIHelper: NSObject {
         sendRequest(apiUrl: apiUrl, method: .get, parameters: parameters, showBusyIndicator: true, callback: callback)
     }
     
+    func getBackground(apiUrl:String, parameters:[String:AnyObject], callback:@escaping (JSON) -> Void){
+        sendRequest(apiUrl: apiUrl, method: .get, parameters: parameters, showBusyIndicator: false, callback: callback)
+    }
+    
     func post(apiUrl:String, parameters:[String:AnyObject], callback:@escaping (JSON) -> Void){
         sendRequest(apiUrl: apiUrl, method: .post, parameters: parameters, showBusyIndicator: true, callback: callback)
     }
     
     func patch(apiUrl:String, parameters:[String:AnyObject], callback:@escaping (JSON) -> Void){
         sendRequest(apiUrl: apiUrl, method: .patch, parameters: parameters, showBusyIndicator: true, callback: callback)
+    }
+    
+    func patchBackground(apiUrl:String, parameters:[String:AnyObject], callback:@escaping (JSON) -> Void){
+        sendRequest(apiUrl: apiUrl, method: .patch, parameters: parameters, showBusyIndicator: false, callback: callback)
     }
     
     func delete(apiUrl:String, parameters:[String:AnyObject], callback:@escaping (JSON) -> Void){
@@ -65,7 +73,7 @@ class APIHelper: NSObject {
             
             httpHeader["Authorization"] = "bearer" + " " + accessToken!
         }
-        var fullUrl = ""
+         var fullUrl = ""
         if apiUrl.contains("api.stripe.com"){
             fullUrl = apiUrl
             httpHeader["Authorization"] = "Bearer sk_test_vzXTFAJH3fOKhon5we02Dozo00vpLeAt20"

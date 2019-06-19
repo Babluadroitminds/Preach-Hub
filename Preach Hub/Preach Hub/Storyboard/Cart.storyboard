@@ -59,7 +59,7 @@
                                         </constraints>
                                     </imageView>
                                 </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" red="0.13333333333333333" green="0.12156862745098039" blue="0.12156862745098039" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="8hd-vY-m52" firstAttribute="leading" secondItem="ic8-Cy-M3f" secondAttribute="leading" id="6CW-am-6Zk"/>
                                     <constraint firstAttribute="bottom" secondItem="ALJ-qF-JuA" secondAttribute="bottom" constant="10" id="7l2-hi-hAT"/>
@@ -318,15 +318,15 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oIB-yF-KEU">
-                                                            <rect key="frame" x="41" y="195" width="110" height="35"/>
+                                                        <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oIB-yF-KEU">
+                                                            <rect key="frame" x="36" y="195" width="120" height="35"/>
                                                             <color key="backgroundColor" red="0.043137254899999998" green="0.58431372550000005" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="110" id="7Iz-ke-AWh"/>
+                                                                <constraint firstAttribute="width" constant="120" id="7Iz-ke-AWh"/>
                                                                 <constraint firstAttribute="height" constant="35" id="Hz9-Ze-6g1"/>
                                                             </constraints>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                            <state key="normal" title="Add to Cart">
+                                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                            <state key="normal" title=" Add to Cart" image="ic-cart">
                                                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </state>
                                                             <userDefinedRuntimeAttributes>
@@ -409,7 +409,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.13333333333333333" green="0.12156862745098039" blue="0.12156862745098039" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="pjS-By-DD6" firstAttribute="top" secondItem="ck4-le-ybS" secondAttribute="bottom" constant="6" id="5fM-ME-Dy0"/>
                             <constraint firstItem="ck4-le-ybS" firstAttribute="centerY" secondItem="Dh1-ze-wcB" secondAttribute="centerY" id="DvB-QO-wLh"/>
@@ -485,7 +485,7 @@
                                         </constraints>
                                     </imageView>
                                 </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" red="0.13333333333333333" green="0.12156862745098039" blue="0.12156862745098039" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="Inf-BD-67w" secondAttribute="bottom" id="7Gf-dH-bI0"/>
                                     <constraint firstItem="Inf-BD-67w" firstAttribute="leading" secondItem="qeQ-GO-no9" secondAttribute="leading" id="CqW-1f-L6z"/>
@@ -892,14 +892,13 @@ EENob29zZSBzaXplA
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
-                                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JhQ-uE-Lsp">
+                                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JhQ-uE-Lsp">
                                                 <rect key="frame" x="15" y="405" width="290" height="45"/>
                                                 <color key="backgroundColor" red="0.043137254901960784" green="0.58431372549019611" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="45" id="Ljy-QT-fi4"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
-                                                <state key="normal" title="Add to Cart">
+                                                <state key="normal" title="  Add to Cart" image="ic-cart">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <userDefinedRuntimeAttributes>
@@ -961,7 +960,7 @@ EENob29zZSBzaXplA
                                 </constraints>
                             </scrollView>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.13333333333333333" green="0.12156862745098039" blue="0.12156862745098039" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="ZKT-tw-93j" secondAttribute="bottom" id="4zr-y7-VUd"/>
                             <constraint firstItem="G1c-zd-iDY" firstAttribute="width" secondItem="F5o-1O-DyT" secondAttribute="width" multiplier="0.3" id="6Hc-im-5b4"/>
@@ -1052,7 +1051,7 @@ EENob29zZSBzaXplA
                                         </constraints>
                                     </imageView>
                                 </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" red="0.13333333333333333" green="0.12156862745098039" blue="0.12156862745098039" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="sPf-rJ-loa" secondAttribute="bottom" id="0Au-1g-iX7"/>
                                     <constraint firstAttribute="bottom" secondItem="3mT-v4-Oas" secondAttribute="bottom" constant="10" id="4Bz-pM-CqI"/>
@@ -1407,7 +1406,7 @@ EENob29zZSBzaXplA
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.13333333333333333" green="0.12156862745098039" blue="0.12156862745098039" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="VdO-bM-Ncz" secondAttribute="bottom" id="3KR-M9-FUx"/>
                             <constraint firstItem="tSg-se-9qV" firstAttribute="trailing" secondItem="VdO-bM-Ncz" secondAttribute="trailing" id="5sw-9B-9XD"/>
@@ -1490,7 +1489,7 @@ EENob29zZSBzaXplA
                                         </constraints>
                                     </imageView>
                                 </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" red="0.13333333333333333" green="0.12156862745098039" blue="0.12156862745098039" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="dgg-gq-EwV" firstAttribute="leading" secondItem="ddx-Jv-vCE" secondAttribute="leading" id="2bA-l0-IdD"/>
                                     <constraint firstItem="zgt-YF-Btl" firstAttribute="centerX" secondItem="ddx-Jv-vCE" secondAttribute="centerX" id="FIv-aE-IJ8"/>
@@ -1681,7 +1680,7 @@ EENob29zZSBzaXplA
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.13333333333333333" green="0.12156862745098039" blue="0.12156862745098039" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="hRv-87-nkf" secondAttribute="bottom" id="14U-rS-68p"/>
                             <constraint firstItem="o0T-vO-ASj" firstAttribute="leading" secondItem="9xg-XC-Ecd" secondAttribute="leading" constant="20" id="4Dt-fZ-zX0"/>
@@ -1714,6 +1713,7 @@ EENob29zZSBzaXplA
         <image name="expand_arrow" width="37.5" height="37.5"/>
         <image name="garbage" width="12.5" height="15"/>
         <image name="ic-back" width="38" height="38"/>
+        <image name="ic-cart" width="20.5" height="17.5"/>
         <image name="ic-logo-header" width="76" height="22"/>
         <image name="shopping-cart" width="20" height="18"/>
         <image name="" width="32" height="30"/>

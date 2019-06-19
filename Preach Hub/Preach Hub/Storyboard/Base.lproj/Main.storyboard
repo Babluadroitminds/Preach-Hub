@@ -1012,7 +1012,7 @@
                                         <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </webView>
                                 </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" red="0.13333333333333333" green="0.12156862745098039" blue="0.12156862745098039" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="nQY-P1-w1N" firstAttribute="leading" secondItem="DXb-Fo-XMC" secondAttribute="leading" id="C9J-qR-2eW"/>
                                     <constraint firstAttribute="bottom" secondItem="nQY-P1-w1N" secondAttribute="bottom" id="FXK-kI-3C3"/>

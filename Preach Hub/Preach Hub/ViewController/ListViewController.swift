@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftyJSON
+import AVKit
 
 struct listPastor {
     var name : String!
@@ -70,6 +71,19 @@ class ListViewController: UIViewController,UICollectionViewDataSource , UICollec
         }
         else if(header == "CHURCHES") {
           self.getChurchDetails(id: dataList[indexPath.row].id)
+        }
+        else if(header == "CONTINUE WATCHING"){
+            playVideo(videoUrl: dataList[indexPath.row].videoUrl)
+        }
+    }
+    
+    func playVideo(videoUrl: String){
+        let videoURL = URL(string: videoUrl)
+        let player = AVPlayer(url: videoURL!)
+        let vc = AVPlayerViewController()
+        vc.player = player
+        self.present(vc, animated: true) {
+            vc.player?.play()
         }
     }
     

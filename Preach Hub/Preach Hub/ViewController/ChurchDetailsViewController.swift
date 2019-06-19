@@ -170,6 +170,7 @@ class ChurchDetailsViewController: UIViewController, UITableViewDataSource, UITa
     var moreIndex = -1
     var id: String?
     var locManager = CLLocationManager()
+    var player: AVPlayer?
     
     override func viewDidLoad()
     {
@@ -581,16 +582,19 @@ class ChurchDetailsViewController: UIViewController, UITableViewDataSource, UITa
             if self.semonsArr.count != 0 {
                 let currentItem = semonsArr[indexPath.row]
                 let videoURL = URL(string: currentItem.video)
-                let player = AVPlayer(url: videoURL!)
+                 player = AVPlayer(url: videoURL!)
                 let vc = AVPlayerViewController()
                 vc.player = player
                 
                 present(vc, animated: true) {
                     vc.player?.play()
                 }
+//                NotificationCenter.default.addObserver(self, selector: #selector(ChurchDetailsViewController.itemDidPausePlaying(_:)), name: NSNotification.Name.AVPlayerItemPlaybackStalled, object: player)
             }
         }
     }
+    
+   
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
     {
@@ -681,6 +685,10 @@ class ChurchDetailsViewController: UIViewController, UITableViewDataSource, UITa
             return 265
         }
         return CGFloat(self.height)
+    }
+    
+    @objc func itemDidPausePlaying(_ playerItem: AVPlayerItem) {
+     
     }
     
     @objc func btnApplyMembership(sender : UIButton){

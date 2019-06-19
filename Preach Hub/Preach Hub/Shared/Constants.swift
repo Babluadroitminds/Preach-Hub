@@ -46,5 +46,9 @@ struct GlobalConstants {
         static let getChurchDetails: String = "churches/%@?filter=%@"
         static let removeMemberDevicesById: String = "memberdevices/%@/members/memberdevices"
         static let AddChurchMember: String = "churchmembers/saveChurchMember"
+        static let getBanners: String = "sermons?filter=%@"
+        static let continueWatchings: String = "continuewatchings"
+        static let getContinueWatchingById: String = "continuewatchings?filter=%@"
+        static let getMusic: String = "music"
     }
 }
