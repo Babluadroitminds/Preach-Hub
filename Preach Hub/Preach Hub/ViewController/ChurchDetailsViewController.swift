@@ -172,7 +172,7 @@ class ChurchDetailsViewController: UIViewController, UITableViewDataSource, UITa
     var locManager = CLLocationManager()
     var player: AVPlayer?
     
-    var sectionHeaderCellCount: Int = 5
+    var sectionHeaderCellCount: Int = 7
 
     override func viewDidLoad()
     {
@@ -336,12 +336,15 @@ class ChurchDetailsViewController: UIViewController, UITableViewDataSource, UITa
             let cell = tableView.dequeueReusableHeaderFooterView(withIdentifier: "sectionHeader") as? sectionHeaderView
             
             cell?.segmentControl.addTarget(self, action: #selector(self.segmentSelected(sender:)), for: .valueChanged)
-            
-            cell?.segmentControl.insertSegment(withTitle: "ABOUT", image: nil, at: 0)
+
+            cell?.segmentControl.insertSegment(withTitle: "STATEMENT OF FAITH", image: nil, at: 0)
             cell?.segmentControl.insertSegment(withTitle: "PRODUCTS", image: nil, at: 1)
-            cell?.segmentControl.insertSegment(withTitle: "SERMONS", image: nil, at: 2)
-            cell?.segmentControl.insertSegment(withTitle: "TITHE", image: nil, at: 3)
-            cell?.segmentControl.insertSegment(withTitle: "TESTIMONY", image: nil, at: 4)
+            cell?.segmentControl.insertSegment(withTitle: "MEMBERSHIP FORM", image: nil, at: 2)
+            cell?.segmentControl.insertSegment(withTitle: "EVENTS", image: nil, at: 3)
+            cell?.segmentControl.insertSegment(withTitle: "BIBLE COLLEGE", image: nil, at: 4)
+            cell?.segmentControl.insertSegment(withTitle: "HOME CELLS/BRANCHES", image: nil, at: 5)
+            cell?.segmentControl.insertSegment(withTitle: "OFFERING", image: nil, at: 6)
+
             
             cell?.segmentControl.selectedSegmentIndex = self.segmentIndex
             
