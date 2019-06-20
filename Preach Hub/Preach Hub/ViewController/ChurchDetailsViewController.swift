@@ -172,9 +172,15 @@ class ChurchDetailsViewController: UIViewController, UITableViewDataSource, UITa
     var locManager = CLLocationManager()
     var player: AVPlayer?
     
+    var sectionHeaderCellCount: Int = 5
+
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        
+        let headerNib = UINib.init(nibName: "sectionHeader", bundle: Bundle.main)
+        self.tableView.register(headerNib, forHeaderFooterViewReuseIdentifier: "sectionHeader")
+        
         locManager.requestWhenInUseAuthorization()
         
         height = Int(UIScreen.main.bounds.size.height - 110)
@@ -257,10 +263,56 @@ class ChurchDetailsViewController: UIViewController, UITableViewDataSource, UITa
                 }
             }
         }
+        
+        self.setGestureLayout()
     }
     override func viewDidAppear(_ animated: Bool)
     {
         self.tableView.reloadSections([1], with: .automatic)
+    }
+    func setGestureLayout()
+    {
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(didSwipeRight(gestureRecognizer:)))
+        swipeRight.delegate = self
+        swipeRight.numberOfTouchesRequired = 1
+        swipeRight.delaysTouchesBegan = true
+        swipeRight.direction = .right
+        
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(didSwipeLeft(gestureRecognizer:)))
+        swipeLeft.delegate = self
+        swipeLeft.numberOfTouchesRequired = 1
+        swipeLeft.delaysTouchesBegan = true
+        swipeLeft.direction = .left
+        
+        tableView?.addGestureRecognizer(swipeRight)
+        tableView?.addGestureRecognizer(swipeLeft)
+    }
+    @objc func didSwipeRight(gestureRecognizer : UISwipeGestureRecognizer)
+    {
+        if self.segmentIndex != 0
+        {
+            self.segmentIndex = self.segmentIndex  - 1
+            
+            //            self.tableView.reloadData()
+            self.tableView.reloadSections([1], with: .automatic)
+            
+            let customCell = self.tableView.headerView(forSection: 0) as! sectionHeaderView
+            self.updateHeaderView(customCell: customCell, section: 0)
+        }
+    }
+    
+    @objc func didSwipeLeft(gestureRecognizer : UISwipeGestureRecognizer)
+    {
+        if self.segmentIndex + 1 != self.sectionHeaderCellCount
+        {
+            self.segmentIndex = self.segmentIndex + 1
+            
+            //            self.tableView.reloadData()
+            self.tableView.reloadSections([1], with: .automatic)
+            
+            let customCell = self.tableView.headerView(forSection: 0) as! sectionHeaderView
+            self.updateHeaderView(customCell: customCell, section: 0)
+        }
     }
     override func didReceiveMemoryWarning()
     {
@@ -272,23 +324,29 @@ class ChurchDetailsViewController: UIViewController, UITableViewDataSource, UITa
         self.navigationController?.popViewController(animated: true)
     }
     
+    func updateHeaderView(customCell: sectionHeaderView, section: Int)
+    {
+        customCell.segmentControl.selectedSegmentIndex = self.segmentIndex
+    }
     //MARK: UITableViewDelegate
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView?
     {
         if section == 0
         {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "sectionHeader") as? sectionsHeaderCell
+            let cell = tableView.dequeueReusableHeaderFooterView(withIdentifier: "sectionHeader") as? sectionHeaderView
             
             cell?.segmentControl.addTarget(self, action: #selector(self.segmentSelected(sender:)), for: .valueChanged)
             
-            cell?.segmentControl.insertSegment(withTitle: "STATEMENT OF FAITH", image: nil, at: 0)
+            cell?.segmentControl.insertSegment(withTitle: "ABOUT", image: nil, at: 0)
             cell?.segmentControl.insertSegment(withTitle: "PRODUCTS", image: nil, at: 1)
-            cell?.segmentControl.insertSegment(withTitle: "MEMBERSHIP FORM", image: nil, at: 2)
-            cell?.segmentControl.insertSegment(withTitle: "EVENTS", image: nil, at: 3)
-            cell?.segmentControl.insertSegment(withTitle: "BIBLE COLLEGE", image: nil, at: 4)
-            cell?.segmentControl.insertSegment(withTitle: "HOME CELLS/BRANCHES", image: nil, at: 5)
-            cell?.segmentControl.insertSegment(withTitle: "OFFERING", image: nil, at: 6)
-            cell?.segmentControl.selectedSegmentIndex = 0
+            cell?.segmentControl.insertSegment(withTitle: "SERMONS", image: nil, at: 2)
+            cell?.segmentControl.insertSegment(withTitle: "TITHE", image: nil, at: 3)
+            cell?.segmentControl.insertSegment(withTitle: "TESTIMONY", image: nil, at: 4)
+            
+            cell?.segmentControl.selectedSegmentIndex = self.segmentIndex
+            
+            
+            self.updateHeaderView(customCell: cell!, section: 0)
             
             return cell
         }

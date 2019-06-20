@@ -270,10 +270,7 @@ class HomeDetailsViewController: UIViewController, UITableViewDataSource, UITabl
     {
         if section == 0
         {
-           // let header = sectionHeaderView(frame: CGRect(x: 0, y: 0, width: 50, height: 300))
-            
             let cell = tableView.dequeueReusableHeaderFooterView(withIdentifier: "sectionHeader") as? sectionHeaderView
-          //  let cell = tableView.dequeueReusableCell(withIdentifier: "sectionHeader") as? sectionHeaderCell
             
             cell?.segmentControl.addTarget(self, action: #selector(self.segmentSelected(sender:)), for: .valueChanged)
             
@@ -284,8 +281,7 @@ class HomeDetailsViewController: UIViewController, UITableViewDataSource, UITabl
             cell?.segmentControl.insertSegment(withTitle: "TESTIMONY", image: nil, at: 4)
             
             cell?.segmentControl.selectedSegmentIndex = self.segmentIndex
-            
-            
+                        
             self.updateHeaderView(customCell: cell!, section: 0)
             
             return cell
