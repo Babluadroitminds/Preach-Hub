@@ -123,6 +123,9 @@ class HomeDetailsViewController: UIViewController, UITableViewDataSource, UITabl
     {
         super.viewDidLoad()
         
+        let headerNib = UINib.init(nibName: "sectionHeader", bundle: Bundle.main)
+        self.tableView.register(headerNib, forHeaderFooterViewReuseIdentifier: "sectionHeader")
+        
         height = Int(UIScreen.main.bounds.size.height - 110)
         
         if UIDevice().userInterfaceIdiom == .phone
@@ -226,27 +229,31 @@ class HomeDetailsViewController: UIViewController, UITableViewDataSource, UITabl
         tableView?.addGestureRecognizer(swipeLeft)
     }
     
-    @objc func didSwipeRight(gestureRecognizer : UISwipeGestureRecognizer){
-        if self.segmentIndex != 0{
+    @objc func didSwipeRight(gestureRecognizer : UISwipeGestureRecognizer)
+    {
+        if self.segmentIndex != 0
+        {
             self.segmentIndex = self.segmentIndex  - 1
-         //   self.tableView.reloadSections([1], with: .automatic)
-         
-//            let indexPath = IndexPath(row: 0, section: 0)
-            let cell = tableView.dequeueReusableCell(withIdentifier: "sectionHeader") as? sectionHeaderCell
-//
-//             let TbcellView = cellView?.subviews[0]
-//             print(TbcellView?.subviews)
-//
-            cell!.segmentControl.selectedSegmentIndex = self.segmentIndex
-           
+            
+//            self.tableView.reloadData()
             self.tableView.reloadSections([1], with: .automatic)
+            
+            let customCell = self.tableView.headerView(forSection: 0) as! sectionHeaderView
+            self.updateHeaderView(customCell: customCell, section: 0)
         }
     }
     
-    @objc func didSwipeLeft(gestureRecognizer : UISwipeGestureRecognizer){
-        if self.segmentIndex + 1 != self.sectionHeaderCellCount {
+    @objc func didSwipeLeft(gestureRecognizer : UISwipeGestureRecognizer)
+    {
+        if self.segmentIndex + 1 != self.sectionHeaderCellCount
+        {
             self.segmentIndex = self.segmentIndex + 1
+            
+//            self.tableView.reloadData()
             self.tableView.reloadSections([1], with: .automatic)
+            
+            let customCell = self.tableView.headerView(forSection: 0) as! sectionHeaderView
+            self.updateHeaderView(customCell: customCell, section: 0)
         }
     }
     
@@ -254,13 +261,19 @@ class HomeDetailsViewController: UIViewController, UITableViewDataSource, UITabl
     {
         self.navigationController?.popViewController(animated: true)
     }
-    
+    func updateHeaderView(customCell: sectionHeaderView, section: Int)
+    {
+        customCell.segmentControl.selectedSegmentIndex = self.segmentIndex
+    }
     //MARK: UITableViewDelegate
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView?
     {
         if section == 0
         {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "sectionHeader") as? sectionHeaderCell
+           // let header = sectionHeaderView(frame: CGRect(x: 0, y: 0, width: 50, height: 300))
+            
+            let cell = tableView.dequeueReusableHeaderFooterView(withIdentifier: "sectionHeader") as? sectionHeaderView
+          //  let cell = tableView.dequeueReusableCell(withIdentifier: "sectionHeader") as? sectionHeaderCell
             
             cell?.segmentControl.addTarget(self, action: #selector(self.segmentSelected(sender:)), for: .valueChanged)
             
@@ -270,7 +283,10 @@ class HomeDetailsViewController: UIViewController, UITableViewDataSource, UITabl
             cell?.segmentControl.insertSegment(withTitle: "TITHE", image: nil, at: 3)
             cell?.segmentControl.insertSegment(withTitle: "TESTIMONY", image: nil, at: 4)
             
-            cell?.segmentControl.selectedSegmentIndex = 0
+            cell?.segmentControl.selectedSegmentIndex = self.segmentIndex
+            
+            
+            self.updateHeaderView(customCell: cell!, section: 0)
             
             return cell
         }
@@ -304,8 +320,6 @@ class HomeDetailsViewController: UIViewController, UITableViewDataSource, UITabl
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        print("self.segmentIndexself.segmentIndex : ", self.segmentIndex)
-        
         if section == 0
         {
             return 0
@@ -579,8 +593,10 @@ class HomeDetailsViewController: UIViewController, UITableViewDataSource, UITabl
         return CGFloat(self.height)
     }
     
-    func playVideo(list: SermonsTestimony){
+    func playVideo(list: SermonsTestimony)
+    {
         let videoURL = URL(string: list.video)
+        
         player = AVPlayer(url: videoURL!)
         let vc = AVPlayerViewController()
         vc.player = player

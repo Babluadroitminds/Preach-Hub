@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="gUa-U4-Zu1" customClass="sectionHeaderView" customModule="Preach_Hub" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o8k-iG-zCY">
+                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SDv-Qs-tjl" customClass="ScrollableSegmentedControl" customModule="Preach_Hub" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="818"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="underlineSelected" value="YES"/>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="SDv-Qs-tjl" firstAttribute="top" secondItem="o8k-iG-zCY" secondAttribute="top" id="Bfg-1h-La4"/>
+                        <constraint firstAttribute="bottom" secondItem="SDv-Qs-tjl" secondAttribute="bottom" id="LrP-hh-2bD"/>
+                        <constraint firstItem="SDv-Qs-tjl" firstAttribute="leading" secondItem="o8k-iG-zCY" secondAttribute="leading" id="Zos-c0-Xhq"/>
+                        <constraint firstAttribute="trailing" secondItem="SDv-Qs-tjl" secondAttribute="trailing" id="r1k-e6-J8C"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="zmn-iK-nuC" firstAttribute="trailing" secondItem="o8k-iG-zCY" secondAttribute="trailing" id="5UZ-dm-IhB"/>
+                <constraint firstItem="o8k-iG-zCY" firstAttribute="leading" secondItem="zmn-iK-nuC" secondAttribute="leading" id="5e2-OF-hqn"/>
+                <constraint firstItem="zmn-iK-nuC" firstAttribute="bottom" secondItem="o8k-iG-zCY" secondAttribute="bottom" id="BJi-MI-ai8"/>
+                <constraint firstItem="o8k-iG-zCY" firstAttribute="top" secondItem="zmn-iK-nuC" secondAttribute="top" id="vB4-Nm-mjF"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="zmn-iK-nuC"/>
+            <connections>
+                <outlet property="segmentControl" destination="SDv-Qs-tjl" id="MwS-3r-kyg"/>
+                <outlet property="view" destination="o8k-iG-zCY" id="VoF-2a-Syz"/>
+            </connections>
+            <point key="canvasLocation" x="23" y="205"/>
+        </view>
+    </objects>
+</document>

@@ -14,6 +14,8 @@
 		1895169C228D6732005FA99A /* Preach_HubTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1895169B228D6732005FA99A /* Preach_HubTests.swift */; };
 		189516A7228D6732005FA99A /* Preach_HubUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189516A6228D6732005FA99A /* Preach_HubUITests.swift */; };
 		523E967D22AA4522008B51B9 /* FavouritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523E967C22AA4522008B51B9 /* FavouritesViewController.swift */; };
+		5270660622BB5F6F00D6206C /* sectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5270660522BB5F6F00D6206C /* sectionHeaderView.swift */; };
+		5270660822BB650700D6206C /* sectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5270660722BB650700D6206C /* sectionHeader.xib */; };
 		5273C57F229E900200328BEC /* PreachHub.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5273C57D229E900200328BEC /* PreachHub.xcdatamodeld */; };
 		5273C581229E9D3D00328BEC /* SingleTon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5273C580229E9D3D00328BEC /* SingleTon.swift */; };
 		52C7691322A8E2E000A780D0 /* HomeDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52C7691222A8E2E000A780D0 /* HomeDetails.storyboard */; };
@@ -107,6 +109,8 @@
 		189516A6228D6732005FA99A /* Preach_HubUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preach_HubUITests.swift; sourceTree = "<group>"; };
 		189516A8228D6732005FA99A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		523E967C22AA4522008B51B9 /* FavouritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesViewController.swift; sourceTree = "<group>"; };
+		5270660522BB5F6F00D6206C /* sectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sectionHeaderView.swift; sourceTree = "<group>"; };
+		5270660722BB650700D6206C /* sectionHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = sectionHeader.xib; sourceTree = "<group>"; };
 		5273C57E229E900200328BEC /* PreachHub.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PreachHub.xcdatamodel; sourceTree = "<group>"; };
 		5273C580229E9D3D00328BEC /* SingleTon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleTon.swift; sourceTree = "<group>"; };
 		52C7691222A8E2E000A780D0 /* HomeDetails.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HomeDetails.storyboard; sourceTree = "<group>"; };
@@ -299,6 +303,8 @@
 				820877DD2298040100513037 /* TermsNConditionViewController.swift */,
 				523E967C22AA4522008B51B9 /* FavouritesViewController.swift */,
 				52C7691422A8E3D800A780D0 /* HomeDetailsViewController.swift */,
+				5270660522BB5F6F00D6206C /* sectionHeaderView.swift */,
+				5270660722BB650700D6206C /* sectionHeader.xib */,
 				52C7691822A8E44300A780D0 /* DetailsHeaderView.swift */,
 				52C7691A22A8E48B00A780D0 /* DetailsHeaderView.xib */,
 				5273C57D229E900200328BEC /* PreachHub.xcdatamodeld */,
@@ -502,6 +508,7 @@
 				E366C124228E8A71003CBE58 /* Home.storyboard in Resources */,
 				8277467D22AE4E86005A650B /* notification.png in Resources */,
 				820877C22297B17500513037 /* ic-eye.png in Resources */,
+				5270660822BB650700D6206C /* sectionHeader.xib in Resources */,
 				820877C82297B43E00513037 /* ic-hide-eye.png in Resources */,
 				820877DC229803D500513037 /* terms.html in Resources */,
 				52C7691B22A8E48B00A780D0 /* DetailsHeaderView.xib in Resources */,
@@ -648,6 +655,7 @@
 				E3578606229D3AA9009E8BBE /* AddBillingAddressViewController.swift in Sources */,
 				E3ACFC47228D7B0300F798D6 /* RegistrationVC.swift in Sources */,
 				8235EB472293C3760090230B /* ForgotPasswordViewController.swift in Sources */,
+				5270660622BB5F6F00D6206C /* sectionHeaderView.swift in Sources */,
 				52C7691922A8E44300A780D0 /* DetailsHeaderView.swift in Sources */,
 				8203F0C8228D69B700F9D65D /* NotificationsHelper.swift in Sources */,
 				8209454C22A8DD3D00B75ACE /* OrderHistoryDetailsViewController.swift in Sources */,
