@@ -109,6 +109,10 @@ class RegistrationVC: UIViewController{
                 self.view.makeToast("Oops! Something went wrong!", duration: 3.0, position: .bottom, style: self.style)
                 return
             }
+            else if response["data"]["member"]["statusCode"].int == 400 {
+                self.view.makeToast("Oops! Something went wrong!", duration: 3.0, position: .bottom, style: self.style)
+                return
+            }
             
             if response["data"]["member"]["status"].string == "SUCCESS" {
                 let stripeCustomerTokenId = response["data"]["member"]["stripecustomertokenid"].string

@@ -248,7 +248,9 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     func removeContinueWatchingVideo(id: String){
         let parameters: [String: String] = [:]
         APIHelper().deleteBackground(apiUrl: String.init(format: GlobalConstants.APIUrls.removeContinueWatchingVideo, id), parameters: parameters as [String : AnyObject]) { (response) in
-             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "RefreshHomeRequest"), object: nil)
+            if response["data"]["count"].int == 1 {
+                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "RefreshHomeRequest"), object: nil)
+            }
         }
     }
   
