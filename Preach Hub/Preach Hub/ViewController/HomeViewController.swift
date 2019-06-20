@@ -190,6 +190,8 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     var bannerList: [DataKey] = []
     
     var headingArray = ["", "CONTINUE WATCHING", "CHURCHES", "CHURCH MINISTRY CHANNEL","GOSPEL MUSIC"]
+    var player: AVPlayer?
+    var selectedContinueWatchingId: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -223,16 +225,30 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     @objc func playVideoRequest(_ notification: Notification) {
         if let bannerVideoUrl = notification.userInfo?["videoUrl"] as? String {
            playVideo(videoUrl: bannerVideoUrl)
+           selectedContinueWatchingId = ""
         }
     }
     
     func playVideo(videoUrl: String){
         let videoURL = URL(string: videoUrl)
-        let player = AVPlayer(url: videoURL!)
+        player = AVPlayer(url: videoURL!)
         let vc = AVPlayerViewController()
         vc.player = player
         self.present(vc, animated: true) {
             vc.player?.play()
+        }
+    }
+    
+    @objc func playerItemDidReachEnd(notification: Notification) {
+        if selectedContinueWatchingId != "" {
+            removeContinueWatchingVideo(id: selectedContinueWatchingId)
+        }
+    }
+    
+    func removeContinueWatchingVideo(id: String){
+        let parameters: [String: String] = [:]
+        APIHelper().deleteBackground(apiUrl: String.init(format: GlobalConstants.APIUrls.removeContinueWatchingVideo, id), parameters: parameters as [String : AnyObject]) { (response) in
+             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "RefreshHomeRequest"), object: nil)
         }
     }
   
@@ -266,7 +282,7 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                     self.continueWatchingLists = []
                     if response["data"].array != nil  {
                         for item in response["data"].arrayValue {
-                            self.continueWatchingLists.append(DataKey(id: item["sermonid"] != JSON.null ? item["sermonid"].string! : "", title: item["sermon"]["name"] != JSON.null ? item["sermon"]["name"].string! : "", thumb: item["sermon"]["img_thumb"] != JSON.null ? item["sermon"]["img_thumb"].string! : "", description: item["sermon"]["description"] != JSON.null ? item["sermon"]["description"].string! : "", isActive: item["sermon"]["is_active"] != JSON.null ? item["sermon"]["is_active"].bool! : false, videoUrl: item["sermon"]["video"] != JSON.null ? item["sermon"]["video"].string! : "", subtitle: "", tags: ""))
+                            self.continueWatchingLists.append(DataKey(id: item["id"] != JSON.null ? item["id"].string! : "", title: item["sermon"]["name"] != JSON.null ? item["sermon"]["name"].string! : "", thumb: item["sermon"]["img_thumb"] != JSON.null ? item["sermon"]["img_thumb"].string! : "", description: item["sermon"]["description"] != JSON.null ? item["sermon"]["description"].string! : "", isActive: item["sermon"]["is_active"] != JSON.null ? item["sermon"]["is_active"].bool! : false, videoUrl: item["sermon"]["video"] != JSON.null ? item["sermon"]["video"].string! : "", subtitle: "", tags: ""))
                         }
                         self.tblView.reloadData()
                     }
@@ -438,7 +454,12 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         if selectedRow == 1 {
             let continueWatchingItem = self.continueWatchingLists.filter { $0.id == id }
             let videoURL = continueWatchingItem[0].videoUrl
+            selectedContinueWatchingId = continueWatchingItem[0].id
             playVideo(videoUrl: videoURL)
+            if videoURL != "" {
+                player?.actionAtItemEnd = .none
+                NotificationCenter.default.addObserver(self,selector: #selector(playerItemDidReachEnd(notification:)),name: .AVPlayerItemDidPlayToEndTime, object: player?.currentItem)
+            }
         }
         else
         if selectedRow == 3{

@@ -50,5 +50,6 @@ struct GlobalConstants {
         static let continueWatchings: String = "continuewatchings"
         static let getContinueWatchingById: String = "continuewatchings?filter=%@"
         static let getMusic: String = "music"
+        static let removeContinueWatchingVideo: String = "continuewatchings/%@"
     }
 }
