@@ -235,6 +235,8 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         let vc = AVPlayerViewController()
         vc.player = player
         self.present(vc, animated: true) {
+            
+            try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [])
             vc.player?.play()
         }
     }
@@ -247,7 +249,9 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     
     func removeContinueWatchingVideo(id: String){
         let parameters: [String: String] = [:]
+        
         APIHelper().deleteBackground(apiUrl: String.init(format: GlobalConstants.APIUrls.removeContinueWatchingVideo, id), parameters: parameters as [String : AnyObject]) { (response) in
+                        
             if response["data"]["count"].int == 1 {
                  NotificationCenter.default.post(name: NSNotification.Name(rawValue: "RefreshHomeRequest"), object: nil)
             }
@@ -281,6 +285,9 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         if let json = try? JSONSerialization.data(withJSONObject: dict, options: []) {
             if let content = String(data: json, encoding: String.Encoding.utf8) {
                 APIHelper().get(apiUrl: String.init(format: GlobalConstants.APIUrls.getContinueWatchings,content), parameters: parameters as [String : AnyObject]) { (response) in
+                    
+                    print("responseContinue : ", response)
+
                     self.continueWatchingLists = []
                     if response["data"].array != nil  {
                         for item in response["data"].arrayValue {
@@ -479,6 +486,8 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         if let json = try? JSONSerialization.data(withJSONObject: dict, options: []) {
             if let content = String(data: json, encoding: String.Encoding.utf8) {
                 APIHelper().get(apiUrl: String.init(format: GlobalConstants.APIUrls.getPastorDetails, id, content), parameters: parameters as [String : AnyObject]) { (response) in
+                    
+                    print("responsePastor : ", response)
                     
                     if response["data"].dictionary != nil  {
                         let storyBoard : UIStoryboard = UIStoryboard(name: "HomeDetails", bundle:nil)

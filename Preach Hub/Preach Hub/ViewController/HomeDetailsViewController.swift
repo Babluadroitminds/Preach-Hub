@@ -476,6 +476,12 @@ class HomeDetailsViewController: UIViewController, UITableViewDataSource, UITabl
                 }
                 else
                 {
+                    cell!.sermonImage.isHidden = false
+                    cell!.name.isHidden = false
+                    cell!.timeLbl.isHidden = false
+                    cell!.availableLbl.isHidden = false
+                    cell!.moreView.isHidden = false
+                    
                     let imageUrl = self.testimonyArr[indexPath.row].imageThumb
                     let urlString = imageUrl.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
                     cell!.sermonImage.sd_setShowActivityIndicatorView(true)
@@ -598,14 +604,19 @@ class HomeDetailsViewController: UIViewController, UITableViewDataSource, UITabl
         vc.player = player
         
         present(vc, animated: true) {
+            
+            try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [])            
             vc.player?.play()
         }
         if list.isSermons {
             selectedSermonsId = list.id
             self.player!.addObserver(self, forKeyPath: "rate", options: NSKeyValueObservingOptions(), context: nil)
         }
-        else {
+        else
+        {
             selectedSermonsId = ""
+//            selectedSermonsId = list.id
+//            self.player!.addObserver(self, forKeyPath: "rate", options: NSKeyValueObservingOptions(), context: nil)
         }
     }
     
@@ -628,6 +639,8 @@ class HomeDetailsViewController: UIViewController, UITableViewDataSource, UITabl
         if selectedSermonsId != "" {
             let parameters: [String: String] = [:]
             let dict = ["where":["sermonid": selectedSermonsId, "memberid": memberId]] as [String : Any]
+            
+            print("dict : ", dict)
             
             if let json = try? JSONSerialization.data(withJSONObject: dict, options: []) {
                 if let content = String(data: json, encoding: String.Encoding.utf8) {

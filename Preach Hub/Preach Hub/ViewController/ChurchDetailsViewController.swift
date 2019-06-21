@@ -580,6 +580,12 @@ class ChurchDetailsViewController: UIViewController, UITableViewDataSource, UITa
                 }
                 else
                 {
+                    cell!.sermonImage.isHidden = false
+                    cell!.name.isHidden = false
+                    cell!.timeLbl.isHidden = false
+                    cell!.availableLbl.isHidden = false
+                    cell!.moreView.isHidden = false
+                    
                     let imageUrl = self.testimonyArr[indexPath.row].imageThumb
                     let urlString = imageUrl.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
                     cell!.sermonImage.sd_setShowActivityIndicatorView(true)
@@ -648,6 +654,7 @@ class ChurchDetailsViewController: UIViewController, UITableViewDataSource, UITa
                 vc.player = player
                 
                 present(vc, animated: true) {
+                    try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [])
                     vc.player?.play()
                 }
 //                NotificationCenter.default.addObserver(self, selector: #selector(ChurchDetailsViewController.itemDidPausePlaying(_:)), name: NSNotification.Name.AVPlayerItemPlaybackStalled, object: player)
@@ -683,10 +690,10 @@ class ChurchDetailsViewController: UIViewController, UITableViewDataSource, UITa
         }
         else if self.segmentIndex == 2{
             if indexPath.row == 1 {
-                let minus = self.height - 450
+                let minus = self.height - 540
                 return CGFloat(minus)
             }
-            return 450
+            return 540
         }
         else if self.segmentIndex == 3 {
             if self.eventArr.count == 0 {
@@ -726,6 +733,7 @@ class ChurchDetailsViewController: UIViewController, UITableViewDataSource, UITa
                 }
             }
             return 70
+            
         }
         else if self.segmentIndex == 5 {
             if self.branchArr.count == 0{

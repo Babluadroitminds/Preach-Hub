@@ -83,6 +83,8 @@ class ListViewController: UIViewController,UICollectionViewDataSource , UICollec
         let vc = AVPlayerViewController()
         vc.player = player
         self.present(vc, animated: true) {
+            
+            try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [])
             vc.player?.play()
         }
     }

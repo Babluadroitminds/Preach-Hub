@@ -89,11 +89,16 @@ class RegistrationVC: UIViewController{
             return
         }
         
+//        {"member":{"contact":"9633121212","datecreated":"","deviceid":"270938aea38d6c03","email":"hdh@hh.com","emailverified":false,"firstname":"k","lastname":"h","occupation":"","password":"123456","pictureurl":"","realm":"","statuscode":0,"username":"hdh"}}
+        
         let UUID = UIDevice.current.identifierForVendor!.uuidString
-        let memberDetails: [String: Any] = ["firstname": self.txtFirstName.text!, "lastname": self.txtLastName.text!, "contact": self.txtContactNumber.text!, "occupation": self.txtOccupation.text!, "email": self.txtEmail.text!, "password": self.txtPassword.text!, "username": self.txtEmail.text!, "deviceid": "\(UUID)", "emailVerified": false, "address": "", "pictureURL": "","churchID": "", "datecreated": "", "realm": "" ]
+        let memberDetails: [String: Any] = ["firstname": self.txtFirstName.text!, "lastname": self.txtLastName.text!, "contact": self.txtContactNumber.text!, "occupation": self.txtOccupation.text!, "email": self.txtEmail.text!, "password": self.txtPassword.text!, "username": self.txtEmail.text!, "deviceid": "\(UUID)", "emailverified": false, "pictureurl": "", "datecreated": "", "realm": "", "statuscode":0]
         
         let parameters: [String: Any] = ["member": memberDetails]
         APIHelper().post(apiUrl: GlobalConstants.APIUrls.memberRegister, parameters: parameters as [String : AnyObject]) { (response) in
+            
+            print("RegisterResponse : ", response)
+            
             if response["data"]["member"]["statusCode"].int == 422 {
                 if response["data"]["member"]["details"]["messages"]["email"][0].string != nil {
                     let message = response["data"]["member"]["details"]["messages"]["email"][0].string
