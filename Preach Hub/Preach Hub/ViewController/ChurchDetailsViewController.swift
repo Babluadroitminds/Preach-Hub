@@ -174,9 +174,17 @@ class ChurchDetailsViewController: UIViewController, UITableViewDataSource, UITa
     
     var sectionHeaderCellCount: Int = 7
 
+    var profileDetails : [String : String]!
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        
+        if UserDefaults.standard.value(forKey: "ProfileDetails") as? Data != nil
+        {
+            let data = UserDefaults.standard.value(forKey: "ProfileDetails") as? Data
+            self.profileDetails = (NSKeyedUnarchiver.unarchiveObject(with: data!)! as? [String : String])!
+        }
         
         let headerNib = UINib.init(nibName: "sectionHeader", bundle: Bundle.main)
         self.tableView.register(headerNib, forHeaderFooterViewReuseIdentifier: "sectionHeader")
@@ -269,6 +277,33 @@ class ChurchDetailsViewController: UIViewController, UITableViewDataSource, UITa
     override func viewDidAppear(_ animated: Bool)
     {
         self.tableView.reloadSections([1], with: .automatic)
+    }
+
+    func textFieldDidEndEditing(_ textField: UITextField)
+    {
+        let indexPath = IndexPath(row: 0, section: 1)
+        let cell = self.tableView.cellForRow(at: indexPath) as? MembershipFormCell
+        
+        if cell?.txtEmail == textField
+        {
+            self.profileDetails["Email"] = textField.text
+        }
+        else if cell?.txtContactNumber == textField
+        {
+            self.profileDetails["ContactNumber"] = textField.text
+        }
+        else if cell?.txtOccupation == textField
+        {
+            self.profileDetails["Occupation"] = textField.text
+        }
+        else if cell?.txtLastName == textField
+        {
+            self.profileDetails["LastName"] = textField.text
+        }
+        else if cell?.txtFirstName == textField
+        {
+            self.profileDetails["FirstName"] = textField.text
+        }
     }
     func setGestureLayout()
     {
@@ -483,29 +518,48 @@ class ChurchDetailsViewController: UIViewController, UITableViewDataSource, UITa
                 return cell!
             }
         }
-        else if self.segmentIndex == 2 {
+        else if self.segmentIndex == 2
+        {
             let cell = tableView.dequeueReusableCell(withIdentifier: "membershipFormCell") as? MembershipFormCell
-                if indexPath.row == 1 {
-                   cell?.lblHeading.isHidden = true
-                   cell?.vwFirstName.isHidden = true
-                   cell?.vwLastName.isHidden = true
-                   cell?.vwContactNumber.isHidden = true
-                   cell?.vwEmail.isHidden = true
-                   cell?.vwOccupation.isHidden = true
-                   cell?.btnApply.isHidden = true
+            
+            if indexPath.row == 1
+            {
+                cell?.lblHeading.isHidden = true
+                cell?.vwFirstName.isHidden = true
+                cell?.vwLastName.isHidden = true
+                cell?.vwContactNumber.isHidden = true
+                cell?.vwEmail.isHidden = true
+                cell?.vwOccupation.isHidden = true
+                cell?.btnApply.isHidden = true
+            }
+            else
+            {
+                if self.profileDetails != nil
+                {
+                    cell?.txtEmail.text = self.profileDetails["Email"]
+                    cell?.txtContactNumber.text = self.profileDetails["ContactNumber"]
+                    cell?.txtOccupation.text = self.profileDetails["Occupation"]
+                    cell?.txtLastName.text = self.profileDetails["LastName"]
+                    cell?.txtFirstName.text = self.profileDetails["FirstName"]
                 }
-                else{
-                    cell?.lblHeading.isHidden = false
-                    cell?.vwFirstName.isHidden = false
-                    cell?.vwLastName.isHidden = false
-                    cell?.vwContactNumber.isHidden = false
-                    cell?.vwEmail.isHidden = false
-                    cell?.vwOccupation.isHidden = false
-                    cell?.btnApply.isHidden = false
-                    cell?.btnApply.addTarget(self, action: #selector(btnApplyMembership(sender:)), for: .touchUpInside)
-                    cell?.btnApply.tag = indexPath.row
-                }
-                return cell!
+                
+                cell?.txtEmail.delegate = self
+                cell?.txtContactNumber.delegate = self
+                cell?.txtOccupation.delegate = self
+                cell?.txtLastName.delegate = self
+                cell?.txtFirstName.delegate = self
+                
+                cell?.lblHeading.isHidden = false
+                cell?.vwFirstName.isHidden = false
+                cell?.vwLastName.isHidden = false
+                cell?.vwContactNumber.isHidden = false
+                cell?.vwEmail.isHidden = false
+                cell?.vwOccupation.isHidden = false
+                cell?.btnApply.isHidden = false
+                cell?.btnApply.addTarget(self, action: #selector(btnApplyMembership(sender:)), for: .touchUpInside)
+                cell?.btnApply.tag = indexPath.row
+            }
+            return cell!
         }
         else if self.segmentIndex == 3 {
             if self.eventArr.count == 0{
@@ -793,7 +847,6 @@ class ChurchDetailsViewController: UIViewController, UITableViewDataSource, UITa
         let churchName = detailsDict["name"]!.string!
         let parameters: [String: Any] = ["userId": memberId!, "churchName": churchName]
         APIHelper().post(apiUrl: GlobalConstants.APIUrls.AddChurchMember, parameters: parameters as [String : AnyObject]) { (response) in
-           
         }
     }
     

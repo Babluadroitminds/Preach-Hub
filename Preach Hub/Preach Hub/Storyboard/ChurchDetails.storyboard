@@ -10,6 +10,9 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="Gibson-Bold.ttf">
+            <string>Gibson-Bold</string>
+        </array>
         <array key="Gibson-Regular.ttf">
             <string>Gibson-Regular</string>
         </array>
@@ -558,13 +561,13 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Apply for membership" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rWE-li-tJf">
-                                                    <rect key="frame" x="15" y="25" width="290" height="30"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="25"/>
+                                                    <rect key="frame" x="15" y="25" width="290" height="27"/>
+                                                    <fontDescription key="fontDescription" name="Gibson-Bold" family="Gibson" pointSize="22"/>
                                                     <color key="textColor" red="0.23529411764705882" green="0.58431372549019611" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RnJ-PP-ZcR" userLabel="Vw First Name">
-                                                    <rect key="frame" x="20" y="77.5" width="280" height="60"/>
+                                                    <rect key="frame" x="20" y="74.5" width="280" height="60"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic-user" translatesAutoresizingMaskIntoConstraints="NO" id="Hwh-Vd-8Qj">
                                                             <rect key="frame" x="20" y="21.5" width="17" height="17"/>
@@ -611,7 +614,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lvB-o6-WAO" userLabel="Vw Last Name">
-                                                    <rect key="frame" x="20" y="152.5" width="280" height="60"/>
+                                                    <rect key="frame" x="20" y="149.5" width="280" height="60"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic-user" translatesAutoresizingMaskIntoConstraints="NO" id="8gg-Ov-3ec">
                                                             <rect key="frame" x="20" y="21.5" width="17" height="17"/>
@@ -654,7 +657,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ari-56-mk1" userLabel="Vw Contact Number">
-                                                    <rect key="frame" x="20" y="227.5" width="280" height="60"/>
+                                                    <rect key="frame" x="20" y="224.5" width="280" height="60"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_contact_image" translatesAutoresizingMaskIntoConstraints="NO" id="LBx-cf-rWH">
                                                             <rect key="frame" x="20" y="21.5" width="17" height="17"/>
@@ -700,7 +703,7 @@ Q29udGFjdCAQTnVtYmVyA
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9HT-Lh-PEs" userLabel="Vw Occupation">
-                                                    <rect key="frame" x="20" y="302.5" width="280" height="60"/>
+                                                    <rect key="frame" x="20" y="299.5" width="280" height="60"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_occupation_img" translatesAutoresizingMaskIntoConstraints="NO" id="sXT-zx-mhD">
                                                             <rect key="frame" x="20" y="21.5" width="17" height="17"/>
@@ -743,7 +746,7 @@ Q29udGFjdCAQTnVtYmVyA
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sda-U5-pAP" userLabel="Vw Email">
-                                                    <rect key="frame" x="20" y="377.5" width="280" height="60"/>
+                                                    <rect key="frame" x="20" y="374.5" width="280" height="60"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_new_email_outline" translatesAutoresizingMaskIntoConstraints="NO" id="O6L-Vb-qjP">
                                                             <rect key="frame" x="20" y="21.5" width="17" height="17"/>
@@ -786,7 +789,7 @@ Q29udGFjdCAQTnVtYmVyA
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                                 <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bvM-mM-VBJ">
-                                                    <rect key="frame" x="20" y="457.5" width="280" height="60"/>
+                                                    <rect key="frame" x="20" y="454.5" width="280" height="60"/>
                                                     <color key="backgroundColor" red="0.23529411764705882" green="0.58431372549019611" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="60" id="dPQ-y5-5xv"/>
@@ -802,7 +805,7 @@ Q29udGFjdCAQTnVtYmVyA
                                                     </userDefinedRuntimeAttributes>
                                                 </button>
                                             </subviews>
-                                            <color key="backgroundColor" red="0.27058823529411763" green="0.27058823529411763" blue="0.27058823529411763" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="backgroundColor" red="0.13333333333333333" green="0.12156862745098039" blue="0.12156862745098039" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstItem="sda-U5-pAP" firstAttribute="top" secondItem="9HT-Lh-PEs" secondAttribute="bottom" constant="15" id="006-Nx-TwQ"/>
                                                 <constraint firstItem="rWE-li-tJf" firstAttribute="top" secondItem="jw4-Sr-CaU" secondAttribute="top" constant="25" id="5QA-xk-NAh"/>

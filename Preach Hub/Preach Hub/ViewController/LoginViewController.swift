@@ -52,6 +52,7 @@ class LoginViewController: UIViewController{
         
         let parameters: [String: String] = ["username": self.txtUsername.text!, "password": self.txtPassword.text!]
         APIHelper().post(apiUrl: GlobalConstants.APIUrls.memberLogin, parameters: parameters as [String : AnyObject]) { (response) in
+                        
             if response["error"]["statusCode"].int == 401 {
                 self.view.makeToast("Wrong Email or Password", duration: 3.0, position: .bottom, style: self.style)
                 return
@@ -74,7 +75,17 @@ class LoginViewController: UIViewController{
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
         let parameters: [String: String] = [:]
         APIHelper().get(apiUrl: String.init(format: GlobalConstants.APIUrls.memberDetails,memberId), parameters: parameters as [String : AnyObject]) { (response) in
+            
+            print("responseLogin : ", response)
+
             if response["data"] != JSON.null  {
+                
+                let profileDetails : [String : String] = ["FirstName": response["data"]["firstname"] != JSON.null ? response["data"]["firstname"].string! : "", "LastName": response["data"]["lastname"] != JSON.null ? response["data"]["lastname"].string! : "", "ContactNumber": response["data"]["contact"] != JSON.null ? response["data"]["contact"].string! : "", "Occupation": response["data"]["occupation"] != JSON.null ? response["data"]["occupation"].string! : "", "Email": response["data"]["email"] != JSON.null ? response["data"]["email"].string! : ""]
+                
+                let productData = NSKeyedArchiver.archivedData(withRootObject: profileDetails)
+                self.userDefaults.set(productData, forKey: "ProfileDetails")
+                self.userDefaults.synchronize()
+                
                 let firstName = response["data"]["firstname"] != JSON.null ? response["data"]["firstname"].string : ""
                 let lastName = response["data"]["lastname"] != JSON.null ? response["data"]["lastname"].string : ""
                 let memberName = firstName! + " " + lastName!
