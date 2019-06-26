@@ -10,6 +10,8 @@ import UIKit
 import Toast_Swift
 
 class RegistrationVC: UIViewController{
+    
+    @IBOutlet weak var btnLogin: UIButton!
     @IBOutlet weak var btnRegister: UIButton!
     @IBOutlet weak var txtPassword: UITextField!
     @IBOutlet weak var txtEmail: UITextField!
@@ -27,6 +29,7 @@ class RegistrationVC: UIViewController{
     }
     
     func setLayout(){
+        applyRoundButtonCorner(button: btnLogin)
         hideKeyboardWhenTappedAround()
         style.backgroundColor = .white
         style.messageColor = .black
@@ -88,8 +91,6 @@ class RegistrationVC: UIViewController{
             self.view.makeToast("Email format: user@mail.com", duration: 3.0, position: .bottom, style: style)
             return
         }
-        
-//        {"member":{"contact":"9633121212","datecreated":"","deviceid":"270938aea38d6c03","email":"hdh@hh.com","emailverified":false,"firstname":"k","lastname":"h","occupation":"","password":"123456","pictureurl":"","realm":"","statuscode":0,"username":"hdh"}}
         
         let UUID = UIDevice.current.identifierForVendor!.uuidString
         let memberDetails: [String: Any] = ["firstname": self.txtFirstName.text!, "lastname": self.txtLastName.text!, "contact": self.txtContactNumber.text!, "occupation": self.txtOccupation.text!, "email": self.txtEmail.text!, "password": self.txtPassword.text!, "username": self.txtEmail.text!, "deviceid": "\(UUID)", "emailverified": false, "pictureurl": "", "datecreated": "", "realm": "", "statuscode":0]

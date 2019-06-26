@@ -521,6 +521,11 @@ class ChurchDetailsViewController: UIViewController, UITableViewDataSource, UITa
         else if self.segmentIndex == 2
         {
             let cell = tableView.dequeueReusableCell(withIdentifier: "membershipFormCell") as? MembershipFormCell
+            cell?.vwFirstName.isUserInteractionEnabled = false
+            cell?.vwLastName.isUserInteractionEnabled = false
+            cell?.vwContactNumber.isUserInteractionEnabled = false
+            cell?.vwEmail.isUserInteractionEnabled = false
+            cell?.vwOccupation.isUserInteractionEnabled = false
             
             if indexPath.row == 1
             {
@@ -816,38 +821,86 @@ class ChurchDetailsViewController: UIViewController, UITableViewDataSource, UITa
     
     @objc func btnApplyMembership(sender : UIButton){
         let indexPath = IndexPath(row: sender.tag, section: 1)
-        let style = ToastStyle()
+        var style = ToastStyle()
+       
         let cell = self.tableView.cellForRow(at: indexPath) as? MembershipFormCell
-        if cell!.txtFirstName.text?.count == 0 || cell!.txtLastName.text?.count == 0 || cell!.txtContactNumber.text?.count == 0 || cell!.txtOccupation.text?.count == 0 || cell!.txtEmail.text?.count == 0 {
-            self.view.makeToast("Please enter all fields.", duration: 3.0, position: .bottom, style: style)
-            return
-        }
-
-        if(!isValidText(testStr: cell!.txtFirstName.text!)){
-            self.view.makeToast("Please enter valid first name.", duration: 3.0, position: .bottom, style: style)
-            return
-        }
-
-        if(!isValidText(testStr: cell!.txtLastName.text!)){
-            self.view.makeToast("Please enter valid last name.", duration: 3.0, position: .bottom, style: style)
-            return
-        }
-        
-        if(!isValidPhone(testStr: cell!.txtContactNumber.text!)){
-            self.view.makeToast("Please enter valid contact number.", duration: 3.0, position: .bottom, style: style)
-            return
-        }
-        
-        if(!isValidEmail(testStr: cell!.txtEmail.text!)){
-            self.view.makeToast("Email format: user@mail.com", duration: 3.0, position: .bottom, style: style)
-            return
-        }
+//        if cell!.txtFirstName.text?.count == 0 || cell!.txtLastName.text?.count == 0 || cell!.txtContactNumber.text?.count == 0 || cell!.txtOccupation.text?.count == 0 || cell!.txtEmail.text?.count == 0 {
+//            self.view.makeToast("Please enter all fields.", duration: 3.0, position: .bottom, style: style)
+//            return
+//        }
+//
+//        if(!isValidText(testStr: cell!.txtFirstName.text!)){
+//            self.view.makeToast("Please enter valid first name.", duration: 3.0, position: .bottom, style: style)
+//            return
+//        }
+//
+//        if(!isValidText(testStr: cell!.txtLastName.text!)){
+//            self.view.makeToast("Please enter valid last name.", duration: 3.0, position: .bottom, style: style)
+//            return
+//        }
+//
+//        if(!isValidPhone(testStr: cell!.txtContactNumber.text!)){
+//            self.view.makeToast("Please enter valid contact number.", duration: 3.0, position: .bottom, style: style)
+//            return
+//        }
+//
+//        if(!isValidEmail(testStr: cell!.txtEmail.text!)){
+//            self.view.makeToast("Email format: user@mail.com", duration: 3.0, position: .bottom, style: style)
+//            return
+//        }
         
         let memberId = UserDefaults.standard.value(forKey: "memberId") as? String
-        let churchName = detailsDict["name"]!.string!
-        let parameters: [String: Any] = ["userId": memberId!, "churchName": churchName]
-        APIHelper().post(apiUrl: GlobalConstants.APIUrls.AddChurchMember, parameters: parameters as [String : AnyObject]) { (response) in
+        let dateFormatter = DateFormatter()
+        let date = Date()
+        dateFormatter.timeZone = TimeZone.current
+        dateFormatter.dateFormat =  "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+        let datecreated = dateFormatter.string(from: date)
+        let stripeCustomerTokenId = UserDefaults.standard.value(forKey: "stripeCustomerTokenId") as? String
+        
+        let memberDetails: [String: Any] = ["firstname": cell!.txtFirstName.text!, "lastname": cell!.txtLastName.text!, "contact": cell!.txtContactNumber.text!, "occupation": cell!.txtOccupation.text!, "email": cell!.txtEmail.text!, "address": self.profileDetails["Address"] != nil ? self.profileDetails["Address"]! : "", "username": cell!.txtEmail.text!, "deviceid": "\(UUID())", "emailverified": true, "pictureurl": "", "datecreated": datecreated, "realm": "", "status": "SUCCESS", "subscriptionDate": "", "churchid": id!, "stripecustomerid": stripeCustomerTokenId!, "issubscribed": true, "subscriptionenddate": true, "parentid": "", "id": memberId!]
+       
+        let parameters: [String: String] = [:]
+        let dict = ["include": ["churchmember"]] as [String : Any]
+            
+        if let json = try? JSONSerialization.data(withJSONObject: dict, options: []) {
+            if let content = String(data: json, encoding: String.Encoding.utf8) {
+                APIHelper().get(apiUrl: String.init(format: GlobalConstants.APIUrls.checkChurchMember, memberId!, content), parameters: parameters as [String : AnyObject]) { (response) in
+                        
+                    if response["data"].dictionary != nil  {
+                        if response["data"]["churchid"].string == "" || response["data"]["churchid"].string == nil {
+                            self.registerChurchMember(memberDetails: memberDetails)
+                        }
+                        else{
+                            let alert = UIAlertController(title: "You are already a member", message: nil, preferredStyle: .alert)
+                            alert.addAction(UIAlertAction(title: "Change", style: .default, handler: { _ in
+                                self.registerChurchMember(memberDetails: memberDetails)
+                            }))
+                            alert.addAction(UIAlertAction.init(title: "Cancel", style: .cancel, handler: nil))
+                            
+                            self.present(alert, animated: true, completion: nil)
+                        }
+                    }
+                }
+            }
         }
+        
+    }
+    
+    func registerChurchMember(memberDetails: [String: Any]){
+        let memberId = UserDefaults.standard.value(forKey: "memberId") as? String
+        let parameters: [String: Any] = memberDetails
+        let churchName = detailsDict["name"]!.string!
+        var style = ToastStyle()
+        style.backgroundColor = .white
+        style.messageColor = .black
+        
+        APIHelper().patch(apiUrl: String.init(format: GlobalConstants.APIUrls.memberDetails, memberId!), parameters: parameters as [String : AnyObject]) { (response) in
+            
+            if response["data"].dictionary != nil  {
+                self.view.makeToast("Congratulations, You are now member of " + churchName, duration: 3.0, position: .bottom, title: nil, image: nil, style: style , completion: nil)
+            }
+        }
+        
     }
     
     @objc func btnCallClicked(sender : UIButton){

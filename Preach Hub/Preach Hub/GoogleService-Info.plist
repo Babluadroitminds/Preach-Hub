@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>11500745336-lu9od3c70gctn4dnna9auhbm76iujhp6.apps.googleusercontent.com</string>
+	<string>59524536851-risga3iqckl9ubdl7448o5dcm7dcneht.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.11500745336-lu9od3c70gctn4dnna9auhbm76iujhp6</string>
+	<string>com.googleusercontent.apps.59524536851-risga3iqckl9ubdl7448o5dcm7dcneht</string>
 	<key>API_KEY</key>
-	<string>AIzaSyBeplWRH5br_7jT5O_TKtt_OcbixUg9NQM</string>
+	<string>AIzaSyBsbsFyT6hhJdsTcU3s0wIb0KL1_YUtJn4</string>
 	<key>GCM_SENDER_ID</key>
-	<string>11500745336</string>
+	<string>59524536851</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.adroitMinds.Preach-Hub</string>
 	<key>PROJECT_ID</key>
-	<string>preachhub-63047</string>
+	<string>preachmessagehub</string>
 	<key>STORAGE_BUCKET</key>
-	<string>preachhub-63047.appspot.com</string>
+	<string>preachmessagehub.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,8 +29,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:11500745336:ios:b8903c1883373827</string>
+	<string>1:59524536851:ios:b8903c1883373827</string>
 	<key>DATABASE_URL</key>
-	<string>https://preachhub-63047.firebaseio.com</string>
+	<string>https://preachmessagehub.firebaseio.com</string>
 </dict>
 </plist>

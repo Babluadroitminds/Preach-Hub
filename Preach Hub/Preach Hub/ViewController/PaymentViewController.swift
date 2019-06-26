@@ -363,8 +363,7 @@ class PaymentViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     }
     
     func chargeMember(){
-        let amt = (amount! * 100)
-        let parameters: [String: Any] = ["amount": amt, "customerstripetoken": stripeCustomerTokenId!]
+        let parameters: [String: Any] = ["amount": amount!, "customerstripetoken": stripeCustomerTokenId!]
         APIHelper().post(apiUrl: GlobalConstants.APIUrls.chargeMember, parameters: parameters as [String : AnyObject]) { (response) in
             if response["status"].stringValue == "Success"{
                 self.view.makeToast("Payment successful!", duration: 3.0, position: .bottom, style: self.style)

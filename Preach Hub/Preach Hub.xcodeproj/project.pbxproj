@@ -48,11 +48,11 @@
 		8235EB472293C3760090230B /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8235EB462293C3760090230B /* ForgotPasswordViewController.swift */; };
 		8235EB49229418C60090230B /* Payment.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8235EB48229418C60090230B /* Payment.storyboard */; };
 		8277467D22AE4E86005A650B /* notification.png in Resources */ = {isa = PBXBuildFile; fileRef = 8277467C22AE4E86005A650B /* notification.png */; };
+		8279E56C22C0F7450097AF3B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8279E56B22C0F7450097AF3B /* GoogleService-Info.plist */; };
 		828D9CE022B10137007506CC /* ChurchDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 828D9CDF22B10137007506CC /* ChurchDetails.storyboard */; };
 		828D9CE222B101B5007506CC /* ChurchDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828D9CE122B101B5007506CC /* ChurchDetailsViewController.swift */; };
 		828D9CE422B2305F007506CC /* ic-share.png in Resources */ = {isa = PBXBuildFile; fileRef = 828D9CE322B2305F007506CC /* ic-share.png */; };
 		82CADDCB22941DD300EBBDFD /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82CADDCA22941DD300EBBDFD /* PaymentViewController.swift */; };
-		82E0975D22AE2AAC002069EE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 82E0975C22AE2AAC002069EE /* GoogleService-Info.plist */; };
 		82EF35B3228D90EC003BE3E2 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EF35B2228D90EC003BE3E2 /* InitialViewController.swift */; };
 		DBA59325E32C25E49F32103E /* Pods_Preach_Hub.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD2B542195333FCD0E69A3FE /* Pods_Preach_Hub.framework */; };
 		E323E0042297E904006B6EBA /* Cart.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E323E0032297E904006B6EBA /* Cart.storyboard */; };
@@ -143,11 +143,11 @@
 		8235EB462293C3760090230B /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		8235EB48229418C60090230B /* Payment.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Payment.storyboard; sourceTree = "<group>"; };
 		8277467C22AE4E86005A650B /* notification.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = notification.png; sourceTree = "<group>"; };
+		8279E56B22C0F7450097AF3B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		828D9CDF22B10137007506CC /* ChurchDetails.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ChurchDetails.storyboard; sourceTree = "<group>"; };
 		828D9CE122B101B5007506CC /* ChurchDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChurchDetailsViewController.swift; sourceTree = "<group>"; };
 		828D9CE322B2305F007506CC /* ic-share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic-share.png"; sourceTree = "<group>"; };
 		82CADDCA22941DD300EBBDFD /* PaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentViewController.swift; sourceTree = "<group>"; };
-		82E0975C22AE2AAC002069EE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		82EF35B2228D90EC003BE3E2 /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
 		9F6FE270D5CD1E3D340DA05E /* Pods-Preach Hub.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Preach Hub.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Preach Hub/Pods-Preach Hub.debug.xcconfig"; sourceTree = "<group>"; };
 		AD2B542195333FCD0E69A3FE /* Pods_Preach_Hub.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Preach_Hub.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -225,7 +225,7 @@
 		18951685228D672C005FA99A /* Preach Hub */ = {
 			isa = PBXGroup;
 			children = (
-				82E0975C22AE2AAC002069EE /* GoogleService-Info.plist */,
+				8279E56B22C0F7450097AF3B /* GoogleService-Info.plist */,
 				820877BA2295220500513037 /* Fonts */,
 				E366C12A22927693003CBE58 /* Preach Hub.entitlements */,
 				8203F0C2228D691700F9D65D /* Shared */,
@@ -508,12 +508,12 @@
 				E366C124228E8A71003CBE58 /* Home.storyboard in Resources */,
 				8277467D22AE4E86005A650B /* notification.png in Resources */,
 				820877C22297B17500513037 /* ic-eye.png in Resources */,
+				8279E56C22C0F7450097AF3B /* GoogleService-Info.plist in Resources */,
 				5270660822BB650700D6206C /* sectionHeader.xib in Resources */,
 				820877C82297B43E00513037 /* ic-hide-eye.png in Resources */,
 				820877DC229803D500513037 /* terms.html in Resources */,
 				52C7691B22A8E48B00A780D0 /* DetailsHeaderView.xib in Resources */,
 				1895168E228D6732005FA99A /* Assets.xcassets in Resources */,
-				82E0975D22AE2AAC002069EE /* GoogleService-Info.plist in Resources */,
 				822AFABA22A515F8008BC9F1 /* ic-placeholder.png in Resources */,
 				828D9CE022B10137007506CC /* ChurchDetails.storyboard in Resources */,
 				8203F0CF228D7A7A00F9D65D /* InitialStoryboard.storyboard in Resources */,

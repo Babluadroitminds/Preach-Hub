@@ -80,7 +80,7 @@ class LoginViewController: UIViewController{
 
             if response["data"] != JSON.null  {
                 
-                let profileDetails : [String : String] = ["FirstName": response["data"]["firstname"] != JSON.null ? response["data"]["firstname"].string! : "", "LastName": response["data"]["lastname"] != JSON.null ? response["data"]["lastname"].string! : "", "ContactNumber": response["data"]["contact"] != JSON.null ? response["data"]["contact"].string! : "", "Occupation": response["data"]["occupation"] != JSON.null ? response["data"]["occupation"].string! : "", "Email": response["data"]["email"] != JSON.null ? response["data"]["email"].string! : ""]
+                let profileDetails : [String : String] = ["FirstName": response["data"]["firstname"] != JSON.null ? response["data"]["firstname"].string! : "", "LastName": response["data"]["lastname"] != JSON.null ? response["data"]["lastname"].string! : "", "ContactNumber": response["data"]["contact"] != JSON.null ? response["data"]["contact"].string! : "", "Occupation": response["data"]["occupation"] != JSON.null ? response["data"]["occupation"].string! : "", "Email": response["data"]["email"] != JSON.null ? response["data"]["email"].string! : "", "Address": response["data"]["address"] != JSON.null ? response["data"]["address"].string! : ""]
                 
                 let productData = NSKeyedArchiver.archivedData(withRootObject: profileDetails)
                 self.userDefaults.set(productData, forKey: "ProfileDetails")
