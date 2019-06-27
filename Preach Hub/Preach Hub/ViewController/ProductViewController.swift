@@ -228,10 +228,10 @@ class ProductViewController: UIViewController, UICollectionViewDelegate, UIColle
                     url = GlobalConstants.APIUrls.getCategory
                 }
                 APIHelper().get(apiUrl: url, parameters: parameters as [String : AnyObject]) { (response) in
-                    self.categoryList.append(DataKey(id: "", title: "All", thumb: "", description: "", isActive: false, videoUrl: "", subtitle: "", tags: ""))
+                    self.categoryList.append(DataKey(id: "", title: "All", thumb: "", description: "", isActive: false, videoUrl: "", subtitle: "", tags: "", isContinueWatching: false))
                     if response["data"].array != nil  {
                         for item in response["data"].arrayValue {
-                            self.categoryList.append(DataKey(id: item["id"] != JSON.null ? item["id"].string! : "", title: item["name"] != JSON.null ? item["name"].string! : "", thumb: item["img_thumb"] != JSON.null ? item["img_thumb"].string! : "", description: item["description"] != JSON.null ? item["description"].string! : "", isActive: item["is_active"] != JSON.null ? item["is_active"].bool! : true, videoUrl: "", subtitle: "", tags: ""))
+                            self.categoryList.append(DataKey(id: item["id"] != JSON.null ? item["id"].string! : "", title: item["name"] != JSON.null ? item["name"].string! : "", thumb: item["img_thumb"] != JSON.null ? item["img_thumb"].string! : "", description: item["description"] != JSON.null ? item["description"].string! : "", isActive: item["is_active"] != JSON.null ? item["is_active"].bool! : true, videoUrl: "", subtitle: "", tags: "", isContinueWatching: false))
                         }
                         self.categoryList.sort{ $0.title.caseInsensitiveCompare($1.title) == .orderedAscending }
                         self.categoryPicker.reloadAllComponents()

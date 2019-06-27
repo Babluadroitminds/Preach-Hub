@@ -41,6 +41,9 @@
 		820877E02298085800513037 /* ic-left-arrow-black.png in Resources */ = {isa = PBXBuildFile; fileRef = 820877DF2298085800513037 /* ic-left-arrow-black.png */; };
 		8209454C22A8DD3D00B75ACE /* OrderHistoryDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8209454B22A8DD3D00B75ACE /* OrderHistoryDetailsViewController.swift */; };
 		8209454E22A9361600B75ACE /* ic-bag.png in Resources */ = {isa = PBXBuildFile; fileRef = 8209454D22A9361600B75ACE /* ic-bag.png */; };
+		8219B7FF22C4C50A008C32B4 /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8219B7FE22C4C50A008C32B4 /* ProfileTableViewCell.swift */; };
+		8219B80122C4CFAA008C32B4 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8219B80022C4CFAA008C32B4 /* Profile.storyboard */; };
+		8219B80322C4D476008C32B4 /* ProfileDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8219B80222C4D476008C32B4 /* ProfileDetailsViewController.swift */; };
 		822AFABA22A515F8008BC9F1 /* ic-placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 822AFAB922A515F7008BC9F1 /* ic-placeholder.png */; };
 		822AFABC22A52CAC008BC9F1 /* ic-user-profile.png in Resources */ = {isa = PBXBuildFile; fileRef = 822AFABB22A52CAB008BC9F1 /* ic-user-profile.png */; };
 		822AFAC022A67168008BC9F1 /* OrderHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822AFABF22A67168008BC9F1 /* OrderHistoryViewController.swift */; };
@@ -136,6 +139,9 @@
 		820877DF2298085800513037 /* ic-left-arrow-black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic-left-arrow-black.png"; sourceTree = "<group>"; };
 		8209454B22A8DD3D00B75ACE /* OrderHistoryDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderHistoryDetailsViewController.swift; sourceTree = "<group>"; };
 		8209454D22A9361600B75ACE /* ic-bag.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic-bag.png"; sourceTree = "<group>"; };
+		8219B7FE22C4C50A008C32B4 /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
+		8219B80022C4CFAA008C32B4 /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
+		8219B80222C4D476008C32B4 /* ProfileDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailsViewController.swift; sourceTree = "<group>"; };
 		822AFAB922A515F7008BC9F1 /* ic-placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic-placeholder.png"; sourceTree = "<group>"; };
 		822AFABB22A52CAB008BC9F1 /* ic-user-profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic-user-profile.png"; sourceTree = "<group>"; };
 		822AFABF22A67168008BC9F1 /* OrderHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderHistoryViewController.swift; sourceTree = "<group>"; };
@@ -312,6 +318,8 @@
 				822AFAC322A679BF008BC9F1 /* ProfileViewController.swift */,
 				8209454B22A8DD3D00B75ACE /* OrderHistoryDetailsViewController.swift */,
 				828D9CE122B101B5007506CC /* ChurchDetailsViewController.swift */,
+				8219B7FE22C4C50A008C32B4 /* ProfileTableViewCell.swift */,
+				8219B80222C4D476008C32B4 /* ProfileDetailsViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -375,6 +383,7 @@
 				8235EB48229418C60090230B /* Payment.storyboard */,
 				E3BFD8BB229D089300770BDB /* CartPayment.storyboard */,
 				828D9CDF22B10137007506CC /* ChurchDetails.storyboard */,
+				8219B80022C4CFAA008C32B4 /* Profile.storyboard */,
 			);
 			path = Storyboard;
 			sourceTree = "<group>";
@@ -519,6 +528,7 @@
 				8203F0CF228D7A7A00F9D65D /* InitialStoryboard.storyboard in Resources */,
 				E3BFD8BA229D00D600770BDB /* (null) in Resources */,
 				820877CA2297B68400513037 /* ic-eye-gray.png in Resources */,
+				8219B80122C4CFAA008C32B4 /* Profile.storyboard in Resources */,
 				820877CC2297B68A00513037 /* ic-hide-gray.png in Resources */,
 				1895168C228D672C005FA99A /* Main.storyboard in Resources */,
 			);
@@ -641,6 +651,7 @@
 				E366C11C228E87E5003CBE58 /* Navigation.swift in Sources */,
 				820877DE2298040100513037 /* TermsNConditionViewController.swift in Sources */,
 				E3BFD8B8229D009E00770BDB /* (null) in Sources */,
+				8219B7FF22C4C50A008C32B4 /* ProfileTableViewCell.swift in Sources */,
 				52C7691522A8E3D800A780D0 /* HomeDetailsViewController.swift in Sources */,
 				5273C57F229E900200328BEC /* PreachHub.xcdatamodeld in Sources */,
 				E3578604229D39D6009E8BBE /* PaymentExistingCardViewController.swift in Sources */,
@@ -662,6 +673,7 @@
 				E3B730CA229BC48C008D3E7C /* ViewCartViewController.swift in Sources */,
 				E3FAA41B2292A84D00E369C6 /* HomeTabBarViewController.swift in Sources */,
 				E3FAA41D2292A97800E369C6 /* ListViewController.swift in Sources */,
+				8219B80322C4D476008C32B4 /* ProfileDetailsViewController.swift in Sources */,
 				E323E00822981C25006B6EBA /* ProductDetailsViewController.swift in Sources */,
 				820877D02297E8C800513037 /* CartViewController.swift in Sources */,
 				820877CE2297D8FC00513037 /* SideMenuNavigationController.swift in Sources */,

@@ -20,6 +20,7 @@ struct DataKey{
     var videoUrl: String
     var subtitle: String
     var tags: String
+    var isContinueWatching: Bool
 }
 
 protocol CustomDelegate: class {
@@ -54,7 +55,12 @@ class tableViewCell : UITableViewCell , UICollectionViewDelegate , UICollectionV
         cell.imgView.sd_setShowActivityIndicatorView(true)
         cell.imgView.sd_setIndicatorStyle(.gray)
         cell.imgView.sd_setImage(with: URL.init(string: urlString!) , placeholderImage: UIImage.init(named:"ic-placeholder.png"))
-    
+        if currentItem.isContinueWatching {
+            cell.imgVwPlay.isHidden = false
+        }
+        else{
+            cell.imgVwPlay.isHidden = true
+        }
         return cell
     }
    
@@ -168,6 +174,7 @@ class tableHeaderCell: UITableViewCell, UICollectionViewDelegate , UICollectionV
 
 class collectionViewCell: UICollectionViewCell {
     
+    @IBOutlet weak var imgVwPlay: UIImageView!
     @IBOutlet weak var imgView: UIImageView!
     @IBOutlet weak var lblName: UILabel!
 }
@@ -263,11 +270,11 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         APIHelper().get(apiUrl: GlobalConstants.APIUrls.getHomeDetails, parameters: parameters as [String : AnyObject]) { (response) in
             
                 for item in response["data"]["home"]["pastors"].arrayValue {
-                    self.pastorLists.append(DataKey(id: item["id"] != JSON.null ? item["id"].string! : "", title: item["name"] != JSON.null ? item["name"].string! : "", thumb: item["img_thumb"] != JSON.null ? item["img_thumb"].string! : "", description: item["description"] != JSON.null ? item["description"].string! : "", isActive: item["is_active"] != JSON.null ? item["is_active"].bool! : false, videoUrl: "", subtitle: "", tags: ""))
+                    self.pastorLists.append(DataKey(id: item["id"] != JSON.null ? item["id"].string! : "", title: item["name"] != JSON.null ? item["name"].string! : "", thumb: item["img_thumb"] != JSON.null ? item["img_thumb"].string! : "", description: item["description"] != JSON.null ? item["description"].string! : "", isActive: item["is_active"] != JSON.null ? item["is_active"].bool! : false, videoUrl: "", subtitle: "", tags: "", isContinueWatching:false))
                 }
                 
                 for item in response["data"]["home"]["churches"].arrayValue {
-                    self.churchLists.append(DataKey(id: item["id"] != JSON.null ? item["id"].string! : "", title: item["name"] != JSON.null ? item["name"].string! : "", thumb: item["img_thumb"] != JSON.null ? item["img_thumb"].string! : "", description: item["description"] != JSON.null ? item["description"].string! : "", isActive: item["is_active"] != JSON.null ? item["is_active"].bool! : false, videoUrl: "", subtitle: "", tags: ""))
+                    self.churchLists.append(DataKey(id: item["id"] != JSON.null ? item["id"].string! : "", title: item["name"] != JSON.null ? item["name"].string! : "", thumb: item["img_thumb"] != JSON.null ? item["img_thumb"].string! : "", description: item["description"] != JSON.null ? item["description"].string! : "", isActive: item["is_active"] != JSON.null ? item["is_active"].bool! : false, videoUrl: "", subtitle: "", tags: "", isContinueWatching: false))
                 }
                 
 //                for item in response["data"]["home"]["music"].arrayValue {
@@ -291,7 +298,7 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                     self.continueWatchingLists = []
                     if response["data"].array != nil  {
                         for item in response["data"].arrayValue {
-                            self.continueWatchingLists.append(DataKey(id: item["id"] != JSON.null ? item["id"].string! : "", title: item["sermon"]["name"] != JSON.null ? item["sermon"]["name"].string! : "", thumb: item["sermon"]["img_thumb"] != JSON.null ? item["sermon"]["img_thumb"].string! : "", description: item["sermon"]["description"] != JSON.null ? item["sermon"]["description"].string! : "", isActive: item["sermon"]["is_active"] != JSON.null ? item["sermon"]["is_active"].bool! : false, videoUrl: item["sermon"]["video"] != JSON.null ? item["sermon"]["video"].string! : "", subtitle: "", tags: ""))
+                            self.continueWatchingLists.append(DataKey(id: item["id"] != JSON.null ? item["id"].string! : "", title: item["sermon"]["name"] != JSON.null ? item["sermon"]["name"].string! : "", thumb: item["sermon"]["img_thumb"] != JSON.null ? item["sermon"]["img_thumb"].string! : "", description: item["sermon"]["description"] != JSON.null ? item["sermon"]["description"].string! : "", isActive: item["sermon"]["is_active"] != JSON.null ? item["sermon"]["is_active"].bool! : false, videoUrl: item["sermon"]["video"] != JSON.null ? item["sermon"]["video"].string! : "", subtitle: "", tags: "", isContinueWatching: true))
                         }
                         self.tblView.reloadData()
                     }
@@ -306,7 +313,7 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
             self.storeLists = []
             if response["data"].array != nil  {
                 for item in response["data"].arrayValue {
-                    self.storeLists.append(DataKey(id: item["id"] != JSON.null ? item["id"].string! : "", title: item["name"] != JSON.null ? item["name"].string! : "", thumb: item["img_thumb"] != JSON.null ? item["img_thumb"].string! : "", description: item["description"] != JSON.null ? item["description"].string! : "", isActive: item["is_active"] != JSON.null ? item["is_active"].bool! : true, videoUrl: "", subtitle: "", tags: ""))
+                    self.storeLists.append(DataKey(id: item["id"] != JSON.null ? item["id"].string! : "", title: item["name"] != JSON.null ? item["name"].string! : "", thumb: item["img_thumb"] != JSON.null ? item["img_thumb"].string! : "", description: item["description"] != JSON.null ? item["description"].string! : "", isActive: item["is_active"] != JSON.null ? item["is_active"].bool! : true, videoUrl: "", subtitle: "", tags: "", isContinueWatching: false))
                 }
                 self.tblView.reloadData()
             }
@@ -319,7 +326,7 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
             self.musicLists = []
             if response["data"].array != nil  {
                 for item in response["data"].arrayValue {
-                    self.musicLists.append(DataKey(id: item["id"] != JSON.null ? item["id"].string! : "", title: item["name"] != JSON.null ? item["name"].string! : "", thumb: item["img_thumb"] != JSON.null ? item["img_thumb"].string! : "", description: item["description"] != JSON.null ? item["description"].string! : "", isActive: item["is_active"] != JSON.null ? item["is_active"].bool! : false, videoUrl: "", subtitle: "", tags: ""))
+                    self.musicLists.append(DataKey(id: item["id"] != JSON.null ? item["id"].string! : "", title: item["name"] != JSON.null ? item["name"].string! : "", thumb: item["img_thumb"] != JSON.null ? item["img_thumb"].string! : "", description: item["description"] != JSON.null ? item["description"].string! : "", isActive: item["is_active"] != JSON.null ? item["is_active"].bool! : false, videoUrl: "", subtitle: "", tags: "", isContinueWatching: false))
                 }
                 self.tblView.reloadData()
             }
@@ -510,7 +517,7 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                     self.bannerList = []
                     if response["data"].array != nil  {
                         for item in response["data"].arrayValue {
-                            self.bannerList.append(DataKey(id: item["id"] != JSON.null ? item["id"].string! : "", title: item["name"] != JSON.null ? item["name"].string! : "", thumb: item["img_banner"] != JSON.null ? item["img_banner"].string! : "", description: item["description"] != JSON.null ? item["description"].string! : "", isActive: item["is_active"] != JSON.null ? item["is_active"].bool! : false, videoUrl: item["video"] != JSON.null ? item["video"].string! : "", subtitle: item["subtitle"] != JSON.null ? item["subtitle"].string! : "", tags: item["tags"] != JSON.null ? item["tags"].string! : ""))
+                            self.bannerList.append(DataKey(id: item["id"] != JSON.null ? item["id"].string! : "", title: item["name"] != JSON.null ? item["name"].string! : "", thumb: item["img_banner"] != JSON.null ? item["img_banner"].string! : "", description: item["description"] != JSON.null ? item["description"].string! : "", isActive: item["is_active"] != JSON.null ? item["is_active"].bool! : false, videoUrl: item["video"] != JSON.null ? item["video"].string! : "", subtitle: item["subtitle"] != JSON.null ? item["subtitle"].string! : "", tags: item["tags"] != JSON.null ? item["tags"].string! : "", isContinueWatching: false))
                         }
                     }
                 }

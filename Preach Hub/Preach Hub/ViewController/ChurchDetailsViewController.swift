@@ -461,6 +461,7 @@ class ChurchDetailsViewController: UIViewController, UITableViewDataSource, UITa
                         cell?.lblTitle.isHidden = false
                         cell?.lblPrice.isHidden = false
                         cell?.imgVwProduct.isHidden = false
+                        cell?.vwContainerImage.isHidden = false
                         cell?.btnMore.isHidden = true
                         cell?.lblTitle.text = self.productsArr[indexPath.row].name
                         cell?.lblPrice.text = "$" + self.productsArr[indexPath.row].price
@@ -471,6 +472,7 @@ class ChurchDetailsViewController: UIViewController, UITableViewDataSource, UITa
                         cell!.imgVwProduct.sd_setImage(with: URL.init(string: urlString!) , placeholderImage: UIImage.init(named:"ic-placeholder.png"))
                         if indexPath.row == self.productsArr.count{
                             cell?.imgVwProduct.isHidden = true
+                            cell?.vwContainerImage.isHidden = true
                             cell?.btnMore.isHidden = false
                             cell?.lblTitle.isHidden = true
                             cell?.lblPrice.isHidden = true
@@ -481,6 +483,7 @@ class ChurchDetailsViewController: UIViewController, UITableViewDataSource, UITa
                         cell?.lblTitle.isHidden = true
                         cell?.lblPrice.isHidden = true
                         cell?.imgVwProduct.isHidden = true
+                        cell?.vwContainerImage.isHidden = true
                         if indexPath.row == 3{
                             cell?.btnMore.isHidden = false
                             cell?.btnMore.addTarget(self, action: #selector(btnMoreProductClicked), for: .touchUpInside)
@@ -495,6 +498,7 @@ class ChurchDetailsViewController: UIViewController, UITableViewDataSource, UITa
                 else{
                     if indexPath.row == self.productsArr.count{
                         cell?.imgVwProduct.isHidden = true
+                        cell?.vwContainerImage.isHidden = true
                         cell?.btnMore.isHidden = false
                         cell?.lblTitle.isHidden = true
                         cell?.lblPrice.isHidden = true
@@ -504,6 +508,7 @@ class ChurchDetailsViewController: UIViewController, UITableViewDataSource, UITa
                         cell?.lblTitle.isHidden = false
                         cell?.lblPrice.isHidden = false
                         cell?.imgVwProduct.isHidden = false
+                        cell?.vwContainerImage.isHidden = false
                         cell?.btnMore.isHidden = true
                         cell?.lblTitle.text = self.productsArr[indexPath.row].name
                         cell?.lblPrice.text = "$" + self.productsArr[indexPath.row].price
@@ -733,7 +738,7 @@ class ChurchDetailsViewController: UIViewController, UITableViewDataSource, UITa
             }
             else if indexPath.row == self.productsArr.count
             {
-                let rowHeight = 70 * self.productsArr.count
+                let rowHeight = 90 * self.productsArr.count
                 
                 if rowHeight < self.height
                 {
@@ -745,7 +750,7 @@ class ChurchDetailsViewController: UIViewController, UITableViewDataSource, UITa
                     return 0
                 }
             }
-            return 70
+            return 90
         }
         else if self.segmentIndex == 2{
             if indexPath.row == 1 {

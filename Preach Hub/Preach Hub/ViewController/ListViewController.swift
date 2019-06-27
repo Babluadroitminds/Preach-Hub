@@ -16,7 +16,7 @@ struct listPastor {
 }
 class PastorListCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var lblName: UILabel!
-    
+    @IBOutlet weak var imgVwPlay: UIImageView!
     @IBOutlet weak var imgView: UIImageView!
 }
 
@@ -52,6 +52,13 @@ class ListViewController: UIViewController,UICollectionViewDataSource , UICollec
         cell.imgView.sd_setShowActivityIndicatorView(true)
         cell.imgView.sd_setIndicatorStyle(.gray)
         cell.imgView.sd_setImage(with: URL.init(string: urlString!) , placeholderImage: UIImage.init(named:""))
+        
+        if currentItem.isContinueWatching {
+            cell.imgVwPlay.isHidden = false
+        }
+        else{
+            cell.imgVwPlay.isHidden = true
+        }
         return cell
     }
     

@@ -47,6 +47,8 @@ class paymentCell: UITableViewCell
 }
 class ProductCell: UITableViewCell
 {
+    
+    @IBOutlet weak var vwContainerImage: UIView!
     @IBOutlet weak var imgVwProduct: UIImageView!
     @IBOutlet weak var lblPrice: UILabel!
     @IBOutlet weak var lblTitle: UILabel!
@@ -58,6 +60,7 @@ class ProductCell: UITableViewCell
 }
 class sermonsCell: UITableViewCell
 {
+    @IBOutlet weak var vwContainerImage: UIView!
     @IBOutlet weak var moreBtn: UIButton!
     @IBOutlet weak var moreView: UIView!
     @IBOutlet weak var timeLbl: UILabel!
@@ -352,6 +355,7 @@ class HomeDetailsViewController: UIViewController, UITableViewDataSource, UITabl
                             cell?.lblTitle.isHidden = false
                             cell?.lblPrice.isHidden = false
                             cell?.imgVwProduct.isHidden = false
+                            cell?.vwContainerImage.isHidden = false
                             cell?.btnMore.isHidden = true
                             cell?.lblTitle.text = self.productsArr[indexPath.row].name
                             cell?.lblPrice.text = "$" + self.productsArr[indexPath.row].price
@@ -362,6 +366,7 @@ class HomeDetailsViewController: UIViewController, UITableViewDataSource, UITabl
                             cell!.imgVwProduct.sd_setImage(with: URL.init(string: urlString!) , placeholderImage: UIImage.init(named:"ic-placeholder.png"))
                             if indexPath.row == self.productsArr.count{
                                 cell?.imgVwProduct.isHidden = true
+                                cell?.vwContainerImage.isHidden = true
                                 cell?.btnMore.isHidden = false
                                 cell?.lblTitle.isHidden = true
                                 cell?.lblPrice.isHidden = true
@@ -372,6 +377,7 @@ class HomeDetailsViewController: UIViewController, UITableViewDataSource, UITabl
                             cell?.lblTitle.isHidden = true
                             cell?.lblPrice.isHidden = true
                             cell?.imgVwProduct.isHidden = true
+                            cell?.vwContainerImage.isHidden = true
                             if indexPath.row == 3{
                                 cell?.btnMore.isHidden = false
                                 cell?.btnMore.addTarget(self, action: #selector(btnMoreProductClicked), for: .touchUpInside)
@@ -385,6 +391,7 @@ class HomeDetailsViewController: UIViewController, UITableViewDataSource, UITabl
                         
                     else{
                         if indexPath.row == self.productsArr.count{
+                            cell?.vwContainerImage.isHidden = true
                             cell?.imgVwProduct.isHidden = true
                             cell?.btnMore.isHidden = false
                             cell?.lblTitle.isHidden = true
@@ -395,6 +402,7 @@ class HomeDetailsViewController: UIViewController, UITableViewDataSource, UITabl
                             cell?.lblTitle.isHidden = false
                             cell?.lblPrice.isHidden = false
                             cell?.imgVwProduct.isHidden = false
+                            cell?.vwContainerImage.isHidden = false
                             cell?.btnMore.isHidden = true
                             cell?.lblTitle.text = self.productsArr[indexPath.row].name
                             cell?.lblPrice.text = "$" + self.productsArr[indexPath.row].price
@@ -427,6 +435,7 @@ class HomeDetailsViewController: UIViewController, UITableViewDataSource, UITabl
                     cell!.timeLbl.isHidden = true
                     cell!.availableLbl.isHidden = true
                     cell!.moreView.isHidden = true
+                    cell!.vwContainerImage.isHidden = true
                 }
                 else
                 {
@@ -435,6 +444,7 @@ class HomeDetailsViewController: UIViewController, UITableViewDataSource, UITabl
                     cell!.timeLbl.isHidden = false
                     cell!.availableLbl.isHidden = false
                     cell!.moreView.isHidden = false
+                    cell!.vwContainerImage.isHidden = false
                     
                     let imageUrl = self.semonsArr[indexPath.row].imageThumb
                     let urlString = imageUrl.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
@@ -473,6 +483,7 @@ class HomeDetailsViewController: UIViewController, UITableViewDataSource, UITabl
                     cell!.timeLbl.isHidden = true
                     cell!.availableLbl.isHidden = true
                     cell!.moreView.isHidden = true
+                    cell!.vwContainerImage.isHidden = true
                 }
                 else
                 {
@@ -481,6 +492,7 @@ class HomeDetailsViewController: UIViewController, UITableViewDataSource, UITabl
                     cell!.timeLbl.isHidden = false
                     cell!.availableLbl.isHidden = false
                     cell!.moreView.isHidden = false
+                    cell!.vwContainerImage.isHidden = false
                     
                     let imageUrl = self.testimonyArr[indexPath.row].imageThumb
                     let urlString = imageUrl.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
@@ -534,7 +546,7 @@ class HomeDetailsViewController: UIViewController, UITableViewDataSource, UITabl
             }
             else if indexPath.row == self.productsArr.count
             {
-                let rowHeight = 70 * self.productsArr.count
+                let rowHeight = 90 * self.productsArr.count
                 
                 if rowHeight < self.height
                 {
@@ -546,7 +558,7 @@ class HomeDetailsViewController: UIViewController, UITableViewDataSource, UITabl
                     return 0
                 }
             }
-            return 70
+            return 90
         }
         else if self.segmentIndex == 2
         {
@@ -556,7 +568,7 @@ class HomeDetailsViewController: UIViewController, UITableViewDataSource, UITabl
             }
             else if indexPath.row == self.semonsArr.count
             {
-                let rowHeight = 70 * self.semonsArr.count
+                let rowHeight = 90 * self.semonsArr.count
                 
                 if rowHeight < self.height
                 {
@@ -568,7 +580,7 @@ class HomeDetailsViewController: UIViewController, UITableViewDataSource, UITabl
                     return 0
                 }
             }
-            return 70
+            return 90
         }
         else if self.segmentIndex == 4
         {
@@ -578,7 +590,7 @@ class HomeDetailsViewController: UIViewController, UITableViewDataSource, UITabl
             }
             else if indexPath.row == self.testimonyArr.count
             {
-                let rowHeight = 70 * self.testimonyArr.count
+                let rowHeight = 90 * self.testimonyArr.count
                 
                 if rowHeight < self.height
                 {
@@ -590,7 +602,7 @@ class HomeDetailsViewController: UIViewController, UITableViewDataSource, UITabl
                     return 0
                 }
             }
-            return 70
+            return 90
         }
         return CGFloat(self.height)
     }

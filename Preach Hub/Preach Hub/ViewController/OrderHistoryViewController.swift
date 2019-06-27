@@ -116,4 +116,8 @@ class OrderHistoryViewController: UIViewController, UITableViewDataSource, UITab
     self.navigationController?.popViewController(animated: true)
     }
     
+    static func storyboardInstance() -> OrderHistoryViewController? {
+        let storyboard = UIStoryboard(name: "Home", bundle: nil)
+        return storyboard.instantiateViewController(withIdentifier: "OrderHistoryViewController") as? OrderHistoryViewController
+    }
 }
