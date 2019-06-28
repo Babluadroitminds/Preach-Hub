@@ -66,14 +66,9 @@ class ProfileDetailsViewController: UIViewController {
         }
         
         let memberId = UserDefaults.standard.value(forKey: "memberId") as? String
-        let dateFormatter = DateFormatter()
-        let date = Date()
-        dateFormatter.timeZone = TimeZone.current
-        dateFormatter.dateFormat =  "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
-        let datecreated = dateFormatter.string(from: date)
         let stripeCustomerTokenId = UserDefaults.standard.value(forKey: "stripeCustomerTokenId") as? String
         
-        let memberDetails: [String: Any] = ["firstname": self.txtFirstName.text!, "lastname": self.txtLastName.text!, "contact": self.txtContactNumber.text!, "occupation": self.profileDetails["Occupation"]!, "email": self.profileDetails["Email"]!, "address": self.profileDetails["Address"] != nil ? self.profileDetails["Address"]! : "", "username": self.profileDetails["Email"]!, "deviceid": "\(UUID())", "emailverified": true, "pictureurl": "", "datecreated": datecreated, "realm": "", "status": "SUCCESS", "subscriptionDate": "", "churchid": churchId, "stripecustomerid": stripeCustomerTokenId!, "issubscribed": true, "subscriptionenddate": true, "parentid": "", "id": memberId!]
+        let memberDetails: [String: Any] = ["firstname": self.txtFirstName.text!, "lastname": self.txtLastName.text!, "contact": self.txtContactNumber.text!, "occupation": self.profileDetails["Occupation"]!, "email": self.profileDetails["Email"]!, "address": self.profileDetails["Address"] != nil ? self.profileDetails["Address"]! : "", "username": self.profileDetails["Email"]!, "deviceid": "\(UUID())", "emailverified": true, "pictureurl": "", "realm": "", "status": "SUCCESS", "subscriptionDate": "", "churchid": churchId, "stripecustomerid": stripeCustomerTokenId!, "issubscribed": true, "subscriptionenddate": true, "parentid": "", "id": memberId!]
         
         let parameters: [String: Any] = memberDetails
         APIHelper().patch(apiUrl: String.init(format: GlobalConstants.APIUrls.memberDetails, memberId!), parameters: parameters as [String : AnyObject]) { (response) in

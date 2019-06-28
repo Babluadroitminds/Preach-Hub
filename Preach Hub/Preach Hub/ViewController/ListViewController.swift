@@ -51,7 +51,7 @@ class ListViewController: UIViewController,UICollectionViewDataSource , UICollec
         let urlString = imageUrl.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
         cell.imgView.sd_setShowActivityIndicatorView(true)
         cell.imgView.sd_setIndicatorStyle(.gray)
-        cell.imgView.sd_setImage(with: URL.init(string: urlString!) , placeholderImage: UIImage.init(named:""))
+        cell.imgView.sd_setImage(with: URL.init(string: urlString!) , placeholderImage: UIImage.init(named:"ic-placeholder.png"))
         
         if currentItem.isContinueWatching {
             cell.imgVwPlay.isHidden = false
@@ -143,7 +143,7 @@ class ListViewController: UIViewController,UICollectionViewDataSource , UICollec
     }
     
     @IBAction func backButtonAction(_ sender: Any) {
-        self.navigationController?.popViewController(animated: true)
+        self.navigateToHomeScreenPage()
     }
     
     static func storyboardInstance() -> ListViewController? {

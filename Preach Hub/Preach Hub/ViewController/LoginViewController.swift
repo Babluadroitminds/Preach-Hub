@@ -79,23 +79,28 @@ class LoginViewController: UIViewController{
             print("responseLogin : ", response)
 
             if response["data"] != JSON.null  {
-                
-                let profileDetails : [String : String] = ["FirstName": response["data"]["firstname"] != JSON.null ? response["data"]["firstname"].string! : "", "LastName": response["data"]["lastname"] != JSON.null ? response["data"]["lastname"].string! : "", "ContactNumber": response["data"]["contact"] != JSON.null ? response["data"]["contact"].string! : "", "Occupation": response["data"]["occupation"] != JSON.null ? response["data"]["occupation"].string! : "", "Email": response["data"]["email"] != JSON.null ? response["data"]["email"].string! : "", "Address": response["data"]["address"] != JSON.null ? response["data"]["address"].string! : ""]
-                
-                let productData = NSKeyedArchiver.archivedData(withRootObject: profileDetails)
-                self.userDefaults.set(productData, forKey: "ProfileDetails")
-                self.userDefaults.synchronize()
-                
-                let firstName = response["data"]["firstname"] != JSON.null ? response["data"]["firstname"].string : ""
-                let lastName = response["data"]["lastname"] != JSON.null ? response["data"]["lastname"].string : ""
-                let memberName = firstName! + " " + lastName!
-                self.userDefaults.set(response["data"]["stripecustomertokenid"].string, forKey: "stripeCustomerTokenId")
-                self.userDefaults.set(memberName, forKey: "memberName")
-                appDelegate?.registerDevice()
-                self.view.makeToast("You are now logged in", duration: 3.0, position: .bottom, style: self.style)
-                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3), execute: {
-                    self.navigateToHomeScreenPage()
-                })
+                if response["data"]["emailVerified"].boolValue{
+                    let profileDetails : [String : String] = ["FirstName": response["data"]["firstname"] != JSON.null ? response["data"]["firstname"].string! : "", "LastName": response["data"]["lastname"] != JSON.null ? response["data"]["lastname"].string! : "", "ContactNumber": response["data"]["contact"] != JSON.null ? response["data"]["contact"].string! : "", "Occupation": response["data"]["occupation"] != JSON.null ? response["data"]["occupation"].string! : "", "Email": response["data"]["email"] != JSON.null ? response["data"]["email"].string! : "", "Address": response["data"]["address"] != JSON.null ? response["data"]["address"].string! : ""]
+                    
+                    let productData = NSKeyedArchiver.archivedData(withRootObject: profileDetails)
+                    self.userDefaults.set(productData, forKey: "ProfileDetails")
+                    self.userDefaults.synchronize()
+                    
+                    let firstName = response["data"]["firstname"] != JSON.null ? response["data"]["firstname"].string : ""
+                    let lastName = response["data"]["lastname"] != JSON.null ? response["data"]["lastname"].string : ""
+                    let memberName = firstName! + " " + lastName!
+                    self.userDefaults.set(response["data"]["stripecustomertokenid"].string, forKey: "stripeCustomerTokenId")
+                    self.userDefaults.set(memberName, forKey: "memberName")
+                    appDelegate?.registerDevice()
+                    self.view.makeToast("You are now logged in", duration: 3.0, position: .bottom, style: self.style)
+                    DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3), execute: {
+                        self.navigateToHomeScreenPage()
+                    })
+                }
+                else{
+                   self.view.makeToast("Please verify your email", duration: 3.0, position: .bottom, style: self.style)
+                   return
+                }
             }
         }
     }

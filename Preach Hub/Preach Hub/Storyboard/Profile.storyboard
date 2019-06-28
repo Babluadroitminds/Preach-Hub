@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina5_5" orientation="portrait">
+    <device id="retina6_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -20,11 +20,11 @@
             <objects>
                 <viewController storyboardIdentifier="ProfileDetailsViewController" title="ProfileDetailsViewController" id="fFS-Dr-tcT" customClass="ProfileDetailsViewController" customModule="Preach_Hub" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Qir-ho-5GI">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JVF-oU-4CZ" userLabel="HeaderView">
-                                <rect key="frame" x="0.0" y="20" width="414" height="50"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="50"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vmg-xs-tg0">
                                         <rect key="frame" x="0.0" y="0.0" width="60" height="50"/>
@@ -75,7 +75,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5wL-ig-P5K">
-                                <rect key="frame" x="0.0" y="70" width="414" height="70"/>
+                                <rect key="frame" x="0.0" y="94" width="414" height="70"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Profile" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hJe-cD-Gom">
                                         <rect key="frame" x="20" y="30" width="374" height="27.666666666666671"/>
@@ -93,13 +93,13 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wFw-H2-ZeR">
-                                <rect key="frame" x="0.0" y="150" width="414" height="586"/>
+                                <rect key="frame" x="0.0" y="174" width="414" height="688"/>
                                 <subviews>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sb1-Qz-mmQ">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="586"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="688"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2XE-ZZ-uz4">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="586"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="688"/>
                                                 <subviews>
                                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TXo-Sd-Fgw" userLabel="Vw First Name">
                                                         <rect key="frame" x="20" y="5" width="374" height="60"/>
@@ -152,14 +152,14 @@
                                                         <rect key="frame" x="20" y="80" width="374" height="60"/>
                                                         <subviews>
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic-user" translatesAutoresizingMaskIntoConstraints="NO" id="RNs-Tp-Cqe">
-                                                                <rect key="frame" x="20" y="21.666666666666657" width="17" height="17"/>
+                                                                <rect key="frame" x="20" y="21.666666666666686" width="17" height="17"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="17" id="J1D-1f-615"/>
                                                                     <constraint firstAttribute="height" constant="17" id="iK7-Zj-NN5"/>
                                                                 </constraints>
                                                             </imageView>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Last Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yN1-wL-fLm">
-                                                                <rect key="frame" x="47" y="20.666666666666657" width="327" height="19"/>
+                                                                <rect key="frame" x="47" y="20.666666666666686" width="327" height="19"/>
                                                                 <nil key="textColor"/>
                                                                 <fontDescription key="fontDescription" name="Gibson-Regular" family="Gibson" pointSize="15"/>
                                                                 <textInputTraits key="textInputTraits"/>

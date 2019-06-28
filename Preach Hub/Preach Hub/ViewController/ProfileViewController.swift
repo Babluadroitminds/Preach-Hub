@@ -69,6 +69,10 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
             let profileDetailsVC = ProfileDetailsViewController.storyboardInstance()
             self.navigationController?.pushViewController(profileDetailsVC!, animated: true)
             break
+        case "Notifications":
+            let notificationsViewController = NotificationsViewController.storyboardInstance()
+            self.navigationController?.pushViewController(notificationsViewController!, animated: true)
+            break
         default:
             break
         }

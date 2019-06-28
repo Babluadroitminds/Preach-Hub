@@ -93,16 +93,16 @@ class RegistrationVC: UIViewController{
         }
         
         let UUID = UIDevice.current.identifierForVendor!.uuidString
-        let memberDetails: [String: Any] = ["firstname": self.txtFirstName.text!, "lastname": self.txtLastName.text!, "contact": self.txtContactNumber.text!, "occupation": self.txtOccupation.text!, "email": self.txtEmail.text!, "password": self.txtPassword.text!, "username": self.txtEmail.text!, "deviceid": "\(UUID)", "emailverified": false, "pictureurl": "", "datecreated": "", "realm": "", "statuscode":0]
+        let memberDetails: [String: Any] = ["firstname": self.txtFirstName.text!, "lastname": self.txtLastName.text!, "contact": self.txtContactNumber.text!, "occupation": self.txtOccupation.text!, "email": self.txtEmail.text!, "password": self.txtPassword.text!, "username": self.txtEmail.text!, "deviceid": "\(UUID)", "emailverified": false, "pictureurl": "", "realm": "", "statuscode":0]
         
-        let parameters: [String: Any] = ["member": memberDetails]
+        let parameters: [String: Any] = memberDetails
         APIHelper().post(apiUrl: GlobalConstants.APIUrls.memberRegister, parameters: parameters as [String : AnyObject]) { (response) in
             
             print("RegisterResponse : ", response)
             
-            if response["data"]["member"]["statusCode"].int == 422 {
-                if response["data"]["member"]["details"]["messages"]["email"][0].string != nil {
-                    let message = response["data"]["member"]["details"]["messages"]["email"][0].string
+            if response["error"]["statusCode"].int == 422 {
+                if response["error"]["details"]["messages"]["email"][0].string != nil {
+                    let message = response["error"]["details"]["messages"]["email"][0].string
                     self.view.makeToast(message, duration: 3.0, position: .bottom, style: self.style)
                     return
                 }
@@ -111,19 +111,19 @@ class RegistrationVC: UIViewController{
                     return
                 }
             }
-            else if response["data"]["member"]["statusCode"].int == 500 {
+            else if response["error"]["statusCode"].int == 500 {
                 self.view.makeToast("Oops! Something went wrong!", duration: 3.0, position: .bottom, style: self.style)
                 return
             }
-            else if response["data"]["member"]["statusCode"].int == 400 {
+            else if response["error"]["statusCode"].int == 400 {
                 self.view.makeToast("Oops! Something went wrong!", duration: 3.0, position: .bottom, style: self.style)
                 return
             }
             
-            if response["data"]["member"]["status"].string == "SUCCESS" {
-                let stripeCustomerTokenId = response["data"]["member"]["stripecustomertokenid"].string
+            if response["member"]["status"].string == "SUCCESS" {
+                let stripeCustomerTokenId = response["member"]["stripecustomertokenid"].string
                 
-                self.singleTon.userId = response["data"]["member"]["id"].string!
+                self.singleTon.userId = response["member"]["id"].string!
 
                // DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3), execute: {
                     let storyBoard : UIStoryboard = UIStoryboard(name: "Payment", bundle:nil)

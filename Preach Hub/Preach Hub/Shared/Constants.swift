@@ -15,7 +15,7 @@ struct GlobalConstants {
         static let apiBaseUrl:String = "https://preachapi.herokuapp.com/api/"
         static let websiteLink:String = "http://www.preachhub.net"
         static let memberLogin:String = "members/login"
-        static let memberRegister:String = "members/savemember"
+        static let memberRegister:String = "members"
         static let memberReset:String = "members/reset"
         static let verifyEmail:String = "members/findOne?filter=%@"
         static let getPlanDetails:String = "https://api.stripe.com/v1/plans"
@@ -53,5 +53,7 @@ struct GlobalConstants {
         static let removeContinueWatchingVideo: String = "continuewatchings/%@"
         static let checkChurchMember: String = "members/%@?filter=%@"
         static let registerChurchMember: String = "churches/%@/members"
+        static let getNotifications: String = "engagements"
+        static let getNotificationDetails: String = "engagements/%@"
     }
 }
