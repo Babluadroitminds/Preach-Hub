@@ -175,6 +175,7 @@ class ChurchDetailsViewController: UIViewController, UITableViewDataSource, UITa
     var sectionHeaderCellCount: Int = 7
 
     var profileDetails : [String : String]!
+    var isFromHome: Bool = false
     
     override func viewDidLoad()
     {
@@ -278,6 +279,10 @@ class ChurchDetailsViewController: UIViewController, UITableViewDataSource, UITa
     {
         self.tableView.reloadSections([1], with: .automatic)
     }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+          NotificationCenter.default.removeObserver(self, name: Notification.Name(rawValue: "topBackTapped"), object: nil)
+    }
 
     func textFieldDidEndEditing(_ textField: UITextField)
     {
@@ -354,9 +359,13 @@ class ChurchDetailsViewController: UIViewController, UITableViewDataSource, UITa
         super.didReceiveMemoryWarning()
     }
     
-    @objc func topBackTapped(notification: NSNotification)
-    {
-        self.navigationController?.popViewController(animated: true)
+    @objc func topBackTapped(notification: NSNotification){
+        if isFromHome {
+            self.navigateToHomeScreenPage()
+        }
+        else{
+            self.navigationController?.popViewController(animated: true)
+        }
     }
     
     func updateHeaderView(customCell: sectionHeaderView, section: Int)
@@ -448,8 +457,9 @@ class ChurchDetailsViewController: UIViewController, UITableViewDataSource, UITa
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        if self.segmentIndex == 1
-        {
+
+//        else
+        if self.segmentIndex == 1 {
             if self.productsArr.count == 0{
                 let cell = tableView.dequeueReusableCell(withIdentifier: "noDataCell") as? noDataCell
                 return cell!
@@ -855,14 +865,9 @@ class ChurchDetailsViewController: UIViewController, UITableViewDataSource, UITa
 //        }
         
         let memberId = UserDefaults.standard.value(forKey: "memberId") as? String
-        let dateFormatter = DateFormatter()
-        let date = Date()
-        dateFormatter.timeZone = TimeZone.current
-        dateFormatter.dateFormat =  "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
-        let datecreated = dateFormatter.string(from: date)
         let stripeCustomerTokenId = UserDefaults.standard.value(forKey: "stripeCustomerTokenId") as? String
         
-        let memberDetails: [String: Any] = ["firstname": cell!.txtFirstName.text!, "lastname": cell!.txtLastName.text!, "contact": cell!.txtContactNumber.text!, "occupation": cell!.txtOccupation.text!, "email": cell!.txtEmail.text!, "address": self.profileDetails["Address"] != nil ? self.profileDetails["Address"]! : "", "username": cell!.txtEmail.text!, "deviceid": "\(UUID())", "emailverified": true, "pictureurl": "", "datecreated": datecreated, "realm": "", "status": "SUCCESS", "subscriptionDate": "", "churchid": id!, "stripecustomerid": stripeCustomerTokenId!, "issubscribed": true, "subscriptionenddate": true, "parentid": "", "id": memberId!]
+        let memberDetails: [String: Any] = ["firstname": cell!.txtFirstName.text!, "lastname": cell!.txtLastName.text!, "contact": cell!.txtContactNumber.text!, "occupation": cell!.txtOccupation.text!, "email": cell!.txtEmail.text!, "address": self.profileDetails["Address"] != nil ? self.profileDetails["Address"]! : "", "username": cell!.txtEmail.text!, "deviceid": "\(UUID())", "emailverified": true, "pictureurl": "", "realm": "", "status": "SUCCESS", "subscriptionDate": "", "churchid": id!, "stripecustomerid": stripeCustomerTokenId!, "issubscribed": true, "subscriptionenddate": true, "parentid": "", "id": memberId!]
        
         let parameters: [String: String] = [:]
         let dict = ["include": ["churchmember"]] as [String : Any]

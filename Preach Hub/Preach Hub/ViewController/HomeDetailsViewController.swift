@@ -121,6 +121,7 @@ class HomeDetailsViewController: UIViewController, UITableViewDataSource, UITabl
     var selectedSermonsId: String?
     var memberId = UserDefaults.standard.value(forKey: "memberId") as? String
     var sectionHeaderCellCount: Int = 5
+    var isFromHome: Bool = false
     
     override func viewDidLoad()
     {
@@ -210,6 +211,11 @@ class HomeDetailsViewController: UIViewController, UITableViewDataSource, UITabl
     {
         self.tableView.reloadSections([1], with: .automatic)
     }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self, name: Notification.Name(rawValue: "topBackTapped"), object: nil)
+    }
+    
     override func didReceiveMemoryWarning()
     {
         super.didReceiveMemoryWarning()
@@ -260,10 +266,15 @@ class HomeDetailsViewController: UIViewController, UITableViewDataSource, UITabl
         }
     }
     
-    @objc func topBackTapped(notification: NSNotification)
-    {
-        self.navigationController?.popViewController(animated: true)
+    @objc func topBackTapped(notification: NSNotification){
+        if isFromHome {
+            self.navigateToHomeScreenPage()
+        }
+        else{
+            self.navigationController?.popViewController(animated: true)
+        }
     }
+    
     func updateHeaderView(customCell: sectionHeaderView, section: Int)
     {
         customCell.segmentControl.selectedSegmentIndex = self.segmentIndex

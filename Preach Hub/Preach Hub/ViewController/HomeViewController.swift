@@ -369,9 +369,11 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
             cell.btnMore.tag = 2
             if churchLists.count == 0 {
                 cell.lblMessage.isHidden = false
+                cell.btnMore.isHidden = true
             }
             else {
                 cell.lblMessage.isHidden = true
+                cell.btnMore.isHidden = false
             }
         }
         else if indexPath.row == 3 {
@@ -379,9 +381,11 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
             cell.btnMore.tag = 3
             if pastorLists.count == 0 {
                 cell.lblMessage.isHidden = false
+                cell.btnMore.isHidden = true
             }
             else {
                 cell.lblMessage.isHidden = true
+                cell.btnMore.isHidden = false
             }
         }
 //        else if indexPath.row == 4 {
@@ -399,9 +403,11 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
             cell.btnMore.tag = 4
             if musicLists.count == 0 {
                 cell.lblMessage.isHidden = false
+                cell.btnMore.isHidden = true
             }
             else {
                 cell.lblMessage.isHidden = true
+                cell.btnMore.isHidden = false
             }
         }
         cell.backgroundColor = UIColor.clear
@@ -500,6 +506,7 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                         let storyBoard : UIStoryboard = UIStoryboard(name: "HomeDetails", bundle:nil)
                         let vc = storyBoard.instantiateViewController(withIdentifier: "HomeDetailsViewController") as! HomeDetailsViewController
                         vc.detailsDict = response["data"].dictionary!
+                        vc.isFromHome = true
                         self.navigationController?.pushViewController(vc, animated: true)
                     }
                 }
@@ -537,6 +544,7 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                         let storyBoard : UIStoryboard = UIStoryboard(name: "ChurchDetails", bundle:nil)
                         let vc = storyBoard.instantiateViewController(withIdentifier: "ChurchDetailsViewController") as! ChurchDetailsViewController
                         vc.detailsDict = response["data"].dictionary!
+                        vc.isFromHome = true
                         self.navigationController?.pushViewController(vc, animated: true)
                     }
                 }
