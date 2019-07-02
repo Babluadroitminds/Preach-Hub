@@ -27,15 +27,15 @@ class sectionHeaderView: UITableViewHeaderFooterView
         
         if self.segmentControl.numberOfSegments == 0
         {
-            self.segmentControl.segmentStyle = .textOnly
+            self.segmentControl.segmentStyle = .imageOnLeft
             
             self.segmentControl.underlineSelected = true
+            self.segmentControl.underlineHeight = self.segmentControl.bounds.height
             
             self.segmentControl.segmentContentColor = UIColor(red: 57/255.0, green: 146/255.0, blue: 223/255.0, alpha: 1.0)
-            self.segmentControl.selectedSegmentContentColor = UIColor(red: 57/255.0, green: 146/255.0, blue: 223/255.0, alpha: 1.0)
+            self.segmentControl.selectedSegmentContentColor = UIColor(red: 31/255.0, green: 34/255.0, blue: 34/255.0, alpha: 1.0)
             self.segmentControl.tintColor = UIColor(red: 57/255.0, green: 146/255.0, blue: 223/255.0, alpha: 1.0)
-            self.segmentControl.backgroundColor = UIColor(red: 45/255.0, green: 45/255.0, blue: 45/255.0, alpha: 1.0)
-            
+            self.segmentControl.backgroundColor = UIColor(red: 31/255.0, green: 34/255.0, blue: 34/255.0, alpha: 1.0)
             self.segmentControl.fixedSegmentWidth = false
         }
     }

@@ -92,9 +92,7 @@ class RootViewController: UIViewController, UITabBarDelegate , UITableViewDataSo
             let productData = NSKeyedArchiver.archivedData(withRootObject: [])
             UserDefaults.standard.set(productData, forKey: "CartDetails")
             self.removeMemberDevice()
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "RefreshLogoutRequest"), object: nil)
-            self.dismiss(animated: true, completion: nil)
-            
+            self.navigateToLogin()
         }))
         alert.addAction(UIAlertAction(title: "NO", style: UIAlertAction.Style.default, handler: nil))
         self.present(alert, animated: true, completion: nil)

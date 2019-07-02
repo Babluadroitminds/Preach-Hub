@@ -55,5 +55,6 @@ struct GlobalConstants {
         static let registerChurchMember: String = "churches/%@/members"
         static let getNotifications: String = "engagements"
         static let getNotificationDetails: String = "engagements/%@"
+        static let cancelMembership: String = "members/cancelMemberSubscription"
     }
 }

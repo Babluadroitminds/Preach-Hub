@@ -171,7 +171,7 @@ class HomeDetailsViewController: UIViewController, UITableViewDataSource, UITabl
         }
         tableView.tableHeaderView = header
         
-        NotificationCenter.default.addObserver(self, selector: #selector(self.topBackTapped), name: NSNotification.Name(rawValue: "topBackTapped"), object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(self.topBackTapped), name: NSNotification.Name(rawValue: "topBackTapped"), object: nil)
         id = detailsDict["id"]?.string
         if detailsDict["pastorsermons"] != nil
         {
@@ -207,6 +207,11 @@ class HomeDetailsViewController: UIViewController, UITableViewDataSource, UITabl
         }
         setGestureLayout()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        NotificationCenter.default.addObserver(self, selector: #selector(self.topBackTapped), name: NSNotification.Name(rawValue: "topBackTapped"), object: nil)
+    }
+    
     override func viewDidAppear(_ animated: Bool)
     {
         self.tableView.reloadSections([1], with: .automatic)
@@ -284,15 +289,16 @@ class HomeDetailsViewController: UIViewController, UITableViewDataSource, UITabl
     {
         if section == 0
         {
+            let sectionImageArray = ["", "ic-product", "ic-sermons", "ic-titche", ""]
             let cell = tableView.dequeueReusableHeaderFooterView(withIdentifier: "sectionHeader") as? sectionHeaderView
             
             cell?.segmentControl.addTarget(self, action: #selector(self.segmentSelected(sender:)), for: .valueChanged)
             
-            cell?.segmentControl.insertSegment(withTitle: "ABOUT", image: nil, at: 0)
-            cell?.segmentControl.insertSegment(withTitle: "PRODUCTS", image: nil, at: 1)
-            cell?.segmentControl.insertSegment(withTitle: "SERMONS", image: nil, at: 2)
-            cell?.segmentControl.insertSegment(withTitle: "TITHE", image: nil, at: 3)
-            cell?.segmentControl.insertSegment(withTitle: "TESTIMONY", image: nil, at: 4)
+            cell?.segmentControl.insertSegment(withTitle: "ABOUT", image: UIImage(named: sectionImageArray[0]), at: 0)
+            cell?.segmentControl.insertSegment(withTitle: "PRODUCTS", image: UIImage(named: sectionImageArray[1]), at: 1)
+            cell?.segmentControl.insertSegment(withTitle: "SERMONS", image: UIImage(named: sectionImageArray[2]), at: 2)
+            cell?.segmentControl.insertSegment(withTitle: "TITHE", image: UIImage(named: sectionImageArray[3]), at: 3)
+            cell?.segmentControl.insertSegment(withTitle: "TESTIMONY", image: UIImage(named: sectionImageArray[4]), at: 4)
             
             cell?.segmentControl.selectedSegmentIndex = self.segmentIndex
                         
@@ -310,7 +316,7 @@ class HomeDetailsViewController: UIViewController, UITableViewDataSource, UITabl
     {
         if section == 0
         {
-            return 60
+            return 50
         }
         else
         {

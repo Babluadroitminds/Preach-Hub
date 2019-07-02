@@ -74,7 +74,7 @@ public enum ScrollableSegmentedControlSegmentStyle: Int {
                     
                     if indexPath != nil {
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.05, execute: {
-                            self.collectionView?.selectItem(at: indexPath, animated: true, scrollPosition: .left)
+                            self.collectionView?.selectItem(at: indexPath, animated: true, scrollPosition: UICollectionView.ScrollPosition.left)
                         })
                     }
                 }
@@ -98,26 +98,6 @@ public enum ScrollableSegmentedControlSegmentStyle: Int {
         }
     }
     
-//    fileprivate var _borderColor:UIColor?
-//    @objc public dynamic var borderColor:UIColor? {
-//        get { return _borderColor }
-//        set {
-//            _borderColor = newValue
-//            reloadSegments()
-//        }
-//    }
-
-    fileprivate var _underlineHeight: CGFloat = 4.0
-    @objc public dynamic var underlineHeight: CGFloat {
-        get { return _underlineHeight }
-        set {
-            if newValue != _underlineHeight {
-                _underlineHeight = newValue
-                reloadSegments()
-            }
-        }
-    }
-    
     fileprivate var _selectedSegmentContentColor:UIColor?
     @objc public dynamic var selectedSegmentContentColor:UIColor? {
         get { return _selectedSegmentContentColor }
@@ -127,6 +107,14 @@ public enum ScrollableSegmentedControlSegmentStyle: Int {
         }
     }
     
+    fileprivate var _selectedSegmentBackgrundColor:UIColor?
+    @objc public dynamic var selectedSegmentBackgrundColor:UIColor? {
+        get { return _selectedSegmentBackgrundColor }
+        set {
+            _selectedSegmentBackgrundColor = newValue
+            reloadSegments()
+        }
+    }
     
     override public init(frame: CGRect) {
         super.init(frame: frame)
@@ -244,13 +232,8 @@ public enum ScrollableSegmentedControlSegmentStyle: Int {
     /**
      Removes segment at a specific position from the receiver.
      */
-    @objc public func removeSegment(at index: Int){
-        segmentsData.remove(at: index)
-        if(selectedSegmentIndex == index) {
-            selectedSegmentIndex = selectedSegmentIndex - 1
-        } else if(selectedSegmentIndex > segmentsData.count) {
-            selectedSegmentIndex = -1
-        }
+    @objc public func removeSegment(at segment: Int){
+        segmentsData.remove(at: segment)
         reloadSegments()
     }
     
@@ -285,18 +268,8 @@ public enum ScrollableSegmentedControlSegmentStyle: Int {
             }
             
             if selectedSegmentIndex >= 0 {
-                var scrollPossition:UICollectionView.ScrollPosition = .bottom
                 let indexPath = IndexPath(item: selectedSegmentIndex, section: 0)
-                if let atribs = collectionView?.layoutAttributesForItem(at: indexPath) {
-                    let frame = atribs.frame
-                    if frame.origin.x < collectionView!.contentOffset.x {
-                        scrollPossition = .left
-                    } else if frame.origin.x + frame.size.width > (collectionView!.frame.size.width + collectionView!.contentOffset.x) {
-                        scrollPossition = .right
-                    }
-                }
-            
-                collectionView?.selectItem(at: indexPath, animated: true, scrollPosition: scrollPossition)
+                collectionView?.selectItem(at: indexPath, animated: true, scrollPosition: .left)
             } else {
                 if let indexPath = collectionView?.indexPathsForSelectedItems?.first {
                     collectionView?.deselectItem(at: indexPath, animated: true)
@@ -355,7 +328,6 @@ public enum ScrollableSegmentedControlSegmentStyle: Int {
         collectionView?.layer.borderColor = UIColor(red: 57/255.0, green: 146/255.0, blue: 223/255.0, alpha: 1.0).cgColor
         collectionView?.layer.borderWidth = 0.5
         collectionView?.layer.cornerRadius = 5
-
         addSubview(collectionView!)
     }
     
@@ -422,7 +394,7 @@ public enum ScrollableSegmentedControlSegmentStyle: Int {
             collectionView_.reloadData()
             if selectedSegmentIndex >= 0 {
                 let indexPath = IndexPath(item: selectedSegmentIndex, section: 0)
-                collectionView_.selectItem(at: indexPath, animated: true, scrollPosition: .bottom)
+                collectionView_.selectItem(at: indexPath, animated: true, scrollPosition: .left)
             }
         }
     }
@@ -451,6 +423,7 @@ public enum ScrollableSegmentedControlSegmentStyle: Int {
         static let imageOnlyCellIdentifier = "imageOnlyCellIdentifier"
         static let imageOnTopCellIdentifier = "imageOnTopCellIdentifier"
         static let imageOnLeftCellIdentifier = "imageOnLeftCellIdentifier"
+        var selectedIndex = Int ()
         
         private weak var segmentedControl: ScrollableSegmentedControl!
         
@@ -477,36 +450,53 @@ public enum ScrollableSegmentedControlSegmentStyle: Int {
             case .textOnly:
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewController.textOnlyCellIdentifier, for: indexPath) as! TextOnlySegmentCollectionViewCell
                 cell.titleLabel.text = data.title
+                cell.layer.borderColor = UIColor(red: 57/255.0, green: 146/255.0, blue: 223/255.0, alpha: 1.0).cgColor
+                cell.layer.borderWidth = 1.0
+                //cell.layer.cornerRadius = 5
                 segmentCell = cell
             case .imageOnly:
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewController.imageOnlyCellIdentifier, for: indexPath) as! ImageOnlySegmentCollectionViewCell
                 cell.imageView.image = data.image
+                cell.layer.borderColor = UIColor(red: 57/255.0, green: 146/255.0, blue: 223/255.0, alpha: 1.0).cgColor
+                cell.layer.borderWidth = 1.0
+                //cell.layer.cornerRadius = 5
                 segmentCell = cell
             case .imageOnTop:
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewController.imageOnTopCellIdentifier, for: indexPath) as! ImageOnTopSegmentCollectionViewCell
                 cell.titleLabel.text = data.title
+                cell.layer.borderColor = UIColor(red: 57/255.0, green: 146/255.0, blue: 223/255.0, alpha: 1.0).cgColor
+                cell.layer.borderWidth = 1.0
+                //cell.layer.cornerRadius = 5
                 cell.imageView.image = data.image
+                
                 segmentCell = cell
             case .imageOnLeft:
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewController.imageOnLeftCellIdentifier, for: indexPath) as! ImageOnLeftSegmentCollectionViewCell
                 cell.titleLabel.text = data.title
                 cell.imageView.image = data.image
+                cell.layer.borderColor = UIColor(red: 57/255.0, green: 146/255.0, blue: 223/255.0, alpha: 1.0).cgColor
+                cell.layer.borderWidth = 1.0
+           
+               // cell.layer.cornerRadius = 5
                 segmentCell = cell
             }
-            segmentCell.underlineHeight = segmentedControl.underlineHeight
+            
             segmentCell.showUnderline = segmentedControl.underlineSelected
-            segmentCell.borderColor = UIColor(red: 57/255.0, green: 146/255.0, blue: 223/255.0, alpha: 1.0)
-            segmentCell.borderWidth = 1.5
             if segmentedControl.underlineSelected {
                 segmentCell.tintColor = segmentedControl.tintColor
-                
             }
-            
             
             
             segmentCell.contentColor = segmentedControl.segmentContentColor
             segmentCell.selectedContentColor = segmentedControl.selectedSegmentContentColor
-         
+            
+//            if selectedIndex == indexPath.row{
+//                segmentCell.backgroundColor = segmentedControl.selectedSegmentBackgrundColor
+//            }
+//            else{
+//                segmentCell.backgroundColor = UIColor.black
+//            }
+           // segmentCell.backgroundColor = segmentedControl.selectedSegmentBackgrundColor
             segmentCell.normalAttributedTitle = data.normalAttributedTitle
             segmentCell.highlightedAttributedTitle = data.highlightedAttributedTitle
             segmentCell.selectedAttributedTitle = data.selectedAttributedTitle
@@ -518,7 +508,9 @@ public enum ScrollableSegmentedControlSegmentStyle: Int {
         
         fileprivate func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
             segmentedControl.selectedSegmentIndex = indexPath.item
-            
+            //segmentedControl![indexPath.item].selectedSegmentBackgrundColor = UIColor.red
+            selectedIndex = indexPath.row
+            collectionView.reloadData()
         }
         
         fileprivate func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
@@ -556,20 +548,12 @@ public enum ScrollableSegmentedControlSegmentStyle: Int {
         static let textPadding:CGFloat = 8.0
         static let imageToTextMargin:CGFloat = 14.0
         static let imageSize:CGFloat = 14.0
-        static let defaultFont = UIFont.systemFont(ofSize: 14)
+        static let defaultFont = UIFont.boldSystemFont(ofSize: 14)//.systemFont(ofSize: 14)
         static let defaultTextColor = UIColor.darkGray
         
         var underlineView:UIView?
-        var underlineHeight: CGFloat = 4.0 {
-            didSet {
-                if oldValue != underlineHeight {
-                    setNeedsUpdateConstraints()
-                }
-            }
-        }
         public var contentColor:UIColor?
         public var selectedContentColor:UIColor?
-        
         var normalAttributedTitle:NSAttributedString?
         var highlightedAttributedTitle:NSAttributedString?
         var selectedAttributedTitle:NSAttributedString?
@@ -617,6 +601,7 @@ public enum ScrollableSegmentedControlSegmentStyle: Int {
         private func configureConstraints() {
             if let underline = underlineView {
                 underline.translatesAutoresizingMaskIntoConstraints = false
+                underline.heightAnchor.constraint(equalToConstant: 3.0).isActive = true
                 underline.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
                 underline.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
                 underline.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
@@ -631,7 +616,7 @@ public enum ScrollableSegmentedControlSegmentStyle: Int {
         
         override var isHighlighted: Bool {
             didSet {
-                underlineView?.isHidden = !isHighlighted && !isSelected
+                underlineView?.isHidden = !isHighlighted
             }
         }
         
@@ -703,10 +688,7 @@ public enum ScrollableSegmentedControlSegmentStyle: Int {
             variableConstraints.append(titleLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor))
             variableConstraints.append(titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: BaseSegmentCollectionViewCell.textPadding))
             variableConstraints.append(titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -BaseSegmentCollectionViewCell.textPadding))
-
-            if let underline = underlineView {
-                variableConstraints.append(underline.heightAnchor.constraint(equalToConstant: underlineHeight))
-            }
+            
             NSLayoutConstraint.activate(variableConstraints)
         }
     }
@@ -758,10 +740,6 @@ public enum ScrollableSegmentedControlSegmentStyle: Int {
             variableConstraints.append(imageView.leadingAnchor.constraint(greaterThanOrEqualTo: contentView.leadingAnchor, constant: BaseSegmentCollectionViewCell.textPadding))
             variableConstraints.append(contentView.trailingAnchor.constraint(greaterThanOrEqualTo: imageView.trailingAnchor, constant: BaseSegmentCollectionViewCell.textPadding))
             
-            if let underline = underlineView {
-                variableConstraints.append(underline.heightAnchor.constraint(equalToConstant: underlineHeight))
-            }
-            
             NSLayoutConstraint.activate(variableConstraints)
         }
     }
@@ -774,7 +752,6 @@ public enum ScrollableSegmentedControlSegmentStyle: Int {
         override var contentColor:UIColor? {
             didSet {
                 titleLabel.textColor = (contentColor == nil) ? BaseSegmentCollectionViewCell.defaultTextColor : contentColor!
-               // titleLabel.backgroundColor = (contentColor == nil) ? .red : .clear
                 imageView.tintColor = (contentColor == nil) ? BaseSegmentCollectionViewCell.defaultTextColor : contentColor!
             }
         }
@@ -848,10 +825,6 @@ public enum ScrollableSegmentedControlSegmentStyle: Int {
             variableConstraints.append(stackView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor))
             variableConstraints.append(stackView.leadingAnchor.constraint(greaterThanOrEqualTo: contentView.leadingAnchor, constant: BaseSegmentCollectionViewCell.textPadding))
             variableConstraints.append(contentView.trailingAnchor.constraint(greaterThanOrEqualTo: stackView.trailingAnchor, constant: BaseSegmentCollectionViewCell.textPadding))
-            
-            if let underline = underlineView {
-                variableConstraints.append(underline.heightAnchor.constraint(equalToConstant: underlineHeight))
-            }
             
             NSLayoutConstraint.activate(variableConstraints)
         }

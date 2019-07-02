@@ -1444,14 +1444,36 @@
                                     <constraint firstAttribute="trailing" secondItem="oeK-xg-xsm" secondAttribute="trailing" id="vLc-l1-bRa"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mq1-KI-hvx">
+                                <rect key="frame" x="20" y="607" width="374" height="60"/>
+                                <color key="backgroundColor" red="0.043137254899999998" green="0.58431372550000005" blue="0.92549019610000005" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="D8o-8L-M4z"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Gibson-Regular" family="Gibson" pointSize="18"/>
+                                <state key="normal" title="Cancel Member Subscription">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="30"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="cancelMemberSubscriptionClicked:" destination="mVZ-pb-Zo0" eventType="touchUpInside" id="fbI-Gs-Kh4"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.13333333333333333" green="0.12156862745098039" blue="0.12156862745098039" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="cK9-6H-cCk" firstAttribute="trailing" secondItem="mq1-KI-hvx" secondAttribute="trailing" constant="20" id="9mC-KI-avx"/>
                             <constraint firstItem="P1Y-lA-JW6" firstAttribute="top" secondItem="cK9-6H-cCk" secondAttribute="top" id="JOM-wI-jp9"/>
                             <constraint firstItem="xxY-Lq-zhg" firstAttribute="leading" secondItem="cK9-6H-cCk" secondAttribute="leading" id="Riq-Pz-LLW"/>
                             <constraint firstItem="xxY-Lq-zhg" firstAttribute="top" secondItem="P1Y-lA-JW6" secondAttribute="bottom" id="Ter-2d-BdB"/>
                             <constraint firstItem="cK9-6H-cCk" firstAttribute="bottom" secondItem="xxY-Lq-zhg" secondAttribute="bottom" id="Vzj-XO-Wp7"/>
+                            <constraint firstItem="mq1-KI-hvx" firstAttribute="leading" secondItem="cK9-6H-cCk" secondAttribute="leading" constant="20" id="aEL-hU-QQr"/>
                             <constraint firstItem="P1Y-lA-JW6" firstAttribute="trailing" secondItem="cK9-6H-cCk" secondAttribute="trailing" id="drm-5f-CMQ"/>
+                            <constraint firstItem="cK9-6H-cCk" firstAttribute="bottom" secondItem="mq1-KI-hvx" secondAttribute="bottom" constant="20" id="fIU-fi-cRX"/>
                             <constraint firstItem="cK9-6H-cCk" firstAttribute="trailing" secondItem="xxY-Lq-zhg" secondAttribute="trailing" id="j2c-qr-IYd"/>
                             <constraint firstItem="P1Y-lA-JW6" firstAttribute="leading" secondItem="cK9-6H-cCk" secondAttribute="leading" id="yN1-TE-jjD"/>
                         </constraints>

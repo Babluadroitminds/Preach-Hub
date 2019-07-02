@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class ProfileViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
@@ -78,6 +79,50 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         }
     }
 
+    @IBAction func cancelMemberSubscriptionClicked(_ sender: Any) {
+        let alert = UIAlertController(title: "Cancel Member Subscription", message: "Are you sure you want to cancel member subscription?", preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "YES", style: UIAlertAction.Style.default, handler: {(action:UIAlertAction!) in
+            self.cancelSubscription()
+            
+        }))
+        alert.addAction(UIAlertAction(title: "NO", style: UIAlertAction.Style.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func cancelSubscription(){
+        let stripeCustomerTokenId = UserDefaults.standard.string(forKey: "stripeCustomerTokenId")
+        let parameters: [String: Any] = ["customerstripetoken": stripeCustomerTokenId!]
+        APIHelper().post(apiUrl: GlobalConstants.APIUrls.cancelMembership, parameters: parameters as [String : AnyObject]) { (response) in
+            if response["status"].string == "Success"{
+                
+                UserDefaults.standard.set(false, forKey: "Is_Logged_In")
+                UserDefaults.standard.removeObject(forKey: "memberId")
+                let productData = NSKeyedArchiver.archivedData(withRootObject: [])
+                UserDefaults.standard.set(productData, forKey: "CartDetails")
+                self.removeMemberDevice()
+                self.view.makeToast("Member subscription cancelled", duration: 3.0, position: .bottom)
+                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3), execute: {
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "RefreshLogoutRequest"), object: nil)
+                    self.dismiss(animated: true, completion: nil)
+                })
+            }
+            else {
+                self.view.makeToast("Oops! Something went wrong!", duration: 3.0, position: .bottom)
+                return
+            }
+        }
+    }
+    
+    func removeMemberDevice(){
+        let parameters: [String: String] = [:]
+        let deviceId = UserDefaults.standard.value(forKey: "memberDeviceId") as? String
+        if deviceId != nil {
+            APIHelper().deleteBackground(apiUrl: String.init(format: GlobalConstants.APIUrls.removeMemberDevicesById, deviceId!), parameters: parameters as [String : AnyObject]) { (response) in
+                UserDefaults.standard.removeObject(forKey: "memberDeviceId")
+            }
+        }
+    }
+    
 }
 
 

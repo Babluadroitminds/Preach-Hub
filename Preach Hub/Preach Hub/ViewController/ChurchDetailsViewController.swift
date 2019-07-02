@@ -233,7 +233,6 @@ class ChurchDetailsViewController: UIViewController, UITableViewDataSource, UITa
         }
         tableView.tableHeaderView = header
         
-        NotificationCenter.default.addObserver(self, selector: #selector(self.topBackTapped), name: NSNotification.Name(rawValue: "topBackTapped"), object: nil)
         id = detailsDict["id"]?.string
         if detailsDict["branches"] != nil{
             if detailsDict["branches"]?.array?.count != 0{
@@ -278,6 +277,10 @@ class ChurchDetailsViewController: UIViewController, UITableViewDataSource, UITa
     override func viewDidAppear(_ animated: Bool)
     {
         self.tableView.reloadSections([1], with: .automatic)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+           NotificationCenter.default.addObserver(self, selector: #selector(self.topBackTapped), name: NSNotification.Name(rawValue: "topBackTapped"), object: nil)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -376,18 +379,18 @@ class ChurchDetailsViewController: UIViewController, UITableViewDataSource, UITa
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView?
     {
         if section == 0
-        {
+        {   let sectionImageArray = ["", "ic-product", "ic-form", "ic-events", "", "ic-branch", "ic-titche"]
             let cell = tableView.dequeueReusableHeaderFooterView(withIdentifier: "sectionHeader") as? sectionHeaderView
             
             cell?.segmentControl.addTarget(self, action: #selector(self.segmentSelected(sender:)), for: .valueChanged)
 
-            cell?.segmentControl.insertSegment(withTitle: "STATEMENT OF FAITH", image: nil, at: 0)
-            cell?.segmentControl.insertSegment(withTitle: "PRODUCTS", image: nil, at: 1)
-            cell?.segmentControl.insertSegment(withTitle: "MEMBERSHIP FORM", image: nil, at: 2)
-            cell?.segmentControl.insertSegment(withTitle: "EVENTS", image: nil, at: 3)
-            cell?.segmentControl.insertSegment(withTitle: "BIBLE COLLEGE", image: nil, at: 4)
-            cell?.segmentControl.insertSegment(withTitle: "HOME CELLS/BRANCHES", image: nil, at: 5)
-            cell?.segmentControl.insertSegment(withTitle: "OFFERING", image: nil, at: 6)
+            cell?.segmentControl.insertSegment(withTitle: "STATEMENT OF FAITH", image: UIImage(named: sectionImageArray[0]), at: 0)
+            cell?.segmentControl.insertSegment(withTitle: "PRODUCTS", image: UIImage(named: sectionImageArray[1]), at: 1)
+            cell?.segmentControl.insertSegment(withTitle: "MEMBERSHIP FORM", image: UIImage(named: sectionImageArray[2]), at: 2)
+            cell?.segmentControl.insertSegment(withTitle: "EVENTS", image: UIImage(named: sectionImageArray[3]), at: 3)
+            cell?.segmentControl.insertSegment(withTitle: "BIBLE COLLEGE", image: UIImage(named: sectionImageArray[4]), at: 4)
+            cell?.segmentControl.insertSegment(withTitle: "HOME CELLS/BRANCHES", image: UIImage(named: sectionImageArray[5]), at: 5)
+            cell?.segmentControl.insertSegment(withTitle: "OFFERING", image: UIImage(named: sectionImageArray[6]), at: 6)
 
             
             cell?.segmentControl.selectedSegmentIndex = self.segmentIndex
@@ -407,7 +410,7 @@ class ChurchDetailsViewController: UIViewController, UITableViewDataSource, UITa
     {
         if section == 0
         {
-            return 60
+            return 50
         }
         else
         {
