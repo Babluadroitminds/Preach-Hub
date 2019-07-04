@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>59524536851-risga3iqckl9ubdl7448o5dcm7dcneht.apps.googleusercontent.com</string>
+	<string>59524536851-bm82n4k6bnmrscdj4ki49fb3u18uii9i.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.59524536851-risga3iqckl9ubdl7448o5dcm7dcneht</string>
+	<string>com.googleusercontent.apps.59524536851-bm82n4k6bnmrscdj4ki49fb3u18uii9i</string>
 	<key>API_KEY</key>
 	<string>AIzaSyBsbsFyT6hhJdsTcU3s0wIb0KL1_YUtJn4</string>
 	<key>GCM_SENDER_ID</key>
@@ -13,7 +13,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.adroitMinds.Preach-Hub</string>
+	<string>com.preachhub.PreachHubApp</string>
 	<key>PROJECT_ID</key>
 	<string>preachmessagehub</string>
 	<key>STORAGE_BUCKET</key>
@@ -29,7 +29,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:59524536851:ios:b8903c1883373827</string>
+	<string>1:59524536851:ios:c991d6747b31f7b0</string>
 	<key>DATABASE_URL</key>
 	<string>https://preachmessagehub.firebaseio.com</string>
 </dict>

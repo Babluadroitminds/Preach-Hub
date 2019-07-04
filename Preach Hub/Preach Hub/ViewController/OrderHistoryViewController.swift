@@ -24,6 +24,8 @@ class OrderHistoryTableViewCell : UITableViewCell{
     @IBOutlet weak var lblOrderDate: UILabel!
     @IBOutlet weak var lblOrderId: UILabel!
     
+    @IBOutlet weak var imgVwCancel: UIImageView!
+    @IBOutlet weak var btnCancelOrder: UIButton!
     @IBOutlet weak var lblPaymentType: UILabel!
 }
 
@@ -52,6 +54,14 @@ class OrderHistoryViewController: UIViewController, UITableViewDataSource, UITab
         cell.lblOrderDate.text = "Order Date: " + dateString(date: currentItem.orderdate)
         cell.lblPrice.text = "$" + currentItem.currencyvalue.description
         cell.lblPaymentType.text = "Payment type: " + currentItem.paymentmethod
+        cell.btnCancelOrder.addTarget(self, action: #selector(btnCancelOrderClicked), for: .touchUpInside)
+        cell.btnCancelOrder.tag = indexPath.row
+        if currentItem.status == "delivered"{
+            cell.btnCancelOrder.isHidden = true
+        }
+        else {
+            cell.btnCancelOrder.isHidden = false
+        }
         return cell
     }
     
@@ -92,8 +102,10 @@ class OrderHistoryViewController: UIViewController, UITableViewDataSource, UITab
                     self.Orders = []
                     if response["data"].array != nil  {
                         for item in response["data"].arrayValue {
-                            if item["orderstatus"].string != "pending" {
-                                self.Orders.append(OrderKey(id: item["id"] != JSON.null ? item["id"].string! : "", orderno: item["orderno"] != JSON.null ? item["orderno"].string! : "", orderdate: item["orderdate"] != JSON.null ? item["orderdate"].string! : "", currencyvalue: item["currencyvalue"] != JSON.null ? item["currencyvalue"].int!: 0, paymentmethod: item["paymentmethod"] != JSON.null ? item["paymentmethod"].string! : "", status: item["orderstatus"] != JSON.null ? item["orderstatus"].string!: ""))
+                            if item["orderstatus"].string != "pending"{
+                                if item["orderstatus"].string != "cancelled" {
+                                     self.Orders.append(OrderKey(id: item["id"] != JSON.null ? item["id"].string! : "", orderno: item["orderno"] != JSON.null ? item["orderno"].string! : "", orderdate: item["orderdate"] != JSON.null ? item["orderdate"].string! : "", currencyvalue: item["currencyvalue"] != JSON.null ? item["currencyvalue"].int!: 0, paymentmethod: item["paymentmethod"] != JSON.null ? item["paymentmethod"].string! : "", status: item["orderstatus"] != JSON.null ? item["orderstatus"].string!: ""))
+                                }
                             }
                         }
                         self.tableview.reloadData()
@@ -108,6 +120,31 @@ class OrderHistoryViewController: UIViewController, UITableViewDataSource, UITab
                         self.lblMessage.isHidden = false
                     }
                 }
+            }
+        }
+    }
+    
+    @objc func btnCancelOrderClicked(sender: UIButton) {
+        let alert = UIAlertController(title: "Cancel Order", message: "Do you want to cancel order?", preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "YES", style: UIAlertAction.Style.default, handler: {(action:UIAlertAction!) in
+            self.cancelOrder(index: sender.tag)
+        }))
+        alert.addAction(UIAlertAction(title: "NO", style: UIAlertAction.Style.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func cancelOrder(index: Int){
+        let currentOrder = self.Orders[index]
+        let parameters: [String: Any] = ["orderstatus": "cancelled"]
+        APIHelper().patch(apiUrl: String.init(format: GlobalConstants.APIUrls.confirmOrdersById, currentOrder.id), parameters: parameters as [String : AnyObject]) { (response) in
+            if response["data"] != JSON.null{
+                self.view.makeToast("Order cancelled", duration: 3.0, position: .bottom, title: nil, image: nil, completion: { (true) in
+                    self.getOrders()
+                })
+            }
+            else {
+                self.view.makeToast("Oops! Something went wrong!", duration: 3.0, position: .bottom)
+                return
             }
         }
     }

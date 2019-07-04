@@ -870,7 +870,7 @@ class ChurchDetailsViewController: UIViewController, UITableViewDataSource, UITa
         let memberId = UserDefaults.standard.value(forKey: "memberId") as? String
         let stripeCustomerTokenId = UserDefaults.standard.value(forKey: "stripeCustomerTokenId") as? String
         
-        let memberDetails: [String: Any] = ["firstname": cell!.txtFirstName.text!, "lastname": cell!.txtLastName.text!, "contact": cell!.txtContactNumber.text!, "occupation": cell!.txtOccupation.text!, "email": cell!.txtEmail.text!, "address": self.profileDetails["Address"] != nil ? self.profileDetails["Address"]! : "", "username": cell!.txtEmail.text!, "deviceid": "\(UUID())", "emailverified": true, "pictureurl": "", "realm": "", "status": "SUCCESS", "subscriptionDate": "", "churchid": id!, "stripecustomerid": stripeCustomerTokenId!, "issubscribed": true, "subscriptionenddate": true, "parentid": "", "id": memberId!]
+        let memberDetails: [String: Any] = ["churchid": id!]
        
         let parameters: [String: String] = [:]
         let dict = ["include": ["churchmember"]] as [String : Any]

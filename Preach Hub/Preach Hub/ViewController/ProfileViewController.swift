@@ -18,6 +18,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     override func viewDidLoad() {
         super.viewDidLoad()
         setLayout()
+        NotificationCenter.default.addObserver(self, selector: #selector(ProfileViewController.refreshRequest), name: NSNotification.Name(rawValue: "RefreshLogoutRequest"), object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -33,10 +34,17 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         profileOptions.append(MenuOption(Name: "My Profile", Image: "ic-profile-round"))
         profileOptions.append(MenuOption(Name: "Favourite", Image: "ic-fav"))
         profileOptions.append(MenuOption(Name: "Order History", Image: "ic-order"))
-         profileOptions.append(MenuOption(Name: "Notifications", Image: "ic-notification"))
+        profileOptions.append(MenuOption(Name: "Notifications", Image: "ic-notification"))
+        profileOptions.append(MenuOption(Name: "Update Card Details", Image: "ic-card"))
         self.tblView.tableFooterView = UIView()
         self.tblView.dataSource = self
         self.tblView.reloadData()
+    }
+    
+    @objc func refreshRequest(notification: NSNotification) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
+            self.navigateToLogin()
+        })
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -74,6 +82,10 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
             let notificationsViewController = NotificationsViewController.storyboardInstance()
             self.navigationController?.pushViewController(notificationsViewController!, animated: true)
             break
+        case "Update Card Details":
+            let updateCardDetailsViewController = UpdateCardDetailsViewController.storyboardInstance()
+            self.navigationController?.pushViewController(updateCardDetailsViewController!, animated: true)
+            break
         default:
             break
         }
@@ -94,7 +106,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         let parameters: [String: Any] = ["customerstripetoken": stripeCustomerTokenId!]
         APIHelper().post(apiUrl: GlobalConstants.APIUrls.cancelMembership, parameters: parameters as [String : AnyObject]) { (response) in
             if response["status"].string == "Success"{
-                
+                self.updateStatus()
                 UserDefaults.standard.set(false, forKey: "Is_Logged_In")
                 UserDefaults.standard.removeObject(forKey: "memberId")
                 let productData = NSKeyedArchiver.archivedData(withRootObject: [])
@@ -102,14 +114,21 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
                 self.removeMemberDevice()
                 self.view.makeToast("Member subscription cancelled", duration: 3.0, position: .bottom)
                 DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3), execute: {
-                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "RefreshLogoutRequest"), object: nil)
-                    self.dismiss(animated: true, completion: nil)
+                   self.navigateToLogin()
                 })
             }
             else {
                 self.view.makeToast("Oops! Something went wrong!", duration: 3.0, position: .bottom)
                 return
             }
+        }
+    }
+    
+    func updateStatus(){
+        let memberId = UserDefaults.standard.value(forKey: "memberId") as? String
+        let memberDetails: [String: Any] = ["status": "CANCELLED"]
+        let parameters: [String: Any] = memberDetails
+        APIHelper().patchBackground(apiUrl: String.init(format: GlobalConstants.APIUrls.memberDetails, memberId!), parameters: parameters as [String : AnyObject]) { (response) in
         }
     }
     

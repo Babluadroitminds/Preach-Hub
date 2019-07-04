@@ -49,6 +49,11 @@ extension UIViewController {
         let welcomeViewController = storyBoard.instantiateViewController(withIdentifier: "ListViewController") as! ListViewController
         self.navigationController?.pushViewController(welcomeViewController, animated: true)
     }
+    func navigateToProfileScreenPage(){
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Home", bundle:nil)
+        let profileViewController = storyBoard.instantiateViewController(withIdentifier: "ProfileViewController") as! ProfileViewController
+        self.navigationController?.pushViewController(profileViewController, animated: true)
+    }
     func navigateToPaymentPage(){
         let storyBoard : UIStoryboard = UIStoryboard(name: "Payment", bundle:nil)
         let paymentViewController = storyBoard.instantiateViewController(withIdentifier: "PaymentViewController") as! PaymentViewController

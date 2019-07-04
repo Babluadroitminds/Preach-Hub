@@ -204,7 +204,7 @@ class CartPaymentViewController: UIViewController
         let parameters: [String: Any] = ["amount": amount, "cardToken": stripeCardToken!, "orderno": orderNo!]
         APIHelper().post(apiUrl: GlobalConstants.APIUrls.memberPayByCard, parameters: parameters as [String : AnyObject]) { (response) in
             if response["data"]["transactionresponse"] != JSON.null{
-                let parameters: [String: Any] = ["orderno": self.orderNo!, "memberid": memberId!, "paymentmethod": "credit_card", "orderdate": orderDate, "orderstatus": "Ordered", "currency": "USD", "currencyvalue": amount, "id": self.orderId!, "parentid": ""]
+                let parameters: [String: Any] = ["orderno": self.orderNo!, "memberid": memberId!, "paymentmethod": "credit_card", "orderdate": orderDate, "orderstatus": "ordered", "currency": "USD", "currencyvalue": amount, "id": self.orderId!, "parentid": ""]
                 APIHelper().patch(apiUrl: String.init(format: GlobalConstants.APIUrls.confirmOrdersById, self.orderId!), parameters: parameters as [String : AnyObject]) { (response) in
                     if response["data"] != JSON.null
                     {

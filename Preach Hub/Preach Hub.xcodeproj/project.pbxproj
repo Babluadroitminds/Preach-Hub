@@ -40,6 +40,8 @@
 		820877E02298085800513037 /* ic-left-arrow-black.png in Resources */ = {isa = PBXBuildFile; fileRef = 820877DF2298085800513037 /* ic-left-arrow-black.png */; };
 		8209454C22A8DD3D00B75ACE /* OrderHistoryDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8209454B22A8DD3D00B75ACE /* OrderHistoryDetailsViewController.swift */; };
 		8209454E22A9361600B75ACE /* ic-bag.png in Resources */ = {isa = PBXBuildFile; fileRef = 8209454D22A9361600B75ACE /* ic-bag.png */; };
+		8211D3AD22CB2CBA00075072 /* UpdateCardDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8211D3AC22CB2CBA00075072 /* UpdateCardDetailsViewController.swift */; };
+		8211D3B122CB80DC00075072 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8211D3B022CB80DC00075072 /* GoogleService-Info.plist */; };
 		8213FF3022C63FC000C10085 /* Notifications.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8213FF2F22C63FC000C10085 /* Notifications.storyboard */; };
 		8213FF3422C642F300C10085 /* ic-message.png in Resources */ = {isa = PBXBuildFile; fileRef = 8213FF3322C642F300C10085 /* ic-message.png */; };
 		8213FF3622C6454400C10085 /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8213FF3522C6454400C10085 /* NotificationsViewController.swift */; };
@@ -56,7 +58,6 @@
 		8235EB472293C3760090230B /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8235EB462293C3760090230B /* ForgotPasswordViewController.swift */; };
 		8235EB49229418C60090230B /* Payment.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8235EB48229418C60090230B /* Payment.storyboard */; };
 		8277467D22AE4E86005A650B /* notification.png in Resources */ = {isa = PBXBuildFile; fileRef = 8277467C22AE4E86005A650B /* notification.png */; };
-		8279E56C22C0F7450097AF3B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8279E56B22C0F7450097AF3B /* GoogleService-Info.plist */; };
 		828D9CE022B10137007506CC /* ChurchDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 828D9CDF22B10137007506CC /* ChurchDetails.storyboard */; };
 		828D9CE222B101B5007506CC /* ChurchDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828D9CE122B101B5007506CC /* ChurchDetailsViewController.swift */; };
 		828D9CE422B2305F007506CC /* ic-share.png in Resources */ = {isa = PBXBuildFile; fileRef = 828D9CE322B2305F007506CC /* ic-share.png */; };
@@ -143,6 +144,8 @@
 		820877DF2298085800513037 /* ic-left-arrow-black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic-left-arrow-black.png"; sourceTree = "<group>"; };
 		8209454B22A8DD3D00B75ACE /* OrderHistoryDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderHistoryDetailsViewController.swift; sourceTree = "<group>"; };
 		8209454D22A9361600B75ACE /* ic-bag.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic-bag.png"; sourceTree = "<group>"; };
+		8211D3AC22CB2CBA00075072 /* UpdateCardDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateCardDetailsViewController.swift; sourceTree = "<group>"; };
+		8211D3B022CB80DC00075072 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8213FF2F22C63FC000C10085 /* Notifications.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Notifications.storyboard; sourceTree = "<group>"; };
 		8213FF3322C642F300C10085 /* ic-message.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic-message.png"; sourceTree = "<group>"; };
 		8213FF3522C6454400C10085 /* NotificationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
@@ -159,7 +162,6 @@
 		8235EB462293C3760090230B /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		8235EB48229418C60090230B /* Payment.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Payment.storyboard; sourceTree = "<group>"; };
 		8277467C22AE4E86005A650B /* notification.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = notification.png; sourceTree = "<group>"; };
-		8279E56B22C0F7450097AF3B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		828D9CDF22B10137007506CC /* ChurchDetails.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ChurchDetails.storyboard; sourceTree = "<group>"; };
 		828D9CE122B101B5007506CC /* ChurchDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChurchDetailsViewController.swift; sourceTree = "<group>"; };
 		828D9CE322B2305F007506CC /* ic-share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic-share.png"; sourceTree = "<group>"; };
@@ -241,7 +243,7 @@
 		18951685228D672C005FA99A /* Preach Hub */ = {
 			isa = PBXGroup;
 			children = (
-				8279E56B22C0F7450097AF3B /* GoogleService-Info.plist */,
+				8211D3B022CB80DC00075072 /* GoogleService-Info.plist */,
 				820877BA2295220500513037 /* Fonts */,
 				E366C12A22927693003CBE58 /* Preach Hub.entitlements */,
 				8203F0C2228D691700F9D65D /* Shared */,
@@ -333,6 +335,7 @@
 				8213FF3522C6454400C10085 /* NotificationsViewController.swift */,
 				8213FF3722C6457500C10085 /* NotificationsTableViewCell.swift */,
 				8213FF3922C6528800C10085 /* NotificationDetailViewController.swift */,
+				8211D3AC22CB2CBA00075072 /* UpdateCardDetailsViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -532,7 +535,7 @@
 				E366C124228E8A71003CBE58 /* Home.storyboard in Resources */,
 				8277467D22AE4E86005A650B /* notification.png in Resources */,
 				820877C22297B17500513037 /* ic-eye.png in Resources */,
-				8279E56C22C0F7450097AF3B /* GoogleService-Info.plist in Resources */,
+				8211D3B122CB80DC00075072 /* GoogleService-Info.plist in Resources */,
 				5270660822BB650700D6206C /* sectionHeader.xib in Resources */,
 				8213FF3422C642F300C10085 /* ic-message.png in Resources */,
 				820877C82297B43E00513037 /* ic-hide-eye.png in Resources */,
@@ -689,6 +692,7 @@
 				8203F0C8228D69B700F9D65D /* NotificationsHelper.swift in Sources */,
 				8209454C22A8DD3D00B75ACE /* OrderHistoryDetailsViewController.swift in Sources */,
 				E3B730CA229BC48C008D3E7C /* ViewCartViewController.swift in Sources */,
+				8211D3AD22CB2CBA00075072 /* UpdateCardDetailsViewController.swift in Sources */,
 				E3FAA41B2292A84D00E369C6 /* HomeTabBarViewController.swift in Sources */,
 				8213FF3622C6454400C10085 /* NotificationsViewController.swift in Sources */,
 				E3FAA41D2292A97800E369C6 /* ListViewController.swift in Sources */,
@@ -879,14 +883,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Preach Hub/Preach Hub.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = RQE437DAN3;
+				DEVELOPMENT_TEAM = Z66KF7D6WT;
 				INFOPLIST_FILE = "Preach Hub/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.adroitMinds.Preach-Hub";
+				PRODUCT_BUNDLE_IDENTIFIER = com.preachhub.PreachHubApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -900,14 +904,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Preach Hub/Preach Hub.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = RQE437DAN3;
+				DEVELOPMENT_TEAM = Z66KF7D6WT;
 				INFOPLIST_FILE = "Preach Hub/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.adroitMinds.Preach-Hub";
+				PRODUCT_BUNDLE_IDENTIFIER = com.preachhub.PreachHubApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";

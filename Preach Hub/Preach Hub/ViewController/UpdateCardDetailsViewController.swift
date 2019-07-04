@@ -1,8 +1,8 @@
 //
-//  PaymentViewController.swift
+//  UpdateCardDetailsViewController.swift
 //  Preach Hub
 //
-//  Created by Sajeev S L on 21/05/19.
+//  Created by Sajeev S L on 02/07/19.
 //  Copyright © 2019 AdroitMinds. All rights reserved.
 //
 
@@ -12,7 +12,7 @@ import Stripe
 import Toast_Swift
 import CoreData
 
-class PaymentViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate
+class UpdateCardDetailsViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate
 {
     @IBOutlet weak var phoneNumberTxt: UITextField!
     @IBOutlet weak var txtState: UITextField!
@@ -21,11 +21,9 @@ class PaymentViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     @IBOutlet weak var txtCity: UITextField!
     @IBOutlet weak var txtStreet2: UITextField!
     @IBOutlet weak var txtStreet: UITextField!
-    @IBOutlet weak var lblAmount: UILabel!
-    @IBOutlet weak var lblTitle: UILabel!
+    @IBOutlet weak var txtCVC: UITextField!
     @IBOutlet weak var txtCardName: UITextField!
     @IBOutlet weak var txtExpires: UITextField!
-    @IBOutlet weak var txtCVC: UITextField!
     @IBOutlet weak var txtCardNumber: UITextField!
     
     private var previousTextFieldContent: String?
@@ -42,13 +40,14 @@ class PaymentViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     
     let countryPickerView =  UIPickerView()
     let statePickerView =  UIPickerView()
-    
+    var isFromLogin: Bool = false
     var singleTon = SingleTon.shared
+    let appDelegate = UIApplication.shared.delegate as? AppDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setLayout()
-        getPlanDetails()
+       // getPlanDetails()
         hideKeyboardWhenTappedAround()
         setPickerLayout()
     }
@@ -119,7 +118,7 @@ class PaymentViewController: UIViewController, UIPickerViewDataSource, UIPickerV
             txtCountry.text = countryArray[row]
         }
     }
-
+    
     @objc func doneStatePickerClicked(){
         let row = self.statePickerView.selectedRow(inComponent: 0)
         self.statePickerView.selectRow(row, inComponent: 0, animated: false)
@@ -159,7 +158,7 @@ class PaymentViewController: UIViewController, UIPickerViewDataSource, UIPickerV
             }
         }
         else if (textField == txtExpires)
-        {            
+        {
             if textField.text!.count < 2
             {
                 if let text = textField.text
@@ -291,20 +290,10 @@ class PaymentViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         return stringWithAddedSpaces
     }
     
-    func getPlanDetails(){
-        let parameters: [String: String] = [:]
-        APIHelper().get(apiUrl: GlobalConstants.APIUrls.getPlanDetails, parameters: parameters as [String : AnyObject]) { (response) in
-            if response["data"].array != nil  {
-                //let planId = response["data"][0]["id"] != JSON.null ? response["data"][0]["id"].stringValue : ""
-                self.lblTitle.text = response["data"][0]["nickname"] != JSON.null ? response["data"][0]["nickname"].stringValue : ""
-                self.amount = response["data"][0]["amount"] != JSON.null ? response["data"][0]["amount"].intValue : 0
-                self.lblAmount.text = "Amount $\(String(describing: self.amount!))"
-            }
-        }
-    }
     
-    @IBAction func payNowClicked(_ sender: Any) {
+    @IBAction func updateClicked(_ sender: Any) {
         self.view.endEditing(true)
+       
         if txtCardNumber.text?.count == 0 || txtCVC.text?.count == 0 || txtCardName.text?.count == 0 || txtExpires.text?.count == 0 || txtCardName.text?.count == 0 || txtStreet.text?.count == 0 || txtStreet2.text?.count == 0 || txtState.text?.count == 0 || txtCountry.text?.count == 0 || txtCity.text?.count == 0 || txtPostal.text?.count == 0 || phoneNumberTxt.text?.count == 0 {
             self.view.makeToast("Please enter all card details.", duration: 3.0, position: .bottom)
             return
@@ -339,7 +328,7 @@ class PaymentViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         STPAPIClient.shared().createToken(withCard: cardParams) { (token: STPToken?, error: Error?) in
             guard let token = token, error == nil
                 else {
-            
+                    
                     self.view.makeToast(error?.localizedDescription, duration: 3.0, position: .bottom, style: self.style)
                     print(error?.localizedDescription)
                     NotificationsHelper.hideBusyIndicator()
@@ -347,35 +336,64 @@ class PaymentViewController: UIViewController, UIPickerViewDataSource, UIPickerV
             }
             print(token.stripeID)
             self.stripeCardToken = token.stripeID
-            self.attachSubscriptionSource()
+            self.updateCardDetails()
         }
     }
     
-    func attachSubscriptionSource(){
-        let parameters: [String: Any] = ["stripecustomertokenid": stripeCustomerTokenId!, "stripecardtoken": stripeCardToken!]
-        APIHelper().post(apiUrl: GlobalConstants.APIUrls.attachSubscriptionSource, parameters: parameters as [String : AnyObject]) { (response) in
-            if response["status"].stringValue == "Success"{
-                //response["data"]["carddetails"] != nil
-                    self.chargeMember()
-                //}
+    func updateCardDetails(){
+        let stripeCustomerTokenId = UserDefaults.standard.string(forKey: "stripeCustomerTokenId")
+        let parameters: [String: Any] = ["customerstripetoken": stripeCustomerTokenId!, "cardToken": stripeCardToken!]
+        APIHelper().post(apiUrl: GlobalConstants.APIUrls.updateCardDetails, parameters: parameters as [String : AnyObject]) { (response) in
+            if response["status"].string == "Success"{
+                if self.isFromLogin == true {
+                    self.appDelegate?.registerDevice()
+                    self.view.makeToast("Card details updated successfully!", duration: 3.0, position: .bottom, style: self.style)
+                    DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3), execute: {
+                        UserDefaults.standard.set(true, forKey: "Is_Logged_In")
+                        self.navigateToHomeScreenPage()
+                    })
+                }
+                else{
+                    self.view.makeToast("Card details updated successfully!", duration: 3.0, position: .bottom, style: self.style)
+                    DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3), execute: {
+                       self.navigationController?.popViewController(animated: true)
+                    })
+                }
+                self.updateStatus()
+            }
+            else {
+                self.view.makeToast("Oops! Something went wrong!", duration: 3.0, position: .bottom)
+                return
             }
         }
     }
     
-    func chargeMember(){
-        let parameters: [String: Any] = ["amount": amount!, "customerstripetoken": stripeCustomerTokenId!]
-        APIHelper().post(apiUrl: GlobalConstants.APIUrls.chargeMember, parameters: parameters as [String : AnyObject]) { (response) in
-            if response["status"].stringValue == "Success"{
-                self.view.makeToast("Payment successful!", duration: 3.0, position: .bottom, style: self.style)
-                
-                self.saveToCoreData()
-                
-                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3), execute: {
-                    self.navigateToLogin()
-                })
-            }
-        }
-    }
+//    func attachSubscriptionSource(){
+//        let parameters: [String: Any] = ["stripecustomertokenid": stripeCustomerTokenId!, "stripecardtoken": stripeCardToken!]
+//        APIHelper().post(apiUrl: GlobalConstants.APIUrls.attachSubscriptionSource, parameters: parameters as [String : AnyObject]) { (response) in
+//            if response["status"].stringValue == "Success"{
+//                //response["data"]["carddetails"] != nil
+//                self.chargeMember()
+//                //}
+//            }
+//        }
+//    }
+//
+//    func chargeMember(){
+//        let parameters: [String: Any] = ["amount": amount!, "customerstripetoken": stripeCustomerTokenId!]
+//        APIHelper().post(apiUrl: GlobalConstants.APIUrls.chargeMember, parameters: parameters as [String : AnyObject]) { (response) in
+//            if response["status"].stringValue == "Success"{
+//                self.view.makeToast("Payment successful!", duration: 3.0, position: .bottom, style: self.style)
+//
+//                self.saveToCoreData()
+//
+//                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3), execute: {
+//                    self.navigateToLogin()
+//                })
+//            }
+//        }
+//    }
+    
     func saveToCoreData()
     {
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
@@ -383,7 +401,7 @@ class PaymentViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         let entity = NSEntityDescription.entity(forEntityName: "CardDetails", in: managedContext!)!
         
         let user = NSManagedObject(entity: entity, insertInto: managedContext!)
-
+        
         user.setValue(self.singleTon.userId, forKey: "userId")
         user.setValue(self.txtCardNumber.text!, forKey: "cardNumber")
         user.setValue(self.txtExpires.text!, forKey: "expDate")
@@ -406,7 +424,7 @@ class PaymentViewController: UIViewController, UIPickerViewDataSource, UIPickerV
             print("errorCoreData : ", error.userInfo)
         }
         
-       // self.saveShippingAddress()
+        // self.saveShippingAddress()
     }
     func saveShippingAddress()
     {
@@ -415,7 +433,7 @@ class PaymentViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         let entity = NSEntityDescription.entity(forEntityName: "ShippingAddress", in: managedContext!)!
         
         let user = NSManagedObject(entity: entity, insertInto: managedContext!)
- 
+        
         user.setValue(self.txtCardName.text!, forKey: "name")
         user.setValue(self.txtStreet.text!, forKey: "street")
         user.setValue(self.txtStreet2.text!, forKey: "streetLine")
@@ -436,6 +454,27 @@ class PaymentViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     }
     
     @IBAction func backClicked(_ sender: Any) {
-        self.navigationController?.popViewController(animated: true)
+        if isFromLogin == true {
+            navigateToLogin()
+            UserDefaults.standard.set(false, forKey: "Is_Logged_In")
+             UserDefaults.standard.removeObject(forKey: "memberId")
+        }
+        else{
+            self.navigationController?.popViewController(animated: true)
+        }
+    }
+    
+    func updateStatus(){
+        let memberId = UserDefaults.standard.value(forKey: "memberId") as? String
+        let memberDetails: [String: Any] = ["status": "SUCCESS"]
+        let parameters: [String: Any] = memberDetails
+        APIHelper().patchBackground(apiUrl: String.init(format: GlobalConstants.APIUrls.memberDetails, memberId!), parameters: parameters as [String : AnyObject]) { (response) in
+        }
+    }
+    
+    static func storyboardInstance() -> UpdateCardDetailsViewController? {
+        let storyboard = UIStoryboard(name: "Profile", bundle: nil)
+        return storyboard.instantiateViewController(withIdentifier: "UpdateCardDetailsViewController") as? UpdateCardDetailsViewController
     }
 }
+

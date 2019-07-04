@@ -63,7 +63,6 @@ class LoginViewController: UIViewController{
             }
             
             if response["data"] != JSON.null {
-                self.userDefaults.set(true, forKey: "Is_Logged_In")
                 let memberId = response["data"]["userId"].string
                 self.userDefaults.set(memberId, forKey: "memberId")
                 self.getDetails(memberId: memberId!)
@@ -91,11 +90,26 @@ class LoginViewController: UIViewController{
                     let memberName = firstName! + " " + lastName!
                     self.userDefaults.set(response["data"]["stripecustomertokenid"].string, forKey: "stripeCustomerTokenId")
                     self.userDefaults.set(memberName, forKey: "memberName")
-                    appDelegate?.registerDevice()
-                    self.view.makeToast("You are now logged in", duration: 3.0, position: .bottom, style: self.style)
-                    DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3), execute: {
-                        self.navigateToHomeScreenPage()
-                    })
+                   
+                    if response["data"]["status"].string == "INACTIVE" {
+                        self.view.makeToast("Update card details to login", duration: 3.0, position: .bottom, style: self.style)
+                        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3), execute: {
+                            let updateCardDetailsVC = UpdateCardDetailsViewController.storyboardInstance()
+                            updateCardDetailsVC?.isFromLogin = true
+                            self.navigationController?.pushViewController(updateCardDetailsVC!, animated: true)
+                        })
+                    }
+                    else if response["data"]["status"].string == "CANCELLED" {
+                        self.view.makeToast("Your subscription is cancelled", duration: 3.0, position: .bottom, style: self.style)
+                    }
+                    else if response["data"]["status"].string == "SUCCESS" {
+                        self.userDefaults.set(true, forKey: "Is_Logged_In")
+                        appDelegate?.registerDevice()
+                        self.view.makeToast("You are now logged in", duration: 3.0, position: .bottom, style: self.style)
+                        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3), execute: {
+                            self.navigateToHomeScreenPage()
+                        })
+                    }
                 }
                 else{
                    self.view.makeToast("Please verify your email", duration: 3.0, position: .bottom, style: self.style)
