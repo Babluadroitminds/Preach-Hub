@@ -267,7 +267,7 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
   
     func getHomeDetails(){
         let parameters: [String: String] = [:]
-        APIHelper().get(apiUrl: GlobalConstants.APIUrls.getHomeDetails, parameters: parameters as [String : AnyObject]) { (response) in
+        APIHelper().get(apiUrl: GlobalConstants.APIUrls.home, parameters: parameters as [String : AnyObject]) { (response) in
             
                 for item in response["data"]["home"]["pastors"].arrayValue {
                     self.pastorLists.append(DataKey(id: item["id"] != JSON.null ? item["id"].string! : "", title: item["name"] != JSON.null ? item["name"].string! : "", thumb: item["img_thumb"] != JSON.null ? item["img_thumb"].string! : "", description: item["description"] != JSON.null ? item["description"].string! : "", isActive: item["is_active"] != JSON.null ? item["is_active"].bool! : false, videoUrl: "", subtitle: "", tags: "", isContinueWatching:false))

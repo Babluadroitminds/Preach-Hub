@@ -57,5 +57,6 @@ struct GlobalConstants {
         static let getNotificationDetails: String = "engagements/%@"
         static let cancelMembership: String = "members/cancelMemberSubscription"
         static let updateCardDetails: String = "members/updateMemberCardDetails"
+        static let home: String = "http://preachhub.dedicated.co.za:3000/api/homes/getHome"
     }
 }

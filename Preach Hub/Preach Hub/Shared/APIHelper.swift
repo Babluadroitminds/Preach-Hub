@@ -85,6 +85,9 @@ class APIHelper: NSObject {
         {
             fullUrl = apiUrl
         }
+        else if apiUrl.contains("http://preachhub.dedicated.co.za:3000"){
+            fullUrl = apiUrl
+        }
         else {
             fullUrl = GlobalConstants.APIUrls.apiBaseUrl + apiUrl
             fullUrl = fullUrl.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
