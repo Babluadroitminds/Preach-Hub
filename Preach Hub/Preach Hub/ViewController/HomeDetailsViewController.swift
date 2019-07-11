@@ -31,8 +31,9 @@ struct Product{
     var price: String
 }
 
-class noDataCell: UITableViewCell
-{
+class noDataCell: UITableViewCell{
+    @IBOutlet weak var lblMessage: UILabel!
+    @IBOutlet weak var imgVw: UIImageView!
     override func awakeFromNib()
     {
         super.awakeFromNib()
@@ -626,7 +627,7 @@ class HomeDetailsViewController: UIViewController, UITableViewDataSource, UITabl
     
     func playVideo(list: SermonsTestimony)
     {
-        let videoURL = URL(string: list.video)
+        let videoURL = URL(string: list.video.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!)
         
         player = AVPlayer(url: videoURL!)
         let vc = AVPlayerViewController()

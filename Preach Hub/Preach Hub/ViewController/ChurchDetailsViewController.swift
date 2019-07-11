@@ -46,20 +46,15 @@ import MapKit
 //    }
 //}
 
-//class sermonsCell: UITableViewCell
-//{
-//    @IBOutlet weak var moreBtn: UIButton!
-//    @IBOutlet weak var moreView: UIView!
-//    @IBOutlet weak var timeLbl: UILabel!
-//    @IBOutlet weak var availableLbl: UILabel!
-//    @IBOutlet weak var name: UILabel!
-//    @IBOutlet weak var sermonImage: UIImageView!
-//
-//    override func awakeFromNib()
-//    {
-//        super.awakeFromNib()
-//    }
-//}
+class messageCell: UITableViewCell
+{
+    @IBOutlet weak var imgVw: UIImageView!
+    @IBOutlet weak var lblMessage: UILabel!
+    override func awakeFromNib()
+    {
+        super.awakeFromNib()
+    }
+}
 
 struct EventKey {
     var id: String
@@ -176,6 +171,7 @@ class ChurchDetailsViewController: UIViewController, UITableViewDataSource, UITa
 
     var profileDetails : [String : String]!
     var isFromHome: Bool = false
+    var isMemberOFChurch: Bool?
     
     override func viewDidLoad()
     {
@@ -271,7 +267,7 @@ class ChurchDetailsViewController: UIViewController, UITableViewDataSource, UITa
                 }
             }
         }
-        
+        checkMemberRegisteredInChurch()
         self.setGestureLayout()
     }
     override func viewDidAppear(_ animated: Bool)
@@ -286,7 +282,32 @@ class ChurchDetailsViewController: UIViewController, UITableViewDataSource, UITa
     override func viewDidDisappear(_ animated: Bool) {
           NotificationCenter.default.removeObserver(self, name: Notification.Name(rawValue: "topBackTapped"), object: nil)
     }
-
+    
+    func checkMemberRegisteredInChurch(){
+        let memberId = UserDefaults.standard.value(forKey: "memberId") as? String
+      
+        let parameters: [String: String] = [:]
+        let dict = ["include": ["churchmember"]] as [String : Any]
+        
+        if let json = try? JSONSerialization.data(withJSONObject: dict, options: []) {
+            if let content = String(data: json, encoding: String.Encoding.utf8) {
+                APIHelper().get(apiUrl: String.init(format: GlobalConstants.APIUrls.checkChurchMember, memberId!, content), parameters: parameters as [String : AnyObject]) { (response) in
+                    
+                    if response["data"].dictionary != nil  {
+                        if response["data"]["churchid"].string == "" || response["data"]["churchid"].string == nil{
+                            self.isMemberOFChurch = false
+                        }
+                        else{
+                            if response["data"]["churchid"].string == self.id {
+                                self.isMemberOFChurch = true
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
     func textFieldDidEndEditing(_ textField: UITextField)
     {
         let indexPath = IndexPath(row: 0, section: 1)
@@ -536,53 +557,73 @@ class ChurchDetailsViewController: UIViewController, UITableViewDataSource, UITa
                 return cell!
             }
         }
-        else if self.segmentIndex == 2
-        {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "membershipFormCell") as? MembershipFormCell
-            cell?.vwFirstName.isUserInteractionEnabled = false
-            cell?.vwLastName.isUserInteractionEnabled = false
-            cell?.vwContactNumber.isUserInteractionEnabled = false
-            cell?.vwEmail.isUserInteractionEnabled = false
-            cell?.vwOccupation.isUserInteractionEnabled = false
-            
-            if indexPath.row == 1
-            {
-                cell?.lblHeading.isHidden = true
-                cell?.vwFirstName.isHidden = true
-                cell?.vwLastName.isHidden = true
-                cell?.vwContactNumber.isHidden = true
-                cell?.vwEmail.isHidden = true
-                cell?.vwOccupation.isHidden = true
-                cell?.btnApply.isHidden = true
-            }
-            else
-            {
-                if self.profileDetails != nil
-                {
-                    cell?.txtEmail.text = self.profileDetails["Email"]
-                    cell?.txtContactNumber.text = self.profileDetails["ContactNumber"]
-                    cell?.txtOccupation.text = self.profileDetails["Occupation"]
-                    cell?.txtLastName.text = self.profileDetails["LastName"]
-                    cell?.txtFirstName.text = self.profileDetails["FirstName"]
+        else if self.segmentIndex == 2{
+            if isMemberOFChurch == true {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "messageCell") as? messageCell
+                if indexPath.row == 0{
+                    cell?.lblMessage.text = "You are a member of this church "
+                    let imageUrl = detailsDict["img_thumb"] != JSON.null ? detailsDict["img_thumb"]?.string! : ""
+                    let urlString = imageUrl!.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
+                    cell!.imgVw.sd_setShowActivityIndicatorView(true)
+                    cell!.imgVw.sd_setIndicatorStyle(.gray)
+                    cell!.imgVw.sd_setImage(with: URL.init(string: urlString!) , placeholderImage: UIImage.init(named:"ic-placeholder.png"))
+                    cell?.imgVw.isHidden = false
+                    cell?.lblMessage.isHidden = false
                 }
-                
-                cell?.txtEmail.delegate = self
-                cell?.txtContactNumber.delegate = self
-                cell?.txtOccupation.delegate = self
-                cell?.txtLastName.delegate = self
-                cell?.txtFirstName.delegate = self
-                
-                cell?.lblHeading.isHidden = false
-                cell?.vwFirstName.isHidden = false
-                cell?.vwLastName.isHidden = false
-                cell?.vwContactNumber.isHidden = false
-                cell?.vwEmail.isHidden = false
-                cell?.vwOccupation.isHidden = false
-                cell?.btnApply.isHidden = false
-                cell?.btnApply.addTarget(self, action: #selector(btnApplyMembership(sender:)), for: .touchUpInside)
-                cell?.btnApply.tag = indexPath.row
+                else{
+                    cell?.imgVw.isHidden = true
+                    cell?.lblMessage.isHidden = true
+                }
+                return cell!
             }
-            return cell!
+            else {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "membershipFormCell") as? MembershipFormCell
+                cell?.vwFirstName.isUserInteractionEnabled = false
+                cell?.vwLastName.isUserInteractionEnabled = false
+                cell?.vwContactNumber.isUserInteractionEnabled = false
+                cell?.vwEmail.isUserInteractionEnabled = false
+                cell?.vwOccupation.isUserInteractionEnabled = false
+                
+                if indexPath.row == 1
+                {
+                    cell?.lblHeading.isHidden = true
+                    cell?.vwFirstName.isHidden = true
+                    cell?.vwLastName.isHidden = true
+                    cell?.vwContactNumber.isHidden = true
+                    cell?.vwEmail.isHidden = true
+                    cell?.vwOccupation.isHidden = true
+                    cell?.btnApply.isHidden = true
+                }
+                else
+                {
+                    if self.profileDetails != nil
+                    {
+                        cell?.txtEmail.text = self.profileDetails["Email"]
+                        cell?.txtContactNumber.text = self.profileDetails["ContactNumber"]
+                        cell?.txtOccupation.text = self.profileDetails["Occupation"]
+                        cell?.txtLastName.text = self.profileDetails["LastName"]
+                        cell?.txtFirstName.text = self.profileDetails["FirstName"]
+                    }
+                    
+                    cell?.txtEmail.delegate = self
+                    cell?.txtContactNumber.delegate = self
+                    cell?.txtOccupation.delegate = self
+                    cell?.txtLastName.delegate = self
+                    cell?.txtFirstName.delegate = self
+                    
+                    cell?.lblHeading.isHidden = false
+                    cell?.vwFirstName.isHidden = false
+                    cell?.vwLastName.isHidden = false
+                    cell?.vwContactNumber.isHidden = false
+                    cell?.vwEmail.isHidden = false
+                    cell?.vwOccupation.isHidden = false
+                    cell?.btnApply.isHidden = false
+                    cell?.btnApply.addTarget(self, action: #selector(btnApplyMembership(sender:)), for: .touchUpInside)
+                    cell?.btnApply.tag = indexPath.row
+                }
+                return cell!
+            }
+            
         }
         else if self.segmentIndex == 3 {
             if self.eventArr.count == 0{
@@ -910,7 +951,12 @@ class ChurchDetailsViewController: UIViewController, UITableViewDataSource, UITa
         APIHelper().patch(apiUrl: String.init(format: GlobalConstants.APIUrls.memberDetails, memberId!), parameters: parameters as [String : AnyObject]) { (response) in
             
             if response["data"].dictionary != nil  {
+                self.isMemberOFChurch = true
                 self.view.makeToast("Congratulations, You are now member of " + churchName, duration: 3.0, position: .bottom, title: nil, image: nil, style: style , completion: nil)
+                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3), execute: {
+                    self.segmentIndex = 2
+                    self.tableView.reloadSections([1], with: .automatic)
+                })
             }
         }
         

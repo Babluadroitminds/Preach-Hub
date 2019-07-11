@@ -599,15 +599,20 @@
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
                                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hfA-4W-luY">
-                                                                                <rect key="frame" x="174" y="177" width="60" height="30"/>
-                                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                <rect key="frame" x="169" y="177" width="70" height="30"/>
+                                                                                <color key="backgroundColor" red="0.043137254901960784" green="0.58431372549019611" blue="0.92549019607843142" alpha="1" colorSpace="calibratedRGB"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="height" constant="30" id="7sw-S8-9Jo"/>
-                                                                                    <constraint firstAttribute="width" constant="60" id="Vzv-3v-9P8"/>
+                                                                                    <constraint firstAttribute="width" constant="70" id="Vzv-3v-9P8"/>
                                                                                 </constraints>
                                                                                 <state key="normal" title="Play">
-                                                                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 </state>
+                                                                                <userDefinedRuntimeAttributes>
+                                                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                                        <integer key="value" value="15"/>
+                                                                                    </userDefinedRuntimeAttribute>
+                                                                                </userDefinedRuntimeAttributes>
                                                                             </button>
                                                                         </subviews>
                                                                     </view>
@@ -1625,7 +1630,7 @@
         <image name="ic-logo-header" width="76" height="22"/>
         <image name="ic-menu" width="24" height="24"/>
         <image name="ic-notification" width="68" height="68"/>
-        <image name="ic-play" width="10266" height="10266"/>
+        <image name="ic-play" width="320" height="320"/>
         <image name="ic-profile" width="15" height="15"/>
         <image name="ic-user-profile.png" width="48" height="48"/>
         <image name="more_blue" width="100" height="100"/>
@@ -1633,6 +1638,6 @@
         <image name="slide_howto" width="4002" height="3366"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="21M-BN-uT9"/>
+        <segue reference="8pA-4M-SbX"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -94,7 +94,7 @@ class APIHelper: NSObject {
         }
         
         if(showBusyIndicator){
-                NotificationsHelper.showBusyIndicator(message: "Please Wait")
+                NotificationsHelper.showBusyIndicator(message: "")
         }
         
         Alamofire.request(fullUrl, method: method, parameters: parameters,headers: httpHeader).responseJSON { (response) in

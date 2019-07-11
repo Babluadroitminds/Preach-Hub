@@ -14,6 +14,7 @@ class NotificationsTableViewCell: UITableViewCell {
     @IBOutlet weak var lblDescription: UILabel!
     @IBOutlet weak var imgVwThumb: UIImageView!
     @IBOutlet weak var lblTitle: UILabel!
+    @IBOutlet weak var lblDateTime: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

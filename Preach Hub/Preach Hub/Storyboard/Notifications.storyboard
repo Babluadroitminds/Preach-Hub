@@ -98,7 +98,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R6f-9Y-4Wg">
                                 <rect key="frame" x="0.0" y="174" width="414" height="722"/>
                                 <subviews>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Wku-df-AwU">
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Wku-df-AwU">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="722"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <prototypes>
@@ -128,8 +128,8 @@
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4vR-44-OVq">
-                                                                    <rect key="frame" x="45" y="126" width="304" height="40"/>
-                                                                    <color key="backgroundColor" red="0.87270241975784302" green="0.54515987634658813" blue="0.059782572090625763" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    <rect key="frame" x="45" y="131" width="304" height="40"/>
+                                                                    <color key="backgroundColor" red="0.043137254901960784" green="0.58431372549019611" blue="0.92549019607843142" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="40" id="Bcb-M5-M1S"/>
                                                                     </constraints>
@@ -143,6 +143,12 @@
                                                                         </userDefinedRuntimeAttribute>
                                                                     </userDefinedRuntimeAttributes>
                                                                 </button>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="63O-If-AHw">
+                                                                    <rect key="frame" x="45" y="106" width="319" height="0.0"/>
+                                                                    <fontDescription key="fontDescription" name="Gibson-Regular" family="Gibson" pointSize="12"/>
+                                                                    <color key="textColor" red="0.70581936836242676" green="0.70592266321182251" blue="0.70579683780670166" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
                                                             </subviews>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
@@ -150,7 +156,8 @@
                                                                 <constraint firstAttribute="trailing" secondItem="oDa-H1-4aj" secondAttribute="trailing" id="2Bw-z9-ozm"/>
                                                                 <constraint firstAttribute="bottom" secondItem="oDa-H1-4aj" secondAttribute="bottom" id="3bg-Md-qHw"/>
                                                                 <constraint firstItem="iPB-Zm-1OO" firstAttribute="top" secondItem="1BU-Jj-HPD" secondAttribute="bottom" constant="10" id="Daa-5Z-yCt"/>
-                                                                <constraint firstItem="4vR-44-OVq" firstAttribute="top" secondItem="iPB-Zm-1OO" secondAttribute="bottom" constant="25" id="Zee-Sb-6vx"/>
+                                                                <constraint firstItem="63O-If-AHw" firstAttribute="top" secondItem="iPB-Zm-1OO" secondAttribute="bottom" constant="5" id="H0q-8c-hpJ"/>
+                                                                <constraint firstItem="4vR-44-OVq" firstAttribute="top" secondItem="iPB-Zm-1OO" secondAttribute="bottom" constant="30" id="Zee-Sb-6vx"/>
                                                                 <constraint firstItem="iPB-Zm-1OO" firstAttribute="leading" secondItem="1BU-Jj-HPD" secondAttribute="leading" id="b6U-qJ-zZn"/>
                                                                 <constraint firstItem="4vR-44-OVq" firstAttribute="leading" secondItem="XRI-Q8-OwO" secondAttribute="leading" constant="45" id="dBI-Vn-mz7"/>
                                                                 <constraint firstItem="oDa-H1-4aj" firstAttribute="leading" secondItem="XRI-Q8-OwO" secondAttribute="leading" id="gBF-lG-ecG"/>
@@ -159,7 +166,9 @@
                                                                 <constraint firstAttribute="trailing" secondItem="4vR-44-OVq" secondAttribute="trailing" constant="45" id="nfJ-5y-u8I"/>
                                                                 <constraint firstAttribute="trailing" secondItem="iPB-Zm-1OO" secondAttribute="trailing" constant="30" id="tC0-Yw-A2m"/>
                                                                 <constraint firstItem="1BU-Jj-HPD" firstAttribute="top" secondItem="XRI-Q8-OwO" secondAttribute="top" constant="50" id="v6W-Xw-ac7"/>
+                                                                <constraint firstItem="63O-If-AHw" firstAttribute="trailing" secondItem="iPB-Zm-1OO" secondAttribute="trailing" id="viP-X3-A4a"/>
                                                                 <constraint firstAttribute="trailing" secondItem="1BU-Jj-HPD" secondAttribute="trailing" constant="30" id="y7U-3z-Tgr"/>
+                                                                <constraint firstItem="63O-If-AHw" firstAttribute="leading" secondItem="1BU-Jj-HPD" secondAttribute="leading" id="zF7-ht-V5L"/>
                                                             </constraints>
                                                         </view>
                                                     </subviews>
@@ -172,6 +181,7 @@
                                                 </tableViewCellContentView>
                                                 <connections>
                                                     <outlet property="btnReadMore" destination="4vR-44-OVq" id="hHq-nS-evb"/>
+                                                    <outlet property="lblDateTime" destination="63O-If-AHw" id="Moc-lC-9Cx"/>
                                                     <outlet property="lblDescription" destination="iPB-Zm-1OO" id="D0S-mw-7ba"/>
                                                     <outlet property="lblTitle" destination="1BU-Jj-HPD" id="t7w-uh-27T"/>
                                                 </connections>

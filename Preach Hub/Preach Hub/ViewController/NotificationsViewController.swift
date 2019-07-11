@@ -14,6 +14,7 @@ struct NotificationsKey {
     var thumb: String;
     var title: String;
     var description: String;
+    var dateCreated: String;
 }
 
 class NotificationsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
@@ -28,16 +29,27 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
     }
     
     func getNotifications(){
+        NotificationsHelper.showBusyIndicator(message: "Please wait")
         let parameters: [String: String] = [:]
-        APIHelper().get(apiUrl: GlobalConstants.APIUrls.getNotifications, parameters: parameters as [String : AnyObject]) { (response) in
+        APIHelper().getBackground(apiUrl: GlobalConstants.APIUrls.getNotifications, parameters: parameters as [String : AnyObject]) { (response) in
             self.notifications = []
             if response["data"].array != nil  {
                 for item in response["data"].arrayValue {
-                    self.notifications.append(NotificationsKey(id: item["id"] != JSON.null ? item["id"].string! : "", thumb: item["img_thumb"] != JSON.null ? item["img_thumb"].string! : "", title: item["title"] != JSON.null ? item["title"].string! : "", description: item["description"] != JSON.null ? item["description"].string! : ""))
+                    self.notifications.append(NotificationsKey(id: item["id"] != JSON.null ? item["id"].string! : "", thumb: item["img_thumb"] != JSON.null ? item["img_thumb"].string! : "", title: item["title"] != JSON.null ? item["title"].string! : "", description: item["description"] != JSON.null ? item["description"].string! : "", dateCreated: item["datecreated"] != JSON.null ? item["datecreated"].string! : ""))
                 }
             self.tblView.reloadData()
+            NotificationsHelper.hideBusyIndicator()
             }
         }
+    }
+    
+    func dateString(date: String) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat =  "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+        let dt = dateFormatter.date(from: date)
+        dateFormatter.timeZone = TimeZone.current
+        dateFormatter.dateFormat =  "d MMM HH:mm"
+        return dateFormatter.string(from: dt!)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -52,6 +64,7 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
         cell.selectionStyle = .none
         cell.btnReadMore.addTarget(self, action: #selector(btnReadMoreClicked), for: .touchUpInside)
         cell.btnReadMore.tag = indexPath.row
+        cell.lblDateTime.text = dateString(date: currentItem.dateCreated)
         return cell
     }
     

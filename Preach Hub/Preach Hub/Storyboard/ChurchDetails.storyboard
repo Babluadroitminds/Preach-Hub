@@ -172,7 +172,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="230"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_empty" translatesAutoresizingMaskIntoConstraints="NO" id="6lj-PI-IMy">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_empty" translatesAutoresizingMaskIntoConstraints="NO" id="6lj-PI-IMy">
                                                     <rect key="frame" x="100" y="30" width="120" height="140"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="140" id="Sse-LO-cxJ"/>
@@ -195,6 +195,10 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.22352941179999999" green="0.57254901960000004" blue="0.87450980389999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <outlet property="imgVw" destination="6lj-PI-IMy" id="jyH-sg-ObR"/>
+                                            <outlet property="lblMessage" destination="OYF-xE-w6c" id="Bcf-G8-lNG"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="productCell" rowHeight="230" id="UMC-Zh-wzt" customClass="ProductCell" customModule="Preach_Hub" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="754" width="320" height="230"/>
@@ -491,7 +495,7 @@
                                         <rect key="frame" x="0.0" y="1532" width="320" height="540"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PkV-Za-RKF" id="jw4-Sr-CaU">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="539.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="540"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Apply for membership" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rWE-li-tJf">
@@ -787,6 +791,41 @@ Q29udGFjdCAQTnVtYmVyA
                                             <outlet property="vwFirstName" destination="RnJ-PP-ZcR" id="yO8-Rd-avM"/>
                                             <outlet property="vwLastName" destination="lvB-o6-WAO" id="dqH-6d-CQb"/>
                                             <outlet property="vwOccupation" destination="9HT-Lh-PEs" id="9in-EE-81A"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="messageCell" rowHeight="230" id="eXZ-Ss-hxq" userLabel="messageCell" customClass="messageCell" customModule="Preach_Hub" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="2072" width="320" height="230"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eXZ-Ss-hxq" id="Rsf-ZD-Ay3">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="230"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_empty" translatesAutoresizingMaskIntoConstraints="NO" id="wz5-sg-NiV">
+                                                    <rect key="frame" x="110" y="35" width="100" height="100"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="100" id="8xU-Or-GWT"/>
+                                                        <constraint firstAttribute="width" constant="100" id="uoj-Df-Be8"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You are a member of this church" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WA2-RB-aIh">
+                                                    <rect key="frame" x="36" y="160" width="248" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" red="0.1333333333" green="0.1215686275" blue="0.1215686275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <constraints>
+                                                <constraint firstItem="WA2-RB-aIh" firstAttribute="top" secondItem="wz5-sg-NiV" secondAttribute="bottom" constant="25" id="2DX-ry-03H"/>
+                                                <constraint firstItem="wz5-sg-NiV" firstAttribute="top" secondItem="Rsf-ZD-Ay3" secondAttribute="top" constant="35" id="Jvc-U5-umy"/>
+                                                <constraint firstItem="WA2-RB-aIh" firstAttribute="centerX" secondItem="wz5-sg-NiV" secondAttribute="centerX" id="d2J-A0-pML"/>
+                                                <constraint firstItem="wz5-sg-NiV" firstAttribute="centerX" secondItem="Rsf-ZD-Ay3" secondAttribute="centerX" id="oUk-0M-63D"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.22352941179999999" green="0.57254901960000004" blue="0.87450980389999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <outlet property="imgVw" destination="wz5-sg-NiV" id="0Rn-nZ-meV"/>
+                                            <outlet property="lblMessage" destination="WA2-RB-aIh" id="4sO-Rh-gej"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

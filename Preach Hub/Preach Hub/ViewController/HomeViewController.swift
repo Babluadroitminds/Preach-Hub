@@ -10,6 +10,7 @@ import UIKit
 import SideMenu
 import SwiftyJSON
 import AVKit
+import AVFoundation
 
 struct DataKey{
     var id: String
@@ -21,6 +22,7 @@ struct DataKey{
     var subtitle: String
     var tags: String
     var isContinueWatching: Bool
+    var audioUrl: String
 }
 
 protocol CustomDelegate: class {
@@ -65,7 +67,7 @@ class tableViewCell : UITableViewCell , UICollectionViewDelegate , UICollectionV
     }
    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.size.width / 2.07, height: 170)
+        return CGSize(width: (collectionView.frame.size.width - 20) / 3, height: 140)
     }
    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -199,6 +201,7 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     var headingArray = ["", "CONTINUE WATCHING", "CHURCHES", "CHURCH MINISTRY CHANNEL","GOSPEL MUSIC"]
     var player: AVPlayer?
     var selectedContinueWatchingId: String = ""
+    var audioPlayer: AVAudioPlayer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -237,14 +240,16 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     }
     
     func playVideo(videoUrl: String){
-        let videoURL = URL(string: videoUrl)
-        player = AVPlayer(url: videoURL!)
-        let vc = AVPlayerViewController()
-        vc.player = player
-        self.present(vc, animated: true) {
-            
-            try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [])
-            vc.player?.play()
+        let videoURL = URL(string: videoUrl.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!)
+        if videoURL != nil {
+            player = AVPlayer(url: videoURL!)
+            let vc = AVPlayerViewController()
+            vc.player = player
+            self.present(vc, animated: true) {
+                
+                try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [])
+                vc.player?.play()
+            }
         }
     }
     
@@ -270,11 +275,11 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         APIHelper().get(apiUrl: GlobalConstants.APIUrls.home, parameters: parameters as [String : AnyObject]) { (response) in
             
                 for item in response["data"]["home"]["pastors"].arrayValue {
-                    self.pastorLists.append(DataKey(id: item["id"] != JSON.null ? item["id"].string! : "", title: item["name"] != JSON.null ? item["name"].string! : "", thumb: item["img_thumb"] != JSON.null ? item["img_thumb"].string! : "", description: item["description"] != JSON.null ? item["description"].string! : "", isActive: item["is_active"] != JSON.null ? item["is_active"].bool! : false, videoUrl: "", subtitle: "", tags: "", isContinueWatching:false))
+                    self.pastorLists.append(DataKey(id: item["id"] != JSON.null ? item["id"].string! : "", title: item["name"] != JSON.null ? item["name"].string! : "", thumb: item["img_thumb"] != JSON.null ? item["img_thumb"].string! : "", description: item["description"] != JSON.null ? item["description"].string! : "", isActive: item["is_active"] != JSON.null ? item["is_active"].bool! : false, videoUrl: "", subtitle: "", tags: "", isContinueWatching:false, audioUrl: ""))
                 }
                 
                 for item in response["data"]["home"]["churches"].arrayValue {
-                    self.churchLists.append(DataKey(id: item["id"] != JSON.null ? item["id"].string! : "", title: item["name"] != JSON.null ? item["name"].string! : "", thumb: item["img_thumb"] != JSON.null ? item["img_thumb"].string! : "", description: item["description"] != JSON.null ? item["description"].string! : "", isActive: item["is_active"] != JSON.null ? item["is_active"].bool! : false, videoUrl: "", subtitle: "", tags: "", isContinueWatching: false))
+                    self.churchLists.append(DataKey(id: item["id"] != JSON.null ? item["id"].string! : "", title: item["name"] != JSON.null ? item["name"].string! : "", thumb: item["img_thumb"] != JSON.null ? item["img_thumb"].string! : "", description: item["description"] != JSON.null ? item["description"].string! : "", isActive: item["is_active"] != JSON.null ? item["is_active"].bool! : false, videoUrl: "", subtitle: "", tags: "", isContinueWatching: false, audioUrl: ""))
                 }
                 
 //                for item in response["data"]["home"]["music"].arrayValue {
@@ -298,7 +303,7 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                     self.continueWatchingLists = []
                     if response["data"].array != nil  {
                         for item in response["data"].arrayValue {
-                            self.continueWatchingLists.append(DataKey(id: item["id"] != JSON.null ? item["id"].string! : "", title: item["sermon"]["name"] != JSON.null ? item["sermon"]["name"].string! : "", thumb: item["sermon"]["img_thumb"] != JSON.null ? item["sermon"]["img_thumb"].string! : "", description: item["sermon"]["description"] != JSON.null ? item["sermon"]["description"].string! : "", isActive: item["sermon"]["is_active"] != JSON.null ? item["sermon"]["is_active"].bool! : false, videoUrl: item["sermon"]["video"] != JSON.null ? item["sermon"]["video"].string! : "", subtitle: "", tags: "", isContinueWatching: true))
+                            self.continueWatchingLists.append(DataKey(id: item["id"] != JSON.null ? item["id"].string! : "", title: item["sermon"]["name"] != JSON.null ? item["sermon"]["name"].string! : "", thumb: item["sermon"]["img_thumb"] != JSON.null ? item["sermon"]["img_thumb"].string! : "", description: item["sermon"]["description"] != JSON.null ? item["sermon"]["description"].string! : "", isActive: item["sermon"]["is_active"] != JSON.null ? item["sermon"]["is_active"].bool! : false, videoUrl: item["sermon"]["video"] != JSON.null ? item["sermon"]["video"].string! : "", subtitle: "", tags: "", isContinueWatching: true, audioUrl: ""))
                         }
                         self.tblView.reloadData()
                     }
@@ -313,7 +318,7 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
             self.storeLists = []
             if response["data"].array != nil  {
                 for item in response["data"].arrayValue {
-                    self.storeLists.append(DataKey(id: item["id"] != JSON.null ? item["id"].string! : "", title: item["name"] != JSON.null ? item["name"].string! : "", thumb: item["img_thumb"] != JSON.null ? item["img_thumb"].string! : "", description: item["description"] != JSON.null ? item["description"].string! : "", isActive: item["is_active"] != JSON.null ? item["is_active"].bool! : true, videoUrl: "", subtitle: "", tags: "", isContinueWatching: false))
+                    self.storeLists.append(DataKey(id: item["id"] != JSON.null ? item["id"].string! : "", title: item["name"] != JSON.null ? item["name"].string! : "", thumb: item["img_thumb"] != JSON.null ? item["img_thumb"].string! : "", description: item["description"] != JSON.null ? item["description"].string! : "", isActive: item["is_active"] != JSON.null ? item["is_active"].bool! : true, videoUrl: "", subtitle: "", tags: "", isContinueWatching: false, audioUrl: ""))
                 }
                 self.tblView.reloadData()
             }
@@ -326,7 +331,7 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
             self.musicLists = []
             if response["data"].array != nil  {
                 for item in response["data"].arrayValue {
-                    self.musicLists.append(DataKey(id: item["id"] != JSON.null ? item["id"].string! : "", title: item["name"] != JSON.null ? item["name"].string! : "", thumb: item["img_thumb"] != JSON.null ? item["img_thumb"].string! : "", description: item["description"] != JSON.null ? item["description"].string! : "", isActive: item["is_active"] != JSON.null ? item["is_active"].bool! : false, videoUrl: "", subtitle: "", tags: "", isContinueWatching: false))
+                    self.musicLists.append(DataKey(id: item["id"] != JSON.null ? item["id"].string! : "", title: item["name"] != JSON.null ? item["name"].string! : "", thumb: item["img_thumb"] != JSON.null ? item["img_thumb"].string! : "", description: item["description"] != JSON.null ? item["description"].string! : "", isActive: item["is_active"] != JSON.null ? item["is_active"].bool! : false, videoUrl: "", subtitle: "", tags: "", isContinueWatching: false, audioUrl: item["audio"] != JSON.null ? item["audio"].string! : ""))
                 }
                 self.tblView.reloadData()
             }
@@ -424,11 +429,11 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                 return 0
             }
             else {
-                return 230
+                return 180
             }
         }
         else{
-            return 230
+            return 200
         }
     }
     
@@ -490,6 +495,13 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         else if selectedRow == 2{
             self.getChurchDetails(id: id)
         }
+        else if selectedRow == 4 {
+            let musicItem = self.musicLists.filter { $0.id == id }
+            let audioUrl = musicItem[0].audioUrl
+            if audioUrl != "" {
+                playVideo(videoUrl: audioUrl)
+            }
+        }
     }
     
     func getPastorDetails(id : String){
@@ -524,7 +536,7 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                     self.bannerList = []
                     if response["data"].array != nil  {
                         for item in response["data"].arrayValue {
-                            self.bannerList.append(DataKey(id: item["id"] != JSON.null ? item["id"].string! : "", title: item["name"] != JSON.null ? item["name"].string! : "", thumb: item["img_banner"] != JSON.null ? item["img_banner"].string! : "", description: item["description"] != JSON.null ? item["description"].string! : "", isActive: item["is_active"] != JSON.null ? item["is_active"].bool! : false, videoUrl: item["video"] != JSON.null ? item["video"].string! : "", subtitle: item["subtitle"] != JSON.null ? item["subtitle"].string! : "", tags: item["tags"] != JSON.null ? item["tags"].string! : "", isContinueWatching: false))
+                            self.bannerList.append(DataKey(id: item["id"] != JSON.null ? item["id"].string! : "", title: item["name"] != JSON.null ? item["name"].string! : "", thumb: item["img_banner"] != JSON.null ? item["img_banner"].string! : "", description: item["description"] != JSON.null ? item["description"].string! : "", isActive: item["is_active"] != JSON.null ? item["is_active"].bool! : false, videoUrl: item["video"] != JSON.null ? item["video"].string! : "", subtitle: item["subtitle"] != JSON.null ? item["subtitle"].string! : "", tags: item["tags"] != JSON.null ? item["tags"].string! : "", isContinueWatching: false, audioUrl: ""))
                         }
                     }
                 }
@@ -551,7 +563,6 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
             }
         }
     }
-    
 }
 
 extension tableViewCell: CustomDelegate

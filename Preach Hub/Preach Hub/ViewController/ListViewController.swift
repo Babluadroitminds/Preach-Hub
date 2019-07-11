@@ -28,6 +28,8 @@ class ListViewController: UIViewController,UICollectionViewDataSource , UICollec
     var listPastorArray = [listPastor]()
     var header: String?
     var isAllPastors: Bool = false
+    var player: AVPlayer?
+    var selectedContinueWatchingId: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -81,18 +83,68 @@ class ListViewController: UIViewController,UICollectionViewDataSource , UICollec
         }
         else if(header == "CONTINUE WATCHING"){
             playVideo(videoUrl: dataList[indexPath.row].videoUrl)
+            selectedContinueWatchingId = dataList[indexPath.row].id
+            if dataList[indexPath.row].videoUrl != "" {
+                player?.actionAtItemEnd = .none
+                NotificationCenter.default.addObserver(self,selector: #selector(playerItemDidReachEnd(notification:)),name: .AVPlayerItemDidPlayToEndTime, object: player?.currentItem)
+            }
+        }
+        else if(header == "GOSPEL MUSIC"){
+            playVideo(videoUrl: dataList[indexPath.row].audioUrl)
+        }
+    }
+    
+    @objc func playerItemDidReachEnd(notification: Notification) {
+        if selectedContinueWatchingId != "" {
+            removeContinueWatchingVideo(id: selectedContinueWatchingId)
+        }
+    }
+    
+    func removeContinueWatchingVideo(id: String){
+        let parameters: [String: String] = [:]
+        
+        APIHelper().deleteBackground(apiUrl: String.init(format: GlobalConstants.APIUrls.removeContinueWatchingVideo, id), parameters: parameters as [String : AnyObject]) { (response) in
+            
+            if response["data"]["count"].int == 1 {
+                self.getContinueWatchings()
+            }
+        }
+    }
+    
+    func getContinueWatchings(){
+        let parameters: [String: String] = [:]
+        let memberId = UserDefaults.standard.value(forKey: "memberId") as? String
+        let dict = ["where": [ "memberid": memberId], "include": ["sermon"]] as [String : Any]
+        
+        if let json = try? JSONSerialization.data(withJSONObject: dict, options: []) {
+            if let content = String(data: json, encoding: String.Encoding.utf8) {
+                APIHelper().getBackground(apiUrl: String.init(format: GlobalConstants.APIUrls.getContinueWatchings,content), parameters: parameters as [String : AnyObject]) { (response) in
+                    
+                    print("responseContinue : ", response)
+                    
+                    self.dataList = []
+                    if response["data"].array != nil  {
+                        for item in response["data"].arrayValue {
+                            self.dataList.append(DataKey(id: item["id"] != JSON.null ? item["id"].string! : "", title: item["sermon"]["name"] != JSON.null ? item["sermon"]["name"].string! : "", thumb: item["sermon"]["img_thumb"] != JSON.null ? item["sermon"]["img_thumb"].string! : "", description: item["sermon"]["description"] != JSON.null ? item["sermon"]["description"].string! : "", isActive: item["sermon"]["is_active"] != JSON.null ? item["sermon"]["is_active"].bool! : false, videoUrl: item["sermon"]["video"] != JSON.null ? item["sermon"]["video"].string! : "", subtitle: "", tags: "", isContinueWatching: true, audioUrl: ""))
+                        }
+                        self.collectionView.reloadData()
+                    }
+                }
+            }
         }
     }
     
     func playVideo(videoUrl: String){
-        let videoURL = URL(string: videoUrl)
-        let player = AVPlayer(url: videoURL!)
-        let vc = AVPlayerViewController()
-        vc.player = player
-        self.present(vc, animated: true) {
-            
-            try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [])
-            vc.player?.play()
+        let videoURL = URL(string: videoUrl.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!)
+        if videoURL != nil {
+            let player = AVPlayer(url: videoURL!)
+            let vc = AVPlayerViewController()
+            vc.player = player
+            self.present(vc, animated: true) {
+                
+                try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [])
+                vc.player?.play()
+            }
         }
     }
     

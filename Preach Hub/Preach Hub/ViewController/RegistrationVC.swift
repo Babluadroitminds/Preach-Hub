@@ -93,7 +93,7 @@ class RegistrationVC: UIViewController{
         }
         
         let UUID = UIDevice.current.identifierForVendor!.uuidString
-        let memberDetails: [String: Any] = ["firstname": self.txtFirstName.text!, "lastname": self.txtLastName.text!, "contact": self.txtContactNumber.text!, "occupation": self.txtOccupation.text!, "email": self.txtEmail.text!, "password": self.txtPassword.text!, "username": self.txtEmail.text!, "deviceid": "\(UUID)", "emailverified": false, "pictureurl": "", "realm": "", "statuscode":0]
+        let memberDetails: [String: Any] = ["firstname": self.txtFirstName.text!, "lastname": self.txtLastName.text!, "contact": self.txtContactNumber.text!, "occupation": self.txtOccupation.text!, "email": self.txtEmail.text!, "password": self.txtPassword.text!, "username": self.txtEmail.text!, "deviceid": "\(UUID)", "pictureurl": "", "realm": ""]
         
         let parameters: [String: Any] = memberDetails
         APIHelper().post(apiUrl: GlobalConstants.APIUrls.memberRegister, parameters: parameters as [String : AnyObject]) { (response) in
