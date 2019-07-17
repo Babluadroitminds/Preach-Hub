@@ -749,6 +749,7 @@ class ChurchDetailsViewController: UIViewController, UITableViewDataSource, UITa
         }
         else if self.segmentIndex == 6 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "paymentCell") as? paymentCell
+            cell?.btnDonate.addTarget(self, action: #selector(btnDonateClicked(sender:)), for: .touchUpInside)
             return cell!
         }
         else
@@ -872,6 +873,11 @@ class ChurchDetailsViewController: UIViewController, UITableViewDataSource, UITa
             return 265
         }
         return CGFloat(self.height)
+    }
+    
+    @objc func btnDonateClicked(sender : UIButton){
+        guard let url = URL(string: GlobalConstants.APIUrls.donateUrl) else { return }
+        UIApplication.shared.open(url)
     }
     
     @objc func itemDidPausePlaying(_ playerItem: AVPlayerItem) {

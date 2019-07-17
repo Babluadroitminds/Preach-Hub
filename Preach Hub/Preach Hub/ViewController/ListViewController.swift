@@ -90,7 +90,9 @@ class ListViewController: UIViewController,UICollectionViewDataSource , UICollec
             }
         }
         else if(header == "GOSPEL MUSIC"){
-            playVideo(videoUrl: dataList[indexPath.row].audioUrl)
+            //playVideo(videoUrl: dataList[indexPath.row].audioUrl)
+            let musicItem = dataList[indexPath.row]
+            self.getMusicDetails(id: dataList[indexPath.row].id, musicItem: musicItem)
         }
     }
     
@@ -107,6 +109,28 @@ class ListViewController: UIViewController,UICollectionViewDataSource , UICollec
             
             if response["data"]["count"].int == 1 {
                 self.getContinueWatchings()
+            }
+        }
+    }
+    
+    func getMusicDetails(id : String, musicItem: DataKey){
+        let parameters: [String: String] = [:]
+        let dict = ["where": ["albumid": id] ] as [String : Any]
+        
+        if let json = try? JSONSerialization.data(withJSONObject: dict, options: []) {
+            if let content = String(data: json, encoding: String.Encoding.utf8) {
+                APIHelper().get(apiUrl: String.init(format: GlobalConstants.APIUrls.getMusic, content), parameters: parameters as [String : AnyObject]) { (response) in
+                
+                    if response["data"].array != nil{
+                        let detailsDict = ["id": id, "name": musicItem.title, "img_thumb": musicItem.thumb]
+                        let storyBoard : UIStoryboard = UIStoryboard(name: "Music", bundle:nil)
+                        let vc = storyBoard.instantiateViewController(withIdentifier: "MusicDetailsViewController") as! MusicDetailsViewController
+                        vc.trackJSON = response
+                        vc.musicDetailsDict = detailsDict
+                        vc.isFromHome = false
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    }
+                }
             }
         }
     }

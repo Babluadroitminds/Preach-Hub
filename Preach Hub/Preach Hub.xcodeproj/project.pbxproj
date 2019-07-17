@@ -40,6 +40,8 @@
 		820877E02298085800513037 /* ic-left-arrow-black.png in Resources */ = {isa = PBXBuildFile; fileRef = 820877DF2298085800513037 /* ic-left-arrow-black.png */; };
 		8209454C22A8DD3D00B75ACE /* OrderHistoryDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8209454B22A8DD3D00B75ACE /* OrderHistoryDetailsViewController.swift */; };
 		8209454E22A9361600B75ACE /* ic-bag.png in Resources */ = {isa = PBXBuildFile; fileRef = 8209454D22A9361600B75ACE /* ic-bag.png */; };
+		820DCA8522DDC90B00DF96BA /* Music.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 820DCA8422DDC90B00DF96BA /* Music.storyboard */; };
+		820DCA8722DDC96C00DF96BA /* MusicDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820DCA8622DDC96C00DF96BA /* MusicDetailsViewController.swift */; };
 		8211D3AD22CB2CBA00075072 /* UpdateCardDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8211D3AC22CB2CBA00075072 /* UpdateCardDetailsViewController.swift */; };
 		8211D3B122CB80DC00075072 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8211D3B022CB80DC00075072 /* GoogleService-Info.plist */; };
 		8213FF3022C63FC000C10085 /* Notifications.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8213FF2F22C63FC000C10085 /* Notifications.storyboard */; };
@@ -144,6 +146,8 @@
 		820877DF2298085800513037 /* ic-left-arrow-black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic-left-arrow-black.png"; sourceTree = "<group>"; };
 		8209454B22A8DD3D00B75ACE /* OrderHistoryDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderHistoryDetailsViewController.swift; sourceTree = "<group>"; };
 		8209454D22A9361600B75ACE /* ic-bag.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic-bag.png"; sourceTree = "<group>"; };
+		820DCA8422DDC90B00DF96BA /* Music.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Music.storyboard; sourceTree = "<group>"; };
+		820DCA8622DDC96C00DF96BA /* MusicDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicDetailsViewController.swift; sourceTree = "<group>"; };
 		8211D3AC22CB2CBA00075072 /* UpdateCardDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateCardDetailsViewController.swift; sourceTree = "<group>"; };
 		8211D3B022CB80DC00075072 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8213FF2F22C63FC000C10085 /* Notifications.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Notifications.storyboard; sourceTree = "<group>"; };
@@ -336,6 +340,7 @@
 				8213FF3722C6457500C10085 /* NotificationsTableViewCell.swift */,
 				8213FF3922C6528800C10085 /* NotificationDetailViewController.swift */,
 				8211D3AC22CB2CBA00075072 /* UpdateCardDetailsViewController.swift */,
+				820DCA8622DDC96C00DF96BA /* MusicDetailsViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -402,6 +407,7 @@
 				828D9CDF22B10137007506CC /* ChurchDetails.storyboard */,
 				8219B80022C4CFAA008C32B4 /* Profile.storyboard */,
 				8213FF2F22C63FC000C10085 /* Notifications.storyboard */,
+				820DCA8422DDC90B00DF96BA /* Music.storyboard */,
 			);
 			path = Storyboard;
 			sourceTree = "<group>";
@@ -528,6 +534,7 @@
 				18951691228D6732005FA99A /* LaunchScreen.storyboard in Resources */,
 				E3BFD8BC229D089400770BDB /* CartPayment.storyboard in Resources */,
 				820877E02298085800513037 /* ic-left-arrow-black.png in Resources */,
+				820DCA8522DDC90B00DF96BA /* Music.storyboard in Resources */,
 				820877BC2295223900513037 /* Gibson-Bold.ttf in Resources */,
 				828D9CE422B2305F007506CC /* ic-share.png in Resources */,
 				8209454E22A9361600B75ACE /* ic-bag.png in Resources */,
@@ -665,6 +672,7 @@
 				8213FF3822C6457500C10085 /* NotificationsTableViewCell.swift in Sources */,
 				523E967D22AA4522008B51B9 /* FavouritesViewController.swift in Sources */,
 				8203F0C6228D695C00F9D65D /* Constants.swift in Sources */,
+				820DCA8722DDC96C00DF96BA /* MusicDetailsViewController.swift in Sources */,
 				82EF35B3228D90EC003BE3E2 /* InitialViewController.swift in Sources */,
 				8203F0C4228D695100F9D65D /* APIHelper.swift in Sources */,
 				E323E0062297F246006B6EBA /* ProductViewController.swift in Sources */,

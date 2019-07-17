@@ -49,7 +49,7 @@ struct GlobalConstants {
         static let getBanners: String = "sermons?filter=%@"
         static let continueWatchings: String = "continuewatchings"
         static let getContinueWatchingById: String = "continuewatchings?filter=%@"
-        static let getMusic: String = "music"
+        static let getMusic: String = "music?filter=%@"
         static let removeContinueWatchingVideo: String = "continuewatchings/%@"
         static let checkChurchMember: String = "members/%@?filter=%@"
         static let registerChurchMember: String = "churches/%@/members"
@@ -58,5 +58,7 @@ struct GlobalConstants {
         static let cancelMembership: String = "members/cancelMemberSubscription"
         static let updateCardDetails: String = "members/updateMemberCardDetails"
         static let home: String = "http://preachhub.dedicated.co.za:3000/api/homes/getHome"
+        static let donateUrl: String = "https://preachhub.co.za/donations/home/"
+        static let getAlbum: String = "albums"
     }
 }

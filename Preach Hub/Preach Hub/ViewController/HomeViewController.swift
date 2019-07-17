@@ -36,6 +36,7 @@ class tableViewCell : UITableViewCell , UICollectionViewDelegate , UICollectionV
     @IBOutlet weak var collectionView: UICollectionView!
     var dataList: [DataKey] = []
     var selectedIndex : Int?
+    var setTwoItems: Bool?
     let topImageArray = ["minister_mukhubatwo.png","minister_muligwe.png","minister_paul.png","minister_masekona.png","minister_mauna.png"]
     
     weak var delegate: CustomDelegate?
@@ -67,7 +68,12 @@ class tableViewCell : UITableViewCell , UICollectionViewDelegate , UICollectionV
     }
    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: (collectionView.frame.size.width - 20) / 3, height: 140)
+        if self.setTwoItems == true{
+             return CGSize(width: (collectionView.frame.size.width - 20) / 3, height: 140)
+        }
+        else{
+            return CGSize(width: (collectionView.frame.size.width - 60) / 2, height: 140)
+        }
     }
    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -83,8 +89,9 @@ class tableViewCell : UITableViewCell , UICollectionViewDelegate , UICollectionV
         delegate?.didSelectItem(id: id, selectedRow : selectedIndex!, categoryTitle: title)
     }
     
-    func setCollectioViewCell(with list: [DataKey]) {
+    func setCollectioViewCell(with list: [DataKey], twoItems: Bool) {
         dataList = list
+        setTwoItems = twoItems
         self.collectionView.reloadData()
     }
     
@@ -327,11 +334,11 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     
     func getMusic(){
         let parameters: [String: String] = [:]
-        APIHelper().get(apiUrl: GlobalConstants.APIUrls.getMusic, parameters: parameters as [String : AnyObject]) { (response) in
+        APIHelper().get(apiUrl: GlobalConstants.APIUrls.getAlbum, parameters: parameters as [String : AnyObject]) { (response) in
             self.musicLists = []
             if response["data"].array != nil  {
                 for item in response["data"].arrayValue {
-                    self.musicLists.append(DataKey(id: item["id"] != JSON.null ? item["id"].string! : "", title: item["name"] != JSON.null ? item["name"].string! : "", thumb: item["img_thumb"] != JSON.null ? item["img_thumb"].string! : "", description: item["description"] != JSON.null ? item["description"].string! : "", isActive: item["is_active"] != JSON.null ? item["is_active"].bool! : false, videoUrl: "", subtitle: "", tags: "", isContinueWatching: false, audioUrl: item["audio"] != JSON.null ? item["audio"].string! : ""))
+                    self.musicLists.append(DataKey(id: item["id"] != JSON.null ? item["id"].string! : "", title: item["name"] != JSON.null ? item["name"].string! : "", thumb: item["img_thumb"] != JSON.null ? item["img_thumb"].string! : "", description: item["description"] != JSON.null ? item["description"].string! : "", isActive: item["is_active"] != JSON.null ? item["is_active"].bool! : false, videoUrl: "", subtitle: "", tags: "", isContinueWatching: false, audioUrl: ""))
                 }
                 self.tblView.reloadData()
             }
@@ -358,7 +365,7 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         
         cell.selectedIndex = indexPath.row
         if indexPath.row == 1 {
-            cell.setCollectioViewCell(with: continueWatchingLists)
+            cell.setCollectioViewCell(with: continueWatchingLists, twoItems: false)
             cell.btnMore.tag = 1
             if continueWatchingLists.count == 0 {
                 cell.lblMessage.isHidden = false
@@ -370,7 +377,7 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
             }
         }
         else if indexPath.row == 2 {
-            cell.setCollectioViewCell(with: churchLists)
+            cell.setCollectioViewCell(with: churchLists, twoItems: true)
             cell.btnMore.tag = 2
             if churchLists.count == 0 {
                 cell.lblMessage.isHidden = false
@@ -382,7 +389,7 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
             }
         }
         else if indexPath.row == 3 {
-            cell.setCollectioViewCell(with: pastorLists)
+            cell.setCollectioViewCell(with: pastorLists, twoItems: false)
             cell.btnMore.tag = 3
             if pastorLists.count == 0 {
                 cell.lblMessage.isHidden = false
@@ -404,7 +411,7 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
 //            }
 //        }
         else {
-            cell.setCollectioViewCell(with: musicLists)
+            cell.setCollectioViewCell(with: musicLists, twoItems: false)
             cell.btnMore.tag = 4
             if musicLists.count == 0 {
                 cell.lblMessage.isHidden = false
@@ -496,10 +503,33 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
             self.getChurchDetails(id: id)
         }
         else if selectedRow == 4 {
+            
             let musicItem = self.musicLists.filter { $0.id == id }
-            let audioUrl = musicItem[0].audioUrl
-            if audioUrl != "" {
-                playVideo(videoUrl: audioUrl)
+            self.getMusicDetails(id: id, musicItem: musicItem)
+//            let audioUrl = musicItem[0].audioUrl
+//            if audioUrl != "" {
+//                playVideo(videoUrl: audioUrl)
+//            }
+        }
+    }
+    
+    func getMusicDetails(id : String, musicItem: [DataKey]){
+        let parameters: [String: String] = [:]
+        let dict = ["where": ["albumid": id] ] as [String : Any]
+        
+        if let json = try? JSONSerialization.data(withJSONObject: dict, options: []) {
+            if let content = String(data: json, encoding: String.Encoding.utf8) {
+                APIHelper().get(apiUrl: String.init(format: GlobalConstants.APIUrls.getMusic, content), parameters: parameters as [String : AnyObject]) { (response) in
+                    if response["data"].array != nil{
+                        let detailsDict = ["id": id, "name": musicItem[0].title, "img_thumb": musicItem[0].thumb]
+                        let storyBoard : UIStoryboard = UIStoryboard(name: "Music", bundle:nil)
+                        let vc = storyBoard.instantiateViewController(withIdentifier: "MusicDetailsViewController") as! MusicDetailsViewController
+                        vc.trackJSON = response
+                        vc.musicDetailsDict = detailsDict
+                        vc.isFromHome = true
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    }
+                }
             }
         }
     }

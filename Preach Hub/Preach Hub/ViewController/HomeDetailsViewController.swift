@@ -39,8 +39,9 @@ class noDataCell: UITableViewCell{
         super.awakeFromNib()
     }
 }
-class paymentCell: UITableViewCell
-{
+class paymentCell: UITableViewCell{
+    
+    @IBOutlet weak var btnDonate: UIButton!
     override func awakeFromNib()
     {
         super.awakeFromNib()
@@ -481,6 +482,7 @@ class HomeDetailsViewController: UIViewController, UITableViewDataSource, UITabl
         else if self.segmentIndex == 3
         {
             let cell = tableView.dequeueReusableCell(withIdentifier: "paymentCell") as? paymentCell
+            cell?.btnDonate.addTarget(self, action: #selector(btnDonateClicked(sender:)), for: .touchUpInside)
             return cell!
         }
         else if self.segmentIndex == 4
@@ -623,6 +625,11 @@ class HomeDetailsViewController: UIViewController, UITableViewDataSource, UITabl
             return 90
         }
         return CGFloat(self.height)
+    }
+    
+    @objc func btnDonateClicked(sender : UIButton){
+        guard let url = URL(string: GlobalConstants.APIUrls.donateUrl) else { return }
+        UIApplication.shared.open(url)
     }
     
     func playVideo(list: SermonsTestimony)
