@@ -22,7 +22,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        lblMemberName.text = UserDefaults.standard.string(forKey: "memberName")
+        lblMemberName.text = UserDefaults.standard.string(forKey: "memberName")?.uppercased()
     }
     
     @IBAction func favouriteTapped(_ sender: Any)

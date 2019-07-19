@@ -13,6 +13,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DetailsHeaderView" customModule="Preach_Hub" customModuleProvider="target">
             <connections>
                 <outlet property="bgImage" destination="ANu-Ot-L5Y" id="RiV-i2-zqT"/>
+                <outlet property="lblDescription" destination="Tfc-is-8fl" id="ZNq-gh-ak6"/>
                 <outlet property="middleImage" destination="cNC-TJ-F5z" id="6Ax-4G-4fh"/>
                 <outlet property="nameLbl" destination="Tbq-OB-cdO" id="ZcY-ue-Uu2"/>
                 <outlet property="view" destination="iN0-l3-epB" id="BKI-vL-mc3"/>
@@ -31,8 +32,20 @@
                     <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="I8w-g3-tYz">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="818"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tfc-is-8fl">
+                                <rect key="frame" x="20" y="494" width="374" height="14.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="Tfc-is-8fl" firstAttribute="leading" secondItem="I8w-g3-tYz" secondAttribute="leading" constant="20" id="Prt-MG-dST"/>
+                            <constraint firstAttribute="trailing" secondItem="Tfc-is-8fl" secondAttribute="trailing" constant="20" id="ii5-TL-aCm"/>
+                        </constraints>
                     </view>
-                    <blurEffect style="light"/>
+                    <blurEffect style="dark"/>
                 </visualEffectView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3kU-MW-dCq">
                     <rect key="frame" x="0.0" y="44" width="414" height="50"/>
@@ -131,6 +144,7 @@
                 <constraint firstItem="ANu-Ot-L5Y" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="hTU-fQ-X8f"/>
                 <constraint firstItem="cNC-TJ-F5z" firstAttribute="centerX" secondItem="7vH-S0-7kb" secondAttribute="centerX" id="iTv-yq-CIu"/>
                 <constraint firstItem="3kU-MW-dCq" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="md6-Rq-tCe"/>
+                <constraint firstItem="Tfc-is-8fl" firstAttribute="top" secondItem="cNC-TJ-F5z" secondAttribute="bottom" constant="10" id="mrA-dA-TXq"/>
                 <constraint firstItem="7vH-S0-7kb" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="pZh-Bf-XEI"/>
                 <constraint firstItem="3kU-MW-dCq" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="vjw-Kw-HEt"/>
             </constraints>

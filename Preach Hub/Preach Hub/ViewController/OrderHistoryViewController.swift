@@ -109,7 +109,7 @@ class OrderHistoryViewController: UIViewController, UITableViewDataSource, UITab
                             }
                         }
                         self.tableview.reloadData()
-                        if response["data"].count == 0 {
+                        if self.Orders.count == 0 {
                             self.lblMessage.isHidden = false
                         }
                         else{

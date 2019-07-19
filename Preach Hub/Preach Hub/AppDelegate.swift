@@ -189,10 +189,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // Let FCM know about the message for analytics etc.
         Messaging.messaging().appDidReceiveMessage(userInfo)
         print(userInfo)
-        if let aps = userInfo["aps"] as? [String:Any] {
-            let badgeCount = aps["badge"] as! Int
-            incrementBadgeNumberBy(badgeNumberIncrement: badgeCount)
-        }
+//        if let aps = userInfo["aps"] as? [String:Any] {
+//            let badgeCount = aps["badge"] as! Int
+//            incrementBadgeNumberBy(badgeNumberIncrement: badgeCount)
+//        }
 //        setNotificationForRequest()
     }
     
@@ -268,6 +268,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                     banner.shouldTintImage = false
                     banner.textColor = UIColor.black
                     banner.show(duration: 5.0)
+                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: "RefreshNotifications"), object: nil)
+                    let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleBannerTap(_:)))
+                    banner.addGestureRecognizer(tap)
                 }
             }
         })
@@ -281,8 +284,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         //let badgeCount = content.badge as! Int
         //  incrementBadgeNumberBy(badgeNumberIncrement: badgeCount)
         // UIApplication.shared.applicationIconBadgeNumber = badgeCount
+        let application = UIApplication.shared
+        if(application.applicationState == .inactive){
+            if UserDefaults.standard.bool(forKey: "Is_Logged_In") == true {
+                navigateToNotifications()
+            }
+        }
         completionHandler()
         //setNotificationForRequest()
+    }
+    
+    @objc func handleBannerTap(_ sender: UITapGestureRecognizer? = nil) {
+        if UserDefaults.standard.bool(forKey: "Is_Logged_In") == true {
+            navigateToNotifications()
+        }
+    }
+    
+    func navigateToNotifications(){
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Notifications", bundle: nil)
+        let notificationVC = storyBoard.instantiateViewController(withIdentifier: "NotificationsViewController") as! NotificationsViewController
+        notificationVC.isFromPushNotificationClick = true
+        let navigationController = self.window?.rootViewController as! UINavigationController
+        navigationController.pushViewController(notificationVC, animated: false)
     }
     
 }

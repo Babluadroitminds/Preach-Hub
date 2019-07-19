@@ -15,6 +15,7 @@ class DetailsHeaderView: UIView
     @IBOutlet weak var middleImage: UIImageView!
     @IBOutlet weak var bgImage: UIImageView!
     @IBOutlet var view : UIView!
+    @IBOutlet weak var lblDescription: UILabel!
     
     required init?(coder aDecoder: NSCoder)
     {

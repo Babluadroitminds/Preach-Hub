@@ -10,6 +10,7 @@ import UIKit
 
 class NotificationsTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var btnDelete: UIButton!
     @IBOutlet weak var btnReadMore: UIButton!
     @IBOutlet weak var lblDescription: UILabel!
     @IBOutlet weak var imgVwThumb: UIImageView!

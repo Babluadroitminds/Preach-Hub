@@ -19,10 +19,13 @@ struct favourites
     var id : String
     var video: String
     var isSermons: Bool
+    var duration: String
 }
 
 class favouritesell: UITableViewCell
 {
+    @IBOutlet weak var lblDuration: UILabel!
+    @IBOutlet weak var lblDescription: UILabel!
     @IBOutlet weak var moreBtn: UIButton!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var sermonImage: UIImageView!
@@ -71,7 +74,7 @@ class FavouritesViewController: UIViewController, UITableViewDataSource, UITable
             {
                 for data in fetchResults!
                 {
-                    self.favouritesArr.append(favourites(imageThumb: data.imageStr!, title: data.name!, id: data.favId!, video: data.video != nil ? data.video! : "", isSermons: data.isSermons))
+                    self.favouritesArr.append(favourites(imageThumb: data.imageStr!, title: data.name!, id: data.favId!, video: data.video != nil ? data.video! : "", isSermons: data.isSermons, duration: data.duration != nil ? data.duration! : ""))
                 }
             }
             
@@ -105,7 +108,7 @@ class FavouritesViewController: UIViewController, UITableViewDataSource, UITable
         cell!.sermonImage.sd_setImage(with: URL.init(string: urlString!) , placeholderImage: UIImage.init(named:"ic-placeholder.png"))
                     
         cell!.name.text = self.favouritesArr[indexPath.row].title
-        
+        cell!.lblDuration.text = self.favouritesArr[indexPath.row].duration
         cell!.moreBtn.tag = indexPath.row
         
         return cell!

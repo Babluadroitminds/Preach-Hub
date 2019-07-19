@@ -12,7 +12,7 @@ import UIKit
 struct GlobalConstants {
     struct APIUrls {
         static let baseUrl:String = ""
-        static let apiBaseUrl:String = "https://preachapi.herokuapp.com/api/"
+        static let apiBaseUrl:String = "http://preachhub.dedicated.co.za:3000/api/"
         static let websiteLink:String = "http://www.preachhub.net"
         static let memberLogin:String = "members/login"
         static let memberRegister:String = "members"
@@ -60,5 +60,6 @@ struct GlobalConstants {
         static let home: String = "http://preachhub.dedicated.co.za:3000/api/homes/getHome"
         static let donateUrl: String = "https://preachhub.co.za/donations/home/"
         static let getAlbum: String = "albums"
+        static let deleteNotificationById: String = "engagements/%@"
     }
 }

@@ -727,15 +727,16 @@ class HomeDetailsViewController: UIViewController, UITableViewDataSource, UITabl
             if index == 1
             {
                 var textToShare = [String]()
-                
+                var title = ""
                 if self.segmentIndex == 2
                 {
-                    textToShare = [self.semonsArr[sender.tag].title]
+                    title = self.semonsArr[sender.tag].title
                 }
                 else
                 {
-                    textToShare = [self.testimonyArr[sender.tag].title]
+                    title = self.testimonyArr[sender.tag].title
                 }
+                textToShare = ["\(self.detailsDict["name"]!.string!) - \(title) Download the Preach Hub app"]
                 let activityViewController = UIActivityViewController(activityItems: textToShare, applicationActivities: nil)
                 activityViewController.popoverPresentationController?.sourceView = self.view
                 
@@ -817,6 +818,7 @@ class HomeDetailsViewController: UIViewController, UITableViewDataSource, UITabl
         var type = ""
         var video = ""
         var isSermons = false
+        var duration = ""
         
         if self.segmentIndex == 2
         {
@@ -826,6 +828,7 @@ class HomeDetailsViewController: UIViewController, UITableViewDataSource, UITabl
             video = self.semonsArr[index].video
             type = "sermons"
             isSermons = self.semonsArr[index].isSermons
+            duration = self.semonsArr[index].duration
         }
         else
         {
@@ -835,6 +838,7 @@ class HomeDetailsViewController: UIViewController, UITableViewDataSource, UITabl
             video = self.testimonyArr[index].video
             type = "testimony"
             isSermons = self.testimonyArr[index].isSermons
+            duration = self.semonsArr[index].duration
         }
         
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
@@ -854,6 +858,7 @@ class HomeDetailsViewController: UIViewController, UITableViewDataSource, UITabl
         user.setValue(type, forKey: "type")
         user.setValue(video, forKey: "video")
         user.setValue(isSermons, forKey: "isSermons")
+        user.setValue(duration, forKey: "duration")
         do
         {
             try managedContext?.save()

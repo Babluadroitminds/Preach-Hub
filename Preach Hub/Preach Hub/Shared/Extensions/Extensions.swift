@@ -93,7 +93,7 @@ extension UIViewController : UIGestureRecognizerDelegate, UITextFieldDelegate {
     
     func convertToString(dateString: String) -> String {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd-MM-yyyy"
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
         let dateFromString = dateFormatter.date(from: dateString)
         let dateFormatter2 = DateFormatter()
         dateFormatter2.dateFormat = "MMM d, yyyy"

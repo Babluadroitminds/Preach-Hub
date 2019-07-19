@@ -70,12 +70,21 @@
                                                                 <constraint firstAttribute="height" constant="50" id="G2W-tC-CGE"/>
                                                             </constraints>
                                                         </imageView>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic-play" translatesAutoresizingMaskIntoConstraints="NO" id="RIb-SO-cV4">
+                                                            <rect key="frame" x="22.5" y="22.5" width="25" height="25"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="25" id="7qk-BX-kPR"/>
+                                                                <constraint firstAttribute="width" constant="25" id="uRA-zb-YIo"/>
+                                                            </constraints>
+                                                        </imageView>
                                                     </subviews>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstItem="bEo-9H-HJD" firstAttribute="centerX" secondItem="dlO-OA-8FO" secondAttribute="centerX" id="5mY-gI-6SW"/>
                                                         <constraint firstAttribute="height" constant="70" id="97e-EZ-EyL"/>
                                                         <constraint firstAttribute="width" constant="70" id="KP6-8h-URx"/>
+                                                        <constraint firstItem="RIb-SO-cV4" firstAttribute="centerX" secondItem="bEo-9H-HJD" secondAttribute="centerX" id="LkD-XC-lrV"/>
+                                                        <constraint firstItem="RIb-SO-cV4" firstAttribute="centerY" secondItem="bEo-9H-HJD" secondAttribute="centerY" id="dLE-zM-ttm"/>
                                                         <constraint firstItem="bEo-9H-HJD" firstAttribute="centerY" secondItem="dlO-OA-8FO" secondAttribute="centerY" id="l6b-St-hUe"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
@@ -90,14 +99,14 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="64J-Aa-eO9">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="64J-Aa-eO9">
                                                     <rect key="frame" x="100" y="39" width="217" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="available to play" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ubf-PC-Upv">
-                                                    <rect key="frame" x="100" y="59" width="217" height="14.5"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="available to play" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ubf-PC-Upv">
+                                                    <rect key="frame" x="100" y="59" width="264" height="14.5"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -145,12 +154,12 @@
                                                 <constraint firstItem="nyy-Sd-Aee" firstAttribute="centerY" secondItem="bEo-9H-HJD" secondAttribute="centerY" multiplier="0.9" id="1t3-Rp-MKx"/>
                                                 <constraint firstItem="nyy-Sd-Aee" firstAttribute="centerY" secondItem="9is-1Z-taS" secondAttribute="centerY" id="DPE-D3-Qbb"/>
                                                 <constraint firstAttribute="trailing" secondItem="9is-1Z-taS" secondAttribute="trailing" id="Esu-5d-IlW"/>
-                                                <constraint firstItem="Ubf-PC-Upv" firstAttribute="trailing" secondItem="64J-Aa-eO9" secondAttribute="trailing" id="Mtu-nN-Ze2"/>
+                                                <constraint firstItem="Ubf-PC-Upv" firstAttribute="leading" secondItem="dlO-OA-8FO" secondAttribute="trailing" constant="15" id="H7J-xs-B2t"/>
                                                 <constraint firstItem="64J-Aa-eO9" firstAttribute="leading" secondItem="dlO-OA-8FO" secondAttribute="trailing" constant="15" id="PCd-Ci-AEb"/>
                                                 <constraint firstItem="dlO-OA-8FO" firstAttribute="leading" secondItem="ItG-9d-Tfa" secondAttribute="leading" constant="15" id="PsA-l3-08v"/>
-                                                <constraint firstItem="Ubf-PC-Upv" firstAttribute="leading" secondItem="64J-Aa-eO9" secondAttribute="leading" id="bcA-ZZ-vfh"/>
                                                 <constraint firstItem="dlO-OA-8FO" firstAttribute="centerY" secondItem="ItG-9d-Tfa" secondAttribute="centerY" id="d4z-lm-pCo"/>
                                                 <constraint firstItem="64J-Aa-eO9" firstAttribute="top" secondItem="bEo-9H-HJD" secondAttribute="top" multiplier="1.5" id="kCC-Se-hDF"/>
+                                                <constraint firstItem="9is-1Z-taS" firstAttribute="leading" secondItem="Ubf-PC-Upv" secondAttribute="trailing" constant="10" id="qlf-QT-gnb"/>
                                                 <constraint firstItem="nyy-Sd-Aee" firstAttribute="leading" secondItem="64J-Aa-eO9" secondAttribute="trailing" constant="10" id="rjp-X4-FdO"/>
                                                 <constraint firstItem="9is-1Z-taS" firstAttribute="leading" secondItem="nyy-Sd-Aee" secondAttribute="trailing" constant="10" id="s74-oM-zMp"/>
                                                 <constraint firstItem="Ubf-PC-Upv" firstAttribute="top" secondItem="64J-Aa-eO9" secondAttribute="bottom" constant="2" id="xeV-bn-9QT"/>
@@ -221,6 +230,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="ic-play" width="320" height="320"/>
         <image name="ic_empty" width="119" height="151"/>
         <image name="more_blue" width="100" height="100"/>
     </resources>

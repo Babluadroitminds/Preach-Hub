@@ -15,21 +15,11 @@ class HomeTabBarViewController: UITabBarController {
 
         self.tabBarController?.tabBarItem.setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: "System", size: 15)!, NSAttributedString.Key.foregroundColor: UIColor.black], for: .normal)
         self.tabBarController?.tabBarItem.setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: "System", size: 15)!, NSAttributedString.Key.foregroundColor: UIColor.black], for: .selected)
-        
-//        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: "System", size: 15)!, NSAttributedString.Key.foregroundColor: UIColor.black], for: .normal)
-//        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: "System", size: 15)!, NSAttributedString.Key.foregroundColor: UIColor.black], for: .selected)
-        // Do any additional setup after loading the view.
+        NotificationCenter.default.addObserver(self, selector: #selector(HomeTabBarViewController.refreshToSelectBarItem), name: NSNotification.Name(rawValue: "RefreshTabBarSelection"), object: nil)
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @objc func refreshToSelectBarItem(notification: NSNotification) {
+        self.tabBarController?.selectedIndex = 1
     }
-    */
 
 }

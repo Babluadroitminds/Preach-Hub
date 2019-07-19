@@ -219,7 +219,7 @@ class AddBillingAddressViewController: UIViewController, UIPickerViewDataSource,
         for item in cartList {
             sum = (sum + (Float((item["quantity"]!))! * Float((item["price"])!)!))
         }
-        let amount = (sum + shippingAmount)
+        let amount = (sum + shippingAmount) * 100
         let memberId = UserDefaults.standard.string(forKey: "memberId")
         
        // let stripeCustomerTokenId = UserDefaults.standard.string(forKey: "stripeCustomerTokenId")

@@ -20,11 +20,19 @@ struct NotificationsKey {
 class NotificationsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var tblView: UITableView!
     
+    @IBOutlet weak var lblMessage: UILabel!
     var notifications: [NotificationsKey] = []
+    var isFromPushNotificationClick: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tblView.tableFooterView = UIView()
+        lblMessage.isHidden = true
+        getNotifications()
+        NotificationCenter.default.addObserver(self, selector: #selector(NotificationsViewController.refreshNotificationRequest), name: NSNotification.Name(rawValue: "RefreshNotifications"), object: nil)
+    }
+    
+    @objc func refreshNotificationRequest(notification: NSNotification) {
         getNotifications()
     }
     
@@ -37,9 +45,19 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
                 for item in response["data"].arrayValue {
                     self.notifications.append(NotificationsKey(id: item["id"] != JSON.null ? item["id"].string! : "", thumb: item["img_thumb"] != JSON.null ? item["img_thumb"].string! : "", title: item["title"] != JSON.null ? item["title"].string! : "", description: item["description"] != JSON.null ? item["description"].string! : "", dateCreated: item["datecreated"] != JSON.null ? item["datecreated"].string! : ""))
                 }
+                if self.notifications.count == 0 {
+                    self.lblMessage.isHidden = false
+                }
+                else{
+                    self.lblMessage.isHidden = true
+                }
             self.tblView.reloadData()
             NotificationsHelper.hideBusyIndicator()
             }
+            else{
+                self.lblMessage.isHidden = false
+            }
+            
         }
     }
     
@@ -72,7 +90,7 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 230
+        return 210
     }
     
     @objc func btnReadMoreClicked(sender: UIButton) {
@@ -82,7 +100,18 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
     }
     
     @IBAction func backClicked(_ sender: Any) {
-        self.navigationController?.popViewController(animated: true)
+        if isFromPushNotificationClick == true {
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            let storyboard:UIStoryboard = UIStoryboard(name: "Home", bundle: nil)
+            let initialViewController = storyboard.instantiateViewController(withIdentifier: "HomeTabBarViewController") as! HomeTabBarViewController
+            initialViewController.selectedIndex = 1
+            let navigationController = UINavigationController(rootViewController: initialViewController)
+            navigationController.isNavigationBarHidden = true
+            appDelegate.window!.rootViewController = navigationController
+        }
+        else {
+            self.navigationController?.popViewController(animated: true)
+        }
     }
     
     static func storyboardInstance() -> NotificationsViewController? {

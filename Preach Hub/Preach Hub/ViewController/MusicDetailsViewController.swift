@@ -20,6 +20,8 @@ struct Tracks{
     var id : String
     var audio : String
     var isSermons: Bool
+    var albumName: String
+    var duration: String
 }
 
 class trackCell: UITableViewCell{
@@ -92,7 +94,20 @@ class MusicDetailsViewController: UIViewController, UITableViewDataSource, UITab
         let header = DetailsHeaderView(frame: CGRect(x: 0, y: 0, width: 50, height: 300))
         
         header.nameLbl.text = musicDetailsDict["name"]
-        
+        header.lblDescription.isHidden = false
+        var tracks = ""
+        if musicDetailsDict["numberOfTracks"]! == "1" {
+             tracks = musicDetailsDict["numberOfTracks"]! + " Track"
+        }
+        else {
+             tracks = musicDetailsDict["numberOfTracks"]! + " Tracks"
+        }
+        var releasedDate = ""
+        if musicDetailsDict["yearreleased"] != "" {
+            releasedDate = "Released on " + convertToString(dateString: musicDetailsDict["yearreleased"]!)
+        }
+    
+        header.lblDescription.text = "\(musicDetailsDict["name"]!) \n \(releasedDate) \n \(tracks)"
         if musicDetailsDict["img_thumb"] != ""
         {
             let url = URL(string: musicDetailsDict["img_thumb"]!)
@@ -116,33 +131,8 @@ class MusicDetailsViewController: UIViewController, UITableViewDataSource, UITab
         
         let lists = trackJSON!["data"]
         for item in lists{
-            self.tracksArr.append(Tracks(imageThumb: item.1["img_thumb"] != JSON.null ? item.1["img_thumb"].string! : "", title: item.1["name"] != JSON.null ? item.1["name"].string! : "", id:  item.1["id"] != JSON.null ? item.1["id"].string! : "", audio: item.1["audio"] != JSON.null ? item.1["audio"].string! : "", isSermons: false))
+            self.tracksArr.append(Tracks(imageThumb: item.1["img_thumb"] != JSON.null ? item.1["img_thumb"].string! : "", title: item.1["name"] != JSON.null ? item.1["name"].string! : "", id:  item.1["id"] != JSON.null ? item.1["id"].string! : "", audio: item.1["audio"] != JSON.null ? item.1["audio"].string! : "", isSermons: false, albumName: musicDetailsDict["name"]!, duration: item.1["duration"] != JSON.null ? item.1["duration"].string! : ""))
         }
-        
-        
-        
-//        if detailsDict["testimonies"] != nil
-//        {
-//            if detailsDict["testimonies"]?.array?.count != 0
-//            {
-//                for item in detailsDict["testimonies"]!.array!
-//                {
-//                    self.testimonyArr.append(SermonsTestimony(imageThumb: item["img_thumb"] != JSON.null ? item["img_thumb"].string! : "", title: item["name"] != JSON.null ? item["name"].string! : "", duration: item["duration"] != JSON.null ? item["duration"].string! : "", id: item["id"] != JSON.null ? item["id"].string! : "", video: item["video"] != JSON.null ? item["video"].string! : "", isSermons: false))
-//                }
-//            }
-//        }
-        
-//        if detailsDict["products"] != nil
-//        {
-//            if detailsDict["products"]?.array?.count != 0
-//            {
-//                for item in detailsDict["products"]!.array!
-//                {
-//                    self.productsArr.append(ProductKey(id: item["id"] != JSON.null ? item["id"].string! : "",name:  item["name"] != JSON.null ? item["name"].string! : "",price: item["price"] != JSON.null ? item["price"].string! : "",categoryid: item["categoryid"] != JSON.null ?item["categoryid"].string! : "",thumb: item["img_thumb"] != JSON.null ? item["img_thumb"].string! : "",productcode: item["productcode"] != JSON.null ? item["productcode"].string! : "", productsize: item["productsize"] != JSON.null ? item["productsize"].string! : "", quantity: item["quantity"] != JSON.null ? item["quantity"].string! : "", colourid: item["colourid"] != JSON.null ? item["colourid"].string! : "",isActive: item["is_active"] != JSON.null ? item["is_active"].bool! : true))
-//                }
-//            }
-//        }
-        //setGestureLayout()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -162,51 +152,6 @@ class MusicDetailsViewController: UIViewController, UITableViewDataSource, UITab
     {
         super.didReceiveMemoryWarning()
     }
-    
-//    func setGestureLayout(){
-//        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(didSwipeRight(gestureRecognizer:)))
-//        swipeRight.delegate = self
-//        swipeRight.numberOfTouchesRequired = 1
-//        swipeRight.delaysTouchesBegan = true
-//        swipeRight.direction = .right
-//
-//        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(didSwipeLeft(gestureRecognizer:)))
-//        swipeLeft.delegate = self
-//        swipeLeft.numberOfTouchesRequired = 1
-//        swipeLeft.delaysTouchesBegan = true
-//        swipeLeft.direction = .left
-//
-//        tableView?.addGestureRecognizer(swipeRight)
-//        tableView?.addGestureRecognizer(swipeLeft)
-//    }
-//
-//    @objc func didSwipeRight(gestureRecognizer : UISwipeGestureRecognizer)
-//    {
-//        if self.segmentIndex != 0
-//        {
-//            self.segmentIndex = self.segmentIndex  - 1
-//
-//            //            self.tableView.reloadData()
-//            self.tableView.reloadSections([1], with: .automatic)
-//
-//            let customCell = self.tableView.headerView(forSection: 0) as! sectionHeaderView
-//            self.updateHeaderView(customCell: customCell, section: 0)
-//        }
-//    }
-//
-//    @objc func didSwipeLeft(gestureRecognizer : UISwipeGestureRecognizer)
-//    {
-//        if self.segmentIndex + 1 != self.sectionHeaderCellCount
-//        {
-//            self.segmentIndex = self.segmentIndex + 1
-//
-//            //            self.tableView.reloadData()
-//            self.tableView.reloadSections([1], with: .automatic)
-//
-//            let customCell = self.tableView.headerView(forSection: 0) as! sectionHeaderView
-//            self.updateHeaderView(customCell: customCell, section: 0)
-//        }
-//    }
     
     @objc func topBackTapped(notification: NSNotification){
         if isFromHome {
@@ -318,7 +263,8 @@ class MusicDetailsViewController: UIViewController, UITableViewDataSource, UITab
                     
                     cell!.name.text = self.tracksArr[indexPath.row].title
                     cell!.timeLbl.text = ""
-                    
+                    cell?.availableLbl.text = self.tracksArr[indexPath.row].albumName
+                    cell!.timeLbl.text = self.tracksArr[indexPath.row].duration
                     cell!.moreBtn.tag = indexPath.row
                 }
                 return cell!
@@ -383,31 +329,6 @@ class MusicDetailsViewController: UIViewController, UITableViewDataSource, UITab
         }
     }
     
-//    func playVideo(list: SermonsTestimony)
-//    {
-//        let videoURL = URL(string: list.video.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!)
-//
-//        player = AVPlayer(url: videoURL!)
-//        let vc = AVPlayerViewController()
-//        vc.player = player
-//
-//        present(vc, animated: true) {
-//
-//            try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [])
-//            vc.player?.play()
-//        }
-//        if list.isSermons {
-//            selectedSermonsId = list.id
-//            self.player!.addObserver(self, forKeyPath: "rate", options: NSKeyValueObservingOptions(), context: nil)
-//        }
-//        else
-//        {
-//            selectedSermonsId = ""
-//            //            selectedSermonsId = list.id
-//            //            self.player!.addObserver(self, forKeyPath: "rate", options: NSKeyValueObservingOptions(), context: nil)
-//        }
-//    }
-    
     //observer for av play
     override  func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if keyPath == "rate" {
@@ -449,173 +370,11 @@ class MusicDetailsViewController: UIViewController, UITableViewDataSource, UITab
         player.removeObserver(self, forKeyPath: "rate")
     }
     
-//    @objc func btnMoreProductClicked(sender: UIButton) {
-//        let ProductVC = ProductViewController.storyboardInstance()
-//        ProductVC!.parentId = id
-//        ProductVC!.categoryTitle = "All"
-//        ProductVC!.productList = productsArr
-//        ProductVC!.isPastor = true
-//        self.navigationController?.pushViewController(ProductVC!, animated: true)
-//    }
-    
     @objc func donePickerClicked()
     {
         self.view.endEditing(true)
     }
     @IBAction func moreTapped(_ sender: UIButton)
     {
-//        self.moreIndex = sender.tag
-//
-//        let dropDown = DropDown()
-//
-//        dropDown.anchorView = sender
-//        dropDown.bottomOffset = CGPoint(x: 0, y:(dropDown.anchorView?.plainView.bounds.height)!)
-//
-//        dropDown.dataSource = ["Favourite", "Share"]
-//
-//        dropDown.selectionAction = { [unowned self] (index: Int, item: String) in
-//
-//            if index == 1
-//            {
-//                var textToShare = [String]()
-//
-//                if self.segmentIndex == 2
-//                {
-//                    textToShare = [self.semonsArr[sender.tag].title]
-//                }
-//                else
-//                {
-//                    textToShare = [self.testimonyArr[sender.tag].title]
-//                }
-//                let activityViewController = UIActivityViewController(activityItems: textToShare, applicationActivities: nil)
-//                activityViewController.popoverPresentationController?.sourceView = self.view
-//
-//                activityViewController.excludedActivityTypes = [UIActivity.ActivityType.airDrop, UIActivity.ActivityType.postToFacebook ]
-//
-//                self.present(activityViewController, animated: true, completion: nil)
-//            }
-//            else
-//            {
-//                self.alreadyExistCheck(index: sender.tag)
-//            }
-//        }
-//
-//        dropDown.width = 150
-//        dropDown.dismissMode = .onTap
-//
-//        dropDown.show()
     }
-//    func alreadyExistCheck(index : Int)
-//    {
-//        var id = ""
-//        var type = ""
-//        var video = ""
-//
-//        if self.segmentIndex == 2
-//        {
-//            id = self.semonsArr[index].id
-//            type = "sermons"
-//            video = self.semonsArr[index].video
-//        }
-//        else
-//        {
-//            id = self.testimonyArr[index].id
-//            type = "testimony"
-//            video = self.testimonyArr[index].video
-//        }
-//        let userId = UserDefaults.standard.value(forKey: "memberId") as? String
-//
-//        let appDelegate = UIApplication.shared.delegate as? AppDelegate
-//        let managedContext = appDelegate?.persistentContainer.viewContext
-//
-//        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Favourite")
-//
-//        let idKeyPredicate = NSPredicate(format: "favId = %@", id)
-//        let typeKeyPredicate = NSPredicate(format: "type = %@", type)
-//        let videoKeyPredicate = NSPredicate(format: "video = %@", video)
-//
-//        let userIdKeyPredicate = NSPredicate(format: "userId == %@", userId!)
-//
-//        let andPredicate = NSCompoundPredicate(type: NSCompoundPredicate.LogicalType.and, subpredicates: [idKeyPredicate, typeKeyPredicate, userIdKeyPredicate, videoKeyPredicate])
-//
-//        fetchRequest.predicate = andPredicate
-//
-//        do
-//        {
-//            let fetchResults = try managedContext!.fetch(fetchRequest) as? [Favourite]
-//
-//            if fetchResults?.count != 0
-//            {
-//                let style = ToastStyle()
-//
-//                self.view.makeToast("Already added in Favourites", duration: 3.0, position: .bottom, title: nil, image: nil, style: style , completion: nil)
-//            }
-//            else
-//            {
-//                self.saveFavourite(index : index)
-//            }
-//        }
-//        catch
-//        {
-//            print("coreDataFetchFail")
-//        }
-//    }
-//    func saveFavourite(index : Int)
-//    {
-//        var imageStr = ""
-//        var name = ""
-//        var id = ""
-//        var type = ""
-//        var video = ""
-//        var isSermons = false
-//
-//        if self.segmentIndex == 2
-//        {
-//            name = self.semonsArr[index].title
-//            imageStr = self.semonsArr[index].imageThumb
-//            id = self.semonsArr[index].id
-//            video = self.semonsArr[index].video
-//            type = "sermons"
-//            isSermons = self.semonsArr[index].isSermons
-//        }
-//        else
-//        {
-//            name = self.testimonyArr[index].title
-//            imageStr = self.testimonyArr[index].imageThumb
-//            id = self.testimonyArr[index].id
-//            video = self.testimonyArr[index].video
-//            type = "testimony"
-//            isSermons = self.testimonyArr[index].isSermons
-//        }
-//
-//        let appDelegate = UIApplication.shared.delegate as? AppDelegate
-//        let managedContext = appDelegate?.persistentContainer.viewContext
-//        let entity = NSEntityDescription.entity(forEntityName: "Favourite", in: managedContext!)!
-//
-//        let user = NSManagedObject(entity: entity, insertInto: managedContext!)
-//
-//        let userId = UserDefaults.standard.value(forKey: "memberId") as? String
-//
-//        user.setValue(userId, forKey: "userId")
-//
-//        user.setValue(id, forKey: "favId")
-//        user.setValue(imageStr, forKey: "imageStr")
-//        user.setValue(name, forKey: "name")
-//        user.setValue(userId, forKey: "userId")
-//        user.setValue(type, forKey: "type")
-//        user.setValue(video, forKey: "video")
-//        user.setValue(isSermons, forKey: "isSermons")
-//        do
-//        {
-//            try managedContext?.save()
-//        }
-//        catch let error as NSError
-//        {
-//            print("errorCoreData : ", error.userInfo)
-//        }
-//
-//        let style = ToastStyle()
-//
-//        self.view.makeToast("Favourites added", duration: 3.0, position: .bottom, title: nil, image: nil, style: style , completion: nil)
-//    }
 }
